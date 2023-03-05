@@ -1,0 +1,17 @@
+{
+  "console.log2": {
+    "prefix": "cl",
+    "body": "console.log(${0})",
+    "description": "console.log()"
+  },
+  "reactFunctionComponentWithCustomName": {
+    "prefix": "rc",
+    "body": "\nconst ${1:functionname} = () => {\n\treturn (\n\t\t<>\n\t\t\t$0\n\t\t</>\n\t)\n}",
+    "description": "Creates a React function component with custom name"
+  },
+  "function": {
+    "prefix": "fn",
+    "body": "() => {\n\t$0\n\t}",
+    "description": "Anonymous function"
+  }
+}

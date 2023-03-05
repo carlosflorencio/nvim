@@ -20,7 +20,7 @@ return {{
         branch = "0.1.x",
         dependencies = {"kkharji/sqlite.lua"}
     }, 'nvim-lua/plenary.nvim', "telescope-fzf-native.nvim", "nvim-telescope/telescope-live-grep-args.nvim",
-                    "nvim-telescope/telescope-dap.nvim"},
+                    "nvim-telescope/telescope-dap.nvim", "benfowler/telescope-luasnip.nvim"},
     cmd = "Telescope",
     opts = {
         defaults = {
@@ -94,7 +94,6 @@ return {{
             {"<leader>fw", "<cmd>Telescope live_grep_args<cr>", "Grep Text"},
             {"<leader>fk", "<cmd>Telescope keymaps<cr>", "Keymaps"},
             {"<leader>fC", "<cmd>Telescope commands<cr>", "Commands"},
-            {"<leader>fs", "<cmd>Telescope aerial<cr>", "Document Symbols by Aerial"},
             {"<leader>fp", "<cmd>Telescope projects<cr>", "Projects"},
             {"<leader>fS", "<cmd>Telescope luasnip theme=dropdown<cr>", "Snippets"},
             {"<leader>fu", "<cmd>Telescope undo<cr>", "Undo list"},

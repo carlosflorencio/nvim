@@ -3,7 +3,8 @@ return {{
     version = false, -- last release is way too old and doesn't work on Windows
     build = ":TSUpdate",
     event = {"BufReadPost", "BufNewFile"},
-    dependencies = {"nvim-treesitter/nvim-treesitter-textobjects", "RRethy/nvim-treesitter-textsubjects"},
+    dependencies = {"nvim-treesitter/nvim-treesitter-textobjects", "RRethy/nvim-treesitter-textsubjects",
+                    "nvim-treesitter/nvim-treesitter-context", "nvim-treesitter/playground"},
     ---@type TSConfig
     opts = {
         highlight = {
@@ -14,6 +15,9 @@ return {{
         playground = {
             enable = true
         },
+        matchup = {
+            enable = true,
+          },
         indent = {
             enable = true
         },
@@ -21,9 +25,10 @@ return {{
             enable = true,
             enable_autocmd = false
         },
-        ensure_installed = {"regex", "lua", "vim", "query", "c", "css", "go", "markdown", "php", "python", "ruby", "scss", "sql",
-                            "svelte", "toml", "vue", "rust", "yaml", "jsdoc", "hcl", "cpp", "typescript", "javascript",
-                            "tsx", "jsonc", "json", "http", "gitignore", "fish", "dockerfile", "bash", "help"},
+        ensure_installed = {"regex", "lua", "vim", "query", "c", "css", "go", "markdown", "php", "python", "ruby",
+                            "scss", "sql", "svelte", "toml", "vue", "rust", "yaml", "jsdoc", "hcl", "cpp", "typescript",
+                            "javascript", "tsx", "jsonc", "json", "http", "gitignore", "fish", "dockerfile", "bash",
+                            "help"},
         incremental_selection = {
             enable = true,
             keymaps = {
