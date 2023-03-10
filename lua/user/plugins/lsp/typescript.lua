@@ -19,11 +19,14 @@ return {
           require("user.util").on_attach(function(client, buffer)
             if client.name == "tsserver" then
               -- stylua: ignore
-              vim.keymap.set("n", "<leader>oi", "<cmd>TypescriptOrganizeImports<CR>", { buffer = buffer, desc = "Organize Imports" })
+              vim.keymap.set("n", "<leader>oi", "<cmd>TypescriptOrganizeImports<CR>",
+                { buffer = buffer, desc = "Organize Imports" })
               -- stylua: ignore
-              vim.keymap.set("n", "<leader>oa", "<cmd>TypescriptAddMissingImports<CR>", { buffer = buffer, desc = "Add Missing Imports" })
+              vim.keymap.set("n", "<leader>oa", "<cmd>TypescriptAddMissingImports<CR>",
+                { buffer = buffer, desc = "Add Missing Imports" })
               -- stylua: ignore
-              vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = buffer })
+              vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<CR>",
+                { desc = "Rename File", buffer = buffer })
             end
           end)
           require("typescript").setup({ server = opts })
@@ -33,3 +36,4 @@ return {
     },
   },
 }
+

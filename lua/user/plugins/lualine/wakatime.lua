@@ -57,3 +57,4 @@ end)
 function Lualine_get_wakatime()
   return current_time
 end
+

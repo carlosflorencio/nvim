@@ -1,5 +1,5 @@
 -- Keymaps for better default experience
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+--vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -27,9 +27,6 @@ end)
 -- Paste
 vim.keymap.set("v", "<C-p>", "y'>p")
 
--- Regex explainer hide
-vim.keymap.set('n', '<esc>', '<cmd>RegexplainerHide<cr>')
-
 -- fuzzy search current buffer
 vim.keymap.set('n', '<c-/>', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
@@ -38,3 +35,33 @@ vim.keymap.set('n', '<c-/>', function()
     previewer = false,
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })
+
+-- cycle between buffers
+vim.keymap.set("n", "<leader><space>", "<c-^>")
+
+-- better window movement
+vim.keymap.set("n", "<C-h>", "<C-w>h")
+vim.keymap.set("n", "<C-j>", "<C-w>j")
+vim.keymap.set("n", "<C-k>", "<C-w>k")
+vim.keymap.set("n", "<C-l>", "<C-w>l")
+
+
+-- quickfix
+vim.keymap.set("n", "]q", ":cnext<cr>")
+vim.keymap.set("n", "[q", ":cprev<cr>")
+
+-- Move current line / block with Alt-j/k a la vscode.
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")
+vim.keymap.set("x", "<A-j>", ":m '>+1<CR>gv-gv")
+vim.keymap.set("x", "<A-k>", ":m '<-2<CR>gv-gv")
+
+-- navigate tab completion with <c-j> and <c-k>
+vim.keymap.set("i", "<c-j>", "pumvisible() ? \"\\<C-n>\" : \"\\<C-j>\"", { expr = true })
+vim.keymap.set("i", "<c-k>", "pumvisible() ? \"\\<C-p>\" : \"\\<C-k>\"", { expr = true })
+
+-- better indenting
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
+
+

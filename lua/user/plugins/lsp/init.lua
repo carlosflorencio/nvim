@@ -1,11 +1,11 @@
-return {{
+return { {
     "williamboman/mason.nvim",
     opts = {},
     lazy = false
 }, {
     "neovim/nvim-lspconfig",
-    event = {"BufReadPre", "BufNewFile"},
-    dependencies = {{
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = { {
         "folke/neoconf.nvim",
         cmd = "Neoconf",
         config = true
@@ -16,7 +16,7 @@ return {{
                 pathStrict = true
             }
         }
-    }, "mason.nvim", "williamboman/mason-lspconfig.nvim", {"hrsh7th/cmp-nvim-lsp"}},
+    }, "mason.nvim", "williamboman/mason-lspconfig.nvim", { "hrsh7th/cmp-nvim-lsp" } },
     ---@class PluginLspOpts
     opts = {
         -- options for vim.diagnostic.config()
@@ -137,15 +137,15 @@ return {{
         require("mason-lspconfig").setup({
             ensure_installed = ensure_installed
         })
-        require("mason-lspconfig").setup_handlers({setup})
+        require("mason-lspconfig").setup_handlers({ setup })
     end
 }, {
     "ThePrimeagen/refactoring.nvim",
-    dependencies = {{"nvim-lua/plenary.nvim"}, {"nvim-treesitter/nvim-treesitter"}},
+    dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-treesitter/nvim-treesitter" } },
     opts = {}
 }, {
     "dnlhc/glance.nvim",
-    cmd = {"Glance"},
+    cmd = { "Glance" },
     config = function()
         local glance = require('glance')
         glance.setup({
@@ -162,4 +162,4 @@ return {{
     import = "user.plugins.lsp.typescript"
 }, {
     import = "user.plugins.lsp.json"
-}}
+} }

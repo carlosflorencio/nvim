@@ -28,4 +28,9 @@ return {{
             extensions = {}
         }
     end
-}}
+},
+  {
+    -- statuslune lsp progress
+    "arkav/lualine-lsp-progress"
+  },
+}

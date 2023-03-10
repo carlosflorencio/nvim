@@ -24,14 +24,14 @@ function M.format()
     return
   end
   local ft = vim.bo[buf].filetype
-  local have_nls = #require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING") > 0
+  --local have_nls = #require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING") > 0
 
   vim.lsp.buf.format(vim.tbl_deep_extend("force", {
     bufnr = buf,
     filter = function(client)
-      if have_nls then
-        return client.name == "null-ls"
-      end
+      --if have_nls then
+      -- return client.name == "null-ls"
+      --end
       return client.name ~= "null-ls"
     end,
   }, require("user.util").opts("nvim-lspconfig").format or {}))
@@ -40,9 +40,9 @@ end
 function M.on_attach(client, buf)
   -- dont format if client disabled it
   if
-    client.config
-    and client.config.capabilities
-    and client.config.capabilities.documentFormattingProvider == false
+      client.config
+      and client.config.capabilities
+      and client.config.capabilities.documentFormattingProvider == false
   then
     return
   end

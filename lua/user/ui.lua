@@ -163,3 +163,4 @@ M.lsp_diagnostic_icons = {
 }
 
 return M
+

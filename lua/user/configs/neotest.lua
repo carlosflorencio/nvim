@@ -23,7 +23,6 @@ neotest.setup({
         -- vim.notify("found root " .. root)
         return root
       end,
-
       -- strategy_config = function(args)
       --   -- if cmds.bufferInPath(cmds.projectPaths["tracker-api"]) then
       --   --   vim.notify("is tracker api")
@@ -81,3 +80,4 @@ neotest.setup({
 --     -- })
 --   end
 -- })
+

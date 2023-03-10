@@ -8,3 +8,4 @@ wk.register({
     u = { "<Plug>RestNvim", "Run request under cursor" }
   }
 }, opts)
+

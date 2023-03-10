@@ -145,7 +145,6 @@ return {
     end,
     color = {},
   },
-
   spaces = {
     function()
       local shiftwidth = vim.api.nvim_buf_get_option(0, "shiftwidth")
@@ -174,3 +173,4 @@ return {
     cond = nil,
   },
 }
+

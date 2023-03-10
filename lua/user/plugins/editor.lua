@@ -226,5 +226,13 @@ return {{
     'nmac427/guess-indent.nvim',
     opts = {},
     lazy = false
-  }
+  },
+{
+  "echasnovski/mini.pairs",
+  event = "VeryLazy",
+  config = function(_, opts)
+    require("mini.pairs").setup(opts)
+  end,
+}
+
 }

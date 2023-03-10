@@ -33,7 +33,6 @@ M.runCmd = function(listCmd, cwd, callback)
   })
 end
 
-
 M.bufferInPath = function(pathPattern, bufPath)
   local path = bufPath
 
@@ -47,6 +46,5 @@ M.bufferInPath = function(pathPattern, bufPath)
 
   return false
 end
-
 
 return M
