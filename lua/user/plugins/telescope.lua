@@ -109,6 +109,7 @@ return {
 			telescope.load_extension("yank_history")
 			telescope.load_extension("aerial")
 			telescope.load_extension("refactoring")
+			telescope.load_extension("lazygit")
 		end,
 		keys = {
 			{
