@@ -1,5 +1,5 @@
 vim.opt.swapfile = true
-vim.opt.wrap = true
+vim.opt.wrap = false
 vim.opt.hlsearch = false
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
@@ -36,3 +36,4 @@ vim.o.mouse = "a" -- Enable mouse mode
 vim.o.clipboard = "unnamedplus" -- Enable mouse mode
 vim.o.undofile = true -- Save undo history
 vim.o.breakindent = true
+vim.o.showtabline = 2

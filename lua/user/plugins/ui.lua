@@ -1,24 +1,3 @@
-local function is_ft(b, ft)
-	return vim.bo[b].filetype == ft
-end
-
-local function custom_filter(buf, buf_nums)
-	local logs = vim.tbl_filter(function(b)
-		return is_ft(b, "log")
-	end, buf_nums or {})
-	if vim.tbl_isempty(logs) then
-		return true
-	end
-	local tab_num = vim.fn.tabpagenr()
-	local last_tab = vim.fn.tabpagenr("$")
-	local is_log = is_ft(buf, "log")
-	if last_tab == 1 then
-		return true
-	end
-	-- only show log buffers in secondary tabs
-	return (tab_num == last_tab and is_log) or (tab_num ~= last_tab and not is_log)
-end
-
 return {
 
 	{
@@ -124,18 +103,21 @@ return {
 				show_tab_indicators = false,
 				always_show_bufferline = true,
 				show_buffer_close_icons = false,
+				show_close_icon = false,
 				separator_style = "thick",
-				custom_filter = custom_filter,
+				name_formatter = function(buf) -- buf contains a "name", "path" and "bufnr"
+					-- remove extension from markdown files for example
+					if buf.name:match("%.md") then
+						return vim.fn.fnamemodify(buf.name, ":t:r")
+					else
+						-- return buf.path
+						return vim.fn.fnamemodify(buf.path, ":.")
+					end
+				end,
 				indicator = {
-					icon = "",
+					style = "none",
 				},
 				diagnostics = "nvim_lsp",
-				diagnostics_indicator = function(_, _, diag)
-					local icons = require("user.ui").lsp_diagnostic_icons
-					local ret = (diag.error and icons.Error .. diag.error .. " " or "")
-						.. (diag.warning and icons.Warn .. diag.warning or "")
-					return vim.trim(ret)
-				end,
 				offsets = {
 					{
 						filetype = "undotree",
