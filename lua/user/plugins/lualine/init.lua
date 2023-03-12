@@ -19,7 +19,9 @@ return {
 						statusline = { "dashboard", "lazy", "alpha" },
 					},
 				},
+
 				sections = {
+					lualine_a = { components.mode },
 					lualine_b = { components.branch },
 					lualine_c = {
 						"lsp_progress",
