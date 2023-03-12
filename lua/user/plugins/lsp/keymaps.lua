@@ -10,14 +10,25 @@ function M.get()
     ---@class PluginLspKeys
     -- stylua: ignore
     M._keys = {
-      { "<leader>cd", vim.diagnostic.open_float,                desc = "Line Diagnostics" },
-      { "<leader>cl", "<cmd>LspInfo<cr>",                       desc = "Lsp Info" },
-      { "gd",         "<cmd>Glance definitions<cr>",            desc = "Goto Definition",        has = "definition" },
-      { "gr",         "<cmd>Glance references<cr>",             desc = "References" },
-      { "gD",         vim.lsp.buf.declaration,                  desc = "Goto Declaration" },
-      { "gI",         "<cmd>Telescope lsp_implementations<cr>", desc = "Goto Implementation" },
-      { "gi",         "<cmd>Glance implementations<cr>",        desc = "Preview Implementations" },
-      { "gt",         "<cmd>Glance type_definitions<cr>",       desc = "Goto Type Definition" },
+      { "<leader>le", vim.diagnostic.open_float, desc = "Line Diagnostics" },
+      { "<leader>li", "<cmd>LspInfo<cr>",        desc = "Lsp Info" },
+      {
+        "gd",
+        "<cmd>Glance definitions<cr>",
+        desc = "Goto Definition",
+        has =
+        "definition"
+      },
+      { "gr",         "<cmd>Glance references<cr>",                       desc = "References" },
+      { "gD",         vim.lsp.buf.declaration,                            desc = "Goto Declaration" },
+      { "gI",         "<cmd>Telescope lsp_implementations<cr>",           desc = "Goto Implementation" },
+      { "gi",         "<cmd>Glance implementations<cr>",                  desc = "Preview Implementations" },
+      { "gt",         "<cmd>Glance type_definitions<cr>",                 desc = "Goto Type Definition" },
+      { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>",              desc = "CodeLens Action" },
+      { "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>",         desc = "Quickfix" },
+      { "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>",          desc = "Document Symbols" },
+      { "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Workspace Symbols" },
+      { "<leader>le", "<cmd>Telescope quickfix<cr>",                      desc = "Telescope Quickfix" },
       {
         "K",
         function()
@@ -44,7 +55,7 @@ function M.get()
       { "]w", M.diagnostic_goto(true, "WARN"),   desc = "Next Warning" },
       { "[w", M.diagnostic_goto(false, "WARN"),  desc = "Prev Warning" },
       {
-        "<leader>ca",
+        "<leader>la",
         vim.lsp.buf.code_action,
         desc = "Code Action",
         mode = { "n", "v" },
@@ -63,7 +74,7 @@ function M.get()
     }
     if require("user.util").has("inc-rename.nvim") then
       M._keys[#M._keys + 1] = {
-        "<leader>cr",
+        "<leader>lr",
         function()
           require("inc_rename")
           return ":IncRename " .. vim.fn.expand("<cword>")
@@ -73,7 +84,7 @@ function M.get()
         has = "rename",
       }
     else
-      M._keys[#M._keys + 1] = { "<leader>cr", vim.lsp.buf.rename, desc = "Rename", has = "rename" }
+      M._keys[#M._keys + 1] = { "<leader>lr", vim.lsp.buf.rename, desc = "Rename", has = "rename" }
     end
   end
   return M._keys
@@ -113,4 +124,3 @@ function M.diagnostic_goto(next, severity)
 end
 
 return M
-
