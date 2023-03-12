@@ -1,8 +1,10 @@
 local conditions = require("user.plugins.lualine.conditions")
 local colors = require("user.plugins.lualine.colors")
 local null_ls = require("null-ls")
+local utils = require("user.plugins.lualine.utils")
 
 local function diff_source()
+	---@diagnostic disable-next-line: undefined-field
 	local gitsigns = vim.b.gitsigns_status_dict
 	if gitsigns then
 		return {
@@ -62,6 +64,7 @@ return {
 		"b:gitsigns_head",
 		icon = branch,
 		color = { gui = "bold" },
+		fmt = utils.trunc(30),
 	},
 	filename = {
 		"filename",
@@ -86,12 +89,10 @@ return {
 	},
 	python_env = {
 		function()
-			local utils = require("lua.user.plugins.lualine.utils")
 			if vim.bo.filetype == "python" then
 				local venv = os.getenv("CONDA_DEFAULT_ENV") or os.getenv("VIRTUAL_ENV")
 				if venv then
-					local icons = require("nvim-web-devicons")
-					local py_icon, _ = icons.get_icon(".py")
+					local py_icon, _ = require("nvim-web-devicons").get_icon(".py")
 					return string.format(" " .. py_icon .. " (%s)", utils.env_cleanup(venv))
 				end
 			end
@@ -125,7 +126,7 @@ return {
 	lsp = {
 		function(msg)
 			msg = msg or "LS Inactive"
-			local buf_clients = vim.lsp.buf_get_clients()
+			local buf_clients = vim.lsp.get_active_clients()
 			if next(buf_clients) == nil then
 				-- TODO: clean up this if statement
 				if type(msg) == "boolean" or #msg == 0 then
@@ -149,13 +150,11 @@ return {
 			end
 
 			-- add formatter
-			--local formatters = require "lvim.lsp.null-ls.formatters"
-			--local supported_formatters = formatters.list_registered(buf_ft)
+			---@diagnostic disable-next-line: missing-parameter
 			vim.list_extend(buf_client_names, list_registered_formatters(buf_ft))
 
 			-- add linter
-			--local linters = require "lvim.lsp.null-ls.linters"
-			--local supported_linters = linters.list_registered(buf_ft)
+			---@diagnostic disable-next-line: missing-parameter
 			vim.list_extend(buf_client_names, list_registered_linters(buf_ft))
 
 			local unique_client_names = vim.fn.uniq(buf_client_names)

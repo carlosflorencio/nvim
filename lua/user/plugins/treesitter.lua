@@ -40,7 +40,9 @@ return {
 				additional_vim_regex_highlighting = true,
 			},
 			-- nvim-ts-autotag
-			autotag = true,
+			autotag = {
+				enable = true,
+			},
 			playground = {
 				enable = true,
 			},
