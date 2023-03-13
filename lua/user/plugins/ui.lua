@@ -226,6 +226,7 @@ return {
 				"lir",
 				"NvimTree",
 				"neogitstatus",
+				"aerial",
 			},
 			show_trailing_blankline_indent = false,
 			show_current_context = true,

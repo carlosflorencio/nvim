@@ -21,6 +21,7 @@ vim.keymap.set({ "n" }, "<F3>", function()
 	require("spectre").open_visual({ select_word = true, path = path })
 end)
 vim.keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
+vim.keymap.set("n", "<esc>", ":noh <CR>", { desc = "Clear highlights" })
 
 -- Paste
 vim.keymap.set("v", "<C-p>", "y'>p")
@@ -83,8 +84,8 @@ vim.keymap.set(
 )
 
 -- tabs
--- vim.keymap.set("n", "<S-l>", "<cmd>tabn<cr>")
--- vim.keymap.set("n", "<S-h>", "<cmd>tabp<cr>")
+vim.keymap.set("n", "<S-l>", "<cmd>tabn<cr>")
+vim.keymap.set("n", "<S-h>", "<cmd>tabp<cr>")
 vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<cr>", { desc = "New Tab" })
 vim.keymap.set("n", "<leader>tc", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 
@@ -92,4 +93,4 @@ vim.keymap.set("n", "<leader>tc", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 vim.keymap.set("v", "<leader>i", "<esc>`<i", { desc = "Insert at beginning selection" })
 vim.keymap.set("v", "<leader>a", "<esc>`>a", { desc = "Insert at end selection" })
 
-vim.keymap.set("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
+vim.keymap.set("n", "<leader>b", "<cmd>enew<cr>", { desc = "New Buffer" })

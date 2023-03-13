@@ -52,6 +52,10 @@ return { -- auto completion
 				luasnip = 1,
 			}
 
+			local border_opts = {
+				winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+			}
+
 			cmp.setup({
 				mapping = cmp.mapping.preset.insert({
 					-- copilot
@@ -210,8 +214,8 @@ return { -- auto completion
 				},
 
 				window = {
-					completion = cmp_window.bordered(),
-					documentation = cmp_window.bordered(),
+					completion = cmp_window.bordered(border_opts),
+					documentation = cmp_window.bordered(border_opts),
 				},
 			})
 

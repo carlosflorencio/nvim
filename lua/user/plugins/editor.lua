@@ -116,11 +116,11 @@ return {
 		},
 	},
 
-	{
-		"asiryk/auto-hlsearch.nvim",
-		event = "BufRead",
-		opts = {},
-	},
+	-- {
+	-- 	"asiryk/auto-hlsearch.nvim",
+	-- 	event = "BufRead",
+	-- 	opts = {},
+	-- },
 
 	{
 		"folke/todo-comments.nvim",

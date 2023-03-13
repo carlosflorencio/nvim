@@ -1,6 +1,6 @@
 vim.opt.swapfile = true
 vim.opt.wrap = false
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
 vim.opt.cursorline = true
