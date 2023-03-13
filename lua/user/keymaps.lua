@@ -53,6 +53,7 @@ vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increa
 -- quickfix
 vim.keymap.set("n", "]q", ":cnext<cr>")
 vim.keymap.set("n", "[q", ":cprev<cr>")
+vim.keymap.set("n", "<c-q>", ":call QuickFixToggle()<CR>")
 
 -- Move current line / block with Alt-j/k a la vscode.
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")
