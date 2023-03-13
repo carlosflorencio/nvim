@@ -66,7 +66,6 @@
   "nvim-lspconfig": { "branch": "master", "commit": "4bb0f1845c5cc6465aecedc773fc2d619fcd8faf" },
   "nvim-notify": { "branch": "master", "commit": "281e4d793c550c866bea3fb85d39de1f0188fb50" },
   "nvim-recorder": { "branch": "main", "commit": "89c1fb1139fac0a4b42faf54beaf363be104550b" },
-  "nvim-regexplainer": { "branch": "main", "commit": "f7ceb71176a892e24349b6f9bc30b3088fde9ac6" },
   "nvim-rename-state": { "branch": "main", "commit": "8ba78ea517a605ea1a89bd1ed335886435010882" },
   "nvim-scrollbar": { "branch": "main", "commit": "75210c554e935740448cfb532d8a671ae544bb1b" },
   "nvim-spectre": { "branch": "master", "commit": "b71b64afe9fedbfdd25a8abec897ff4af3bd553a" },
