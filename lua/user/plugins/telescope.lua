@@ -34,7 +34,7 @@ return {
       local actions = require "telescope.actions"
       return {
         defaults = {
-          file_ignore_patterns = { ".git", "node_modules" },
+          file_ignore_patterns = { "node_modules" },
           path_display = { "truncate" },
           dynamic_preview_title = true,
         },
