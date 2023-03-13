@@ -17,8 +17,8 @@ vim.keymap.set("n", "zk", "o<ESC>j")
 -- Search and replace word under cursor using <F2>
 vim.keymap.set("n", "<F2>", ":%s/<C-r><C-w>//<Left>")
 vim.keymap.set({ "n" }, "<F3>", function()
-	local path = vim.fn.fnameescape(vim.fn.expand("%:p:."))
-	require("spectre").open_visual({ select_word = true, path = path })
+  local path = vim.fn.fnameescape(vim.fn.expand "%:p:.")
+  require("spectre").open_visual { select_word = true, path = path }
 end)
 vim.keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
 vim.keymap.set("n", "<esc>", ":noh <CR>", { desc = "Clear highlights" })
@@ -28,11 +28,11 @@ vim.keymap.set("v", "<C-p>", "y'>p")
 
 -- fuzzy search current buffer
 vim.keymap.set("n", "<c-/>", function()
-	-- You can pass additional configuration to telescope to change theme, layout, etc.
-	require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-		winblend = 10,
-		previewer = false,
-	}))
+  -- You can pass additional configuration to telescope to change theme, layout, etc.
+  require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
+    winblend = 10,
+    previewer = false,
+  })
 end, { desc = "[/] Fuzzily search in current buffer]" })
 
 -- cycle between buffers
@@ -77,10 +77,10 @@ vim.keymap.set("n", "<leader>sc", "<cmd>close<cr>", { desc = "Close split" })
 vim.keymap.set("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit all" })
 vim.keymap.set("n", "<leader>cw", "<cmd>q<cr>", { desc = "Close Window" })
 vim.keymap.set(
-	"n",
-	"<leader>cab",
-	":%bd|e#|bd#<cr>|'\"<cmd>NvimTreeOpen<cr><c-w><c-l>",
-	{ desc = "Close all buffers but the current one" }
+  "n",
+  "<leader>cab",
+  ":%bd|e#|bd#<cr>|'\"<cmd>NvimTreeOpen<cr><c-w><c-l>",
+  { desc = "Close all buffers but the current one" }
 )
 
 -- tabs

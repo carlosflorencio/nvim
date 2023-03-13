@@ -159,8 +159,7 @@ M.lsp_diagnostic_icons = {
   Error = M.icons.diagnostics.Error,
   Warn = M.icons.diagnostics.Warning,
   Hint = M.icons.diagnostics.Hint,
-  Info = M.icons.diagnostics.Information
+  Info = M.icons.diagnostics.Information,
 }
 
 return M
-

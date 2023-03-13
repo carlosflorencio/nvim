@@ -14,4 +14,3 @@ local colors = {
 }
 
 return colors
-

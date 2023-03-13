@@ -1,21 +1,19 @@
 return {
-    {
-        'uloco/bluloco.nvim',
-        lazy = false,
-        priority = 1000,
-        dependencies = { 'rktjmp/lush.nvim' },
-        config = function()
-            vim.cmd.colorscheme 'bluloco'
-        end
-    },
+  {
+    "uloco/bluloco.nvim",
+    lazy = false,
+    priority = 1000,
+    dependencies = { "rktjmp/lush.nvim" },
+    config = function() vim.cmd.colorscheme "bluloco" end,
+  },
 
-    {
-        -- Detect tabstop and shiftwidth automatically
-        'nmac427/guess-indent.nvim',
-        lazy = false
-    },
+  {
+    -- Detect tabstop and shiftwidth automatically
+    "nmac427/guess-indent.nvim",
+    lazy = false,
+  },
 
-    {
-        import = "user.plugins"
-    }
+  {
+    import = "user.plugins",
+  },
 }
