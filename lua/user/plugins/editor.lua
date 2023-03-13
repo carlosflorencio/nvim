@@ -28,9 +28,6 @@ return {
 				["<leader>l"] = {
 					name = "+lsp",
 				},
-				["<leader>b"] = {
-					name = "+breakpoints",
-				},
 				["<leader>f"] = {
 					name = "+find/file",
 				},
@@ -57,6 +54,9 @@ return {
 				},
 				["<leader>h"] = {
 					name = "+http",
+				},
+				[",b"] = {
+					name = "+breakpoints",
 				},
 				[",t"] = {
 					name = "+test",

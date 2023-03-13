@@ -5,10 +5,8 @@ return {
 		opts = function()
 			local components = require("user.plugins.lualine.components")
 			local package_info = require("package-info")
-			-- local utils = require("user.plugins.lualine.utils")
 			require("user.plugins.lualine.wakatime")
 
-			--components.branch.fmt = utils.trunc(30)
 			return {
 				options = {
 					theme = "auto",
@@ -17,6 +15,14 @@ return {
 					section_separators = { left = "", right = "" },
 					disabled_filetypes = {
 						statusline = { "dashboard", "lazy", "alpha" },
+					},
+					ignore_focus = {
+						"dapui_watches",
+						"dapui_breakpoints",
+						"dapui_scopes",
+						"dapui_console",
+						"dapui_stacks",
+						"dap-repl",
 					},
 				},
 

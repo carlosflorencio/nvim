@@ -5,15 +5,37 @@ return {
 			{
 				"rcarriga/nvim-dap-ui",
 				config = function()
-					require("dapui").setup()
+					require("dapui").setup({
+						layouts = {
+							{
+								elements = {
+									{ id = "scopes", size = 0.8 },
+									-- { id = "breakpoints", size = 0.25 },
+									-- { id = "stacks", size = 0.25 },
+									{ id = "watches", size = 0.2 },
+								},
+								position = "right",
+								size = 50,
+							},
+							{
+								elements = {
+									{ id = "console", size = 0.5 },
+									{ id = "repl", size = 0.5 },
+								},
+								position = "bottom",
+								size = 10,
+							},
+						},
+					})
 				end,
 				keys = {
 					{ ",U", "<cmd>lua require('dapui').toggle()<CR>", "Toggle DAP UI" },
 					{ ",C", "<cmd>lua require('dapui').close()<CR>", "Close DAP UI" },
 				},
 			},
-			{ "jbyuki/one-small-step-for-vimkind" },
+			"mxsdev/nvim-dap-vscode-js",
 		},
+
 		config = function()
 			local dap = require("dap")
 
@@ -24,6 +46,13 @@ return {
 						request = "launch",
 						name = "Launch file",
 						program = "${file}",
+						cwd = "${workspaceFolder}",
+					},
+					{
+						type = "pwa-node",
+						request = "attach",
+						name = "Attach",
+						processId = require("dap.utils").pick_process,
 						cwd = "${workspaceFolder}",
 					},
 					{
@@ -72,6 +101,10 @@ return {
 				}
 			end
 
+			-- auto open dap ui
+			dap.listeners.after.event_initialized["dapui_config"] = function()
+				require("dapui").open()
+			end
 			-- auto close dap ui
 			dap.listeners.before.event_terminated["dapui_config"] = function()
 				require("dapui").close()
@@ -79,6 +112,27 @@ return {
 			dap.listeners.before.event_exited["dapui_config"] = function()
 				require("dapui").close()
 			end
+
+			--icons
+			local user_icons = require("user.ui").icons
+			vim.fn.sign_define("DapBreakpoint", {
+				text = user_icons.ui.Bug,
+				texthl = "DiagnosticSignError",
+				linehl = "",
+				numhl = "",
+			})
+			vim.fn.sign_define("DapBreakpointRejected", {
+				text = user_icons.ui.Bug,
+				texthl = "DiagnosticSignError",
+				linehl = "",
+				numhl = "",
+			})
+			vim.fn.sign_define("DapStopped", {
+				text = user_icons.ui.BoldArrowRight,
+				texthl = "DiagnosticSignWarn",
+				linehl = "Visual",
+				numhl = "DiagnosticSignWarn",
+			})
 		end,
 	},
 
@@ -93,32 +147,33 @@ return {
 	{
 		-- dap adapter for the newer vscode-js debugger
 		"mxsdev/nvim-dap-vscode-js",
-		dependencies = { "mfussenegger/nvim-dap" },
+		dependencies = { "mfussenegger/nvim-dap", "microsoft/vscode-js-debug" },
 		opts = {
-			-- TODO: fix wrong vim.fn.stdpath("data") paths because of lvim
-			debugger_path = vim.fn.expand("~/.local/share/lunarvim/site/pack/packer/opt/vscode-js-debug"),
+			-- fix sourcemaps console errors https://github.com/mxsdev/nvim-dap-vscode-js/issues/35
 			adapters = { "pwa-node", "node-terminal" },
+			debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug",
 		},
 	},
 
 	{
 		"Weissle/persistent-breakpoints.nvim",
+		event = "BufReadPost",
 		opts = {
 			load_breakpoints_event = { "BufReadPost" },
 		},
 		keys = {
 			{
-				"<leader>bb",
+				",bb",
 				"<cmd>lua require('persistent-breakpoints.api').toggle_breakpoint()<CR>",
 				"Toggle breakpoint",
 			},
 			{
-				"<leader>bc",
+				",bc",
 				"<cmd>lua require('persistent-breakpoints.api').set_conditional_breakpoint()<CR>",
 				"Conditional breakpoint",
 			},
 			{
-				"<leader>bd",
+				",bd",
 				"<cmd>lua require('persistent-breakpoints.api').clear_all_breakpoints()<cr>",
 				"Delete all breakpoints",
 			},

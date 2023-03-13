@@ -17,7 +17,6 @@ vim.opt.spelllang = { "en" }
 vim.opt.splitbelow = true -- Put new windows below current
 vim.opt.splitright = true -- Put new windows right of current
 vim.opt.showmode = false -- Dont show mode since we have a statusline
-vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
 vim.opt.updatetime = 100 -- Save swap file and trigger CursorHold
 vim.opt.timeoutlen = 600 -- time to wait for a mapped sequence to complete (in milliseconds)
 vim.opt.completeopt = "menu,menuone,noselect"

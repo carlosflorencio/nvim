@@ -81,6 +81,8 @@ return {
 				"hcl",
 				"cpp",
 				"javascript",
+				"typescript",
+				"tsx",
 				"jsonc",
 				"json",
 				"http",

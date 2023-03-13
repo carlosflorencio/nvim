@@ -129,6 +129,7 @@ return {
 					["a"] = actions.newfile,
 					["r"] = actions.rename,
 					["I"] = actions.toggle_show_hidden,
+					---@diagnostic disable-next-line: undefined-field
 					["c"] = clipboard_actions.yank_path,
 					["y"] = clipboard_actions.copy,
 					["x"] = clipboard_actions.cut,
@@ -142,6 +143,7 @@ return {
 					},
 					-- You can define a function that returns a table to be passed as the third
 					-- argument of nvim_open_win().
+					---@diagnostic disable-next-line: assign-type-mismatch
 					win_opts = function()
 						local width = math.floor(vim.o.columns * 0.5)
 						local height = math.floor(vim.o.lines * 0.5)
