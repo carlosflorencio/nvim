@@ -7,6 +7,8 @@ return {
 				"stylua",
 				"shfmt",
 				"codespell",
+				"actionlint",
+				"proselint",
 			},
 		},
 		---@param opts MasonSettings | {ensure_installed: string[]}
@@ -56,6 +58,9 @@ return {
 					prefix = "●",
 				},
 				severity_sort = true,
+				float = {
+					border = "rounded",
+				},
 			},
 			-- Automatically format on save
 			autoformat = true,

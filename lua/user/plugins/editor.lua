@@ -111,7 +111,9 @@ return {
 		opts = {
 			snippet_engine = "luasnip",
 		},
-		keys = { { "<leader>hc", '<cmd>lua require("neogen").generate()<cr>', "Generate Comment Annotation" } },
+		keys = {
+			{ "<leader>hc", '<cmd>lua require("neogen").generate()<cr>', "Generate Comment Annotation" },
+		},
 	},
 
 	{

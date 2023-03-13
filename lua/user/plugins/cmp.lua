@@ -21,6 +21,7 @@ return { -- auto completion
 			local SelectBehavior = cmp_types.SelectBehavior
 			local cmp_utils = require("user.plugins.cmp.utils")
 			local cmp_mapping = require("cmp.config.mapping")
+			local cmp_window = require("cmp.config.window")
 
 			local luasnip = require("luasnip")
 			local icons = require("user.ui").icons
@@ -53,6 +54,17 @@ return { -- auto completion
 
 			cmp.setup({
 				mapping = cmp.mapping.preset.insert({
+					-- copilot
+					["<C-l>"] = function()
+						require("copilot.suggestion").accept()
+					end,
+					["<M-j>"] = function()
+						require("copilot.suggestion").next()
+					end,
+					["<M-k>"] = function()
+						require("copilot.suggestion").prev()
+					end,
+
 					["<C-k>"] = cmp_mapping(cmp_mapping.select_prev_item(), { "i", "c" }),
 					["<C-j>"] = cmp_mapping(cmp_mapping.select_next_item(), { "i", "c" }),
 					["<Down>"] = cmp_mapping(
@@ -196,6 +208,11 @@ return { -- auto completion
 						hl_group = "LspCodeLens",
 					},
 				},
+
+				window = {
+					completion = cmp_window.bordered(),
+					documentation = cmp_window.bordered(),
+				},
 			})
 
 			-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
@@ -209,13 +226,13 @@ return { -- auto completion
 			})
 
 			-- hide the copilot inline suggestion when the menu is open
-			cmp.event:on("menu_opened", function()
-				vim.b.copilot_suggestion_hidden = true
-			end)
+			-- cmp.event:on("menu_opened", function()
+			-- 	vim.b.copilot_suggestion_hidden = true
+			-- end)
 
-			cmp.event:on("menu_closed", function()
-				vim.b.copilot_suggestion_hidden = false
-			end)
+			-- cmp.event:on("menu_closed", function()
+			-- 	vim.b.copilot_suggestion_hidden = false
+			-- end)
 		end,
 	},
 
