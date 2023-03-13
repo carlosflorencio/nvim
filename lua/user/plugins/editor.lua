@@ -192,27 +192,13 @@ return {
     },
     lazy = false,
   },
+
   {
     -- edit fs as a buffer
     "elihunter173/dirbuf.nvim",
     cmd = { "Dirbuf" },
     keys = {
       { "<leader>'", "<cmd>Dirbuf<cr>", desc = "Dirbuf" },
-    },
-  },
-
-  -- add folding range to capabilities - nvim-ufo
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      capabilities = {
-        textDocument = {
-          foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true,
-          },
-        },
-      },
     },
   },
 

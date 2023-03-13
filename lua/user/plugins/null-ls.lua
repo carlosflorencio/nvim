@@ -2,7 +2,7 @@ return {
   {
     "jose-elias-alvarez/null-ls.nvim",
     event = { "BufReadPre", "BufNewFile" },
-    dependencies = { "mason.nvim" },
+    dependencies = { "mason.nvim", "jose-elias-alvarez/typescript.nvim" },
     opts = function()
       local nls = require "null-ls"
       return {
@@ -11,6 +11,7 @@ return {
           nls.builtins.formatting.fish_indent,
           nls.builtins.formatting.stylua,
           nls.builtins.formatting.shfmt,
+          nls.builtins.formatting.prettierd,
 
           nls.builtins.diagnostics.fish,
           nls.builtins.diagnostics.actionlint,
@@ -24,6 +25,8 @@ return {
           nls.builtins.code_actions.refactoring,
           nls.builtins.code_actions.shellcheck,
           nls.builtins.code_actions.proselint,
+
+          require "typescript.extensions.null-ls.code-actions",
         },
       }
     end,

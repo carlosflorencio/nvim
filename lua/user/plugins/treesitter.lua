@@ -83,6 +83,7 @@ return {
         "tsx",
         "jsonc",
         "json",
+        "json5",
         "http",
         "gitignore",
         "fish",

@@ -1,6 +1,7 @@
 return {
   {
     "nvim-lualine/lualine.nvim",
+    dependencies = { "jose-elias-alvarez/null-ls.nvim" },
     event = "VeryLazy",
     opts = function()
       local components = require "user.plugins.lualine.components"

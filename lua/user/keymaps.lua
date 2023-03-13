@@ -16,6 +16,7 @@ vim.keymap.set("n", "zk", "o<ESC>j")
 
 -- Search and replace word under cursor using <F2>
 vim.keymap.set("n", "<F2>", ":%s/<C-r><C-w>//<Left>")
+vim.keymap.set("v", "<F2>", ":%s/\\%Vs/k/g")
 vim.keymap.set({ "n" }, "<F3>", function()
   local path = vim.fn.fnameescape(vim.fn.expand "%:p:.")
   require("spectre").open_visual { select_word = true, path = path }
