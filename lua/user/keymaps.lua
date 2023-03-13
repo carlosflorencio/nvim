@@ -36,7 +36,7 @@ vim.keymap.set("n", "<c-/>", function()
 end, { desc = "[/] Fuzzily search in current buffer]" })
 
 -- cycle between buffers
-vim.keymap.set("n", "<leader><space>", "<c-^>")
+vim.keymap.set("n", "<leader><space>", "<c-^>", { desc = "Cycle between buffers" })
 
 -- better window movement
 vim.keymap.set("n", "<C-h>", "<C-w>h")

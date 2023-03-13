@@ -193,7 +193,7 @@ return {
     },
     cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeFocus", "NvimTreeFindFileToggle" },
     keys = {
-      { "<leader>e", "<cmd>NvimTreeToggle<cr>", "Toggle NvimTree" },
+      { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle NvimTree" },
     },
   },
 

@@ -69,11 +69,11 @@ return {
       use_local_fs = true, -- use local files on right side of reviews, enables LSP
     },
     keys = {
-      { "<leader>op", "<cmd>Octo pr list<cr>", "Octo PR list" },
-      { "<leader>or", "<cmd>Octo review resume<cr>", "Octo Review Resume" },
-      { "<leader>os", "<cmd>Octo review submit<cr>", "Octo Review Submit" },
-      { "<leader>oR", "<cmd>Octo review start<cr>", "Octo Review Start" },
-      { "<leader>oD", "<cmd>Octo review discard<cr>", "Octo Review Discard" },
+      { "<leader>op", "<cmd>Octo pr list<cr>", desc = "Octo PR list" },
+      { "<leader>or", "<cmd>Octo review resume<cr>", desc = "Octo Review Resume" },
+      { "<leader>os", "<cmd>Octo review submit<cr>", desc = "Octo Review Submit" },
+      { "<leader>oR", "<cmd>Octo review start<cr>", desc = "Octo Review Start" },
+      { "<leader>oD", "<cmd>Octo review discard<cr>", desc = "Octo Review Discard" },
     },
   },
 
@@ -170,7 +170,7 @@ return {
       })
     end,
     keys = {
-      { "<leader>;", "<cmd>lua require'lir.float'.toggle()<cr>", "Floating Lir" },
+      { "<leader>;", "<cmd>lua require'lir.float'.toggle()<cr>", desc = "Floating Lir" },
     },
   },
 
@@ -221,7 +221,7 @@ return {
       {
         "<leader>sp",
         function() require("silicon").visualise_api { to_clip = true } end,
-        "Silicon code screenshot",
+        desc = "Silicon code screenshot",
         mode = "v",
       },
     },

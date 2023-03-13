@@ -111,7 +111,7 @@ return {
       snippet_engine = "luasnip",
     },
     keys = {
-      { "<leader>hc", '<cmd>lua require("neogen").generate()<cr>', "Generate Comment Annotation" },
+      { "<leader>hc", '<cmd>lua require("neogen").generate()<cr>', desc = "Generate Comment Annotation" },
     },
   },
 
@@ -163,12 +163,12 @@ return {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
     keys = {
-      { "<leader>tg", "<cmd>TroubleToggle<cr>", "Trouble" },
-      { "<leader>tw", "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace" },
-      { "<leader>td", "<cmd>TroubleToggle document_diagnostics<cr>", "document" },
-      { "<leader>tq", "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
-      { "<leader>tl", "<cmd>TroubleToggle loclist<cr>", "loclist" },
-      { "<leader>tr", "<cmd>TroubleToggle lsp_references<cr>", "references" },
+      { "<leader>tg", "<cmd>TroubleToggle<cr>", desc = "Trouble" },
+      { "<leader>tw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "workspace" },
+      { "<leader>td", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "document" },
+      { "<leader>tq", "<cmd>TroubleToggle quickfix<cr>", desc = "quickfix" },
+      { "<leader>tl", "<cmd>TroubleToggle loclist<cr>", desc = "loclist" },
+      { "<leader>tr", "<cmd>TroubleToggle lsp_references<cr>", desc = "references" },
     },
   },
   {
@@ -193,7 +193,7 @@ return {
     "elihunter173/dirbuf.nvim",
     cmd = { "Dirbuf" },
     keys = {
-      { "<leader>'", "<cmd>Dirbuf<cr>", "Dirbuf" },
+      { "<leader>'", "<cmd>Dirbuf<cr>", desc = "Dirbuf" },
     },
   },
 
@@ -274,8 +274,8 @@ return {
     keys = {
       { "gc", mode = { "n", "v" } },
       { "gb", mode = { "n", "v" } },
-      { "<leader>/", "<Plug>(comment_toggle_linewise_visual)", "Comment toggle linewise (visual)", mode = "v" },
-      { "<leader>/", "<Plug>(comment_toggle_linewise_current)", "Comment toggle current line" },
+      { "<leader>/", "<Plug>(comment_toggle_linewise_visual)", desc = "Comment toggle linewise (visual)", mode = "v" },
+      { "<leader>/", "<Plug>(comment_toggle_linewise_current)", desc = "Comment toggle current line" },
     },
     event = "User FileOpened",
   },
@@ -372,7 +372,11 @@ return {
     dependencies = { "nvim-treesitter" },
     opts = {},
     keys = {
-      { "<leader>ha", '<cmd>lua require("ts-node-action").node_action()<cr>', "Toggle node action under cursor" },
+      {
+        "<leader>ha",
+        '<cmd>lua require("ts-node-action").node_action()<cr>',
+        desc = "Toggle node action under cursor",
+      },
     },
   },
 

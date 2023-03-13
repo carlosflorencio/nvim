@@ -59,8 +59,8 @@ return {
       }
     end,
     keys = {
-      { "<leader>fs", "<cmd>Telescope aerial<cr>", "Document Symbols by Aerial" },
-      { "<leader>st", "<cmd>AerialToggle!<CR>", "Toggle AerialToggle Symbols" },
+      { "<leader>fs", "<cmd>Telescope aerial<cr>", desc = "Document Symbols by Aerial" },
+      { "<leader>st", "<cmd>AerialToggle!<CR>", desc = "Toggle AerialToggle Symbols" },
     },
   },
 }

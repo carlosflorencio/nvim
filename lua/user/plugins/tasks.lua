@@ -27,9 +27,9 @@ return {
       },
     },
     keys = {
-      { "<leader>oo", "<cmd>OverseerRun<cr>", "Run a Task" },
-      { "<leader>ot", "<cmd>OverseerToggle<cr>", "Toggle Task List" },
-      { "<leader>oe", "<cmd>OverseerQuickAction<cr>", "Edit the current Task" },
+      { "<leader>oo", "<cmd>OverseerRun<cr>", desc = "Run a Task" },
+      { "<leader>ot", "<cmd>OverseerToggle<cr>", desc = "Toggle Task List" },
+      { "<leader>oe", "<cmd>OverseerQuickAction<cr>", desc = "Edit the current Task" },
     },
   },
 }

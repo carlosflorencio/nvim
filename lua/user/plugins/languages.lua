@@ -15,7 +15,7 @@ return {
       {
         "<leader>pv",
         "<cmd>lua require('package-info').change_version()<cr>",
-        "Package.json Change Version Dep",
+        desc = "Package.json Change Version Dep",
       },
     },
   },
@@ -40,7 +40,7 @@ return {
       height_ratio = 0.8,
     },
     keys = {
-      { "<leader>pp", "<cmd>Glow<cr>", "Glow Markdown Preview" },
+      { "<leader>pp", "<cmd>Glow<cr>", desc = "Glow Markdown Preview" },
     },
   },
 
@@ -82,9 +82,9 @@ return {
     },
     keys = {
 
-      { "<leader>hh", "<Plug>RestNvim", "Run request under cursor" },
-      { "<leader>hp", "<Plug>RestNvimPreview", "Preview the curl command under cursor" },
-      { "<leader>hl", "<Plug>RestNvimLast", "Run last http request" },
+      { "<leader>hh", "<Plug>RestNvim", desc = "Run request under cursor" },
+      { "<leader>hp", "<Plug>RestNvimPreview", desc = "Preview the curl command under cursor" },
+      { "<leader>hl", "<Plug>RestNvimLast", desc = "Run last http request" },
     },
   },
 
@@ -115,7 +115,7 @@ return {
       "javascriptreact",
     },
     keys = {
-      { "<leader>lm", "<cmd>RenameState<cr>", "Rename React Hooks args" },
+      { "<leader>lm", "<cmd>RenameState<cr>", desc = "Rename React Hooks args" },
     },
   },
 }
