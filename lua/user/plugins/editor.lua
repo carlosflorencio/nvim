@@ -33,6 +33,10 @@ return {
         ["<leader>g"] = {
           name = "+git",
         },
+        ["<leader>gy"] = {
+          name = "Github Link Yank",
+        },
+
         ["<leader>gh"] = {
           name = "+hunks",
         },
