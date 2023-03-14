@@ -3,11 +3,8 @@ local M = {}
 function M.on_attach(client, bufnr)
   require("user.plugins.lsp.format").on_attach(client, bufnr)
   require("user.plugins.lsp.keymaps").on_attach(client, bufnr)
-  vim.notify("on attach " .. client.name)
 
   if client.name == "tsserver" then
-    vim.notify "here onattach"
-
     -- https://github.com/jose-elias-alvarez/typescript.nvim
     vim.keymap.set(
       "n",

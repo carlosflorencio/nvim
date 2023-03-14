@@ -76,16 +76,15 @@ return {
       { "jose-elias-alvarez/typescript.nvim" },
     },
     config = function()
-      local utils = require "user.plugins.lsp.utils"
+      local lsputils = require "user.plugins.lsp.utils"
       local lspconfig = require "lspconfig"
 
-      local capabilities = utils.capabilities()
+      local capabilities = lsputils.capabilities()
 
-      require("user.util").on_attach(utils.on_attach)
+      require("user.util").on_attach(lsputils.on_attach)
 
       -- setup defaults
       lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
-        -- on_attach = utils.on_attach,
         capabilities = capabilities,
       })
 
@@ -93,8 +92,10 @@ return {
 
       lspconfig["eslint"].setup {
         settings = {
-          -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
-          workingDirectory = { mode = "auto" },
+          eslint = {
+            -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
+            workingDirectory = { mode = "auto" },
+          },
         },
       }
 
@@ -110,13 +111,20 @@ return {
         },
       }
 
+      lspconfig["yamlls"].setup {
+        settings = {
+          yaml = {
+            schemas = require("schemastore").json.schemas(),
+          },
+        },
+      }
+
       lspconfig["denols"].setup {
         root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
       }
 
       require("typescript").setup {
         server = { -- pass options to lspconfig's setup method
-          -- on_attach = utils.on_attach,
           capabilities = capabilities,
           root_dir = lspconfig.util.root_pattern(".git", "package-lock.json"),
 
