@@ -29,8 +29,8 @@ return {
           }
         end,
         keys = {
-          { ",U", "<cmd>lua require('dapui').toggle()<CR>", "Toggle DAP UI" },
-          { ",C", "<cmd>lua require('dapui').close()<CR>", "Close DAP UI" },
+          { ",U", "<cmd>lua require('dapui').toggle()<CR>", desc = "Toggle DAP UI" },
+          { ",C", "<cmd>lua require('dapui').close()<CR>", desc = "Close DAP UI" },
         },
       },
       "mxsdev/nvim-dap-vscode-js",
@@ -159,17 +159,17 @@ return {
       {
         ",bb",
         "<cmd>lua require('persistent-breakpoints.api').toggle_breakpoint()<CR>",
-        "Toggle breakpoint",
+        desc = "Toggle breakpoint",
       },
       {
         ",bc",
         "<cmd>lua require('persistent-breakpoints.api').set_conditional_breakpoint()<CR>",
-        "Conditional breakpoint",
+        desc = "Conditional breakpoint",
       },
       {
         ",bd",
         "<cmd>lua require('persistent-breakpoints.api').clear_all_breakpoints()<cr>",
-        "Delete all breakpoints",
+        desc = "Delete all breakpoints",
       },
     },
   },
@@ -180,12 +180,12 @@ return {
       {
         "]b",
         function() require("goto-breakpoints").next() end,
-        "Next breakpoint",
+        desc = "Next breakpoint",
       },
       {
         "[b",
         function() require("goto-breakpoints").prev() end,
-        "Previous breakpoint",
+        desc = "Previous breakpoint",
       },
     },
   },

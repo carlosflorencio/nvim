@@ -8,59 +8,53 @@ function M.get()
   local format = require("user.plugins.lsp.format").format
   if not M._keys then
     ---@class PluginLspKeys
-    -- stylua: ignore
     M._keys = {
       { "<leader>le", vim.diagnostic.open_float, desc = "Line Diagnostics" },
-      { "<leader>li", "<cmd>LspInfo<cr>",        desc = "Lsp Info" },
+      { "<leader>li", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
       {
         "gd",
         "<cmd>Glance definitions<cr>",
         desc = "Goto Definition",
-        has =
-        "definition"
+        has = "definition",
       },
-      { "gr",         "<cmd>Glance references<cr>",                       desc = "References" },
-      { "gD",         vim.lsp.buf.declaration,                            desc = "Goto Declaration" },
-      { "gI",         "<cmd>Telescope lsp_implementations<cr>",           desc = "Goto Implementation" },
-      { "gi",         "<cmd>Glance implementations<cr>",                  desc = "Preview Implementations" },
-      { "gt",         "<cmd>Glance type_definitions<cr>",                 desc = "Goto Type Definition" },
-      { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>",              desc = "CodeLens Action" },
-      { "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>",         desc = "Quickfix" },
-      { "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>",          desc = "Document Symbols" },
+      { "gr", "<cmd>Glance references<cr>", desc = "References" },
+      { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
+      { "gI", "<cmd>Telescope lsp_implementations<cr>", desc = "Goto Implementation" },
+      { "gi", "<cmd>Glance implementations<cr>", desc = "Preview Implementations" },
+      { "gt", "<cmd>Glance type_definitions<cr>", desc = "Goto Type Definition" },
+      { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>", desc = "CodeLens Action" },
+      { "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>", desc = "Quickfix" },
+      { "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document Symbols" },
       { "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Workspace Symbols" },
-      { "<leader>le", "<cmd>Telescope quickfix<cr>",                      desc = "Telescope Quickfix" },
+      { "<leader>le", "<cmd>Telescope quickfix<cr>", desc = "Telescope Quickfix" },
       {
         "K",
         function()
-          local winid = require('ufo').peekFoldedLinesUnderCursor()
-          if not winid then
-            vim.lsp.buf.hover()
-          end
+          local winid = require("ufo").peekFoldedLinesUnderCursor()
+          if not winid then vim.lsp.buf.hover() end
         end,
-        desc = "Hover"
+        desc = "Hover",
       },
-      { "gK", vim.lsp.buf.signature_help,        desc = "Signature Help", has = "signatureHelp" },
+      { "gK", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" },
       {
         "<c-s>",
         vim.lsp.buf.signature_help,
         mode = "i",
         desc = "Signature Help",
-        has =
-        "signatureHelp"
+        has = "signatureHelp",
       },
-      { "]d", M.diagnostic_goto(true),           desc = "Next Diagnostic" },
-      { "[d", M.diagnostic_goto(false),          desc = "Prev Diagnostic" },
-      { "]e", M.diagnostic_goto(true, "ERROR"),  desc = "Next Error" },
+      { "]d", M.diagnostic_goto(true), desc = "Next Diagnostic" },
+      { "[d", M.diagnostic_goto(false), desc = "Prev Diagnostic" },
+      { "]e", M.diagnostic_goto(true, "ERROR"), desc = "Next Error" },
       { "[e", M.diagnostic_goto(false, "ERROR"), desc = "Prev Error" },
-      { "]w", M.diagnostic_goto(true, "WARN"),   desc = "Next Warning" },
-      { "[w", M.diagnostic_goto(false, "WARN"),  desc = "Prev Warning" },
+      { "]w", M.diagnostic_goto(true, "WARN"), desc = "Next Warning" },
+      { "[w", M.diagnostic_goto(false, "WARN"), desc = "Prev Warning" },
       {
         "<leader>la",
         vim.lsp.buf.code_action,
         desc = "Code Action",
         mode = { "n", "v" },
-        has =
-        "codeAction"
+        has = "codeAction",
       },
       { "<leader>fm", format, desc = "Format Document", has = "documentFormatting" },
       {
@@ -68,8 +62,7 @@ function M.get()
         format,
         desc = "Format Range",
         mode = "v",
-        has =
-        "documentRangeFormatting"
+        has = "documentRangeFormatting",
       },
     }
     if require("user.util").has "inc-rename.nvim" then

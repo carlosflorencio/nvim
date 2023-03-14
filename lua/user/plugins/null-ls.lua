@@ -5,8 +5,14 @@ return {
     dependencies = { "mason.nvim", "jose-elias-alvarez/typescript.nvim" },
     opts = function()
       local nls = require "null-ls"
+      local cspell_opts = {
+        disabled_filetypes = { "NvimTree" },
+        extra_args = { "--config", "~/.cspell.json" },
+        diagnostics_postprocess = function(diagnostic) diagnostic.severity = vim.diagnostic.severity.WARN end,
+      }
       return {
         root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
+
         sources = {
           nls.builtins.formatting.fish_indent,
           nls.builtins.formatting.stylua,
@@ -15,7 +21,7 @@ return {
 
           nls.builtins.diagnostics.fish,
           nls.builtins.diagnostics.actionlint,
-          nls.builtins.diagnostics.codespell,
+          nls.builtins.diagnostics.cspell.with(cspell_opts),
           nls.builtins.diagnostics.proselint,
           nls.builtins.diagnostics.shellcheck.with {
             extra_args = { "--severity", "warning" },
@@ -25,6 +31,7 @@ return {
           nls.builtins.code_actions.refactoring,
           nls.builtins.code_actions.shellcheck,
           nls.builtins.code_actions.proselint,
+          nls.builtins.code_actions.cspell.with(cspell_opts),
 
           require "typescript.extensions.null-ls.code-actions",
         },

@@ -10,6 +10,7 @@ return {
         "codespell",
         "actionlint",
         "proselint",
+        "cspell",
       },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}
