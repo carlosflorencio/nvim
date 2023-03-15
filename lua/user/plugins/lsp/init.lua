@@ -148,12 +148,13 @@ return {
       end
 
       local updated_diagnostics = {
-        underline = true,
+        underline = false,
         update_in_insert = false,
-        virtual_text = {
-          spacing = 4,
-          prefix = "●",
-        },
+        -- virtual_text = {
+        --   spacing = 1,
+        --   prefix = "",
+        -- },
+        virtual_text = false,
         severity_sort = true,
         float = {
           border = "rounded",
@@ -180,6 +181,9 @@ return {
             ["j"] = glance.actions.next_location,
             ["k"] = glance.actions.previous_location,
             ["x"] = glance.actions.jump_split,
+            ["<c-t>"] = glance.actions.jump_tab,
+            ["<c-v>"] = glance.actions.jump_vsplit,
+            ["<c-x>"] = glance.actions.jump_split,
           },
         },
       }

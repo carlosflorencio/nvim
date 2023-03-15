@@ -244,10 +244,33 @@ return {
     opts = {},
     lazy = false,
   },
+
   {
-    "echasnovski/mini.pairs",
-    event = "VeryLazy",
-    config = function(_, opts) require("mini.pairs").setup(opts) end,
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    opts = {
+      ignored_next_char = string.gsub([[ [%w%%%'%[%"%.] ]], "%s+", ""),
+      enable_check_bracket_line = false,
+      check_ts = true,
+      ts_config = {
+        lua = { "string", "source" },
+        javascript = { "string", "template_string" },
+        java = false,
+      },
+      disable_filetype = { "TelescopePrompt", "spectre_panel" },
+      fast_wrap = {
+        map = "<M-e>",
+        chars = { "{", "[", "(", '"', "'" },
+        pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
+        offset = 0, -- Offset from pattern match
+        end_key = "$",
+        keys = "qwertyuiopzxcvbnmasdfghjkl",
+        check_comma = true,
+        highlight = "Search",
+        highlight_grey = "Comment",
+      },
+    },
   },
 
   -- comments

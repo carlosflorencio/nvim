@@ -1,5 +1,5 @@
 vim.opt.swapfile = true
-vim.opt.wrap = false
+vim.opt.wrap = true
 vim.opt.hlsearch = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
@@ -22,8 +22,6 @@ vim.opt.timeoutlen = 600 -- time to wait for a mapped sequence to complete (in m
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 vim.opt.shell = "/bin/sh" -- fish is slow
-
-vim.tabstop = 2
 
 -- folds ufo
 vim.o.foldcolumn = "0" -- '0' is not bad

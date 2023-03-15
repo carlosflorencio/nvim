@@ -6,6 +6,7 @@ M._keys = nil
 ---@return (LazyKeys|{has?:string})[]
 function M.get()
   local format = require("user.plugins.lsp.format").format
+  local diagnostics_active = true
   if not M._keys then
     ---@class PluginLspKeys
     M._keys = {
@@ -63,6 +64,18 @@ function M.get()
         desc = "Format Range",
         mode = "v",
         has = "documentRangeFormatting",
+      },
+      {
+        "<leader>ld",
+        function()
+          diagnostics_active = not diagnostics_active
+          if diagnostics_active then
+            vim.diagnostic.show(nil, 0)
+          else
+            vim.diagnostic.hide(nil, 0)
+          end
+        end,
+        desc = "Toggle Diagnostics for the current buffer",
       },
     }
     if require("user.util").has "inc-rename.nvim" then

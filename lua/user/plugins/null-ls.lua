@@ -27,13 +27,12 @@ return {
             extra_args = { "--severity", "warning" },
           },
 
-          nls.builtins.code_actions.gitsigns,
+          require "typescript.extensions.null-ls.code-actions",
+          nls.builtins.code_actions.cspell.with(cspell_opts),
           nls.builtins.code_actions.refactoring,
+          nls.builtins.code_actions.gitsigns,
           nls.builtins.code_actions.shellcheck,
           nls.builtins.code_actions.proselint,
-          nls.builtins.code_actions.cspell.with(cspell_opts),
-
-          require "typescript.extensions.null-ls.code-actions",
         },
       }
     end,

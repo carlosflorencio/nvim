@@ -39,6 +39,21 @@ function M.on_very_lazy(fn)
   })
 end
 
+function M.getShortenPath(path, n)
+  local segments = {}
+  for segment in path:gmatch "[^/]+" do
+    table.insert(segments, segment)
+  end
+  local start_index = #segments - n + 1
+  if start_index < 1 then start_index = 1 end
+
+  if start_index == 1 then return path end
+
+  -- local shorten = vim.fn.pathshorten(table.concat(segments, "/", 1, start_index - 1))
+
+  return "../" .. table.concat(segments, "/", start_index)
+end
+
 ---@param plugin string
 function M.has(plugin) return require("lazy.core.config").plugins[plugin] ~= nil end
 

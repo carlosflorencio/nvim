@@ -125,9 +125,9 @@ return {
       { "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "LSP Diagnostics" },
       {
         "<leader>fg",
-        "<cmd>Telescope git_status<cr>",
-        desc = "Git changed files",
+        "<cmd>Telescope git_status initial_mode=normal theme=dropdown previewer=false sort_mru=true<cr>",
       },
+      desc = "Git changed files",
       { "<leader>fc", "<cmd>Telescope command_history initial_mode=normal<cr>", desc = "Command History" },
       {
         "<leader>fa",

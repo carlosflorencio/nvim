@@ -10,6 +10,7 @@ return { -- auto completion
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp-signature-help",
+      "windwp/nvim-autopairs",
     },
     config = function()
       local cmp = require "cmp"
@@ -218,6 +219,11 @@ return { -- auto completion
       -- cmp.event:on("menu_closed", function()
       -- 	vim.b.copilot_suggestion_hidden = false
       -- end)
+      --
+
+      -- insert `(` after select function or method item
+      local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
   },
 

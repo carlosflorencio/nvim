@@ -111,13 +111,10 @@ return {
         show_close_icon = false,
         separator_style = "thick",
         name_formatter = function(buf) -- buf contains a "name", "path" and "bufnr"
-          -- remove extension from markdown files for example
-          if buf.name:match "%.md" then
-            return vim.fn.fnamemodify(buf.name, ":t:r")
-          else
-            -- return buf.path
-            return vim.fn.fnamemodify(buf.path, ":.")
-          end
+          local path = vim.fn.fnamemodify(buf.path, ":.")
+          return require("user.util").getShortenPath(path, 3)
+          -- return vim.fn.pathshorten(path, 5)
+          -- return path
         end,
         indicator = {
           style = "none",
@@ -165,7 +162,7 @@ return {
     opts = {
       disabled_filetypes = { "help", "text", "markdown", "lazy", "dashboard", "lir" },
     },
-    lazy = false,
+    event = "BufReadPost",
   },
 
   {
@@ -180,6 +177,7 @@ return {
     keys = {
       { "<leader>sm", "<cmd>WindowsMaximize<cr>", desc = "Maximize Window" },
     },
+    event = "BufReadPost",
   },
 
   {
