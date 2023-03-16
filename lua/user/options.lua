@@ -1,4 +1,4 @@
-vim.opt.swapfile = true
+vim.opt.swapfile = false
 vim.opt.wrap = true
 vim.opt.hlsearch = true
 vim.opt.relativenumber = true

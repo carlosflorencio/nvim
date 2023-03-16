@@ -159,6 +159,7 @@ return {
   {
     -- show colorcolumn when line is too long
     "m4xshen/smartcolumn.nvim",
+    enabled = false,
     opts = {
       disabled_filetypes = { "help", "text", "markdown", "lazy", "dashboard", "lir" },
     },
