@@ -464,8 +464,8 @@ return {
       { "P", "<Plug>(YankyPutBefore)", desc = "Yanky put before", mode = { "n", "x" } },
       { "gp", "<Plug>(YankyGPutAfter)", mode = { "n", "x" } },
       { "gP", "<Plug>(YankyGPutBefore)", mode = { "n", "x" } },
-      { "<c-n>", "<Plug>(YankyCycleForward)", mode = "n" },
-      { "<c-p>", "<Plug>(YankyCycleBackward)", mode = "n" },
+      { "]y", "<Plug>(YankyCycleForward)", mode = "n" },
+      { "[y", "<Plug>(YankyCycleBackward)", mode = "n" },
       { "<c-v>", "<esc><cmd>Telescope yank_history initial_mode=normal<cr>", mode = { "n", "i" } },
       { "y", "<Plug>(YankyYank)", mode = { "n", "x" } }, -- prevent going up when yanking
     },
@@ -505,5 +505,17 @@ return {
         callback = function() vim.cmd.normal { autolist.force_recalculate(nil, nil), bang = false } end,
       })
     end,
+  },
+
+  {
+    -- multi cursors
+    "mg979/vim-visual-multi",
+    branch = "master",
+    init = function() vim.g.VM_leader = "," end,
+    keys = {
+      { "<C-n>", mode = { "n", "v" } },
+      "<C-Down>",
+      "<C-Up>",
+    },
   },
 }
