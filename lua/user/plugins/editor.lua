@@ -518,4 +518,15 @@ return {
       "<C-Up>",
     },
   },
+
+  {
+    -- debug print variables
+    "andrewferrier/debugprint.nvim",
+    config = function()
+      require("debugprint").setup {
+        create_keymaps = false,
+        move_to_debugline = true,
+      }
+    end,
+  },
 }

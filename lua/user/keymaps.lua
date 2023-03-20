@@ -96,3 +96,41 @@ vim.keymap.set("v", "<leader>i", "<esc>`<i", { desc = "Insert at beginning selec
 vim.keymap.set("v", "<leader>a", "<esc>`>a", { desc = "Insert at end selection" })
 
 vim.keymap.set("n", "<leader>b", "<cmd>enew<cr>", { desc = "New Buffer" })
+
+-- debug vars
+-- refactoring plugin doesn't work for typescript react atm
+-- vim.api.nvim_set_keymap(
+--   "n",
+--   "<leader>dd",
+--   ":lua require('refactoring').debug.print_var({ normal = true })<CR>",
+--   { desc = "Debug print var", noremap = true }
+-- )
+-- vim.api.nvim_set_keymap(
+--   "v",
+--   "<leader>dd",
+--   ":lua require('refactoring').debug.print_var({})<CR>",
+--   { desc = "Debug print var", noremap = true }
+-- )
+-- vim.api.nvim_set_keymap(
+--   "n",
+--   "<leader>dD",
+--   ":lua require('refactoring').debug.cleanup({})<CR>",
+--   { desc = "Clear all debug prints", noremap = true }
+-- )
+
+vim.keymap.set("n", "<leader>dd", function() return require("debugprint").debugprint { variable = true } end, {
+  expr = true,
+  desc = "Debug variable print",
+})
+
+vim.keymap.set("n", "<leader>dl", function() return require("debugprint").debugprint() end, {
+  expr = true,
+  desc = "Debug line print",
+})
+
+vim.keymap.set(
+  "n",
+  "<leader>dD",
+  function() require("debugprint").deleteprints() end,
+  { desc = "Clear all debug prints" }
+)
