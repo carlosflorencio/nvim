@@ -36,8 +36,9 @@ local alternative_methods = {
 
 local function list_registered_linters(filetype)
   local registered_providers = list_registered_providers_names(filetype)
-  local providers_for_methods =
-    vim.tbl_flatten(vim.tbl_map(function(m) return registered_providers[m] or {} end, alternative_methods))
+  local providers_for_methods = vim.tbl_flatten(vim.tbl_map(function(m)
+    return registered_providers[m] or {}
+  end, alternative_methods))
 
   return providers_for_methods
 end
@@ -52,7 +53,9 @@ local branch = icons.git.Branch
 
 return {
   mode = {
-    function() return " " .. icons.ui.Target .. " " end,
+    function()
+      return " " .. icons.ui.Target .. " "
+    end,
     padding = { left = 0, right = 0 },
     color = {},
     cond = nil,
@@ -110,7 +113,9 @@ return {
     -- cond = conditions.hide_in_width,
   },
   treesitter = {
-    function() return icons.ui.Tree end,
+    function()
+      return icons.ui.Tree
+    end,
     color = function()
       local buf = vim.api.nvim_get_current_buf()
       local ts = vim.treesitter.highlighter.active[buf]
@@ -124,7 +129,9 @@ return {
       local buf_clients = vim.lsp.get_active_clients()
       if next(buf_clients) == nil then
         -- TODO: clean up this if statement
-        if type(msg) == "boolean" or #msg == 0 then return "LS Inactive" end
+        if type(msg) == "boolean" or #msg == 0 then
+          return "LS Inactive"
+        end
         return msg
       end
       local buf_ft = vim.bo.filetype
@@ -133,9 +140,13 @@ return {
 
       -- add client
       for _, client in pairs(buf_clients) do
-        if client.name ~= "null-ls" and client.name ~= "copilot" then table.insert(buf_client_names, client.name) end
+        if client.name ~= "null-ls" and client.name ~= "copilot" then
+          table.insert(buf_client_names, client.name)
+        end
 
-        if client.name == "copilot" then copilot_active = true end
+        if client.name == "copilot" then
+          copilot_active = true
+        end
       end
 
       -- add formatter
@@ -162,7 +173,9 @@ return {
   location = { "location" },
   progress = {
     "progress",
-    fmt = function() return "%P/%L" end,
+    fmt = function()
+      return "%P/%L"
+    end,
     color = {},
   },
   spaces = {

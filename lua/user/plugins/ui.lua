@@ -193,7 +193,7 @@ return {
         "lir",
       },
     },
-    lazy = false,
+    event = "VeryLazy",
   },
 
   {

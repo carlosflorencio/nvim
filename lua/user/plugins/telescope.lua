@@ -37,6 +37,13 @@ return {
           file_ignore_patterns = { "node_modules" },
           path_display = { "truncate" },
           dynamic_preview_title = true,
+          mappings = {
+            n = {
+              ["v"] = actions.file_vsplit,
+              ["x"] = actions.file_split,
+              ["t"] = actions.file_tab,
+            },
+          },
         },
         pickers = {
           find_files = {

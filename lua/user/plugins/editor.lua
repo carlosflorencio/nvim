@@ -81,7 +81,7 @@ return {
     "samodostal/image.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {},
-    lazy = false,
+    event = "BufReadPre",
   },
 
   {
@@ -179,7 +179,8 @@ return {
     -- surround with selection highlight
     "kylechui/nvim-surround",
     opts = {},
-    lazy = false,
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
   },
   {
     -- expand <C-a>/<C-x> toggles increments
@@ -190,7 +191,7 @@ return {
         decrement = "<C-x>",
       },
     },
-    lazy = false,
+    event = "VeryLazy",
   },
 
   {
@@ -394,56 +395,56 @@ return {
   },
 
   -- references
-  {
-    "RRethy/vim-illuminate",
-    event = { "BufReadPost", "BufNewFile" },
-    opts = {
-      delay = 200,
-      filetypes_denylist = {
-        "dirvish",
-        "fugitive",
-        "alpha",
-        "NvimTree",
-        "lazy",
-        "neogitstatus",
-        "Trouble",
-        "lir",
-        "Outline",
-        "spectre_panel",
-        "toggleterm",
-        "DressingSelect",
-        "TelescopePrompt",
-      },
-    },
-    config = function(_, opts)
-      require("illuminate").configure(opts)
+  -- {
+  --   "RRethy/vim-illuminate",
+  --   event = { "BufReadPost", "BufNewFile" },
+  --   opts = {
+  --     delay = 200,
+  --     filetypes_denylist = {
+  --       "dirvish",
+  --       "fugitive",
+  --       "alpha",
+  --       "NvimTree",
+  --       "lazy",
+  --       "neogitstatus",
+  --       "Trouble",
+  --       "lir",
+  --       "Outline",
+  --       "spectre_panel",
+  --       "toggleterm",
+  --       "DressingSelect",
+  --       "TelescopePrompt",
+  --     },
+  --   },
+  --   config = function(_, opts)
+  --     require("illuminate").configure(opts)
 
-      local function map(key, dir, buffer)
-        vim.keymap.set(
-          "n",
-          key,
-          function() require("illuminate")["goto_" .. dir .. "_reference"](false) end,
-          { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer }
-        )
-      end
+  --     local function map(key, dir, buffer)
+  --       vim.keymap.set(
+  --         "n",
+  --         key,
+  --         function() require("illuminate")["goto_" .. dir .. "_reference"](false) end,
+  --         { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer }
+  --       )
+  --     end
 
-      map("]]", "next")
-      map("[[", "prev")
+  --     map("]]", "next")
+  --     map("[[", "prev")
 
-      -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
-      vim.api.nvim_create_autocmd("FileType", {
-        callback = function()
-          local buffer = vim.api.nvim_get_current_buf()
-          map("]]", "next", buffer)
-          map("[[", "prev", buffer)
-        end,
-      })
-    end,
-    keys = {
-      { "]]", desc = "Next Reference" },
-      { "[[", desc = "Prev Reference" },
-    },
-  },
+  --     -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
+  --     vim.api.nvim_create_autocmd("FileType", {
+  --       callback = function()
+  --         local buffer = vim.api.nvim_get_current_buf()
+  --         map("]]", "next", buffer)
+  --         map("[[", "prev", buffer)
+  --       end,
+  --     })
+  --   end,
+  --   keys = {
+  --     { "]]", desc = "Next Reference" },
+  --     { "[[", desc = "Prev Reference" },
+  --   },
+  -- },
 
   {
     -- yank ring

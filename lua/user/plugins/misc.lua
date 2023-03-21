@@ -242,6 +242,7 @@ return {
 
   {
     "LunarVim/bigfile.nvim",
+    opts = {},
     event = { "FileReadPre", "BufReadPre", "User FileOpened" },
   },
 }
