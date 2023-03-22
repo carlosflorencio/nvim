@@ -6,7 +6,7 @@ return {
     opts = function()
       local nls = require "null-ls"
       local cspell_opts = {
-        disabled_filetypes = { "NvimTree" },
+        disabled_filetypes = { "NvimTree", "Lazy" },
         extra_args = { "--config", "~/.cspell.json" },
         diagnostics_postprocess = function(diagnostic)
           diagnostic.severity = vim.diagnostic.severity.WARN

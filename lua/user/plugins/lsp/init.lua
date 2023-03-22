@@ -7,10 +7,9 @@ return {
         "stylua",
         "shfmt",
         "prettierd",
-        "codespell",
         "actionlint",
         "proselint",
-        "cspell",
+        "cspell", -- install globally using npm
       },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}
