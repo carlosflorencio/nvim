@@ -5,6 +5,15 @@ return {
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
+      -- {
+      --   "andymass/vim-matchup",
+      --   event = "BufReadPost",
+      --   config = function()
+      --     vim.g.matchup_matchparen_offscreen = {
+      --       method = "status_manual",
+      --     }
+      --   end,
+      -- },
       {
         "nvim-treesitter/nvim-treesitter-textobjects",
         init = function()
@@ -20,41 +29,46 @@ return {
               end
             end
           end
-          if not enabled then require("lazy.core.loader").disable_rtp_plugin "nvim-treesitter-textobjects" end
+          if not enabled then
+            -- disable plugin treesitter config doesn't enable it
+            require("lazy.core.loader").disable_rtp_plugin "nvim-treesitter-textobjects"
+          end
         end,
       },
+      -- better incremental selection
       "RRethy/nvim-treesitter-textsubjects",
-      "nvim-treesitter/nvim-treesitter-context",
-      "nvim-treesitter/playground",
+      -- "nvim-treesitter/nvim-treesitter-context",
+      -- "nvim-treesitter/playground",
     },
     keys = {
-      { "<c-cr>", desc = "Increment selection" },
+      { "<cr>", desc = "Increment selection", mode = "x" },
       { "<bs>", desc = "Decrement selection", mode = "x" },
     },
     ---@type TSConfig
     opts = {
+      -- Automatically install missing parsers when entering buffer
+      auto_install = false,
       highlight = {
         enable = true,
-        additional_vim_regex_highlighting = true,
 
-        -- disable slow treesitter highlight for large files
-        disable = function(_, buf)
-          local max_filesize = 500 * 1024 -- 500 KB
-          local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-          if ok and stats and stats.size > max_filesize then return true end
-        end,
+        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+        -- Using this option may slow down your editor, and you may see some duplicate highlights.
+        -- Instead of true it can also be a list of languages
+        additional_vim_regex_highlighting = false,
       },
       -- nvim-ts-autotag
       autotag = {
         enable = true,
       },
       playground = {
-        enable = true,
+        enable = false,
       },
       -- highlight and navigate on %
       matchup = {
-        enable = true,
+        enable = false,
       },
+      -- Indentation based on treesitter for the = operator.
       indent = {
         enable = true,
       },
@@ -99,19 +113,22 @@ return {
         "help",
       },
       incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<c-cr>", -- maps in normal mode to init the node/scope selection
-          scope_incremental = "<c-cr>", -- increment to the upper scope (as defined in locals.scm)
-          node_incremental = "<nop>", -- increment to the upper named parent
-          node_decremental = "<bs>", -- decrement to the previous node
-        },
+        enable = false,
       },
+      -- better incremental selection
       textsubjects = {
         enable = true,
+        prev_selection = "<bs>", -- (Optional) keymap to select the previous selection
+        keymaps = {
+          ["<cr>"] = "textsubjects-smart",
+          [";"] = "textsubjects-container-outer",
+          ["i;"] = "textsubjects-container-inner",
+        },
       },
     },
     ---@param opts TSConfig
-    config = function(_, opts) require("nvim-treesitter.configs").setup(opts) end,
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
   },
 }

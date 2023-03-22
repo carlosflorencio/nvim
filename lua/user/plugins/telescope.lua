@@ -15,7 +15,6 @@ local layout_config = {
 return {
   {
     "nvim-telescope/telescope.nvim",
-    version = "*",
     dependencies = {
       {
         "danielfalk/smart-open.nvim",
@@ -179,6 +178,8 @@ return {
   {
     "nvim-telescope/telescope-fzf-native.nvim",
     build = "make",
-    cond = function() return vim.fn.executable "make" == 1 end,
+    cond = function()
+      return vim.fn.executable "make" == 1
+    end,
   },
 }

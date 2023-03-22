@@ -1,8 +1,8 @@
 return {
-  {
-    "kevinhwang91/nvim-bqf",
-    ft = "qf",
-  },
+  -- {
+  --   "kevinhwang91/nvim-bqf",
+  --   ft = "qf",
+  -- },
 
   {
     -- past images from clipboard into md files :PasteImage
@@ -17,7 +17,9 @@ return {
           local name = vim.fn.input "Name: "
           vim.fn.inputrestore()
 
-          if name == nil or name == "" then return os.date "%y-%m-%d-%H-%M-%S" end
+          if name == nil or name == "" then
+            return os.date "%y-%m-%d-%H-%M-%S"
+          end
           return name
         end,
         -- %:p:h will get the directory of your current file. See also :help cmdline-special and :help filename-modifiers
@@ -233,7 +235,9 @@ return {
     keys = {
       {
         "<leader>sp",
-        function() require("silicon").visualise_api { to_clip = true } end,
+        function()
+          require("silicon").visualise_api { to_clip = true }
+        end,
         desc = "Silicon code screenshot",
         mode = "v",
       },

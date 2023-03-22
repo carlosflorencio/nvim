@@ -14,7 +14,7 @@ return {
           component_separators = { left = "", right = "" },
           section_separators = { left = "", right = "" },
           disabled_filetypes = {
-            statusline = { "dashboard", "lazy", "alpha" },
+            statusline = { "dashboard", "lazy", "alpha", "NvimTree", "TelescopePrompt" },
           },
           ignore_focus = {
             "NvimTree",

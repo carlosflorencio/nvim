@@ -140,7 +140,9 @@ return {
   {
     "ggandor/leap.nvim",
     event = "BufRead",
-    config = function() require("leap").set_default_keymaps() end,
+    config = function()
+      require("leap").set_default_keymaps()
+    end,
   },
 
   {
@@ -222,21 +224,20 @@ return {
     },
     init = function()
       -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
-      vim.keymap.set("n", "zR", function() require("ufo").openAllFolds() end)
-      vim.keymap.set("n", "zM", function() require("ufo").closeAllFolds() end)
+      vim.keymap.set("n", "zR", function()
+        require("ufo").openAllFolds()
+      end)
+      vim.keymap.set("n", "zM", function()
+        require("ufo").closeAllFolds()
+      end)
 
-      vim.keymap.set("n", "zr", function() require("ufo").openFoldsExceptKinds() end)
+      vim.keymap.set("n", "zr", function()
+        require("ufo").openFoldsExceptKinds()
+      end)
 
-      vim.keymap.set("n", "zm", function() require("ufo").closeFoldsWith() end)
-    end,
-  },
-  {
-    "andymass/vim-matchup",
-    event = "BufReadPost",
-    config = function()
-      vim.g.matchup_matchparen_offscreen = {
-        method = "status_manual",
-      }
+      vim.keymap.set("n", "zm", function()
+        require("ufo").closeFoldsWith()
+      end)
     end,
   },
   {
@@ -282,7 +283,9 @@ return {
       ignore = "^$",
       pre_hook = function(...)
         local loaded, ts_comment = pcall(require, "ts_context_commentstring.integrations.comment_nvim")
-        if loaded and ts_comment then return ts_comment.create_pre_hook()(...) end
+        if loaded and ts_comment then
+          return ts_comment.create_pre_hook()(...)
+        end
       end,
     },
     keys = {
@@ -503,7 +506,9 @@ return {
 
       vim.api.nvim_create_autocmd("TextChanged", {
         pattern = "*",
-        callback = function() vim.cmd.normal { autolist.force_recalculate(nil, nil), bang = false } end,
+        callback = function()
+          vim.cmd.normal { autolist.force_recalculate(nil, nil), bang = false }
+        end,
       })
     end,
   },
@@ -511,8 +516,9 @@ return {
   {
     -- multi cursors
     "mg979/vim-visual-multi",
-    branch = "master",
-    init = function() vim.g.VM_leader = "," end,
+    init = function()
+      vim.g.VM_leader = ","
+    end,
     keys = {
       { "<C-n>", mode = { "n", "v" } },
       "<C-Down>",

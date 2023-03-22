@@ -52,8 +52,11 @@ vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decreas
 vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
 -- quickfix
-vim.keymap.set("n", "]q", ":cnext<cr>")
-vim.keymap.set("n", "[q", ":cprev<cr>")
+-- make it work like a ring when reaches the end
+vim.cmd [[ command! Cnext try | cnext | catch | cfirst | catch | endtry ]]
+vim.cmd [[ command! Cprev try | cprev | catch | clast | catch | endtry ]]
+vim.keymap.set("n", "]q", ":Cnext<cr>")
+vim.keymap.set("n", "[q", ":Cprev<cr>")
 vim.keymap.set("n", "<c-q>", ":call QuickFixToggle()<CR>")
 
 -- Move current line / block with Alt-j/k a la vscode.
@@ -118,19 +121,20 @@ vim.keymap.set("n", "<leader>b", "<cmd>enew<cr>", { desc = "New Buffer" })
 --   { desc = "Clear all debug prints", noremap = true }
 -- )
 
-vim.keymap.set("n", "<leader>dd", function() return require("debugprint").debugprint { variable = true } end, {
+vim.keymap.set("n", "<leader>dd", function()
+  return require("debugprint").debugprint { variable = true }
+end, {
   expr = true,
   desc = "Debug variable print",
 })
 
-vim.keymap.set("n", "<leader>dl", function() return require("debugprint").debugprint() end, {
+vim.keymap.set("n", "<leader>dl", function()
+  return require("debugprint").debugprint()
+end, {
   expr = true,
   desc = "Debug line print",
 })
 
-vim.keymap.set(
-  "n",
-  "<leader>dD",
-  function() require("debugprint").deleteprints() end,
-  { desc = "Clear all debug prints" }
-)
+vim.keymap.set("n", "<leader>dD", function()
+  require("debugprint").deleteprints()
+end, { desc = "Clear all debug prints" })

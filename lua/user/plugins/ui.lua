@@ -21,7 +21,11 @@ return {
     init = function()
       -- when noice is not enabled, install notify on VeryLazy
       local Util = require "user.util"
-      if not Util.has "noice.nvim" then Util.on_very_lazy(function() vim.notify = require "notify" end) end
+      if not Util.has "noice.nvim" then
+        Util.on_very_lazy(function()
+          vim.notify = require "notify"
+        end)
+      end
     end,
   },
 
@@ -207,6 +211,7 @@ return {
   -- indent guides for Neovim
   {
     "lukas-reineke/indent-blankline.nvim",
+    enabled = false,
     event = { "BufReadPost", "BufNewFile" },
     opts = {
       --char = "▏",
