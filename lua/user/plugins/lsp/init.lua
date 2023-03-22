@@ -19,7 +19,9 @@ return {
       local mr = require "mason-registry"
       for _, tool in ipairs(opts.ensure_installed) do
         local p = mr.get_package(tool)
-        if not p:is_installed() then p:install() end
+        if not p:is_installed() then
+          p:install()
+        end
       end
     end,
   },
@@ -164,11 +166,11 @@ return {
     end,
   },
 
-  {
-    "ThePrimeagen/refactoring.nvim",
-    dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-treesitter/nvim-treesitter" } },
-    opts = {},
-  },
+  -- {
+  --   "ThePrimeagen/refactoring.nvim",
+  --   dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-treesitter/nvim-treesitter" } },
+  --   opts = {},
+  -- },
 
   {
     "dnlhc/glance.nvim",

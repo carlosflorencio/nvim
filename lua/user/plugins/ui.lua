@@ -202,6 +202,7 @@ return {
 
   {
     "karb94/neoscroll.nvim",
+    enabled = true,
     event = "BufRead",
     opts = {
       mappings = { "<C-u>", "<C-d>" },

@@ -8,7 +8,9 @@ return {
       local cspell_opts = {
         disabled_filetypes = { "NvimTree" },
         extra_args = { "--config", "~/.cspell.json" },
-        diagnostics_postprocess = function(diagnostic) diagnostic.severity = vim.diagnostic.severity.WARN end,
+        diagnostics_postprocess = function(diagnostic)
+          diagnostic.severity = vim.diagnostic.severity.WARN
+        end,
       }
       return {
         root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
@@ -29,8 +31,8 @@ return {
 
           require "typescript.extensions.null-ls.code-actions",
           nls.builtins.code_actions.cspell.with(cspell_opts),
-          nls.builtins.code_actions.refactoring,
-          nls.builtins.code_actions.gitsigns,
+          -- nls.builtins.code_actions.refactoring,
+          -- nls.builtins.code_actions.gitsigns,
           nls.builtins.code_actions.shellcheck,
           nls.builtins.code_actions.proselint,
         },
