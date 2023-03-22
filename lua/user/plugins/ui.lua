@@ -222,11 +222,11 @@ return {
   -- indent guides for Neovim
   {
     "lukas-reineke/indent-blankline.nvim",
-    enabled = false,
+    enabled = true,
     event = { "BufReadPost", "BufNewFile" },
     opts = {
       --char = "▏",
-      char = "│",
+      char = "",
       filetype_exclude = {
         "help",
         "alpha",
@@ -238,6 +238,10 @@ return {
         "NvimTree",
         "neogitstatus",
         "aerial",
+        "lspinfo",
+        "man",
+        "checkhealth",
+        "",
       },
       show_trailing_blankline_indent = false,
       show_current_context = true,

@@ -5,15 +5,15 @@ return {
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
-      -- {
-      --   "andymass/vim-matchup",
-      --   event = "BufReadPost",
-      --   config = function()
-      --     vim.g.matchup_matchparen_offscreen = {
-      --       method = "status_manual",
-      --     }
-      --   end,
-      -- },
+      {
+        "andymass/vim-matchup",
+        event = "BufReadPost",
+        config = function()
+          vim.g.matchup_matchparen_offscreen = {
+            method = "status_manual",
+          }
+        end,
+      },
       {
         "nvim-treesitter/nvim-treesitter-textobjects",
         init = function()
@@ -66,7 +66,7 @@ return {
       },
       -- highlight and navigate on %
       matchup = {
-        enable = false,
+        enable = true,
       },
       -- Indentation based on treesitter for the = operator.
       indent = {
