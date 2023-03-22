@@ -240,12 +240,6 @@ return {
       end)
     end,
   },
-  {
-    -- detect correct tab width between files, e.g prettier 3 spaces
-    "nmac427/guess-indent.nvim",
-    opts = {},
-    lazy = false,
-  },
 
   {
     "windwp/nvim-autopairs",
