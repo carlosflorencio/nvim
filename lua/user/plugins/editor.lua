@@ -1,5 +1,12 @@
 return {
   {
+    -- Detect tabstop and shiftwidth automatically
+    "nmac427/guess-indent.nvim",
+    priority = 100,
+    opts = {},
+    lazy = false,
+  },
+  {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
