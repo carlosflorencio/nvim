@@ -3,7 +3,6 @@ vim.opt.wrap = true
 vim.opt.hlsearch = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
-vim.opt.cursorline = true
 vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
 vim.opt.iskeyword:append "-" -- consider string-string as whole word
 vim.opt.cmdheight = 0 -- hide command line unless needed
