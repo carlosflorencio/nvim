@@ -11,6 +11,9 @@ return {
         options = {
           theme = "auto",
           globalstatus = true,
+          refresh = {
+            statusline = 2000,
+          },
           component_separators = { left = "", right = "" },
           section_separators = { left = "", right = "" },
           disabled_filetypes = {
@@ -37,7 +40,7 @@ return {
             require("recorder").recordingStatus,
             components.python_env,
           },
-          lualine_x = { components.lsp, components.filetype, "searchcount", Lualine_get_wakatime },
+          lualine_x = { "fancy_lsp_servers", components.filetype, "searchcount", Lualine_get_wakatime },
           lualine_y = { "overseer", components.diagnostics },
           lualine_z = {},
         },
