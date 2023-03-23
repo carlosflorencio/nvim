@@ -1,9 +1,8 @@
 return {
   {
     -- Detect tabstop and shiftwidth automatically
-    "nmac427/guess-indent.nvim",
+    "tpope/vim-sleuth",
     priority = 100,
-    opts = {},
     lazy = false,
   },
   {

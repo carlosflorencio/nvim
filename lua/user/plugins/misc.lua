@@ -25,7 +25,7 @@ return {
         -- %:p:h will get the directory of your current file. See also :help cmdline-special and :help filename-modifiers
         img_dir = { "%:p:h", "img" },
       },
-      -- -- You can create configuration for ceartain filetype by creating another field (markdown, in this case)
+      -- -- You can create configuration for certain filetype by creating another field (markdown, in this case)
       -- -- If you're uncertain what to name your field to, you can run `lua print(vim.bo.filetype)`
       -- -- Missing options from `markdown` field will be replaced by options from `default` field
       -- markdown = {
