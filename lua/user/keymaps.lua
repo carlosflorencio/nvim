@@ -22,7 +22,7 @@ vim.keymap.set({ "n" }, "<F3>", function()
   require("spectre").open_visual { select_word = true, path = path }
 end)
 vim.keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
-vim.keymap.set("n", "<esc>", ":noh <CR>", { desc = "Clear highlights" })
+-- vim.keymap.set("n", "<esc>", ":noh <CR>", { desc = "Clear highlights" })
 
 -- Paste
 vim.keymap.set("v", "<C-p>", "y'>p")
@@ -81,6 +81,7 @@ vim.keymap.set("n", "<leader>sc", "<cmd>close<cr>", { desc = "Close split" })
 -- quit buffers / windows
 vim.keymap.set("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit all" })
 vim.keymap.set("n", "<leader>cw", "<cmd>q<cr>", { desc = "Close Window" })
+vim.keymap.set("n", "<leader>ct", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 vim.keymap.set(
   "n",
   "<leader>cab",

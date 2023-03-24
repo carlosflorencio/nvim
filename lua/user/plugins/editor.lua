@@ -1,8 +1,9 @@
 return {
   {
     -- Detect tabstop and shiftwidth automatically
-    "tpope/vim-sleuth",
+    "nmac427/guess-indent.nvim",
     priority = 100,
+    opts = {},
     lazy = false,
   },
   {
@@ -125,11 +126,12 @@ return {
     },
   },
 
-  -- {
-  -- 	"asiryk/auto-hlsearch.nvim",
-  -- 	event = "BufRead",
-  -- 	opts = {},
-  -- },
+  {
+    "asiryk/auto-hlsearch.nvim",
+    version = "^1",
+    event = "BufRead",
+    opts = {},
+  },
 
   {
     "folke/todo-comments.nvim",

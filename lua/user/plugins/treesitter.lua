@@ -57,6 +57,12 @@ return {
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
       },
+      -- Indentation based on treesitter for the = operator.
+      -- enabling it will cause bad indentation for some typescript code
+      indent = {
+        enable = false,
+      },
+
       -- nvim-ts-autotag
       autotag = {
         enable = true,
@@ -66,10 +72,6 @@ return {
       },
       -- highlight and navigate on %
       matchup = {
-        enable = true,
-      },
-      -- Indentation based on treesitter for the = operator.
-      indent = {
         enable = true,
       },
       -- with mini.comment

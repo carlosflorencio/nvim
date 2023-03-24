@@ -35,7 +35,7 @@ return {
           lualine_a = { components.mode },
           lualine_b = { components.branch },
           lualine_c = {
-            "lsp_progress",
+            -- "lsp_progress",
             package_info.get_status,
             require("recorder").recordingStatus,
             components.python_env,
@@ -51,5 +51,6 @@ return {
   {
     -- statuslune lsp progress
     "arkav/lualine-lsp-progress",
+    enabled = false,
   },
 }
