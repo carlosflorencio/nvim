@@ -6,6 +6,7 @@ return {
       local components = require "user.plugins.lualine.components"
       local package_info = require "package-info"
       require "user.plugins.lualine.wakatime"
+      local CodeGPTModule = require "codegpt"
 
       return {
         options = {
@@ -40,7 +41,13 @@ return {
             require("recorder").recordingStatus,
             components.python_env,
           },
-          lualine_x = { "fancy_lsp_servers", components.filetype, "searchcount", Lualine_get_wakatime },
+          lualine_x = {
+            "fancy_lsp_servers",
+            CodeGPTModule.get_status,
+            components.filetype,
+            "searchcount",
+            Lualine_get_wakatime,
+          },
           lualine_y = { "overseer", components.diagnostics },
           lualine_z = {},
         },
