@@ -142,7 +142,7 @@ return {
       },
       {
         "<leader>ff",
-        "<Cmd>lua require('telescope').extensions.smart_open.smart_open()<CR>",
+        "<Cmd>lua require('telescope').extensions.smart_open.smart_open({cwd_only = true})<CR>",
         desc = "Find Project File",
       },
       {

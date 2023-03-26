@@ -1,5 +1,5 @@
 vim.opt.swapfile = false
-vim.opt.wrap = true
+vim.opt.wrap = false
 vim.opt.hlsearch = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
@@ -16,6 +16,7 @@ vim.opt.spelllang = { "en" }
 vim.opt.splitbelow = true -- Put new windows below current
 vim.opt.splitright = true -- Put new windows right of current
 vim.opt.showmode = false -- Dont show mode since we have a statusline
+vim.opt.colorcolumn = "80"
 vim.opt.updatetime = 100 -- Save swap file and trigger CursorHold
 vim.opt.timeoutlen = 600 -- time to wait for a mapped sequence to complete (in milliseconds)
 vim.opt.completeopt = "menu,menuone,noselect"

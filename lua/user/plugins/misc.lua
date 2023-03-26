@@ -249,4 +249,11 @@ return {
     opts = {},
     event = { "FileReadPre", "BufReadPre", "User FileOpened" },
   },
+
+  {
+    -- open links with gx
+    "chrishrb/gx.nvim",
+    event = { "BufEnter" },
+    config = true, -- default settings
+  },
 }

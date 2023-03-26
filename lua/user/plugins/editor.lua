@@ -177,12 +177,12 @@ return {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
     keys = {
-      { "<leader>tg", "<cmd>TroubleToggle<cr>", desc = "Trouble" },
-      { "<leader>tw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "workspace" },
-      { "<leader>td", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "document" },
-      { "<leader>tq", "<cmd>TroubleToggle quickfix<cr>", desc = "quickfix" },
-      { "<leader>tl", "<cmd>TroubleToggle loclist<cr>", desc = "loclist" },
-      { "<leader>tr", "<cmd>TroubleToggle lsp_references<cr>", desc = "references" },
+      { "<leader>TT", "<cmd>TroubleToggle<cr>", desc = "Trouble" },
+      { "<leader>Tw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "workspace" },
+      { "<leader>Td", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "document" },
+      { "<leader>Tq", "<cmd>TroubleToggle quickfix<cr>", desc = "quickfix" },
+      { "<leader>Tl", "<cmd>TroubleToggle loclist<cr>", desc = "loclist" },
+      { "<leader>Tr", "<cmd>TroubleToggle lsp_references<cr>", desc = "references" },
     },
   },
   {

@@ -180,6 +180,9 @@ return {
     event = "BufReadPost",
   },
 
+  -- show colorcolumn when line is too long on insert mode
+  { "Bekaboo/deadcolumn.nvim", event = "VeryLazy" },
+
   {
     -- expand windows
     "anuvyklack/windows.nvim",

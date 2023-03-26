@@ -29,7 +29,7 @@ return {
             extra_args = { "--severity", "warning" },
           },
 
-          require "typescript.extensions.null-ls.code-actions",
+          -- require "typescript.extensions.null-ls.code-actions",
           nls.builtins.code_actions.cspell.with(cspell_opts),
           -- nls.builtins.code_actions.refactoring,
           -- nls.builtins.code_actions.gitsigns,

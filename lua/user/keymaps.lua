@@ -141,3 +141,12 @@ end, {
 vim.keymap.set("n", "<leader>dD", function()
   require("debugprint").deleteprints()
 end, { desc = "Clear all debug prints" })
+
+-- text wrap
+vim.keymap.set("n", "<leader>tw", ":set wrap!<cr>", {
+  desc = "Toggle line wrap for all splits",
+})
+
+vim.keymap.set("n", "<leader>tW", ":windo set wrap!<cr>", {
+  desc = "Toggle line wrap for current buffer",
+})
