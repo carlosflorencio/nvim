@@ -92,6 +92,8 @@ return {
 
       lspconfig["lua_ls"].setup {}
 
+      lspconfig["html"].setup {}
+
       lspconfig["eslint"].setup {
         settings = {
           eslint = {
