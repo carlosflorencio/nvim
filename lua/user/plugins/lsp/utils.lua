@@ -20,6 +20,10 @@ function M.on_attach(client, bufnr)
     )
     vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = bufnr })
   end
+
+  if client.name == "pyright" then
+    vim.keymap.set("n", "<leader>oi", "<cmd>PyrightOrganizeImports<CR>", { buffer = bufnr, desc = "Organize Imports" })
+  end
 end
 
 function M.capabilities()
