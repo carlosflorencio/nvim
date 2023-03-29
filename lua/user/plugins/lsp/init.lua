@@ -94,6 +94,8 @@ return {
 
       lspconfig["html"].setup {}
 
+      lspconfig["pyright"].setup {}
+
       lspconfig["eslint"].setup {
         settings = {
           eslint = {
