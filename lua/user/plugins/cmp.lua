@@ -58,13 +58,6 @@ return { -- auto completion
       }
 
       cmp.setup {
-        enabled = function()
-          -- disable cmp on prompt buffers (e.g. :Telescope)
-          local buftype = vim.api.nvim_buf_get_option(0, "buftype")
-          if buftype == "prompt" then
-            return false
-          end
-        end,
         mapping = cmp.mapping.preset.insert {
           -- copilot
           ["<C-l>"] = function()
