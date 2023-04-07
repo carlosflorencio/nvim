@@ -15,7 +15,9 @@ return { -- auto completion
     config = function()
       local cmp = require "cmp"
       local status_cmp_ok, cmp_types = pcall(require, "cmp.types.cmp")
-      if not status_cmp_ok then return end
+      if not status_cmp_ok then
+        return
+      end
       local ConfirmBehavior = cmp_types.ConfirmBehavior
       local SelectBehavior = cmp_types.SelectBehavior
       local cmp_utils = require "user.plugins.cmp.utils"
@@ -56,11 +58,24 @@ return { -- auto completion
       }
 
       cmp.setup {
+        enabled = function()
+          -- disable cmp on prompt buffers (e.g. :Telescope)
+          local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+          if buftype == "prompt" then
+            return false
+          end
+        end,
         mapping = cmp.mapping.preset.insert {
           -- copilot
-          ["<C-l>"] = function() require("copilot.suggestion").accept() end,
-          ["<M-j>"] = function() require("copilot.suggestion").next() end,
-          ["<M-k>"] = function() require("copilot.suggestion").prev() end,
+          ["<C-l>"] = function()
+            require("copilot.suggestion").accept()
+          end,
+          ["<M-j>"] = function()
+            require("copilot.suggestion").next()
+          end,
+          ["<M-k>"] = function()
+            require("copilot.suggestion").prev()
+          end,
 
           ["<C-k>"] = cmp_mapping(cmp_mapping.select_prev_item(), { "i", "c" }),
           ["<C-j>"] = cmp_mapping(cmp_mapping.select_next_item(), { "i", "c" }),
@@ -106,7 +121,9 @@ return { -- auto completion
           ["<CR>"] = cmp_mapping(function(fallback)
             if cmp.visible() then
               local confirm_opts = vim.deepcopy(confirm_opts_default) -- avoid mutating the original opts below
-              local is_insert_mode = function() return vim.api.nvim_get_mode().mode:sub(1, 1) == "i" end
+              local is_insert_mode = function()
+                return vim.api.nvim_get_mode().mode:sub(1, 1) == "i"
+              end
               if is_insert_mode() then -- prevent overwriting brackets
                 confirm_opts.behavior = ConfirmBehavior.Insert
               end
@@ -125,8 +142,12 @@ return { -- auto completion
             name = "nvim_lsp",
             entry_filter = function(entry, ctx)
               local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
-              if kind == "Snippet" and ctx.prev_context.filetype == "java" then return false end
-              if kind == "Text" then return false end
+              if kind == "Snippet" and ctx.prev_context.filetype == "java" then
+                return false
+              end
+              if kind == "Text" then
+                return false
+              end
               return true
             end,
             -- max_item_count = 5
@@ -186,7 +207,9 @@ return { -- auto completion
         },
 
         snippet = {
-          expand = function(args) require("luasnip").lsp_expand(args.body) end,
+          expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+          end,
         },
 
         experimental = {
@@ -244,7 +267,9 @@ return { -- auto completion
       history = true,
       delete_check_events = "TextChanged",
     },
-    keys = function() return false end,
+    keys = function()
+      return false
+    end,
   },
 
   {

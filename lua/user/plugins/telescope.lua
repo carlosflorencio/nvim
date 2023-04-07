@@ -38,9 +38,13 @@ return {
           dynamic_preview_title = true,
           mappings = {
             n = {
-              ["v"] = actions.file_vsplit,
-              ["x"] = actions.file_split,
-              ["t"] = actions.file_tab,
+              ["v"] = actions.select_vertical,
+              ["x"] = actions.select_horizontal,
+              ["t"] = actions.select_tab,
+              ["<C-g>"] = actions.to_fuzzy_refine,
+            },
+            i = {
+              ["<C-g>"] = actions.to_fuzzy_refine,
             },
           },
         },
@@ -113,7 +117,6 @@ return {
       telescope.load_extension "smart_open"
       telescope.load_extension "undo"
       telescope.load_extension "yank_history"
-      telescope.load_extension "aerial"
       -- telescope.load_extension "refactoring"
       telescope.load_extension "lazygit"
     end,

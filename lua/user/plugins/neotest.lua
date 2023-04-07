@@ -80,49 +80,51 @@ return {
       {
         ",tu",
         function()
-          require("user.cmds").buildProjectBefore(function() require("neotest").run.run() end)
+          require("user.cmds").buildProjectBefore(function()
+            require("neotest").run.run()
+          end)
         end,
         desc = "Run nearest test under cursor",
       },
       {
         ",tt",
         function()
-          require("user.cmds").buildProjectBefore(function() require("neotest").run.run(vim.fn.expand "%") end)
+          require("user.cmds").buildProjectBefore(function()
+            require("neotest").run.run(vim.fn.expand "%")
+          end)
         end,
         desc = "Test file",
       },
       {
         ",td",
         function()
-          require("user.cmds").buildProjectBefore(
-            function()
-              require("neotest").run.run {
-                strategy = "dap",
-              }
-            end
-          )
+          require("user.cmds").buildProjectBefore(function()
+            require("neotest").run.run {
+              strategy = "dap",
+            }
+          end)
         end,
         desc = "Debug nearest test under cursor",
       },
-      { ",to", '<cmd>lua require("neotest").output.open({ enter = true })<cr>', "Test Output Dialog" },
+      { ",to", '<cmd>lua require("neotest").output.open()<cr>', "Test Output Dialog" },
       {
         ",dt",
         function()
-          require("user.cmds").buildProjectBefore(
-            function()
-              require("neotest").run.run {
-                vim.fn.expand "%",
-                strategy = "dap",
-              }
-            end
-          )
+          require("user.cmds").buildProjectBefore(function()
+            require("neotest").run.run {
+              vim.fn.expand "%",
+              strategy = "dap",
+            }
+          end)
         end,
         desc = "Debug Test File",
       },
       {
         ",dd",
         function()
-          require("user.cmds").buildProjectBefore(function() require("dap").continue() end)
+          require("user.cmds").buildProjectBefore(function()
+            require("dap").continue()
+          end)
         end,
         desc = "Debug File",
       },
