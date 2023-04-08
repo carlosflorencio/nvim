@@ -131,7 +131,7 @@ return {
         "<cmd>Telescope buffers show_all_buffers=true previewer=false ignore_current_buffer=true sort_mru=true<cr>",
         desc = "Open Buffers",
       },
-      { "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "LSP Diagnostics" },
+      { "<leader>fd", "<cmd>Telescope diagnostics initial_mode=normal<cr>", desc = "LSP Diagnostics" },
       {
         "<leader>fg",
         "<cmd>Telescope git_status initial_mode=normal theme=dropdown previewer=false sort_mru=true<cr>",
