@@ -103,6 +103,22 @@ return {
             override_file_sorter = true, -- override the file sorter
             case_mode = "smart_case", -- or "ignore_case" or "respect_case"
           },
+          undo = {
+            initial_mode = "normal",
+            side_by_side = false,
+            mappings = {
+              i = {
+                ["<cr>"] = require("telescope-undo.actions").yank_additions,
+                ["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
+                ["<C-cr>"] = require("telescope-undo.actions").restore,
+              },
+              n = {
+                ["<cr>"] = require("telescope-undo.actions").yank_additions,
+                ["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
+                ["<C-cr>"] = require("telescope-undo.actions").restore,
+              },
+            },
+          },
         },
       }
     end,
@@ -166,7 +182,7 @@ return {
       { "<leader>fC", "<cmd>Telescope commands<cr>", desc = "Commands" },
       { "<leader>fp", "<cmd>Telescope projects<cr>", desc = "Projects" },
       { "<leader>fS", "<cmd>Telescope luasnip theme=dropdown<cr>", desc = "Snippets" },
-      { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Undo list" },
+      { "<leader>fu", "<cmd>Telescope undo initial_mode=normal<cr>", desc = "Undo list" },
       {
         "<leader>ft",
         "<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>",
