@@ -4,6 +4,14 @@ local function augroup(name)
   })
 end
 
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--   group = augroup "__env",
+--   pattern = ".env",
+--   callback = function(args)
+--     vim.diagnostic.disable(args.buf)
+--   end,
+-- })
+
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
   callback = function()
     require("nvim-tree.api").tree.toggle {
@@ -17,7 +25,9 @@ local highlight_group = vim.api.nvim_create_augroup("YankHighlight", {
   clear = true,
 })
 vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function() vim.highlight.on_yank() end,
+  callback = function()
+    vim.highlight.on_yank()
+  end,
   group = highlight_group,
   pattern = "*",
 })
@@ -55,7 +65,9 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
 })
 vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
   callback = function(args)
-    if vim.bo[args.buf].filetype == "NvimTree" then return end
+    if vim.bo[args.buf].filetype == "NvimTree" then
+      return
+    end
 
     local cl = vim.wo.cursorline
     if cl then
@@ -71,7 +83,9 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)
-    if mark[1] > 0 and mark[1] <= lcount then pcall(vim.api.nvim_win_set_cursor, 0, mark) end
+    if mark[1] > 0 and mark[1] <= lcount then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
   end,
 })
 
