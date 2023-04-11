@@ -151,9 +151,9 @@ return {
       {
         "<leader>fg",
         "<cmd>Telescope git_status initial_mode=normal theme=dropdown previewer=false sort_mru=true<cr>",
+        desc = "Git changed files",
       },
-      desc = "Git changed files",
-      { "<leader>fc", "<cmd>Telescope command_history initial_mode=normal<cr>", desc = "Command History" },
+      { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
       {
         "<leader>fa",
         "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<cr>",

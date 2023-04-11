@@ -108,7 +108,7 @@ return {
         "fish",
         "dockerfile",
         "bash",
-        "help",
+        "vimdoc",
       },
       incremental_selection = {
         enable = false,
