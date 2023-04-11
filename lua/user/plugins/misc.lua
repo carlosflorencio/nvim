@@ -132,10 +132,12 @@ return {
           ["a"] = actions.newfile,
           ["r"] = actions.rename,
           ["I"] = actions.toggle_show_hidden,
+          ["dd"] = actions.delete,
           ---@diagnostic disable-next-line: undefined-field
           ["c"] = clipboard_actions.yank_path,
-          ["y"] = clipboard_actions.copy,
+          ["yy"] = clipboard_actions.copy,
           ["x"] = clipboard_actions.cut,
+          ["P"] = clipboard_actions.cut,
           ["p"] = clipboard_actions.paste,
         },
         float = {

@@ -89,7 +89,7 @@ return { -- auto completion
           ["<Tab>"] = cmp_mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
-            elseif luasnip.expand_or_locally_jumpable() then
+            elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
               -- elseif cmp_utils.jumpable(1) then
               -- luasnip.jump(1)
