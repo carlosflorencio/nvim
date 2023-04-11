@@ -5,7 +5,9 @@ local M = {}
 ---@return boolean true if a jumpable luasnip field is found while inside a snippet
 function M.jumpable(dir)
   local luasnip_ok, luasnip = pcall(require, "luasnip")
-  if not luasnip_ok then return false end
+  if not luasnip_ok then
+    return false
+  end
 
   local win_get_cursor = vim.api.nvim_win_get_cursor
   local get_current_buf = vim.api.nvim_get_current_buf
@@ -15,10 +17,14 @@ function M.jumpable(dir)
   local function seek_luasnip_cursor_node()
     -- TODO(kylo252): upstream this
     -- for outdated versions of luasnip
-    if not luasnip.session.current_nodes then return false end
+    if not luasnip.session.current_nodes then
+      return false
+    end
 
     local node = luasnip.session.current_nodes[get_current_buf()]
-    if not node then return false end
+    if not node then
+      return false
+    end
 
     local snippet = node.parent.snippet
     local exit_node = snippet.insert_nodes[0]

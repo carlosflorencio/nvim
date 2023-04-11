@@ -38,7 +38,6 @@ return {
       -- better incremental selection
       "RRethy/nvim-treesitter-textsubjects",
       -- "nvim-treesitter/nvim-treesitter-context",
-      -- "nvim-treesitter/playground",
     },
     keys = {
       { "<cr>", desc = "Increment selection", mode = "x" },
@@ -66,9 +65,6 @@ return {
       -- nvim-ts-autotag
       autotag = {
         enable = true,
-      },
-      playground = {
-        enable = false,
       },
       -- highlight and navigate on %
       matchup = {
