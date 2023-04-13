@@ -89,10 +89,8 @@ return { -- auto completion
           ["<Tab>"] = cmp_mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
+            elseif luasnip.expand_or_locally_jumpable() then
               luasnip.expand_or_jump()
-              -- elseif cmp_utils.jumpable(1) then
-              -- luasnip.jump(1)
             elseif cmp_utils.has_words_before() then
               cmp.complete()
               -- fallback()
@@ -123,13 +121,16 @@ return { -- auto completion
               if cmp.confirm(confirm_opts) then
                 return -- success, exit early
               end
+              fallback()
+            elseif luasnip.expand_or_locally_jumpable() then
+              luasnip.expand_or_jump()
+            else
+              fallback()
             end
-            fallback() -- if not exited early, always fallback
           end),
         },
 
         sources = cmp.config.sources {
-          { name = "buffer" },
           { name = "nvim_lsp_signature_help" },
           {
             name = "nvim_lsp",
@@ -145,6 +146,7 @@ return { -- auto completion
             end,
             -- max_item_count = 5
           },
+          { name = "buffer" },
           { name = "luasnip" },
           { name = "path" },
           { name = "nvim_lua" },
@@ -258,7 +260,8 @@ return { -- auto completion
     },
     opts = {
       history = true,
-      delete_check_events = "TextChanged",
+      region_check_events = "InsertEnter",
+      delete_check_events = "InsertLeave",
     },
     keys = function()
       return false
@@ -276,8 +279,8 @@ return { -- auto completion
         keymap = {
           jump_prev = "[[",
           jump_next = "]]",
-          accept = "<M-l>",
-          refresh = "gr",
+          accept = "<cr>",
+          refresh = "<c-r>",
           open = "<M-CR>",
         },
         layout = {
