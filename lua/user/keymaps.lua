@@ -150,3 +150,24 @@ vim.keymap.set("n", "<leader>tw", ":set wrap!<cr>", {
 vim.keymap.set("n", "<leader>tW", ":windo set wrap!<cr>", {
   desc = "Toggle line wrap for current buffer",
 })
+
+-- Surrounds keymaps
+vim.keymap.set("n", '<leader>S"', 'ysiW"', {
+  desc = "Surround word with double quotes",
+  remap = true,
+})
+
+vim.keymap.set("n", '<leader>s"', 'ysiw"', {
+  desc = "Surround word with double quotes",
+  remap = true,
+})
+
+vim.keymap.set("n", "<leader>s`", "ysiw`", {
+  desc = "Surround word with double quotes",
+  remap = true,
+})
+
+vim.keymap.set("n", "<leader>S`", "ysiW`", {
+  desc = "Surround word with double quotes",
+  remap = true,
+})
