@@ -22,6 +22,7 @@ vim.opt.timeoutlen = 600 -- time to wait for a mapped sequence to complete (in m
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 vim.opt.shell = "/bin/sh" -- fish is slow
+vim.opt.laststatus = 3 -- Only one statusline (avoid nvim-tree duplicated statusline)
 
 -- folds ufo
 vim.o.foldcolumn = "0" -- '0' is not bad
