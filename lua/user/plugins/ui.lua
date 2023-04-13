@@ -170,18 +170,11 @@ return {
     },
   },
 
+  -- show colorcolumn when line is too long on insert mode
   {
-    -- show colorcolumn when line is too long
-    "m4xshen/smartcolumn.nvim",
-    enabled = false,
-    opts = {
-      disabled_filetypes = { "help", "text", "markdown", "lazy", "dashboard", "lir" },
-    },
+    "Bekaboo/deadcolumn.nvim",
     event = "BufReadPost",
   },
-
-  -- show colorcolumn when line is too long on insert mode
-  { "Bekaboo/deadcolumn.nvim", event = "VeryLazy" },
 
   {
     -- expand windows
