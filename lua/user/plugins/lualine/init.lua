@@ -42,6 +42,7 @@ return {
             components.python_env,
           },
           lualine_x = {
+            components.location,
             "fancy_lsp_servers",
             CodeGPTModule.get_status,
             components.filetype,

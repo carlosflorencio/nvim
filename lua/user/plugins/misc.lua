@@ -227,7 +227,7 @@ return {
 
   {
     -- code screenshots
-    "narutoxy/silicon.lua",
+    "desilinguist/silicon.lua",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
       font = "JetBrainsMono Nerd Font",
