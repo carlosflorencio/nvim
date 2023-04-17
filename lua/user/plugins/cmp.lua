@@ -259,7 +259,7 @@ return { -- auto completion
       end,
     },
     opts = {
-      history = true,
+      history = false,
       region_check_events = "InsertEnter",
       delete_check_events = "InsertLeave",
     },

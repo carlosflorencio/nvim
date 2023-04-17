@@ -42,6 +42,7 @@ return {
         "dockerls",
         "jsonls",
         "gopls",
+        "tailwindcss",
         "marksman",
         "taplo", --toml
         "quick_lint_js",
@@ -91,6 +92,11 @@ return {
       })
 
       lspconfig["lua_ls"].setup {}
+
+      lspconfig["tailwindcss"].setup {}
+
+      -- lspconfig["intelephense"].setup {}
+      lspconfig["phpactor"].setup {}
 
       lspconfig["html"].setup {}
 
