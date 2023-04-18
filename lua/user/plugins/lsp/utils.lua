@@ -27,7 +27,7 @@ function M.on_attach(client, bufnr)
 
   -- Disable semantic highlighting temporarily while the colorschemes catch up
   -- https://www.reddit.com/r/neovim/comments/12gvms4/this_is_why_your_higlights_look_different_in_90/
-  client.server_capabilities.semanticTokensProvider = nil
+  -- client.server_capabilities.semanticTokensProvider = nil
 end
 
 function M.capabilities()

@@ -3,10 +3,58 @@ return {
   {
     "uloco/bluloco.nvim",
     lazy = false,
+    enabled = true,
     priority = 1000,
     dependencies = { "rktjmp/lush.nvim" },
     config = function()
       vim.cmd.colorscheme "bluloco"
+    end,
+  },
+
+  {
+    "folke/tokyonight.nvim",
+    enabled = true,
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("tokyonight").setup {
+        styles = {
+          comments = { italic = false },
+        },
+        dim_inactive = false,
+      }
+      -- vim.cmd.colorscheme "tokyonight-storm"
+    end,
+  },
+
+  {
+    "navarasu/onedark.nvim",
+    enabled = false,
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- vim.cmd.colorscheme "onedark"
+    end,
+  },
+
+  {
+    "Mofiqul/vscode.nvim",
+    enabled = false,
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("vscode").setup()
+      require("vscode").load()
+    end,
+  },
+
+  {
+    "sainnhe/sonokai",
+    enabled = true,
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- vim.cmd.colorscheme "sonokai"
     end,
   },
 
