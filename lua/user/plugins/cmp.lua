@@ -260,9 +260,14 @@ return { -- auto completion
     },
     opts = {
       history = false,
+      enable_autosnippets = true,
       region_check_events = "InsertEnter",
       delete_check_events = "InsertLeave",
     },
+    config = function(_, opts)
+      require("luasnip").setup(opts)
+      require "user.plugins.cmp.snippets"
+    end,
     keys = function()
       return false
     end,

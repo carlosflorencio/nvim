@@ -4,6 +4,12 @@
     "body": "console.log(${0})",
     "description": "console.log()"
   },
+  "useMemo": {
+    "prefix": "um",
+    "body": "useMemo(() => {\n\t$1\n\t}, [$0])",
+    "description": "useMemo()"
+  },
+
   "reactFunctionComponentWithCustomName": {
     "prefix": "rc",
     "body": "\nconst ${1:functionname} = () => {\n\treturn (\n\t\t<>\n\t\t\t$0\n\t\t</>\n\t)\n}",

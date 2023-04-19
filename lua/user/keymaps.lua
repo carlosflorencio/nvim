@@ -171,3 +171,36 @@ vim.keymap.set("n", "<leader>S`", "ysiW`", {
   desc = "Surround word with double quotes",
   remap = true,
 })
+
+-- Retain cursor position when joining lines, and remove spaces from method chains
+vim.keymap.set("n", "J", function()
+  vim.cmd "normal! mzJ"
+
+  local col = vim.fn.col "."
+  local context = string.sub(vim.fn.getline ".", col - 1, col + 1)
+  if context == ") ." or context == ") :" or context:match "%( ." or context:match ". ," or context:match "%w %." then
+    vim.cmd "undojoin | normal! x"
+  elseif context == ",)" then
+    vim.cmd "undojoin | normal! hx"
+  end
+
+  vim.cmd "normal! `z"
+end)
+
+-- Don't yank empty lines into the main register
+vim.keymap.set("n", "dd", function()
+  if vim.api.nvim_get_current_line():match "^%s*$" then
+    return '"_dd'
+  else
+    return "dd"
+  end
+end, { expr = true })
+
+-- rebind 'i' to do a smart-indent if its a blank line
+vim.keymap.set("n", "i", function()
+  if #vim.fn.getline "." == 0 then
+    return [["_cc]]
+  else
+    return "i"
+  end
+end, { expr = true })
