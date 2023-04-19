@@ -93,7 +93,14 @@ return {
 
       lspconfig["lua_ls"].setup {}
 
-      lspconfig["tailwindcss"].setup {}
+      lspconfig["tailwindcss"].setup {
+        root_dir = lspconfig.util.root_pattern(
+          "tailwind.config.js",
+          "tailwind.config.ts",
+          "postcss.config.js",
+          "postcss.config.ts"
+        ),
+      }
 
       -- lspconfig["intelephense"].setup {}
       lspconfig["phpactor"].setup {}
