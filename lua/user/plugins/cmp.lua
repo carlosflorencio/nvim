@@ -87,15 +87,24 @@ return { -- auto completion
             end,
           },
           ["<Tab>"] = cmp_mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
-            elseif cmp_utils.has_words_before() then
-              cmp.complete()
-              -- fallback()
+            if vim.bo.filetype == "markdown" then
+              -- prevent messing with mkdnflow tab
+              if cmp.visible() then
+                cmp.select_next_item()
+              else
+                fallback()
+              end
             else
-              fallback()
+              if cmp.visible() then
+                cmp.select_next_item()
+              elseif luasnip.expand_or_locally_jumpable() then
+                luasnip.expand_or_jump()
+              elseif cmp_utils.has_words_before() then
+                cmp.complete()
+              -- fallback()
+              else
+                fallback()
+              end
             end
           end, { "i", "s" }),
           ["<S-Tab>"] = cmp_mapping(function(fallback)
@@ -110,22 +119,30 @@ return { -- auto completion
           ["<C-Space>"] = cmp_mapping.complete(),
           ["<C-e>"] = cmp_mapping.abort(),
           ["<CR>"] = cmp_mapping(function(fallback)
-            if cmp.visible() then
-              local confirm_opts = vim.deepcopy(confirm_opts_default) -- avoid mutating the original opts below
-              local is_insert_mode = function()
-                return vim.api.nvim_get_mode().mode:sub(1, 1) == "i"
+            if vim.bo.filetype == "markdown" then
+              if cmp.visible() then
+                cmp.confirm()
+              else
+                fallback()
               end
-              if is_insert_mode() then -- prevent overwriting brackets
-                confirm_opts.behavior = ConfirmBehavior.Insert
-              end
-              if cmp.confirm(confirm_opts) then
-                return -- success, exit early
-              end
-              fallback()
-            elseif luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
             else
-              fallback()
+              if cmp.visible() then
+                local confirm_opts = vim.deepcopy(confirm_opts_default) -- avoid mutating the original opts below
+                local is_insert_mode = function()
+                  return vim.api.nvim_get_mode().mode:sub(1, 1) == "i"
+                end
+                if is_insert_mode() then -- prevent overwriting brackets
+                  confirm_opts.behavior = ConfirmBehavior.Insert
+                end
+                if cmp.confirm(confirm_opts) then
+                  return -- success, exit early
+                end
+                fallback()
+              elseif luasnip.expand_or_locally_jumpable() then
+                luasnip.expand_or_jump()
+              else
+                fallback()
+              end
             end
           end),
         },
@@ -190,6 +207,21 @@ return { -- auto completion
               vim_item.kind = icons.misc.Smiley
               vim_item.kind_hl_group = "CmpItemKindEmoji"
             end
+
+            -- tailwind css color preview
+            if vim_item.kind == icons.kinds.Color and entry.completion_item.documentation then
+              local _, _, r, g, b = string.find(entry.completion_item.documentation, "^rgb%((%d+), (%d+), (%d+)")
+              if r then
+                local color = string.format("%02x", r) .. string.format("%02x", g) .. string.format("%02x", b)
+                local group = "Tw_" .. color
+                if vim.fn.hlID(group) < 1 then
+                  vim.api.nvim_set_hl(0, group, { fg = "#" .. color })
+                end
+                vim_item.kind = "●" -- or "■" or anything
+                vim_item.kind_hl_group = group
+              end
+            end
+
             vim_item.menu = source_names[entry.source.name]
             vim_item.dup = duplicates[entry.source.name] or 0
             return vim_item

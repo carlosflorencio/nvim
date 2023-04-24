@@ -24,7 +24,7 @@ return {
           nls.builtins.diagnostics.fish,
           nls.builtins.diagnostics.actionlint,
           nls.builtins.diagnostics.cspell.with(cspell_opts),
-          nls.builtins.diagnostics.proselint,
+          -- nls.builtins.diagnostics.proselint,
           nls.builtins.diagnostics.shellcheck.with {
             extra_args = { "--severity", "warning" },
           },
@@ -34,7 +34,7 @@ return {
           -- nls.builtins.code_actions.refactoring,
           -- nls.builtins.code_actions.gitsigns,
           nls.builtins.code_actions.shellcheck,
-          nls.builtins.code_actions.proselint,
+          -- nls.builtins.code_actions.proselint,
         },
       }
     end,

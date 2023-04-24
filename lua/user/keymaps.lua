@@ -36,6 +36,9 @@ vim.keymap.set("n", "<c-/>", function()
   })
 end, { desc = "[/] Fuzzily search in current buffer]" })
 
+-- Color Picker
+vim.keymap.set("n", "<leader>cp", "<cmd>CccPick<cr>", { desc = "Color Picker" })
+
 -- cycle between buffers
 vim.keymap.set("n", "<leader><space>", "<c-^>", { desc = "Cycle between buffers" })
 

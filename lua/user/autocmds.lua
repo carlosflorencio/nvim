@@ -98,3 +98,7 @@ vim.cmd [[
     endif
   endfunction
 ]]
+
+-- Rnsure that changes to buffers are saved when navigating away from the buffer,
+-- e.g. by following a link to another file. jakewvincent/mkdnflow.nvim
+vim.api.nvim_create_autocmd("FileType", { pattern = "markdown", command = "set awa" })

@@ -294,10 +294,21 @@ return {
 
   {
     -- highlight colors
-    "NvChad/nvim-colorizer.lua",
+    -- :CccPick - Color picker
+    "uga-rosa/ccc.nvim",
     event = "VeryLazy",
-    opts = {
-      filetypes = { "css", "javascript", "typescriptreact" },
-    },
+    config = function()
+      local ccc = require "ccc"
+      -- local mapping = ccc.mapping
+
+      ccc.setup {
+        -- Your preferred settings
+        -- Example: enable highlighter
+        highlighter = {
+          auto_enable = true,
+          lsp = true,
+        },
+      }
+    end,
   },
 }
