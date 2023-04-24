@@ -77,9 +77,10 @@ vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("n", "<leader>sv", "<cmd>vsplit<cr>", { desc = "Split window vertically" })
 vim.keymap.set("n", "<leader>sh", "<cmd>split<cr>", { desc = "Split window horizontally" })
 vim.keymap.set("n", "<leader>sc", "<cmd>close<cr>", { desc = "Close split" })
+vim.keymap.set("n", "<leader>st", "<c-w>T", { desc = "Move split into Tab" })
 
 -- quit buffers / windows
-vim.keymap.set("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit all" })
+vim.keymap.set("n", "<leader>qa", "<cmd>qa<cr>", { desc = "Quit all" })
 vim.keymap.set("n", "<leader>cw", "<cmd>q<cr>", { desc = "Close Window" })
 vim.keymap.set("n", "<leader>ct", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 vim.keymap.set(
@@ -171,6 +172,30 @@ vim.keymap.set("n", "<leader>S`", "ysiW`", {
   desc = "Surround word with double quotes",
   remap = true,
 })
+
+-- Treesitter
+vim.keymap.set("n", "<leader>ss", function()
+  vim.notify(vim.treesitter.get_captures_at_cursor())
+end, { desc = "Print treesitter captures under cursor" })
+
+vim.keymap.set("n", "<leader>sy", function()
+  local captures = vim.treesitter.get_captures_at_cursor()
+  local parsedCaptures = {}
+  for _, capture in ipairs(captures) do
+    table.insert(parsedCaptures, "@" .. capture)
+  end
+  if #parsedCaptures == 0 then
+    vim.notify(
+      "No treesitter captures under cursor",
+      vim.log.levels.ERROR,
+      { title = "Yank failed", render = "compact" }
+    )
+    return
+  end
+  local resultString = vim.inspect(parsedCaptures)
+  vim.fn.setreg("+", resultString .. "\n")
+  vim.notify(resultString, vim.log.levels.INFO, { title = "Yanked capture", render = "compact" })
+end, { desc = "Copy treesitter captures under cursor" })
 
 -- Retain cursor position when joining lines, and remove spaces from method chains
 vim.keymap.set("n", "J", function()

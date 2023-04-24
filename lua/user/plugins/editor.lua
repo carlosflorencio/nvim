@@ -460,6 +460,10 @@ return {
         sync_with_numbered_registers = true,
         cancel_event = "update",
       },
+      highlight = {
+        on_put = false,
+        on_yank = false,
+      },
       system_clipboard = {
         sync_with_ring = true,
       },
@@ -469,8 +473,8 @@ return {
       { "P", "<Plug>(YankyPutBefore)", desc = "Yanky put before", mode = { "n", "x" } },
       { "gp", "<Plug>(YankyGPutAfter)", mode = { "n", "x" } },
       { "gP", "<Plug>(YankyGPutBefore)", mode = { "n", "x" } },
-      { "]y", "<Plug>(YankyCycleForward)", mode = "n" },
-      { "[y", "<Plug>(YankyCycleBackward)", mode = "n" },
+      { "]y", "<Plug>(YankyCycleBackward)", mode = "n" },
+      { "[y", "<Plug>(YankyCycleForward)", mode = "n" },
       { "<c-v>", "<esc><cmd>Telescope yank_history initial_mode=normal<cr>", mode = { "n", "i" } },
       { "y", "<Plug>(YankyYank)", mode = { "n", "x" } }, -- prevent going up when yanking
     },

@@ -7,6 +7,7 @@ return { -- auto completion
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lua",
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp-signature-help",
@@ -38,12 +39,11 @@ return { -- auto completion
         path = "(Path)",
         calc = "(Calc)",
         cmp_tabnine = "(Tabnine)",
-        vsnip = "(Snippet)",
         luasnip = "(Snippet)",
         buffer = "(Buffer)",
-        tmux = "(TMUX)",
         copilot = "(Copilot)",
         treesitter = "(TreeSitter)",
+        nvim_lua = "(Nvim Lua)",
       }
 
       local duplicates = {
@@ -130,7 +130,7 @@ return { -- auto completion
           end),
         },
 
-        sources = cmp.config.sources {
+        sources = cmp.config.sources({
           { name = "nvim_lsp_signature_help" },
           {
             name = "nvim_lsp",
@@ -148,14 +148,13 @@ return { -- auto completion
           },
           { name = "buffer" },
           { name = "luasnip" },
-          { name = "path" },
           { name = "nvim_lua" },
-          { name = "calc" },
-          { name = "emoji" },
           { name = "treesitter" },
-          { name = "crates" },
-          { name = "tmux" },
-        },
+          { name = "nvim_lua" },
+        }, {
+          -- group 2 only if nothing in above had results
+          { name = "path" },
+        }),
 
         formatting = {
           fields = { "kind", "abbr", "menu" },

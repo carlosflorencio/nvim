@@ -1,6 +1,6 @@
 -- https://github.com/wakatime/vim-wakatime/issues/110#issuecomment-1407862842
 local uv = require "luv"
-local utils = require "user.util"
+local strings = require "user.util.string"
 
 local current_time = ""
 local function set_interval(interval, callback)
@@ -30,9 +30,9 @@ local function update_wakatime()
   uv.read_start(stdout, function(err, data)
     assert(not err, err)
     if data then
-      local parsed = utils.trim(data)
+      local parsed = strings.trim(data)
+      local parts = strings.split(parsed)
       ---@diagnostic disable-next-line: missing-parameter
-      local parts = utils.split(parsed)
       if parts[1] ~= nil and parts[3] ~= nil then
         current_time = " " .. parts[1] .. "h" .. parts[3] .. "m"
       end

@@ -2,24 +2,6 @@ local M = {}
 
 M.root_patterns = { ".git" }
 
---- Trim string
----@param s string
----@return string
-function M.trim(s) return (s:gsub("^%s*(.-)%s*$", "%1")) end
-
---- Split string to a list
----@param inputstr string to split
----@param sep string Separator
----@return List
-function M.split(inputstr, sep)
-  if sep == nil then sep = "%s" end
-  local t = {}
-  for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
-    table.insert(t, str)
-  end
-  return t
-end
-
 ---@param on_attach fun(client, buffer)
 function M.on_attach(on_attach)
   vim.api.nvim_create_autocmd("LspAttach", {
@@ -35,7 +17,9 @@ end
 function M.on_very_lazy(fn)
   vim.api.nvim_create_autocmd("User", {
     pattern = "VeryLazy",
-    callback = function() fn() end,
+    callback = function()
+      fn()
+    end,
   })
 end
 
@@ -45,9 +29,13 @@ function M.getShortenPath(path, n)
     table.insert(segments, segment)
   end
   local start_index = #segments - n + 1
-  if start_index < 1 then start_index = 1 end
+  if start_index < 1 then
+    start_index = 1
+  end
 
-  if start_index == 1 then return path end
+  if start_index == 1 then
+    return path
+  end
 
   -- local shorten = vim.fn.pathshorten(table.concat(segments, "/", 1, start_index - 1))
 
@@ -55,7 +43,9 @@ function M.getShortenPath(path, n)
 end
 
 ---@param plugin string
-function M.has(plugin) return require("lazy.core.config").plugins[plugin] ~= nil end
+function M.has(plugin)
+  return require("lazy.core.config").plugins[plugin] ~= nil
+end
 
 -- returns the root directory based on:
 -- * lsp workspace folders
@@ -72,16 +62,20 @@ function M.get_root()
   if path then
     for _, client in pairs(vim.lsp.get_active_clients { bufnr = 0 }) do
       local workspace = client.config.workspace_folders
-      local paths = workspace and vim.tbl_map(function(ws) return vim.uri_to_fname(ws.uri) end, workspace)
-        or client.config.root_dir and { client.config.root_dir }
-        or {}
+      local paths = workspace and vim.tbl_map(function(ws)
+        return vim.uri_to_fname(ws.uri)
+      end, workspace) or client.config.root_dir and { client.config.root_dir } or {}
       for _, p in ipairs(paths) do
         local r = vim.loop.fs_realpath(p)
-        if path:find(r, 1, true) then roots[#roots + 1] = r end
+        if path:find(r, 1, true) then
+          roots[#roots + 1] = r
+        end
       end
     end
   end
-  table.sort(roots, function(a, b) return #a > #b end)
+  table.sort(roots, function(a, b)
+    return #a > #b
+  end)
   ---@type string?
   local root = roots[1]
   if not root then
@@ -97,9 +91,31 @@ end
 ---@param name string
 function M.opts(name)
   local plugin = require("lazy.core.config").plugins[name]
-  if not plugin then return {} end
+  if not plugin then
+    return {}
+  end
   local Plugin = require "lazy.core.plugin"
   return Plugin.values(plugin, "opts", false)
+end
+
+function M.edit_closest_file(filename)
+  local match = vim.fs.find(filename, {
+    upward = true,
+    limit = 1,
+    type = "file",
+  })
+  if #match > 0 then
+    vim.cmd.edit(match[1])
+  end
+end
+
+---Like lodash.get
+---@param tbl table
+---@param path string with path.dot.delimited
+---@return any value in table at that path
+function M.get(tbl, path)
+  local parts = vim.split(path, ".", { plain = true })
+  return vim.tbl_get(tbl, unpack(parts))
 end
 
 return M

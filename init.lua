@@ -49,3 +49,4 @@ require("lazy").setup("user.plugins", {
 require "user.autocmds"
 require "user.keymaps"
 require "user.options"
+require "user.filetypes"
