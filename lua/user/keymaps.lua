@@ -62,6 +62,9 @@ vim.keymap.set("n", "]q", ":Cnext<cr>")
 vim.keymap.set("n", "[q", ":Cprev<cr>")
 vim.keymap.set("n", "<c-q>", ":call QuickFixToggle()<CR>")
 
+-- toggle format on save
+vim.keymap.set("n", "<leader>tf", require("user.plugins.lsp.format").toggle, { desc = "Toggle format on Save" })
+
 -- Move current line / block with Alt-j/k a la vscode.
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")
