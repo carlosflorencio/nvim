@@ -1,7 +1,0 @@
-{
-  "DocBlock": {
-    "prefix": "/**",
-    "body": ["/**\n* $1\n*/"],
-    "description": "DocBlock comment"
-  }
-}

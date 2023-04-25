@@ -7,9 +7,7 @@
     "snippets": [
       {
         "language": [
-          "typescript",
           "typescriptreact",
-          "javascript",
           "javascriptreact"
         ],
         "path": "./react.json"
@@ -17,9 +15,69 @@
       {
         "language": [
           "typescript",
-          "typescriptreact"
+          "typescriptreact",
+          "javascript",
+          "javascriptreact"
         ],
-        "path": "./typescript.json"
+        "path": "./common-ts-js.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./next-ts.json"
+      },
+      {
+        "language": "go",
+        "path": "./go.json"
+      },
+      {
+        "language": "rust",
+        "path": "./rust.json"
+      },
+      {
+        "language": "sql",
+        "path": "./sql.json"
+      },
+      {
+        "language": "lua",
+        "path": "./lua.json"
+      },
+      {
+        "language": [
+          "html",
+          "jade",
+          "pug",
+          "eruby",
+          "javascriptreact",
+          "htmldjango",
+          "astro"
+        ],
+        "path": "./html.json"
+      },
+      {
+        "language": [
+          "css",
+          "scss",
+          "sass",
+          "less",
+          "stylus"
+        ],
+        "path": "./css.json"
+      },
+      {
+        "language": [
+          "markdown",
+          "rmd"
+        ],
+        "path": "./markdown.json"
+      },
+      {
+        "language": [
+          "shellscript",
+          "shell",
+          "sh",
+          "zsh"
+        ],
+        "path": "./shell.json"
       },
       {
         "language": [

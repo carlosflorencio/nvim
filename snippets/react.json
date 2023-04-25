@@ -1,23 +1,52 @@
 {
-  "console.log2": {
-    "prefix": "cl",
-    "body": "console.log(${0})",
-    "description": "console.log()"
-  },
   "useMemo": {
     "prefix": "um",
     "body": "useMemo(() => {\n\t$1\n\t}, [$0])",
     "description": "useMemo()"
   },
-
   "reactFunctionComponentWithCustomName": {
     "prefix": "rc",
     "body": "\nconst ${1:functionname} = () => {\n\treturn (\n\t\t<>\n\t\t\t$0\n\t\t</>\n\t)\n}",
     "description": "Creates a React function component with custom name"
   },
-  "function": {
-    "prefix": "fn",
-    "body": "() => {\n\t$0\n\t}",
-    "description": "Anonymous function"
+  "jsx element": {
+    "prefix": "j",
+    "body": "<${1:elementName}>\n\t$0\n</${1}>",
+    "description": "an element"
+  },
+  "jsx element self closed": {
+    "prefix": "jc",
+    "body": "<${1:elementName} />",
+    "description": "an element self closed"
+  },
+  "jsx elements map": {
+    "prefix": "jm",
+    "body": "{${1:array}.map((item) => <${2:elementName} key={item.id}>\n\t$0\n</${2}>)}",
+    "description": "an element self closed"
+  },
+  "jsx elements map with return": {
+    "prefix": "jmr",
+    "body": "{${1:array}.map((item) => {\n\treturn <${2:elementName} key={item.id}>\n\t$0\n</${2}>\n})}",
+    "description": "an element self closed"
+  },
+  "jsx element wrap selection": {
+    "prefix": "jsx wrap selection with element",
+    "body": "<${1:elementName}>\n\t{$TM_SELECTED_TEXT}\n</${1}>",
+    "description": "an element"
+  },
+  "useRef": {
+    "prefix": "ur",
+    "body": ["const ${1:elName}El = useRef(null)$0"],
+    "description": "React useRef() hook"
+  },
+  "useCallback": {
+    "prefix": "ucb",
+    "body": ["useCallback(() => {\n", "\t$0", "\n},[${2}])"],
+    "description": "React useCallback() hook"
+  },
+  "reactFileComponent": {
+    "prefix": "rfc",
+    "body": "export const ${TM_FILENAME_BASE} = () => {\n\treturn (\n\t\t<div>\n\t\t\t$0\n\t\t</div>\n\t)\n}\n\nexport default ${TM_FILENAME_BASE}",
+    "description": "Creates a React functional component file"
   }
 }

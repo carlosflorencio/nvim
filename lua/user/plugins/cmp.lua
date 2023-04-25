@@ -252,6 +252,8 @@ return { -- auto completion
 
       -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline(":", {
+        -- https://github.com/hrsh7th/cmp-cmdline/issues/42
+        -- double tab needed to select the first entry
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
           { name = "path" },
@@ -282,13 +284,12 @@ return { -- auto completion
     build = (not jit.os:find "Windows")
         and "echo -e 'NOTE: jsregexp is optional, so not a big deal if it fails to build\n'; make install_jsregexp"
       or nil,
-    dependencies = {
-      "rafamadriz/friendly-snippets",
-      config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
-        require("luasnip.loaders.from_vscode").lazy_load { paths = { "./snippets" } }
-      end,
-    },
+    -- dependencies = {
+    --   "rafamadriz/friendly-snippets",
+    --   config = function()
+    --     require("luasnip.loaders.from_vscode").lazy_load()
+    --   end,
+    -- },
     opts = {
       history = false,
       enable_autosnippets = true,
@@ -298,6 +299,7 @@ return { -- auto completion
     config = function(_, opts)
       require("luasnip").setup(opts)
       require "user.plugins.cmp.snippets"
+      require("luasnip.loaders.from_vscode").lazy_load { paths = { "./snippets" } }
     end,
     keys = function()
       return false

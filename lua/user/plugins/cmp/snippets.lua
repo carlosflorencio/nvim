@@ -26,8 +26,6 @@ local condition = function(nodes, inverse)
         :type()
     end
 
-    print(vim.inspect(node_type))
-
     if inverse then
       return vim.tbl_contains(nodes, node_type)
     else
@@ -46,26 +44,26 @@ local except = function(nodes)
   return condition(nodes, false)
 end
 
--- local js_if = {
---   s(
---     {
---       trig = "if",
---       condition = condition_ignore_nodes { "string", "comment" },
---     },
---     fmt(
---       [[
--- if ({}) {{
---   {}
--- }}
---   ]],
---       { i(1), i(2) }
---     )
---   ),
--- }
+local ts_if = "if (${1}) {\n\t$0\n}"
+local ts_switch = "switch (${1}) {\n\tcase ${2}:\n\t\t$0\n\tbreak\n}"
+local ts_try = "try {\n\t${1}\n} catch (${2}) {\n\t$0\n}"
+local ts_while = "while (${1}) {\n\t$0\n}"
 
 ls.add_snippets("typescriptreact", {
-  ls.parser.parse_snippet({ trig = "if", condition = only { "statement_block" } }, "if (${1}) {\n\t$0\n}"),
+  ls.parser.parse_snippet({ trig = "if", condition = only { "statement_block" } }, ts_if),
   ls.parser.parse_snippet({ trig = "class", condition = only { "property_identifier" } }, 'className="${1}"'),
+  ls.parser.parse_snippet({ trig = "switch", condition = only { "statement_block" } }, ts_switch),
+  ls.parser.parse_snippet({ trig = "try", condition = only { "statement_block" } }, ts_try),
+  ls.parser.parse_snippet({ trig = "while", condition = only { "statement_block" } }, ts_while),
+}, {
+  type = "autosnippets",
+})
+
+ls.add_snippets("typescript", {
+  ls.parser.parse_snippet({ trig = "if", condition = only { "statement_block" } }, ts_if),
+  ls.parser.parse_snippet({ trig = "switch", condition = only { "statement_block" } }, ts_switch),
+  ls.parser.parse_snippet({ trig = "try", condition = only { "statement_block" } }, ts_try),
+  ls.parser.parse_snippet({ trig = "while", condition = only { "statement_block" } }, ts_while),
 }, {
   type = "autosnippets",
 })
