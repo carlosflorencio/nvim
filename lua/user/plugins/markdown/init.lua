@@ -2,7 +2,7 @@ return {
 
   {
     -- floating notes
-    "JellyApple102/flote.nvim",
+    "carlosflorencio/flote.nvim",
     config = function()
       require("flote").setup {
         window_border = "single",
