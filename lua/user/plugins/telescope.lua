@@ -27,13 +27,11 @@ return {
       "nvim-telescope/telescope-dap.nvim",
       "benfowler/telescope-luasnip.nvim",
       "debugloop/telescope-undo.nvim",
-      "nvim-telescope/telescope-file-browser.nvim",
     },
     cmd = "Telescope",
     config = function()
       local actions = require "telescope.actions"
       local telescope = require "telescope"
-      local fb_actions = telescope.extensions.file_browser.actions
 
       telescope.setup {
         defaults = {
@@ -85,26 +83,6 @@ return {
           },
         },
         extensions = {
-          file_browser = {
-            initial_mode = "normal",
-            display_stat = false,
-            prompt_path = false,
-            select_buffer = true,
-            grouped = true,
-            layout_config = {
-              width = 0.7,
-              preview_width = 0.6,
-            },
-            -- https://github.com/nvim-telescope/telescope-file-browser.nvim/blob/master/lua/telescope/_extensions/file_browser/config.lua
-            mappings = {
-              n = {
-                h = fb_actions.goto_parent_dir,
-                ["<C-a>"] = fb_actions.create,
-                -- l = fb_actions.goto_cwd,
-                I = fb_actions.toggle_hidden,
-              },
-            },
-          },
           live_grep_args = {
             auto_quoting = true, -- enable/disable auto-quoting
             -- define mappings, e.g.
@@ -154,7 +132,6 @@ return {
       telescope.load_extension "smart_open"
       telescope.load_extension "undo"
       telescope.load_extension "yank_history"
-      telescope.load_extension "file_browser"
       -- telescope.load_extension "refactoring"
       telescope.load_extension "lazygit"
     end,
@@ -209,12 +186,6 @@ return {
         "<leader>ft",
         "<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>",
         desc = "Colorscheme with Preview",
-      },
-
-      {
-        "<leader>a",
-        "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>",
-        desc = "Telescope File Browser",
       },
     },
   },

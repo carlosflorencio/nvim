@@ -97,6 +97,7 @@ end
 return {
   {
     "nvim-tree/nvim-tree.lua",
+    enabled = true,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       on_attach = on_attach,
@@ -106,7 +107,7 @@ return {
       },
       view = {
         width = {
-          min = 30,
+          min = 35,
           max = 40,
         },
         centralize_selection = true,
