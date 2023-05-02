@@ -9,6 +9,11 @@
     "body": "\nconst ${1:functionname} = () => {\n\treturn (\n\t\t<>\n\t\t\t$0\n\t\t</>\n\t)\n}",
     "description": "Creates a React function component with custom name"
   },
+  "useState": {
+    "prefix": "us",
+    "body": "const [${1:val}, set${2:setterName}] = useState(${3:defVal})",
+    "description": "use state hook"
+  },
   "jsx element": {
     "prefix": "j",
     "body": "<${1:elementName}>\n\t$0\n</${1}>",
