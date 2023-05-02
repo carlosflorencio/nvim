@@ -73,6 +73,7 @@ return {
 
   {
     "tamago324/lir.nvim",
+    enabled = false,
     config = function()
       local actions = require "lir.actions"
       local clipboard_actions = require "lir.clipboard.actions"
@@ -146,6 +147,43 @@ return {
     },
   },
 
+  {
+    "stevearc/oil.nvim",
+    opts = {
+      default_file_explorer = false,
+      float = {
+        -- Padding around the floating window
+        padding = 6,
+        max_width = 100,
+        max_height = 0,
+        border = "rounded",
+        win_options = {
+          winblend = 10,
+        },
+      },
+      use_default_keymaps = false,
+      keymaps = {
+        ["g?"] = "actions.show_help",
+        ["l"] = "actions.select",
+        ["<C-v>"] = "actions.select_vsplit",
+        ["<C-h>"] = "actions.select_split",
+        ["<C-t>"] = "actions.select_tab",
+        ["<C-p>"] = "actions.preview",
+        ["q"] = "actions.close",
+        ["<C-l>"] = "actions.refresh",
+        ["h"] = "actions.parent",
+        ["_"] = "actions.open_cwd",
+        ["`"] = "actions.cd",
+        ["~"] = "actions.tcd",
+        ["I"] = "actions.toggle_hidden",
+      },
+    },
+    -- Optional dependencies
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    keys = {
+      { "<leader>;", "<cmd>Oil<cr>", desc = "Oil" },
+    },
+  },
   {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",

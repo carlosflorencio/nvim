@@ -60,8 +60,10 @@ return {
 
   {
     "rcarriga/nvim-notify",
+    enabled = true,
     opts = {
-      timeout = 3000,
+      timeout = 1000,
+      fps = 60,
       render = "minimal",
     },
     keys = {
@@ -244,6 +246,7 @@ return {
     opts = {
       excluded_filetypes = {
         "prompt",
+        "oil",
         "TelescopePrompt",
         "noice",
         "NvimTree",
