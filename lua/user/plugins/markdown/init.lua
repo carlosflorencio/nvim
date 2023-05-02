@@ -6,7 +6,7 @@ return {
     config = function()
       require("flote").setup {
         window_border = "single",
-        notes_dir = "~/Library/Mobile Documents/com~apple~CloudDocs/Personal Notes/Projects",
+        notes_dir = "~/Notes/Projects",
         files = {
           global = "global.md",
           cwd = function()

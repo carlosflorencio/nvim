@@ -19,14 +19,8 @@ return {
       },
     },
   },
-
   {
-    -- scratch files
-    "metakirby5/codi.vim",
-    cmd = { "Codi", "CodiNew", "CodiSelect", "CodiExpand" },
-  },
 
-  {
     "delphinus/vim-firestore",
     ft = { "firestore" },
   },
