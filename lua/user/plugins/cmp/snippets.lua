@@ -48,6 +48,7 @@ local ts_if = "if (${1}) {\n\t$0\n}"
 local ts_switch = "switch (${1}) {\n\tcase ${2}:\n\t\t$0\n\tbreak\n}"
 local ts_try = "try {\n\t${1}\n} catch (${2}) {\n\t$0\n}"
 local ts_while = "while (${1}) {\n\t$0\n}"
+local lua_pp = "print(vim.inspect(${1}))"
 
 ls.add_snippets("typescriptreact", {
   ls.parser.parse_snippet({ trig = "if", condition = only { "statement_block" } }, ts_if),
@@ -64,6 +65,12 @@ ls.add_snippets("typescript", {
   ls.parser.parse_snippet({ trig = "switch", condition = only { "statement_block" } }, ts_switch),
   ls.parser.parse_snippet({ trig = "try", condition = only { "statement_block" } }, ts_try),
   ls.parser.parse_snippet({ trig = "while", condition = only { "statement_block" } }, ts_while),
+}, {
+  type = "autosnippets",
+})
+
+ls.add_snippets("lua", {
+  ls.parser.parse_snippet({ trig = "pp" }, lua_pp),
 }, {
   type = "autosnippets",
 })

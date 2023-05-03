@@ -79,7 +79,7 @@ return {
   {
     -- convert "${}" to `${}`
     "axelvc/template-string.nvim",
-    event = "BufRead",
+    -- event = "BufRead",
     ft = {
       "javascriptreact",
       "typescriptreact",
@@ -98,5 +98,12 @@ return {
     keys = {
       { "<leader>lm", "<cmd>RenameState<cr>", desc = "Rename React Hooks args" },
     },
+  },
+
+  {
+    "dmmulroy/tsc.nvim",
+    dependencies = { "rcarriga/nvim-notify" },
+    opts = {},
+    cmd = { "TSC" },
   },
 }

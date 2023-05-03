@@ -29,4 +29,13 @@ function M.split(inputstr, sep)
   return t
 end
 
+function M.get_extension(fileName)
+  local extension = fileName:match "^.+(%..+)$"
+  if extension then
+    return extension:sub(2)
+  else
+    return nil
+  end
+end
+
 return M

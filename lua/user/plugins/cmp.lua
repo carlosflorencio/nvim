@@ -291,10 +291,12 @@ return { -- auto completion
     --   end,
     -- },
     opts = {
-      history = false,
       enable_autosnippets = true,
+      -- try to fix tab duplicating code / moving in the middle of snippets
+      -- https://www.reddit.com/r/neovim/comments/12z0orb/unexpected_behavior_when_pressing_tab_in_insert/
+      history = true,
       region_check_events = "InsertEnter",
-      delete_check_events = "InsertLeave",
+      delete_check_events = "TextChanged,InsertLeave",
     },
     config = function(_, opts)
       require("luasnip").setup(opts)

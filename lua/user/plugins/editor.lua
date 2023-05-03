@@ -108,13 +108,6 @@ return {
   },
 
   {
-    -- inline run code
-    "michaelb/sniprun",
-    cmd = { "SnipRun" },
-    build = "bash ./install.sh",
-  },
-
-  {
     -- generate docblocks
     "danymat/neogen",
     dependencies = "nvim-treesitter/nvim-treesitter",
@@ -303,6 +296,7 @@ return {
   -- better text-objects
   {
     "echasnovski/mini.ai",
+    enabled = true,
     -- keys = {
     --   { "a", mode = { "x", "o" } },
     --   { "i", mode = { "x", "o" } },

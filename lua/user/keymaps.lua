@@ -179,10 +179,24 @@ vim.keymap.set("n", "<leader>S`", "ysiW`", {
   remap = true,
 })
 
+-- Scratch's
+vim.keymap.set("n", "<leader>so", function()
+  require("user.scratch").search()
+end, { desc = "Open Scratch file" })
+
+vim.keymap.set("n", "<leader>sn", function()
+  require("user.scratch").new()
+end, { desc = "New Scratch file (Codi)" })
+
 -- Treesitter
 vim.keymap.set("n", "<leader>ss", function()
   vim.notify(vim.treesitter.get_captures_at_cursor())
 end, { desc = "Print treesitter captures under cursor" })
+
+-- todo
+-- vim.keymap.set("n", "gj", function()
+--   require("user.util.treesitter").go_to_next_jsx_element()
+-- end, { desc = "Go to next jsx element" })
 
 vim.keymap.set("n", "<leader>sy", function()
   local captures = vim.treesitter.get_captures_at_cursor()
