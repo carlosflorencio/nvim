@@ -103,7 +103,11 @@ return {
   {
     "dmmulroy/tsc.nvim",
     dependencies = { "rcarriga/nvim-notify" },
-    opts = {},
+    config = function()
+      require("tsc").setup {
+        -- flags = "--build",
+      }
+    end,
     cmd = { "TSC" },
   },
 }
