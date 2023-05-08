@@ -77,6 +77,7 @@ return {
         version = false, -- last release is way too old
       },
       { "jose-elias-alvarez/typescript.nvim" },
+      { "lvimuser/lsp-inlayhints.nvim", opts = {} },
     },
     config = function()
       local lsputils = require "user.plugins.lsp.utils"
@@ -91,7 +92,15 @@ return {
         capabilities = capabilities,
       })
 
-      lspconfig["lua_ls"].setup {}
+      lspconfig["lua_ls"].setup {
+        settings = {
+          Lua = {
+            hint = {
+              enable = false,
+            },
+          },
+        },
+      }
 
       lspconfig["tailwindcss"].setup {
         root_dir = lspconfig.util.root_pattern(
@@ -150,6 +159,19 @@ return {
           settings = {
             completions = {
               completeFunctionCalls = true,
+            },
+            typescript = {
+              -- https://github.com/typescript-language-server/typescript-language-server#inlay-hints-textdocumentinlayhint
+              inlayHints = {
+                -- includeInlayParameterNameHints = "all",
+                -- includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                includeInlayFunctionParameterTypeHints = true,
+                -- includeInlayVariableTypeHints = true,
+                -- includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+                -- includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              },
             },
           },
           -- https://github.com/davidosomething/format-ts-errors.nvim

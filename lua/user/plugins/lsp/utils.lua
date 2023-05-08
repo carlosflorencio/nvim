@@ -3,6 +3,7 @@ local M = {}
 function M.on_attach(client, bufnr)
   require("user.plugins.lsp.format").on_attach(client, bufnr)
   require("user.plugins.lsp.keymaps").on_attach(client, bufnr)
+  require("lsp-inlayhints").on_attach(client, bufnr)
 
   if client.name == "tsserver" then
     -- https://github.com/jose-elias-alvarez/typescript.nvim
