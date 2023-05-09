@@ -155,6 +155,10 @@ M.icons = {
   },
 }
 
+if vim.g.started_by_firenvim == true then
+  M.icons.diagnostics.Warning = "!"
+end
+
 M.lsp_diagnostic_icons = {
   Error = M.icons.diagnostics.Error,
   Warn = M.icons.diagnostics.Warning,

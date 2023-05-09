@@ -151,6 +151,9 @@ return {
   -- bufferline
   {
     "akinsho/bufferline.nvim",
+    cond = function()
+      return vim.g.started_by_firenvim == nil
+    end,
     event = "VeryLazy",
     keys = {
       {
@@ -243,6 +246,9 @@ return {
 
   {
     "petertriho/nvim-scrollbar",
+    cond = function()
+      return vim.g.started_by_firenvim == nil
+    end,
     opts = {
       excluded_filetypes = {
         "prompt",

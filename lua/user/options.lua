@@ -36,3 +36,9 @@ vim.o.clipboard = "unnamedplus" -- Enable mouse mode
 vim.o.undofile = true -- Save undo history
 vim.o.breakindent = true
 vim.o.showtabline = 2
+
+if vim.g.started_by_firenvim == true then
+  vim.o.laststatus = 0
+  vim.o.showtabline = 1
+  vim.opt.wrap = true
+end

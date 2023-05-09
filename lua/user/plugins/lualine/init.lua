@@ -2,6 +2,9 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
+    cond = function()
+      return vim.g.started_by_firenvim == nil
+    end,
     opts = function()
       local components = require "user.plugins.lualine.components"
       local package_info = require "package-info"

@@ -12,13 +12,15 @@ end
 --   end,
 -- })
 
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
-  callback = function()
-    require("nvim-tree.api").tree.toggle {
-      focus = false,
-    }
-  end,
-})
+if vim.g.started_by_firenvim == nil then
+  vim.api.nvim_create_autocmd({ "VimEnter" }, {
+    callback = function()
+      require("nvim-tree.api").tree.toggle {
+        focus = false,
+      }
+    end,
+  })
+end
 
 -- [[ Highlight on yank ]]
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", {
