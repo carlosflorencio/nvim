@@ -93,6 +93,7 @@
   "persistent-breakpoints.nvim": { "branch": "main", "commit": "a6091f7486bb6fe0cb11f5afde7f426e426aa233" },
   "plenary.nvim": { "branch": "master", "commit": "9ac3e9541bbabd9d73663d757e4fe48a675bb054" },
   "promise-async": { "branch": "main", "commit": "e94f35161b8c5d4a4ca3b6ff93dd073eb9214c0e" },
+  "quick-scope": { "branch": "master", "commit": "a147fe0b180479249a6770eac332e2cd8f35b673" },
   "rest.nvim": { "branch": "main", "commit": "df826bc0a76d5eb79b458db894d47a5538b454fe" },
   "scope.nvim": { "branch": "main", "commit": "6c5d5d73701e45b1fad50fa821fe9bf88ab2eec6" },
   "silicon.lua": { "branch": "main", "commit": "9d176f568396cdf3ff267ad9352f1ecb75a80bd0" },

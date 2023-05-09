@@ -253,6 +253,31 @@ return {
             ["<c-x>"] = glance.actions.jump_split,
           },
         },
+        -- hooks = {
+        --   before_open = function(results, open, jump, method)
+        --     if method == "references" and #results == 2 then
+        --       -- If 2 references, then jump to the other reference
+        --       local curr_line = unpack(vim.api.nvim_win_get_cursor(0))
+        --       for i, ref in ipairs(results) do
+        --         if ref.range.start.line + 1 == curr_line then
+        --           jump(results[i % 2 + 1])
+        --           return
+        --         end
+        --       end
+        --       open(results)
+        --     elseif #results == 1 then
+        --       jump(results[1])
+        --       return
+        --     end
+        --     open(results)
+        --   end,
+        -- },
+        folds = {
+          -- required to fix the nerd fonts v3 upgrade
+          fold_closed = require("user.ui").icons.ui.ChevronShortRight,
+          fold_open = require("user.ui").icons.ui.ChevronShortDown,
+          folded = true,
+        },
       }
     end,
   },

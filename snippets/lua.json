@@ -94,5 +94,10 @@
     "prefix": "lpca",
     "body": ["local ${1:status}, ${2:err_or_value} = pcall(${3:function})"],
     "description": "Protect call a function as a variable"
+  },
+  "M": {
+    "prefix": ["M ="],
+    "body": ["local M = {}\n", "function M.$1()", "\t$2", "end\n", "return M"],
+    "description": "M object pattern"
   }
 }
