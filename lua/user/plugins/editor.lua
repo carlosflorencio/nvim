@@ -140,10 +140,82 @@ return {
 
   {
     "ggandor/leap.nvim",
-    event = "BufRead",
-    config = function()
-      require("leap").set_default_keymaps()
+    opts = {
+      labels = {
+        "s",
+        "f",
+        "n",
+        "j",
+        "k",
+        "l",
+        "h",
+        "o",
+        "d",
+        "w",
+        "e",
+        -- "m", -- conflicts with marks plugin
+        "b",
+        "u",
+        "y",
+        "v",
+        "r",
+        "g",
+        "t",
+        "c",
+        "x",
+        "/",
+        "z",
+        "S",
+        "F",
+        "N",
+        "J",
+        "K",
+        "L",
+        "H",
+        "O",
+        "D",
+        "W",
+        "E",
+        "M",
+        "B",
+        "U",
+        "Y",
+        "V",
+        "R",
+        "G",
+        "T",
+        "C",
+        "X",
+        "?",
+        "Z",
+      },
+    },
+    config = function(_, opts)
+      local leap = require "leap"
+      for k, v in pairs(opts) do
+        leap.opts[k] = v
+      end
     end,
+    keys = {
+      {
+        "s",
+        ":lua require('leap').leap({ target_windows = { vim.fn.win_getid() } })<CR>",
+        mode = { "n", "x" },
+        desc = "Leap in current window",
+      },
+      {
+        "S",
+        function()
+          require("leap").leap {
+            target_windows = vim.tbl_filter(function(win)
+              return vim.api.nvim_win_get_config(win).focusable
+            end, vim.api.nvim_tabpage_list_wins(0)),
+          }
+        end,
+        mode = { "n", "x" },
+        desc = "Leap in all windows",
+      },
+    },
   },
 
   {
