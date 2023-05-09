@@ -28,6 +28,7 @@
   "diffview.nvim": { "branch": "main", "commit": "f9ddbe798cb92854a383e2377482a49139a52c3d" },
   "dirbuf.nvim": { "branch": "main", "commit": "ac7ad3c8e61630d15af1f6266441984f54f54fd2" },
   "dressing.nvim": { "branch": "master", "commit": "f5d7fa1fa5ce6bcebc8f07922f39b1eda4d01e37" },
+  "firenvim": { "branch": "master", "commit": "ee4ef314bd990b2b05b7fbd95b857159e444a2fe" },
   "flote.nvim": { "branch": "main", "commit": "87b7e12c593d25ca9e2ede9dcc5382cec5cdcf9a" },
   "format-ts-errors.nvim": { "branch": "main", "commit": "12cbb8407b90ec133fde851d70a57b9e8d9d7878" },
   "gitlinker.nvim": { "branch": "master", "commit": "cc59f732f3d043b626c8702cb725c82e54d35c25" },
