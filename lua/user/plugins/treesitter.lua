@@ -37,7 +37,7 @@ return {
       },
       -- better incremental selection
       "RRethy/nvim-treesitter-textsubjects",
-      -- "nvim-treesitter/nvim-treesitter-context",
+      "nvim-treesitter/nvim-treesitter-context",
     },
     keys = {
       { "<cr>", desc = "Increment selection", mode = "x" },
