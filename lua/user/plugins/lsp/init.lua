@@ -155,7 +155,11 @@ return {
         server = { -- pass options to lspconfig's setup method
           capabilities = capabilities,
           root_dir = lspconfig.util.root_pattern(".git", "package-lock.json"),
-
+          init_options = {
+            preferences = {
+              importModuleSpecifierPreference = "relative",
+            },
+          },
           settings = {
             completions = {
               completeFunctionCalls = true,
