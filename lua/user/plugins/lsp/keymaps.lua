@@ -28,11 +28,14 @@ function M.get()
       { "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document Symbols" },
       { "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Workspace Symbols" },
       { "<leader>le", "<cmd>Telescope quickfix<cr>", desc = "Telescope Quickfix" },
+      { "<leader>lR", "<cmd>LspRestart<cr>", desc = "Restart LSP" },
       {
         "K",
         function()
           local winid = require("ufo").peekFoldedLinesUnderCursor()
-          if not winid then vim.lsp.buf.hover() end
+          if not winid then
+            vim.lsp.buf.hover()
+          end
         end,
         desc = "Hover",
       },
@@ -124,7 +127,9 @@ end
 function M.diagnostic_goto(next, severity)
   local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
   severity = severity and vim.diagnostic.severity[severity] or nil
-  return function() go { severity = severity } end
+  return function()
+    go { severity = severity }
+  end
 end
 
 return M
