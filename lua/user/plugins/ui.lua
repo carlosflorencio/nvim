@@ -151,22 +151,23 @@ return {
   -- bufferline
   {
     "akinsho/bufferline.nvim",
+    enabled = true,
     cond = function()
       return vim.g.started_by_firenvim == nil
     end,
     event = "VeryLazy",
-    keys = {
-      {
-        "<S-l>",
-        "<cmd>BufferLineCycleNext<cr>",
-        desc = "Next Tab",
-      },
-      {
-        "<S-h>",
-        "<cmd>BufferLineCyclePrev<cr>",
-        desc = "Previous Tab",
-      },
-    },
+    -- keys = {
+    --   {
+    --     "<S-l>",
+    --     "<cmd>BufferLineCycleNext<cr>",
+    --     desc = "Next Tab",
+    --   },
+    --   {
+    --     "<S-h>",
+    --     "<cmd>BufferLineCyclePrev<cr>",
+    --     desc = "Previous Tab",
+    --   },
+    -- },
     opts = {
       options = {
         truncate_names = false,
@@ -177,6 +178,7 @@ return {
         show_buffer_close_icons = false,
         show_close_icon = false,
         separator_style = "thick",
+        show_duplicate_prefix = false,
         name_formatter = function(buf) -- buf contains a "name", "path" and "bufnr"
           local path = vim.fn.fnamemodify(buf.path, ":.")
           return require("user.util").getShortenPath(path, 3)
