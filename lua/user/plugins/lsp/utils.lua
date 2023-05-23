@@ -3,7 +3,6 @@ local M = {}
 function M.on_attach(client, bufnr)
   require("user.plugins.lsp.format").on_attach(client, bufnr)
   require("user.plugins.lsp.keymaps").on_attach(client, bufnr)
-  require("lsp-inlayhints").on_attach(client, bufnr)
 
   if client.name == "tsserver" then
     -- https://github.com/jose-elias-alvarez/typescript.nvim
@@ -26,6 +25,9 @@ function M.on_attach(client, bufnr)
       { buffer = bufnr, desc = "Add Missing Imports" }
     )
     vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = bufnr })
+  else
+    -- Enable inlay hints on other languages
+    require("lsp-inlayhints").on_attach(client, bufnr)
   end
 
   if client.name == "pyright" then

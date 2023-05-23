@@ -167,14 +167,9 @@ return {
             typescript = {
               -- https://github.com/typescript-language-server/typescript-language-server#inlay-hints-textdocumentinlayhint
               inlayHints = {
-                -- includeInlayParameterNameHints = "all",
-                -- includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                includeInlayFunctionParameterTypeHints = true,
-                -- includeInlayVariableTypeHints = true,
-                -- includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-                -- includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
+                -- includeInlayFunctionParameterTypeHints = true,
+                -- includeInlayFunctionLikeReturnTypeHints = true,
+                -- includeInlayEnumMemberValueHints = true,
               },
             },
           },
