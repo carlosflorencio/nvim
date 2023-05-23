@@ -15,6 +15,12 @@ function M.on_attach(client, bufnr)
     )
     vim.keymap.set(
       "n",
+      "<leader>ou",
+      "<cmd>TypescriptRemoveUnused<CR>",
+      { buffer = bufnr, desc = "Remove Unused Imports/Variables" }
+    )
+    vim.keymap.set(
+      "n",
       "<leader>oa",
       "<cmd>TypescriptAddMissingImports<CR>",
       { buffer = bufnr, desc = "Add Missing Imports" }
