@@ -220,7 +220,7 @@ return {
     event = "BufRead",
     opts = {
       delay = 5,
-      required_changes = 30,
+      -- required_changes = 30,
       remind_on_save_only = true,
     },
   },
@@ -251,7 +251,18 @@ return {
 
   {
     "LunarVim/bigfile.nvim",
-    opts = {},
+    opts = {
+      features = { -- features to disable
+        "indent_blankline",
+        "illuminate",
+        -- "lsp",
+        "treesitter",
+        "syntax",
+        "matchparen",
+        "vimopts",
+        "filetype",
+      },
+    },
     event = { "FileReadPre", "BufReadPre", "User FileOpened" },
   },
 
