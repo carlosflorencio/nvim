@@ -7,7 +7,27 @@ return {
     priority = 1000,
     dependencies = { "rktjmp/lush.nvim" },
     config = function()
-      vim.cmd.colorscheme "bluloco"
+      -- vim.cmd.colorscheme "bluloco"
+    end,
+  },
+
+  {
+    "projekt0n/github-nvim-theme",
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      require("github-theme").setup {
+        options = {
+          styles = {
+            -- remove italic
+            comments = "NONE",
+            keywords = "NONE",
+          },
+        },
+        -- ...
+      }
+
+      vim.cmd "colorscheme github_dark"
     end,
   },
 
@@ -141,9 +161,6 @@ return {
   {
     "akinsho/bufferline.nvim",
     enabled = true,
-    cond = function()
-      return vim.g.started_by_firenvim == nil
-    end,
     event = "VeryLazy",
     -- keys = {
     --   {
@@ -237,9 +254,6 @@ return {
 
   {
     "petertriho/nvim-scrollbar",
-    cond = function()
-      return vim.g.started_by_firenvim == nil
-    end,
     opts = {
       excluded_filetypes = {
         "prompt",
