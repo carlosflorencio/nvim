@@ -13,7 +13,7 @@ return {
 
   {
     "folke/tokyonight.nvim",
-    enabled = true,
+    enabled = false,
     lazy = false,
     priority = 1000,
     config = function()
@@ -38,19 +38,8 @@ return {
   },
 
   {
-    "Mofiqul/vscode.nvim",
-    enabled = false,
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("vscode").setup()
-      require("vscode").load()
-    end,
-  },
-
-  {
     "sainnhe/sonokai",
-    enabled = true,
+    enabled = false,
     lazy = false,
     priority = 1000,
     config = function()
