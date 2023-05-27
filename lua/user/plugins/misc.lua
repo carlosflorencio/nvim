@@ -27,9 +27,7 @@ return {
   },
 
   {
-    -- "pwntester/octo.nvim",
-    "NWVi/octo.nvim", -- todo: use original when local fs is merged
-    branch = "config-review-use-local-fs",
+    "pwntester/octo.nvim",
     cmd = { "Octo" },
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", "nvim-tree/nvim-web-devicons" },
     opts = {
