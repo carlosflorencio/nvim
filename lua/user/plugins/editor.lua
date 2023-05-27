@@ -103,7 +103,7 @@ return {
   {
     -- buffers separated per tab
     "tiagovla/scope.nvim",
-    enabled = false,
+    enabled = true,
     opts = {},
     lazy = false,
   },
