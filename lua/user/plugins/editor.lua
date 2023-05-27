@@ -31,6 +31,9 @@ return {
         ["<leader>c"] = {
           name = "+close",
         },
+        ["<leader>a"] = {
+          name = "+AI",
+        },
         ["<leader>l"] = {
           name = "+lsp",
         },

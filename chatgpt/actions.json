@@ -1,0 +1,13 @@
+{
+  "tests": {
+    "type": "chat",
+    "opts": {
+      "template": "Implement tests for the following code.\n\nCode:\n```{{filetype}}\n{{input}}\n```\n\nTests:\n```{{filetype}}",
+      "strategy": "edit",
+      "params": {
+        "model": "gpt-3.5-turbo",
+        "stop": ["```"]
+      }
+    }
+  }
+}
