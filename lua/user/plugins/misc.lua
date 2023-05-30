@@ -275,6 +275,7 @@ return {
   -- TODO: on remove, re-enable keymaps for dealing with word wrap
   {
     "m4xshen/hardtime.nvim",
+    enabled = false,
     lazy = false,
     opts = {
       max_count = 3,
