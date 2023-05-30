@@ -159,8 +159,8 @@ return {
       },
       tab = {
         sync = {
-          open = true,
-          close = true,
+          open = false,
+          close = false,
           ignore = {},
         },
       },
@@ -194,7 +194,13 @@ return {
     },
     cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeFocus", "NvimTreeFindFileToggle" },
     keys = {
-      { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle NvimTree" },
+      {
+        "<leader>e",
+        function()
+          require("nvim-tree.api").tree.toggle { focus = false }
+        end,
+        desc = "Toggle NvimTree",
+      },
     },
   },
 

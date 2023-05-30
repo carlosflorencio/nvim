@@ -244,7 +244,11 @@ return {
       "anuvyklack/middleclass",
       -- "anuvyklack/animation.nvim"
     },
-    opts = {},
+    opts = {
+      autowidth = {
+        winwidth = 30,
+      },
+    },
     cmd = { "WindowsMaximize", "WindowsEqualize", "WindowsToggleAutowidth" },
     keys = {
       { "<leader>sm", "<cmd>WindowsMaximize<cr>", desc = "Maximize Window" },
@@ -324,5 +328,15 @@ return {
         },
       }
     end,
+  },
+
+  {
+    "tummetott/reticle.nvim",
+    enabled = true,
+    -- lazy = false,
+    event = "VeryLazy", -- lazyload the plugin if you like
+    opts = {
+      -- add options here if you want to overwrite defaults
+    },
   },
 }
