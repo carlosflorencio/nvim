@@ -282,4 +282,31 @@ return {
       disabled_keys = {},
     },
   },
+
+  {
+    "ThePrimeagen/harpoon",
+    event = "VeryLazy",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      menu = {
+        width = 90,
+      },
+    },
+    keys = {
+      {
+        "<leader>m",
+        function()
+          require("harpoon.mark").add_file()
+        end,
+        desc = "Harpoon mark file",
+      },
+      {
+        "<leader>j",
+        function()
+          require("harpoon.ui").toggle_quick_menu()
+        end,
+        desc = "Harpoon file navigation",
+      },
+    },
+  },
 }
