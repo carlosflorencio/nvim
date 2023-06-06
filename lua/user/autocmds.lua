@@ -123,3 +123,8 @@ vim.api.nvim_create_autocmd("WinClosed", {
   end,
   nested = true,
 })
+
+-- Custom commands
+
+-- alias :nah for buffer reset changes
+vim.cmd [[command Nah edit!]]
