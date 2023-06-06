@@ -5,8 +5,9 @@ return {
     dependencies = { "mason.nvim", "jose-elias-alvarez/typescript.nvim" },
     opts = function()
       local nls = require "null-ls"
+      local disabled_filetypes = require("user.util.constants").disabled_filetypes
       local cspell_opts = {
-        disabled_filetypes = { "NvimTree", "Lazy" },
+        disabled_filetypes = disabled_filetypes,
         extra_args = { "--config", "~/.cspell.json" },
         diagnostics_postprocess = function(diagnostic)
           diagnostic.severity = vim.diagnostic.severity.WARN

@@ -7,6 +7,7 @@ return {
       local package_info = require "package-info"
       require "user.plugins.lualine.wakatime"
       local CodeGPTModule = require "codegpt"
+      local disabled_filetypes = require("user.util.constants").disabled_filetypes
 
       return {
         options = {
@@ -22,6 +23,7 @@ return {
           },
           ignore_focus = {
             "NvimTree",
+            "oil",
             "lir",
             "dapui_watches",
             "dapui_breakpoints",

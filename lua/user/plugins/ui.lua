@@ -258,17 +258,11 @@ return {
 
   {
     "petertriho/nvim-scrollbar",
-    opts = {
-      excluded_filetypes = {
-        "prompt",
-        "oil",
-        "TelescopePrompt",
-        "noice",
-        "NvimTree",
-        "lazy",
-        "lir",
-      },
-    },
+    config = function()
+      require("scrollbar").setup {
+        excluded_filetypes = require("user.util.constants").disabled_filetypes,
+      }
+    end,
     event = "VeryLazy",
   },
 

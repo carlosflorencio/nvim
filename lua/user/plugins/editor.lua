@@ -11,6 +11,8 @@ return {
     event = "VeryLazy",
     opts = {
       plugins = {
+        marks = true, -- shows a list of your marks on ' and `
+        registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
         spelling = true,
       },
     },
@@ -80,7 +82,7 @@ return {
   },
 
   {
-    -- improved marks
+    -- improved marks, marks in signcolumn, cycle through marks
     "chentoast/marks.nvim",
     opts = {},
     lazy = false,
@@ -103,10 +105,11 @@ return {
     },
     lazy = false,
   },
+
   {
     -- buffers separated per tab
     "tiagovla/scope.nvim",
-    enabled = true,
+    enabled = false,
     opts = {},
     lazy = false,
   },
@@ -508,26 +511,11 @@ return {
   {
     "RRethy/vim-illuminate",
     event = { "BufReadPost", "BufNewFile" },
-    opts = {
-      delay = 200,
-      filetypes_denylist = {
-        "dirvish",
-        "fugitive",
-        "alpha",
-        "NvimTree",
-        "lazy",
-        "neogitstatus",
-        "Trouble",
-        "lir",
-        "Outline",
-        "spectre_panel",
-        "toggleterm",
-        "DressingSelect",
-        "TelescopePrompt",
-      },
-    },
-    config = function(_, opts)
-      require("illuminate").configure(opts)
+    config = function()
+      require("illuminate").configure {
+        delay = 200,
+        filetypes_denylist = require("user.util.constants").disabled_filetypes,
+      }
 
       local function map(key, dir, buffer)
         vim.keymap.set("n", key, function()
@@ -603,6 +591,7 @@ return {
       require("debugprint").setup {
         create_keymaps = false,
         move_to_debugline = true,
+        print_tag = "here",
       }
     end,
   },
