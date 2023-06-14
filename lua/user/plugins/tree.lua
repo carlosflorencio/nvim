@@ -106,10 +106,11 @@ return {
         auto_open = false,
       },
       view = {
-        width = {
-          min = 35,
-          max = 40,
-        },
+        -- width = {
+        --   min = 35,
+        --   max = 40,
+        -- },
+        width = 40,
         centralize_selection = true,
       },
       renderer = {
