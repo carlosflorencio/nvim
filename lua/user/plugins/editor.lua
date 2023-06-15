@@ -115,6 +115,14 @@ return {
   },
 
   {
+    "axkirillov/hbac.nvim",
+    lazy = false,
+    config = function()
+      require("hbac").setup()
+    end,
+  },
+
+  {
     -- generate docblocks
     "danymat/neogen",
     dependencies = "nvim-treesitter/nvim-treesitter",
