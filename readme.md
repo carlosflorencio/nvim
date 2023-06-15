@@ -14,3 +14,7 @@ Always a work in progress.
   - https://github.com/alacritty/alacritty/issues/5346#issuecomment-1055695103
 - Install cspell dicts https://github.com/streetsidesoftware/cspell-dicts
 - https://github.com/hrsh7th/vscode-langservers-extracted/releases release v4.6.0 breaks eslint-lsp
+
+## Print
+
+![Printscreen](img/print.png)

@@ -87,8 +87,9 @@ return {
 
   {
     -- past images from clipboard into md files :PasteImage
-    "ekickx/clipboard-image.nvim",
-    ft = { "markdown" },
+    -- "ekickx/clipboard-image.nvim", todo: re-enable after health fix
+    "postfen/clipboard-image.nvim",
+    cmd = "PasteImg",
     opts = {
       -- Default configuration for all filetype
       default = {
