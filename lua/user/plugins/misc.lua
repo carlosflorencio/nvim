@@ -291,6 +291,7 @@ return {
       menu = {
         width = 90,
       },
+      mark_branch = true,
     },
     keys = {
       {

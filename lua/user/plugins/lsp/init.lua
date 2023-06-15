@@ -114,6 +114,8 @@ return {
       -- lspconfig["intelephense"].setup {}
       lspconfig["phpactor"].setup {}
 
+      lspconfig["gopls"].setup {}
+
       lspconfig["html"].setup {}
 
       lspconfig["pyright"].setup {}
