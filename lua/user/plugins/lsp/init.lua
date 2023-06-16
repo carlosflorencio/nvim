@@ -254,25 +254,24 @@ return {
             ["<c-x>"] = glance.actions.jump_split,
           },
         },
-        -- hooks = {
-        --   before_open = function(results, open, jump, method)
-        --     if method == "references" and #results == 2 then
-        --       -- If 2 references, then jump to the other reference
-        --       local curr_line = unpack(vim.api.nvim_win_get_cursor(0))
-        --       for i, ref in ipairs(results) do
-        --         if ref.range.start.line + 1 == curr_line then
-        --           jump(results[i % 2 + 1])
-        --           return
-        --         end
-        --       end
-        --       open(results)
-        --     elseif #results == 1 then
-        --       jump(results[1])
-        --       return
-        --     end
-        --     open(results)
-        --   end,
-        -- },
+        hooks = {
+          before_open = function(results, open, jump, method)
+            if #results > 1 then
+              -- remove typescript index.d.ts files from the results
+              local filteredResults = {}
+
+              for _, result in ipairs(results) do
+                local targetUri = result.targetUri
+                if string.sub(targetUri, -10) ~= "index.d.ts" then
+                  table.insert(filteredResults, result)
+                end
+              end
+              open(filteredResults)
+            else
+              open(results)
+            end
+          end,
+        },
         folds = {
           -- required to fix the nerd fonts v3 upgrade
           fold_closed = require("user.ui").icons.ui.ChevronShortRight,
