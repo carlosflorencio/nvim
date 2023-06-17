@@ -256,17 +256,20 @@ return {
         },
         hooks = {
           before_open = function(results, open, jump, method)
-            if #results > 1 then
-              -- remove typescript index.d.ts files from the results
+            if #results > 1 and method == "definitions" then
+              -- remove typescript .d.ts files from the results
               local filteredResults = {}
 
               for _, result in ipairs(results) do
                 local targetUri = result.targetUri
-                if string.sub(targetUri, -10) ~= "index.d.ts" then
+                if string.sub(targetUri, -5) ~= ".d.ts" then
                   table.insert(filteredResults, result)
                 end
               end
-              open(filteredResults)
+
+              if #filteredResults > 0 then
+                open(filteredResults)
+              end
             else
               open(results)
             end
