@@ -210,26 +210,14 @@ return {
       for k, v in pairs(opts) do
         leap.opts[k] = v
       end
+      leap.add_default_mappings(true)
+      vim.keymap.del({ "x", "o" }, "x")
+      vim.keymap.del({ "x", "o" }, "X")
     end,
     keys = {
-      {
-        "s",
-        ":lua require('leap').leap({ target_windows = { vim.fn.win_getid() } })<CR>",
-        mode = { "n", "x" },
-        desc = "Leap in current window",
-      },
-      {
-        "S",
-        function()
-          require("leap").leap {
-            target_windows = vim.tbl_filter(function(win)
-              return vim.api.nvim_win_get_config(win).focusable
-            end, vim.api.nvim_tabpage_list_wins(0)),
-          }
-        end,
-        mode = { "n", "x" },
-        desc = "Leap in all windows",
-      },
+      { "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
+      { "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
+      { "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
     },
   },
 
