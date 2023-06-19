@@ -10,7 +10,7 @@ vim.opt.cursorline = true -- Enable highlighting of the current line
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.ignorecase = true -- Ignore case
 vim.opt.relativenumber = true -- Relative line numbers
-vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
+vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "folds" }
 vim.opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 vim.opt.spelllang = { "en" }
 vim.opt.splitbelow = true -- Put new windows below current
@@ -36,3 +36,6 @@ vim.o.clipboard = "unnamedplus" -- Enable mouse mode
 vim.o.undofile = true -- Save undo history
 vim.o.breakindent = true
 vim.o.showtabline = 2
+
+-- sessions opts recommended: https://github.com/rmagatti/auto-session#recommended-sessionoptions-config
+-- vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

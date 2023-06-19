@@ -52,4 +52,16 @@ function M.is_tree_open_current_tab()
   return false
 end
 
+-- Open nvim-tree in a tab if there is only one window in the current tab
+function M.check_open_tree_in_tab()
+  local current_tabpage = vim.api.nvim_get_current_tabpage()
+  local windows = vim.api.nvim_tabpage_list_wins(current_tabpage)
+
+  if #windows == 1 then
+    require("nvim-tree.api").tree.toggle {
+      focus = false,
+    }
+  end
+end
+
 return M

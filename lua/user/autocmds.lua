@@ -14,9 +14,13 @@ end
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
   callback = function()
-    require("nvim-tree.api").tree.toggle {
-      focus = false,
-    }
+    local windows = vim.api.nvim_tabpage_list_wins(0)
+
+    if #windows == 1 then
+      require("nvim-tree.api").tree.toggle {
+        focus = false,
+      }
+    end
   end,
 })
 
