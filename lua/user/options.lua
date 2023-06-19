@@ -36,6 +36,3 @@ vim.o.clipboard = "unnamedplus" -- Enable mouse mode
 vim.o.undofile = true -- Save undo history
 vim.o.breakindent = true
 vim.o.showtabline = 2
-
--- sessions opts recommended: https://github.com/rmagatti/auto-session#recommended-sessionoptions-config
--- vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

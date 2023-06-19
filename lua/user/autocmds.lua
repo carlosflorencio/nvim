@@ -128,6 +128,14 @@ vim.api.nvim_create_autocmd("WinClosed", {
   nested = true,
 })
 
+-- open tree when creating new tabs
+vim.api.nvim_create_autocmd("TabNew", {
+  group = augroup "tabnew",
+  callback = function()
+    require("user.util.windows").check_open_tree_in_tab()
+  end,
+})
+
 -- Custom commands
 
 -- alias :nah for buffer reset changes
