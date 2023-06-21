@@ -129,7 +129,7 @@ vim.api.nvim_create_autocmd("WinClosed", {
 })
 
 -- open tree when creating new tabs
-vim.api.nvim_create_autocmd("TabNew", {
+vim.api.nvim_create_autocmd("TabNewEntered", {
   group = augroup "tabnew",
   callback = function()
     require("user.util.windows").check_open_tree_in_tab()
