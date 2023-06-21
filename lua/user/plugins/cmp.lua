@@ -299,7 +299,10 @@ return { -- auto completion
       delete_check_events = "TextChanged,InsertLeave",
     },
     config = function(_, opts)
-      require("luasnip").setup(opts)
+      local luasnip = require "luasnip"
+      luasnip.setup(opts)
+      luasnip.filetype_extend("javascriptreact", { "html" })
+      luasnip.filetype_extend("typescriptreact", { "html" })
       require "user.plugins.cmp.snippets"
       require("luasnip.loaders.from_vscode").lazy_load { paths = { "./snippets" } }
     end,
