@@ -30,7 +30,6 @@ return {
     --
     "jakewvincent/mkdnflow.nvim",
     ft = { "markdown" },
-    lazy = false,
     config = function()
       require("mkdnflow").setup {
         mappings = {

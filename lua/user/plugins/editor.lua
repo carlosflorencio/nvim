@@ -84,6 +84,7 @@ return {
   {
     -- improved marks, marks in signcolumn, cycle through marks
     "chentoast/marks.nvim",
+    enabled = true,
     opts = {},
     lazy = false,
   },
@@ -102,6 +103,13 @@ return {
       log_level = "error",
       auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
       auto_session_use_git_branch = true,
+      pre_save_cmds = {
+        -- "lua require('nvim-tree.api').tree.close_in_all_tabs()",
+        -- "lua require('user.util.windows').close_all_floating_wins()",
+        -- "lua require('user.util.windows').close_all_nvim_tree_buffers()",
+      },
+      -- post_restore_cmds = { "lua require('nvim-tree.api').tree.toggle({focus = false})" },
+      -- post_restore_cmds = { "lua print('hello')", "lua print(require('nvim-tree.api').tree.is_visible())" },
     },
     lazy = false,
   },

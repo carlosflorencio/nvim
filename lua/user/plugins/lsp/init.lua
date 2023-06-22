@@ -283,10 +283,10 @@ return {
 
   {
     "pmizio/typescript-tools.nvim",
-    lazy = false,
+    ft = { "typescript", "typescriptreact" },
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     config = function()
-      local lsputils = require "user.plugins.lsp.utils"
+      -- local lsputils = require "user.plugins.lsp.utils"
 
       require("typescript-tools").setup {
         settings = {

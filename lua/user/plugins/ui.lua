@@ -173,6 +173,7 @@ return {
   {
     -- expand windows
     "anuvyklack/windows.nvim",
+    enabled = true,
     dependencies = {
       "anuvyklack/middleclass",
       -- "anuvyklack/animation.nvim"

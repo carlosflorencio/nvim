@@ -12,15 +12,26 @@ end
 --   end,
 -- })
 
+-- tmp fix for https://github.com/chentoast/marks.nvim/issues/13
+vim.api.nvim_create_autocmd({ "BufRead" }, { command = ":delm a-zA-Z0-9" })
+
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
   callback = function()
-    local windows = vim.api.nvim_tabpage_list_wins(0)
+    require("user.util.windows").check_open_tree_in_tab()
+  end,
+})
 
-    if #windows == 1 then
-      require("nvim-tree.api").tree.toggle {
-        focus = false,
-      }
-    end
+vim.api.nvim_create_autocmd({ "VimEnter" }, {
+  callback = function()
+    -- only run after vim starts
+    -- on startup during session loading, TabEnter seems to be called
+    -- open tree when creating new tabs
+    vim.api.nvim_create_autocmd("TabEnter", {
+      group = augroup "tabnew",
+      callback = function()
+        require("user.util.windows").check_open_tree_in_tab()
+      end,
+    })
   end,
 })
 
@@ -126,14 +137,6 @@ vim.api.nvim_create_autocmd("WinClosed", {
     vim.schedule_wrap(tab_win_closed(winnr))
   end,
   nested = true,
-})
-
--- open tree when creating new tabs
-vim.api.nvim_create_autocmd("TabNewEntered", {
-  group = augroup "tabnew",
-  callback = function()
-    require("user.util.windows").check_open_tree_in_tab()
-  end,
 })
 
 -- Custom commands

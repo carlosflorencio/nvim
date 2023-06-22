@@ -105,14 +105,8 @@ vim.keymap.set(
 )
 
 -- tabs
-vim.keymap.set("n", "<S-l>", function()
-  vim.cmd [[tabn]]
-  require("user.util.windows").check_open_tree_in_tab()
-end)
-vim.keymap.set("n", "<S-h>", function()
-  vim.cmd [[tabp]]
-  require("user.util.windows").check_open_tree_in_tab()
-end)
+vim.keymap.set("n", "<S-l>", "<cmd>tabn<cr>")
+vim.keymap.set("n", "<S-h>", "<cmd>tabp<cr>")
 vim.keymap.set("n", "<M-S-h>", "<cmd>tabm -1<cr>")
 vim.keymap.set("n", "<M-S-l>", "<cmd>tabm +1<cr>")
 vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<cr>", { desc = "New Tab" })
