@@ -4,18 +4,12 @@ function M.on_attach(client, bufnr)
   require("user.plugins.lsp.format").on_attach(client, bufnr)
   require("user.plugins.lsp.keymaps").on_attach(client, bufnr)
 
-  if client.name == "tsserver" then
-    -- https://github.com/jose-elias-alvarez/typescript.nvim
-    vim.keymap.set(
-      "n",
-      "<leader>oi",
-      "<cmd>TypescriptOrganizeImports<CR>",
-      { buffer = bufnr, desc = "Organize Imports" }
-    )
+  if client.name == "typescript-tools" then
+    vim.keymap.set("n", "<leader>oi", "<cmd>TSToolsOrganizeImports<CR>", { buffer = bufnr, desc = "Organize Imports" })
     vim.keymap.set(
       "n",
       "<leader>ou",
-      "<cmd>TypescriptRemoveUnused<CR>",
+      "<cmd>TSToolsRemoveUnusedImports<CR>",
       { buffer = bufnr, desc = "Remove Unused Imports/Variables" }
     )
     vim.keymap.set(
@@ -24,7 +18,7 @@ function M.on_attach(client, bufnr)
       "<cmd>TypescriptAddMissingImports<CR>",
       { buffer = bufnr, desc = "Add Missing Imports" }
     )
-    vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = bufnr })
+    -- vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = bufnr })
   else
     -- Enable inlay hints on other languages
     require("lsp-inlayhints").on_attach(client, bufnr)
@@ -52,6 +46,15 @@ function M.capabilities()
   }
 
   return updated_capabilities
+end
+
+function M.filterTypescriptDefinitionFiles(value)
+  -- Depending on typescript version either uri or targetUri is returned
+  if value.uri then
+    return string.match(value.uri, "%.d.ts") == nil
+  elseif value.targetUri then
+    return string.match(value.targetUri, "%.d.ts") == nil
+  end
 end
 
 return M
