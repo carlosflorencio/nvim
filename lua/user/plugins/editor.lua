@@ -76,6 +76,9 @@ return {
         [",t"] = {
           name = "+test",
         },
+        [",o"] = {
+          name = "+other file",
+        },
       }
       wk.register(keymaps)
     end,
@@ -598,5 +601,55 @@ return {
         print_tag = "here",
       }
     end,
+  },
+
+  {
+    "rgroli/other.nvim",
+    cmd = { "Other", "OtherVSplit", "OtherSplit" },
+    config = function()
+      local ts_alternative_targets = {
+        { context = "source", target = "/%1/%2.%3" },
+        { context = "test", target = "/%1/__tests__/%2.test.%3" },
+        { context = "stories", target = "/%1/%2.stories.%3" },
+      }
+
+      require("other-nvim").setup {
+        mappings = {
+          -- builtin mappings
+          -- "livewire",
+          -- "angular",
+          -- "laravel",
+          -- "rails",
+          "golang",
+          -- typescript/javascript
+          {
+            pattern = "/(.*)/(.*).([jt]sx?)$",
+            target = ts_alternative_targets,
+          },
+          -- Jest tests
+          {
+            pattern = "(.*)/__tests__/(.*).test.ts$",
+            target = "%1/%2.ts",
+            context = "implementation",
+          },
+        },
+        keybindings = {
+          ["<cr>"] = "open_file()",
+          ["<esc>"] = "close_window()",
+          o = "open_file()",
+          q = "close_window()",
+          v = "open_file_vs()",
+          s = "open_file_vs()",
+          h = "open_file_sp()",
+          x = "open_file_sp()",
+        },
+      }
+    end,
+    keys = {
+      { ",oo", "<cmd>Other<cr>", desc = "Open other file" },
+      { ",ot", "<cmd>Other test<cr>", desc = "Open other test file" },
+      { ",ov", "<cmd>OtherVSplit<cr>", desc = "Open other file vsplit" },
+      { ",oh", "<cmd>OtherSplit<cr>", desc = "Open other file split" },
+    },
   },
 }
