@@ -18,6 +18,7 @@ return {
     config = function()
       require("github-theme").setup {
         options = {
+          hide_end_of_buffer = false,
           styles = {
             -- remove italic
             comments = "NONE",

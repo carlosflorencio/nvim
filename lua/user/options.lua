@@ -24,6 +24,7 @@ vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 vim.opt.shell = "/bin/sh" -- fish is slow
 vim.opt.laststatus = 3 -- Only one statusline (avoid nvim-tree duplicated statusline)
 vim.opt.syntax = "off" -- Disable regex syntax highlighting, using Treesitter
+-- vim.opt.fillchars = { eob = "~" }
 
 -- folds ufo
 vim.o.foldcolumn = "0" -- '0' is not bad
