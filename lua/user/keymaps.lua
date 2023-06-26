@@ -14,6 +14,9 @@ vim.keymap.set("n", "<C-c>", ":bn|sp|bp|bd<CR>", { desc = "Close buffer" })
 vim.keymap.set("n", "zj", "o<ESC>k")
 vim.keymap.set("n", "zk", "o<ESC>j")
 
+-- cr, bs
+vim.keymap.set("n", "<cr>", "ciw")
+
 -- Search and replace word under cursor using <F2>
 vim.keymap.set("n", "<F2>", ":%s/<C-r><C-w>//<Left>")
 vim.keymap.set("v", "<F2>", ":%s/\\%Vs/k/g")
