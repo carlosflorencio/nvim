@@ -4,6 +4,7 @@ local M = {}
 -- Other places: indent blank line, lualine, cmp
 M.disabled_filetypes = {
   "dirvish",
+  "noice",
   "harpoon",
   "fugitive",
   "alpha",
