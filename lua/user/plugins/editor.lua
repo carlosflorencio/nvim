@@ -2,10 +2,21 @@ return {
   {
     -- Detect tabstop and shiftwidth automatically
     "nmac427/guess-indent.nvim",
+    enabled = true,
     priority = 100,
-    opts = {},
+    opts = {
+      filetype_exclude = require("user.util.constants").disabled_filetypes,
+    },
     lazy = false,
   },
+
+  {
+    -- Detect tabstop and shiftwidth automatically
+    "tpope/vim-sleuth",
+    enabled = false,
+    lazy = false,
+  },
+
   {
     "folke/which-key.nvim",
     event = "VeryLazy",

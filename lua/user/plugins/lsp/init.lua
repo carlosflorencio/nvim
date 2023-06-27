@@ -76,7 +76,6 @@ return {
         "b0o/SchemaStore.nvim",
         version = false, -- last release is way too old
       },
-      -- { "jose-elias-alvarez/typescript.nvim" },
       { "lvimuser/lsp-inlayhints.nvim", opts = {} },
     },
     config = function()
@@ -280,14 +279,14 @@ return {
   },
 
   -- { "davidosomething/format-ts-errors.nvim" },
+  -- { "jose-elias-alvarez/typescript.nvim" },
 
   {
     "pmizio/typescript-tools.nvim",
+    enabled = true,
     ft = { "typescript", "typescriptreact" },
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     config = function()
-      -- local lsputils = require "user.plugins.lsp.utils"
-
       require("typescript-tools").setup {
         settings = {
           tsserver_file_preferences = {
@@ -295,18 +294,6 @@ return {
           },
           -- tsserver_plugins = { "typescript-styled-plugin" },
         },
-        -- handlers = {
-        --   ["textDocument/definition"] = function(err, result, method, ...)
-        --     print(vim.inspect(result))
-        --     vim.notify "here"
-        --     if vim.tbl_islist(result) and #result > 1 then
-        --       local filtered_result = vim.tbl_filter(lsputils.filterTypescriptDefinitionFiles, result)
-        --       return vim.lsp.handlers["textDocument/definition"](err, filtered_result, method, ...)
-        --     end
-
-        --     vim.lsp.handlers["textDocument/definition"](err, result, method, ...)
-        --   end,
-        -- },
       }
     end,
   },

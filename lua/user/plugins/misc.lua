@@ -151,12 +151,13 @@ return {
       default_file_explorer = false,
       float = {
         -- Padding around the floating window
-        padding = 6,
+        -- padding = 3,
         max_width = 100,
-        max_height = 0,
-        border = "rounded",
+        max_height = 30,
+        -- border = "rounded",
         win_options = {
-          winblend = 10,
+          -- winblend = 10,
+          winhighlight = "NormalFloat:Normal,FloatBorder:Normal",
         },
       },
       use_default_keymaps = false,
@@ -168,6 +169,7 @@ return {
         ["<C-t>"] = "actions.select_tab",
         ["<C-p>"] = "actions.preview",
         ["q"] = "actions.close",
+        ["<esc>"] = "actions.close",
         ["<C-l>"] = "actions.refresh",
         ["h"] = "actions.parent",
         ["_"] = "actions.open_cwd",
@@ -179,7 +181,7 @@ return {
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
-      { "<leader>;", "<cmd>Oil<cr>", desc = "Oil" },
+      { "<leader>;", "<cmd>Oil --float<cr>", desc = "Oil" },
     },
   },
   {

@@ -12,14 +12,32 @@ function M.on_attach(client, bufnr)
       "<cmd>TSToolsRemoveUnusedImports<CR>",
       { buffer = bufnr, desc = "Remove Unused Imports/Variables" }
     )
+  end
+
+  if client.name == "tsserver" then
+    -- https://github.com/jose-elias-alvarez/typescript.nvim cmds
+    vim.keymap.set(
+      "n",
+      "<leader>oi",
+      "<cmd>TypescriptOrganizeImports<CR>",
+      { buffer = bufnr, desc = "Organize Imports" }
+    )
+    vim.keymap.set(
+      "n",
+      "<leader>ou",
+      "<cmd>TypescriptRemoveUnused<CR>",
+      { buffer = bufnr, desc = "Remove Unused Imports/Variables" }
+    )
     vim.keymap.set(
       "n",
       "<leader>oa",
       "<cmd>TypescriptAddMissingImports<CR>",
       { buffer = bufnr, desc = "Add Missing Imports" }
     )
-    -- vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = bufnr })
-  else
+    vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = bufnr })
+  end
+
+  if client.name ~= "tsserver" and client.name ~= "typescript-tools" then
     -- Enable inlay hints on other languages
     require("lsp-inlayhints").on_attach(client, bufnr)
   end

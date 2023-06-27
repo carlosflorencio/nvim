@@ -59,7 +59,7 @@ return {
       -- Indentation based on treesitter for the = operator.
       -- enabling it will cause bad indentation for some typescript code
       indent = {
-        enable = false,
+        enable = true,
       },
 
       -- nvim-ts-autotag
