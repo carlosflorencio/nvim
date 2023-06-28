@@ -15,7 +15,7 @@ vim.keymap.set("n", "zj", "o<ESC>k")
 vim.keymap.set("n", "zk", "o<ESC>j")
 
 -- cr, bs
-vim.keymap.set("n", "<cr>", "ciw")
+-- vim.keymap.set("n", "<cr>", "ciw")
 
 -- Search and replace word under cursor using <F2>
 vim.keymap.set("n", "<F2>", ":%s/<C-r><C-w>//<Left>")
@@ -83,21 +83,15 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 -- splits
-vim.keymap.set("n", "<leader>sv", function()
-  require("user.util.windows").new_vsplit()
-end, { desc = "Split window vertically" })
+vim.keymap.set("n", "<leader>sv", "<cmd>vsplit<cr>", { desc = "Split window vertically" })
 vim.keymap.set("n", "<leader>sh", "<cmd>split<cr>", { desc = "Split window horizontally" })
-vim.keymap.set("n", "<leader>sc", function()
-  require("user.util.windows").close_window()
-end, { desc = "Close split" })
+vim.keymap.set("n", "<leader>sc", "<cmd>close<cr>", { desc = "Close split" })
 
 vim.keymap.set("n", "<leader>st", "<c-w>T", { desc = "Move split into Tab" })
 
 -- quit buffers / windows
 vim.keymap.set("n", "<leader>qa", "<cmd>qa<cr>", { desc = "Quit all" })
-vim.keymap.set("n", "<leader>cw", function()
-  require("user.util.windows").close_window()
-end, { desc = "Close Window" })
+vim.keymap.set("n", "<leader>cw", "<cmd>close<cr>", { desc = "Close Window" })
 
 vim.keymap.set("n", "<leader>ct", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 vim.keymap.set(
