@@ -4,9 +4,7 @@ return {
     event = "VeryLazy",
     opts = function()
       local components = require "user.plugins.lualine.components"
-      local package_info = require "package-info"
       require "user.plugins.lualine.wakatime"
-      local CodeGPTModule = require "codegpt"
       local disabled_filetypes = require("user.util.constants").disabled_filetypes
 
       return {
@@ -39,14 +37,29 @@ return {
           lualine_b = { components.branch },
           lualine_c = {
             -- "lsp_progress",
-            package_info.get_status,
+            {
+              function()
+                return require("package-info").get_status()
+              end,
+              cond = function()
+                return package.loaded["package-info"] ~= nil
+              end,
+            },
+
             require("recorder").recordingStatus,
             components.python_env,
           },
           lualine_x = {
             components.location,
             "fancy_lsp_servers",
-            CodeGPTModule.get_status,
+            {
+              function()
+                return require("codegpt").get_status()
+              end,
+              cond = function()
+                return package.loaded["codegpt"] ~= nil
+              end,
+            },
             components.filetype,
             "searchcount",
             Lualine_get_wakatime,

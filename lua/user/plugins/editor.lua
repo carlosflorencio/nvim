@@ -125,6 +125,9 @@ return {
       },
       -- post_restore_cmds = { "lua require('user.util.windows').close_tree_if_many_windows()" },
       -- post_restore_cmds = { "lua print('hello')", "lua print(require('nvim-tree.api').tree.is_visible())" },
+      session_lens = {
+        load_on_setup = false,
+      },
     },
     lazy = false,
   },

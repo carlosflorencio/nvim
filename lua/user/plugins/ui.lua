@@ -279,7 +279,7 @@ return {
     -- treesitter on popup menu, but I don't like the cmdline interface
     -- also, lsp signature is a bit odd
     "folke/noice.nvim",
-    enabled = true,
+    enabled = false,
     event = "VeryLazy",
     opts = {
       cmdline = {

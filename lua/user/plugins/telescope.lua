@@ -18,8 +18,17 @@ return {
     dependencies = {
       {
         "danielfalk/smart-open.nvim",
-        branch = "0.1.x",
-        dependencies = { "kkharji/sqlite.lua" },
+        branch = "0.2.x",
+        dependencies = {
+          "kkharji/sqlite.lua",
+          {
+            "nvim-telescope/telescope-fzf-native.nvim",
+            build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+            config = function()
+              require("telescope").load_extension "fzf"
+            end,
+          },
+        },
       },
       "nvim-lua/plenary.nvim",
       "telescope-fzf-native.nvim",
@@ -188,16 +197,5 @@ return {
         desc = "Colorscheme with Preview",
       },
     },
-  },
-
-  -- Fuzzy Finder Algorithm which requires local dependencies to be built.
-  -- Only load if `make` is available. Make sure you have the system
-  -- requirements installed.
-  {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    build = "make",
-    cond = function()
-      return vim.fn.executable "make" == 1
-    end,
   },
 }

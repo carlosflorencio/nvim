@@ -77,6 +77,23 @@ return {
         version = false, -- last release is way too old
       },
       { "lvimuser/lsp-inlayhints.nvim", opts = {} },
+      {
+        "SmiteshP/nvim-navbuddy",
+        dependencies = {
+          "neovim/nvim-lspconfig",
+          "SmiteshP/nvim-navic",
+          "MunifTanjim/nui.nvim",
+        },
+        opts = {
+          lsp = {
+            auto_attach = true,
+            preference = { "typescript-tools", "lua_ls", "tsserver", "pyright" },
+          },
+        },
+        keys = {
+          { "<leader>fs", "<cmd>Navbuddy<cr>", desc = "Navbuddy navigate LSP symbols" },
+        },
+      },
     },
     config = function()
       local lsputils = require "user.plugins.lsp.utils"
