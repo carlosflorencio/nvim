@@ -291,6 +291,12 @@ return {
         settings = {
           tsserver_file_preferences = {
             importModuleSpecifierPreference = "relative",
+            -- includeInlayParameterNameHints = "all",
+            -- includeInlayEnumMemberValueHints = true,
+            -- includeInlayFunctionLikeReturnTypeHints = true,
+            -- includeInlayFunctionParameterTypeHints = true,
+            -- includeInlayPropertyDeclarationTypeHints = true,
+            -- includeInlayVariableTypeHints = true
           },
           -- tsserver_plugins = { "typescript-styled-plugin" },
         },

@@ -45,6 +45,7 @@ return {
   {
     -- better macros, q, Q, cq (edit), ## breakpoint
     "chrisgrieser/nvim-recorder",
+    enabled = true,
     opts = {
       -- Named registers where macros are saved. The first register is the default
       -- register/macro-slot used after startup.
@@ -209,7 +210,7 @@ return {
       }
     end,
     keys = {
-      { "<leader>tt", "<cmd>ZenMode<cr>", desc = "Zen Mode" },
+      { "<leader>TT", "<cmd>ZenMode<cr>", desc = "Zen Mode" },
     },
   },
 

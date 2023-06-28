@@ -321,32 +321,33 @@ return {
     -- powerful search & replace
     "windwp/nvim-spectre",
     opts = {},
-        -- stylua: ignore
-        keys = {
-            {
-                "<F3>",
-                function()
-                    local path = vim.fn.fnameescape(vim.fn.expand('%:p:.'))
-                    require('spectre').open_visual({
-                        select_word = true,
-                        path = path
-                    })
-                end,
-                desc = "Replace in files (Spectre)"
-            }
-        }
-,
+    keys = {
+      {
+        "<F3>",
+        function()
+          local path = vim.fn.fnameescape(vim.fn.expand "%:p:.")
+          require("spectre").open_visual {
+            select_word = true,
+            path = path,
+          }
+        end,
+        desc = "Replace in files (Spectre)",
+      },
+    },
   },
   {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
+    opts = {
+      padding = false,
+    },
     keys = {
-      { "<leader>TT", "<cmd>TroubleToggle<cr>", desc = "Trouble" },
-      { "<leader>Tw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "workspace" },
-      { "<leader>Td", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "document" },
-      { "<leader>Tq", "<cmd>TroubleToggle quickfix<cr>", desc = "quickfix" },
-      { "<leader>Tl", "<cmd>TroubleToggle loclist<cr>", desc = "loclist" },
-      { "<leader>Tr", "<cmd>TroubleToggle lsp_references<cr>", desc = "references" },
+      { "<leader>tt", "<cmd>TroubleToggle<cr>", desc = "Trouble" },
+      -- { "<leader>Tw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "workspace" },
+      -- { "<leader>Td", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "document" },
+      -- { "<leader>Tq", "<cmd>TroubleToggle quickfix<cr>", desc = "quickfix" },
+      -- { "<leader>Tl", "<cmd>TroubleToggle loclist<cr>", desc = "loclist" },
+      -- { "<leader>Tr", "<cmd>TroubleToggle lsp_references<cr>", desc = "references" },
     },
   },
   {
@@ -652,8 +653,18 @@ return {
       },
     },
     keys = {
-      { "p", "<Plug>(YankyPutAfter)", desc = "Yanky put after", mode = { "n", "x" } },
-      { "P", "<Plug>(YankyPutBefore)", desc = "Yanky put before", mode = { "n", "x" } },
+      {
+        "p",
+        "<Plug>(YankyPutAfter)",
+        desc = "Yanky put after",
+        mode = { "n", "x" },
+      },
+      {
+        "P",
+        "<Plug>(YankyPutBefore)",
+        desc = "Yanky put before",
+        mode = { "n", "x" },
+      },
       { "gp", "<Plug>(YankyGPutAfter)", mode = { "n", "x" } },
       { "gP", "<Plug>(YankyGPutBefore)", mode = { "n", "x" } },
       { "]y", "<Plug>(YankyCycleBackward)", mode = "n" },

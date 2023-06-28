@@ -12,10 +12,9 @@ vim.opt.ignorecase = true -- Ignore case
 vim.opt.relativenumber = true -- Relative line numbers
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages" }
 vim.opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
-vim.opt.spelllang = { "en" }
 vim.opt.splitbelow = true -- Put new windows below current
 vim.opt.splitright = true -- Put new windows right of current
-vim.opt.showmode = false -- Dont show mode since we have a statusline
+vim.opt.showmode = false -- Don't show mode since we have a statusline
 vim.opt.colorcolumn = "80"
 vim.opt.updatetime = 100 -- Save swap file and trigger CursorHold
 vim.opt.timeoutlen = 600 -- time to wait for a mapped sequence to complete (in milliseconds)
@@ -25,6 +24,12 @@ vim.opt.shell = "/bin/sh" -- fish is slow
 vim.opt.laststatus = 3 -- Only one statusline (avoid nvim-tree duplicated statusline)
 vim.opt.syntax = "off" -- Disable regex syntax highlighting, using Treesitter
 -- vim.opt.fillchars = { eob = "~" }
+
+-- Spelling
+vim.opt.spell = true
+vim.opt.spelllang = "en"
+vim.opt.spelloptions = "camel,noplainbuffer"
+vim.opt.spellsuggest = "best,6"
 
 -- folds ufo
 vim.o.foldcolumn = "0" -- '0' is not bad
