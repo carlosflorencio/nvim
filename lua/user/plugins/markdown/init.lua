@@ -6,6 +6,8 @@ return {
     config = function()
       require("flote").setup {
         window_border = "single",
+        window_style = "minimal",
+        window_title = true,
         notes_dir = "~/Notes/Projects",
         files = {
           global = "global.md",

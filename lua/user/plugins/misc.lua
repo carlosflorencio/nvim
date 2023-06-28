@@ -157,7 +157,7 @@ return {
         max_height = 30,
         -- border = "rounded",
         win_options = {
-          -- winblend = 10,
+          winblend = 0,
           winhighlight = "NormalFloat:Normal,FloatBorder:Normal",
         },
       },

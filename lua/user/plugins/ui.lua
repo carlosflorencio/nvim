@@ -139,7 +139,8 @@ return {
             filetype = "NvimTree",
             -- text = "Explorer",
             text = "",
-            -- highlight = "PanelHeading",
+            -- same color as nvim-tree bg
+            highlight = "NvimTreeNormal",
             padding = 0,
           },
           {

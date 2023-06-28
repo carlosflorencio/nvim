@@ -29,6 +29,7 @@ vim.opt.syntax = "off" -- Disable regex syntax highlighting, using Treesitter
 vim.opt.spell = true
 vim.opt.spelllang = "en"
 vim.opt.spelloptions = "camel"
+vim.opt.spellcapcheck = "" -- disable caps check
 vim.opt.spellsuggest = "best,6"
 
 -- folds ufo

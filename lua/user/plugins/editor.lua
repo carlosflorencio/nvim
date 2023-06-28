@@ -749,4 +749,11 @@ return {
       { ",oh", "<cmd>OtherSplit<cr>", desc = "Open other file split" },
     },
   },
+
+  {
+    -- peek lines :number, <cr> to jump
+    "nacro90/numb.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
 }

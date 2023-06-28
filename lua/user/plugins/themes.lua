@@ -7,6 +7,7 @@ return {
     dependencies = { "rktjmp/lush.nvim" },
     config = function()
       vim.cmd.colorscheme "bluloco"
+      vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { link = "Ignore" })
     end,
   },
 
@@ -29,7 +30,8 @@ return {
       }
 
       vim.cmd "colorscheme github_dark"
-      vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { link = "EndOfBuffer" })
+      -- hide line
+      vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { fg = "#30363D", bg = "#30363D" })
     end,
   },
 
@@ -45,17 +47,26 @@ return {
         },
         dim_inactive = false,
       }
-      -- vim.cmd.colorscheme "tokyonight-storm"
+      vim.cmd.colorscheme "tokyonight-storm"
     end,
   },
 
   {
+    -- JSX elements highlight not great, component and props with the same color
     "navarasu/onedark.nvim",
     enabled = false,
     lazy = false,
     priority = 1000,
     config = function()
-      -- vim.cmd.colorscheme "onedark"
+      require("onedark").setup {
+        -- style = "warmer",
+        ending_tildes = true,
+        code_style = {
+          comments = "none",
+        },
+      }
+      require("onedark").load()
+      vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { link = "EndOfBuffer" })
     end,
   },
 
@@ -65,7 +76,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      -- vim.cmd.colorscheme "sonokai"
+      vim.cmd.colorscheme "sonokai"
     end,
   },
 }

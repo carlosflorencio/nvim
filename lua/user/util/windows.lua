@@ -60,6 +60,7 @@ function M.close_tree_if_many_windows()
 
   -- {"leaf", 1001}, {"row", { {}, {} }}
   local layout = vim.api.nvim_call_function("winlayout", {})
+  -- print(vim.inspect(layout))
 
   -- only 1 window
   if layout[1] == "leaf" then
