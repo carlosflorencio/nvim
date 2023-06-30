@@ -26,7 +26,7 @@ vim.opt.syntax = "off" -- Disable regex syntax highlighting, using Treesitter
 -- vim.opt.fillchars = { eob = "~" }
 
 -- Spelling
-vim.opt.spell = true
+vim.opt.spell = false
 vim.opt.spelllang = "en"
 vim.opt.spelloptions = "camel"
 vim.opt.spellcapcheck = "" -- disable caps check
@@ -43,3 +43,5 @@ vim.o.clipboard = "unnamedplus" -- Enable mouse mode
 vim.o.undofile = true -- Save undo history
 vim.o.breakindent = true
 vim.o.showtabline = 2
+
+-- vim.g.editorconfig = false

@@ -305,6 +305,7 @@ return {
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     config = function()
       require("typescript-tools").setup {
+        root_dir = require("lspconfig").util.root_pattern(".git", "package-lock.json", "yarn.lock"),
         settings = {
           tsserver_file_preferences = {
             importModuleSpecifierPreference = "relative",

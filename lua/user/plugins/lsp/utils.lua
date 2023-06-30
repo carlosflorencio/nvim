@@ -5,6 +5,12 @@ function M.on_attach(client, bufnr)
   require("user.plugins.lsp.keymaps").on_attach(client, bufnr)
 
   if client.name == "typescript-tools" then
+    vim.keymap.set(
+      "n",
+      "<leader>oa",
+      "<cmd>TSToolsAddMissingImports<CR>",
+      { buffer = bufnr, desc = "Add Missing Imports" }
+    )
     vim.keymap.set("n", "<leader>oi", "<cmd>TSToolsOrganizeImports<CR>", { buffer = bufnr, desc = "Organize Imports" })
     vim.keymap.set(
       "n",

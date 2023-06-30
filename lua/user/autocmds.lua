@@ -99,13 +99,26 @@ vim.api.nvim_create_autocmd("FileType", { pattern = "markdown", command = "set a
 
 -- nvim tree windows management
 
--- auto close/open tree when creating new windows
-vim.api.nvim_create_autocmd("WinEnter", {
-  group = augroup "buf_enter_tree",
+vim.api.nvim_create_autocmd({ "VimEnter" }, {
   callback = function()
-    require("user.util.windows").close_tree_if_many_windows()
+    -- open tree on startup
+    vim.schedule_wrap(function()
+      require("nvim-tree.api").tree.toggle {
+        focus = false,
+      }
+    end)()
+
+    -- schedule auto tree close
+    vim.api.nvim_create_autocmd("WinEnter", {
+      group = augroup "buf_enter_tree",
+      callback = function()
+        vim.schedule_wrap(function()
+          require("user.util.windows").close_tree_if_many_windows()
+        end)()
+      end,
+      nested = true,
+    })
   end,
-  nested = true,
 })
 
 -- close nvim-tree when doing :wq
