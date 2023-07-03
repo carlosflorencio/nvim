@@ -46,7 +46,7 @@ return {
     ---@type TSConfig
     opts = {
       -- Automatically install missing parsers when entering buffer
-      auto_install = false,
+      auto_install = true,
       highlight = {
         enable = true,
 
@@ -60,7 +60,7 @@ return {
       -- enabling it will cause bad indentation for some typescript code
       indent = {
         enable = true,
-        -- disable = { "yaml" },
+        disable = { "typescript" },
       },
 
       -- nvim-ts-autotag
