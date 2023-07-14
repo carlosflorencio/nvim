@@ -9,7 +9,7 @@ return {
         "prettierd",
         "actionlint",
         "proselint",
-        "cspell", -- install globally using npm
+        -- "cspell", -- install globally using npm
       },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}
@@ -47,6 +47,7 @@ return {
         "taplo", --toml
         "quick_lint_js",
         "vimls",
+        "emmet_language_server",
       },
     },
   },
@@ -135,6 +136,8 @@ return {
       lspconfig["html"].setup {}
 
       lspconfig["pyright"].setup {}
+
+      lspconfig["emmet_language_server"].setup {}
 
       lspconfig["eslint"].setup {
         settings = {

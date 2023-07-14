@@ -24,7 +24,9 @@ function M.format()
     return
   end
   local ft = vim.bo[buf].filetype
-  local have_nls = #require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING") > 0
+
+  local loaded, null_ls = pcall(require, "null-ls.sources")
+  local have_nls = loaded and null_ls and #null_ls.get_available(ft, "NULL_LS_FORMATTING") > 0 or false
 
   vim.lsp.buf.format {
     bufnr = buf,

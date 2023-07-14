@@ -151,7 +151,7 @@ return {
         desc = "Checkout Branch",
       },
       {
-        "<leader>k",
+        "<leader>j",
         "<cmd>Telescope buffers show_all_buffers=true previewer=false ignore_current_buffer=true sort_mru=true<cr>",
         desc = "Open Buffers",
       },

@@ -222,20 +222,12 @@ vim.keymap.set("n", "<leader>sy", function()
   vim.notify(resultString, vim.log.levels.INFO, { title = "Yanked capture", render = "compact" })
 end, { desc = "Copy treesitter captures under cursor" })
 
--- Retain cursor position when joining lines, and remove spaces from method chains
-vim.keymap.set("n", "J", function()
-  vim.cmd "normal! mzJ"
+-- don't yank the replaced text after pasting in visual mode
+vim.keymap.set("x", "p", '"_dP')
 
-  local col = vim.fn.col "."
-  local context = string.sub(vim.fn.getline ".", col - 1, col + 1)
-  if context == ") ." or context == ") :" or context:match "%( ." or context:match ". ," or context:match "%w %." then
-    vim.cmd "undojoin | normal! x"
-  elseif context == ",)" then
-    vim.cmd "undojoin | normal! hx"
-  end
-
-  vim.cmd "normal! `z"
-end)
+-- jump to next special char
+vim.keymap.set("i", "jj", "<c-o>:call search('}\\|)\\|]\\|>\\|\"', 'cW')<cr><Right>")
+vim.keymap.set("i", "jk", "<ESC>")
 
 -- Don't yank empty lines into the main register
 vim.keymap.set("n", "dd", function()

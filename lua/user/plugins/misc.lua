@@ -292,7 +292,7 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
       menu = {
-        width = 90,
+        width = 100,
       },
       mark_branch = true,
     },
@@ -305,7 +305,7 @@ return {
         desc = "Harpoon mark file",
       },
       {
-        "<leader>j",
+        "<leader>k",
         function()
           require("harpoon.ui").toggle_quick_menu()
         end,
