@@ -17,6 +17,15 @@ end
 local icons = require("user.ui").icons
 local branch = icons.git.Branch
 
+local function show_macro_recording()
+  local recording_register = vim.fn.reg_recording()
+  if recording_register == "" then
+    return ""
+  else
+    return "Recording @" .. recording_register
+  end
+end
+
 return {
   mode = {
     function()
@@ -36,6 +45,10 @@ return {
     "filename",
     color = {},
     cond = nil,
+  },
+  recording_macro = {
+    "macro-recording",
+    fmt = show_macro_recording,
   },
   diff = {
     "diff",

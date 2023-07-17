@@ -46,7 +46,8 @@ return {
               end,
             },
 
-            require("recorder").recordingStatus,
+            components.recording_macro,
+            -- require("recorder").recordingStatus,
             components.python_env,
           },
           lualine_x = {

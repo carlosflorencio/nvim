@@ -45,7 +45,7 @@ return {
   {
     -- better macros, q, Q, cq (edit), ## breakpoint
     "chrisgrieser/nvim-recorder",
-    enabled = true,
+    enabled = false,
     opts = {
       -- Named registers where macros are saved. The first register is the default
       -- register/macro-slot used after startup.
