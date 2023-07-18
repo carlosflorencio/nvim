@@ -58,19 +58,26 @@ function M.close_tree_if_many_windows()
   -- layout is more reliable than windows
   -- sometimes there were hidden windows that would skew the count
 
+  -- 27" monitor => 240 cols
+  -- 16" laptop => 187 cols
+  local editor_width = vim.api.nvim_get_option "columns"
+  local windows_to_close_tree = editor_width > 200 and 3 or 2
+
   -- {"leaf", 1001}, {"row", { {}, {} }}
   local layout = vim.api.nvim_call_function("winlayout", {})
   -- print(vim.inspect(layout))
 
-  -- only 1 window
-  if layout[1] == "leaf" then
+  -- only 1 or 2 windows
+  if layout[1] == "leaf" or #layout[2] == windows_to_close_tree - 1 then
     vim.schedule(function()
-      require("nvim-tree.api").tree.toggle {
-        focus = false,
-      }
+      if not require("nvim-tree.api").tree.is_visible() then
+        require("nvim-tree.api").tree.toggle {
+          focus = false,
+        }
+      end
     end)
   else
-    if #layout[2] > 2 then
+    if #layout[2] > windows_to_close_tree then
       vim.schedule(function()
         require("nvim-tree.api").tree.close()
       end)
