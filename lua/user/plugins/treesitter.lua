@@ -60,7 +60,7 @@ return {
       -- enabling it will cause bad indentation for some typescript code
       indent = {
         enable = false,
-        disable = { "typescript", "html" },
+        -- disable = { "typescript", "html" },
       },
 
       -- nvim-ts-autotag
