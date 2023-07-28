@@ -11,8 +11,8 @@ vim.keymap.set("n", "<C-s>", ":w<cr>", { desc = "Save file" })
 vim.keymap.set("n", "<C-c>", ":bn|sp|bp|bd<CR>", { desc = "Close buffer" })
 
 -- new lines
-vim.keymap.set("n", "zj", "o<ESC>k")
-vim.keymap.set("n", "zk", "o<ESC>j")
+vim.keymap.set("n", "] ", "o<ESC>k")
+vim.keymap.set("n", "[ ", "O<ESC>j")
 
 -- cr, bs
 -- vim.keymap.set("n", "<cr>", "ciw")

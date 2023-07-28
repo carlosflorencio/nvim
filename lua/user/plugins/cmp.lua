@@ -148,7 +148,7 @@ return { -- auto completion
         },
 
         sources = cmp.config.sources({
-          { name = "nvim_lsp_signature_help" },
+          -- { name = "nvim_lsp_signature_help" },
           {
             name = "nvim_lsp",
             entry_filter = function(entry, ctx)
@@ -309,6 +309,7 @@ return { -- auto completion
 
   {
     "zbirenbaum/copilot.lua",
+    enabled = true,
     cmd = "Copilot",
     event = "InsertEnter",
     opts = {

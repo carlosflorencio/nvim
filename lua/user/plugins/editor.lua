@@ -182,6 +182,7 @@ return {
   {
     -- labels for horizontal search
     "jinh0/eyeliner.nvim",
+    enabled = false,
     event = "VeryLazy",
     config = function()
       require("eyeliner").setup {
@@ -196,7 +197,7 @@ return {
     event = "VeryLazy",
     config = function()
       require("flash").setup {
-        labels = "asdfghjklqwertyuiopzxcvbn",
+        -- labels = "asdfghjklqwertyuiopzxcvbn",
         search = {
           exclude = {
             "notify",
@@ -209,6 +210,10 @@ return {
             end,
           },
         },
+        label = {
+          -- uppercase = false,
+          exclude = "S",
+        },
         jump = {
           -- automatically jump when there is only one match
           autojump = true,
@@ -218,8 +223,25 @@ return {
             enabled = false,
           },
           char = {
-            enabled = false,
+            enabled = true,
+            keys = { "f", "F", ";", "," },
+            jump_labels = true,
+            highlight = { backdrop = false },
+            -- search = { wrap = true },
+            -- When using jump labels, don't use these keys
+            -- This allows using those keys directly after the motion
+            label = { exclude = "hjkliardcx" },
           },
+        },
+        remote_op = {
+          -- restore window views and cursor position
+          -- after doing a remote operation
+          restore = true,
+          -- For `jump.pos = "range"`, this setting is ignored.
+          -- `true`: always enter a new motion when doing a remote operation
+          -- `false`: use the window's cursor position and jump target
+          -- `nil`: act as `true` for remote windows, `false` for the current window
+          motion = true,
         },
       }
     end,
@@ -349,6 +371,7 @@ return {
   },
   {
     "folke/trouble.nvim",
+    enabled = false,
     cmd = "TroubleToggle",
     opts = {
       padding = false,
