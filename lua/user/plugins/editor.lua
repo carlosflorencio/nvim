@@ -416,6 +416,7 @@ return {
   {
     -- folds
     "kevinhwang91/nvim-ufo",
+    enabled = false,
     dependencies = "kevinhwang91/promise-async",
     event = "BufReadPost",
     opts = {
@@ -605,14 +606,14 @@ return {
     end,
   },
 
-  {
-    -- insert mode navigation on tab
-    "abecodes/tabout.nvim",
-    enabled = true,
-    event = "InsertEnter",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    opts = {},
-  },
+  -- {
+  --   -- insert mode navigation on tab
+  --   "abecodes/tabout.nvim",
+  --   enabled = true,
+  --   event = "InsertEnter",
+  --   dependencies = "nvim-treesitter/nvim-treesitter",
+  --   opts = {},
+  -- },
 
   {
     "Wansmer/treesj",
@@ -638,6 +639,7 @@ return {
   -- references
   {
     "RRethy/vim-illuminate",
+    enabled = false,
     event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("illuminate").configure {

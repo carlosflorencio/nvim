@@ -30,12 +30,19 @@ function M.get()
       { "<leader>le", "<cmd>Telescope quickfix<cr>", desc = "Telescope Quickfix" },
       { "<leader>lR", "<cmd>LspRestart<cr>", desc = "Restart LSP" },
       {
+        "<leader>lt",
+        function()
+          require("user.plugins.lsp.utils").toggle_diagnostic_current_buffer()
+        end,
+        desc = "Toggle Diagnostic current buffer",
+      },
+      {
         "K",
         function()
-          local winid = require("ufo").peekFoldedLinesUnderCursor()
-          if not winid then
-            vim.lsp.buf.hover()
-          end
+          -- local winid = require("ufo").peekFoldedLinesUnderCursor()
+          -- if not winid then
+          vim.lsp.buf.hover()
+          -- end
         end,
         desc = "Hover",
       },

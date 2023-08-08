@@ -71,9 +71,11 @@ function M.close_tree_if_many_windows()
   if layout[1] == "leaf" or #layout[2] == windows_to_close_tree - 1 then
     vim.schedule(function()
       if not require("nvim-tree.api").tree.is_visible() then
-        require("nvim-tree.api").tree.toggle {
-          focus = false,
-        }
+        pcall(function()
+          require("nvim-tree.api").tree.toggle {
+            focus = false,
+          }
+        end)
       end
     end)
   else

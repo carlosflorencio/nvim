@@ -193,6 +193,7 @@ return {
 
   {
     "petertriho/nvim-scrollbar",
+    enabled = false,
     config = function()
       require("scrollbar").setup {
         excluded_filetypes = require("user.util.constants").disabled_filetypes,

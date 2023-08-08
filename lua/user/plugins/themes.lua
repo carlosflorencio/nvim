@@ -14,7 +14,7 @@ return {
   {
     "projekt0n/github-nvim-theme",
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    enabled = true,
+    enabled = false,
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       require("github-theme").setup {
@@ -54,7 +54,7 @@ return {
   {
     -- JSX elements highlight not great, component and props with the same color
     "navarasu/onedark.nvim",
-    enabled = false,
+    enabled = true,
     lazy = false,
     priority = 1000,
     config = function()

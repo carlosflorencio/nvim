@@ -36,7 +36,7 @@ local function new()
     if vim.fn.index(vim.fn.map(vim.fn.gettabinfo(), "v:val.tabnr"), saved_scratch) == -1 then
       filetype_tabs[current_buffer_ft] = nil
     else
-      print(vim.inspect(saved_scratch))
+      -- print(vim.inspect(saved_scratch))
       vim.cmd("tabn " .. saved_scratch)
       return
     end

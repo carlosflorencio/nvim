@@ -64,10 +64,10 @@ function M.capabilities()
   vim.tbl_deep_extend("force", updated_capabilities, cmp_lsp.default_capabilities())
 
   -- nvim-ufo
-  updated_capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true,
-  }
+  -- updated_capabilities.textDocument.foldingRange = {
+  --   dynamicRegistration = false,
+  --   lineFoldingOnly = true,
+  -- }
 
   return updated_capabilities
 end
@@ -79,6 +79,19 @@ function M.filterTypescriptDefinitionFiles(value)
   elseif value.targetUri then
     return string.match(value.targetUri, "%.d.ts") == nil
   end
+end
+
+local lsp_diagnostic_enabled = true
+function M.toggle_diagnostic_current_buffer()
+  -- print(lsp_diagnostic_enabled)
+
+  if lsp_diagnostic_enabled then
+    vim.diagnostic.hide(nil, 0)
+  else
+    vim.diagnostic.show(nil, 0)
+  end
+
+  lsp_diagnostic_enabled = not lsp_diagnostic_enabled
 end
 
 return M

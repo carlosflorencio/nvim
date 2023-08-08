@@ -8,6 +8,7 @@ vim.filetype.add {
     [".env.local"] = "dotenv",
     [".env.production"] = "dotenv",
     ["tsconfig.json"] = "jsonc",
+    ["Earthfile"] = "Earthfile",
   },
 }
 

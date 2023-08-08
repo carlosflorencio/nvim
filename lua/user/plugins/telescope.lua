@@ -23,7 +23,7 @@ return {
           "kkharji/sqlite.lua",
           {
             "nvim-telescope/telescope-fzf-native.nvim",
-            build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+            build = "make",
             config = function()
               require("telescope").load_extension "fzf"
             end,
@@ -31,7 +31,7 @@ return {
         },
       },
       "nvim-lua/plenary.nvim",
-      "telescope-fzf-native.nvim",
+      -- "telescope-fzf-native.nvim",
       "nvim-telescope/telescope-live-grep-args.nvim",
       "nvim-telescope/telescope-dap.nvim",
       "benfowler/telescope-luasnip.nvim",

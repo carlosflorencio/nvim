@@ -33,10 +33,10 @@ vim.opt.spellcapcheck = "" -- disable caps check
 vim.opt.spellsuggest = "best,6"
 
 -- folds ufo
-vim.o.foldcolumn = "0" -- '0' is not bad
-vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-vim.o.foldlevelstart = 99
-vim.o.foldenable = true
+-- vim.o.foldcolumn = "0" -- '0' is not bad
+-- vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+-- vim.o.foldlevelstart = 99
+-- vim.o.foldenable = true
 
 vim.o.mouse = "a" -- Enable mouse mode
 vim.o.clipboard = "unnamedplus" -- Enable mouse mode

@@ -223,7 +223,8 @@ vim.keymap.set("n", "<leader>sy", function()
 end, { desc = "Copy treesitter captures under cursor" })
 
 -- don't yank the replaced text after pasting in visual mode
-vim.keymap.set("x", "p", '"_dP')
+-- use P
+-- vim.keymap.set("x", "p", "P")
 
 -- jump to next special char
 vim.keymap.set("i", "jj", "<c-o>:call search('}\\|)\\|]\\|>\\|\"', 'cW')<cr><Right>")

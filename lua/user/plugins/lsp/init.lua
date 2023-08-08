@@ -47,6 +47,7 @@ return {
         "taplo", --toml
         "quick_lint_js",
         "vimls",
+        "yamlls",
       },
     },
   },
@@ -134,6 +135,8 @@ return {
 
       lspconfig["html"].setup {}
 
+      lspconfig["starlark_rust"].setup {}
+
       lspconfig["pyright"].setup {}
 
       lspconfig["eslint"].setup {
@@ -160,7 +163,22 @@ return {
       lspconfig["yamlls"].setup {
         settings = {
           yaml = {
-            schemas = require("schemastore").json.schemas(),
+            schemas = require("schemastore").yaml.schemas {
+              extra = {
+                {
+                  description = "K8s Config Map",
+                  fileMatch = { "**/config-maps/**/*.yaml" },
+                  name = "K8s Config Map",
+                  url = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.27.4/configmap.json",
+                },
+                {
+                  description = "K8s Job",
+                  fileMatch = { "job.yml" },
+                  name = "K8s Job",
+                  url = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.27.4/job.json",
+                },
+              },
+            },
           },
         },
       }
@@ -304,9 +322,12 @@ return {
     ft = { "typescript", "typescriptreact" },
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     config = function()
+      local mason_registry = require "mason-registry"
+      local tsserver_path = mason_registry.get_package("typescript-language-server"):get_install_path()
       require("typescript-tools").setup {
         root_dir = require("lspconfig").util.root_pattern(".git", "package-lock.json", "yarn.lock"),
         settings = {
+          tsserver_path = tsserver_path .. "/node_modules/typescript/lib/tsserver.js",
           tsserver_file_preferences = {
             importModuleSpecifierPreference = "relative",
             -- includeInlayParameterNameHints = "all",
