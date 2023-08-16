@@ -66,7 +66,7 @@ return {
         },
       }
       require("onedark").load()
-      vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { link = "EndOfBuffer" })
+      vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { link = "Ignore" })
     end,
   },
 
