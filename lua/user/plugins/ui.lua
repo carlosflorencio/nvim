@@ -192,17 +192,6 @@ return {
   },
 
   {
-    "petertriho/nvim-scrollbar",
-    enabled = false,
-    config = function()
-      require("scrollbar").setup {
-        excluded_filetypes = require("user.util.constants").disabled_filetypes,
-      }
-    end,
-    event = "VeryLazy",
-  },
-
-  {
     "karb94/neoscroll.nvim",
     enabled = true,
     event = "BufRead",
@@ -273,48 +262,6 @@ return {
           "NvimTree",
         },
       },
-    },
-  },
-
-  {
-    -- treesitter on popup menu, but I don't like the cmdline interface
-    -- also, lsp signature is a bit odd
-    "folke/noice.nvim",
-    enabled = false,
-    event = "VeryLazy",
-    opts = {
-      cmdline = {
-        enabled = false,
-      },
-      messages = {
-        enabled = false,
-      },
-      lsp = {
-        progress = {
-          enabled = false,
-        },
-        signature = {
-          enabled = false,
-        },
-        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-        -- override = {
-        --   ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-        --   ["vim.lsp.util.stylize_markdown"] = true,
-        --   ["cmp.entry.get_documentation"] = true,
-        -- },
-      },
-      -- you can enable a preset for easier configuration
-      presets = {
-        bottom_search = true, -- use a classic bottom cmdline for search
-        command_palette = false, -- position the cmdline and popupmenu together
-        long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = false, -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = false, -- add a border to hover docs and signature help
-      },
-    },
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
     },
   },
 }

@@ -11,13 +11,6 @@ return {
   },
 
   {
-    -- Detect tabstop and shiftwidth automatically
-    "tpope/vim-sleuth",
-    enabled = false,
-    lazy = false,
-  },
-
-  {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
@@ -121,7 +114,7 @@ return {
       pre_save_cmds = {
         -- "lua require('nvim-tree.api').tree.close_in_all_tabs()",
         "lua require('user.util.windows').close_all_floating_wins()",
-        -- "lua require('user.util.windows').close_all_nvim_tree_buffers()",
+        "lua require('user.util.windows').close_all_nvim_tree_buffers()",
       },
       -- post_restore_cmds = { "lua require('user.util.windows').close_tree_if_many_windows()" },
       -- post_restore_cmds = { "lua print('hello')", "lua print(require('nvim-tree.api').tree.is_visible())" },
@@ -129,14 +122,6 @@ return {
         load_on_setup = false,
       },
     },
-    lazy = false,
-  },
-
-  {
-    -- buffers separated per tab
-    "tiagovla/scope.nvim",
-    enabled = false,
-    opts = {},
     lazy = false,
   },
 
@@ -177,19 +162,6 @@ return {
     "windwp/nvim-ts-autotag",
     opts = {},
     lazy = false,
-  },
-
-  {
-    -- labels for horizontal search
-    "jinh0/eyeliner.nvim",
-    enabled = false,
-    event = "VeryLazy",
-    config = function()
-      require("eyeliner").setup {
-        highlight_on_key = true, -- show highlights only after keypress
-        dim = true, -- dim all other characters if set to true (recommended!)
-      }
-    end,
   },
 
   {
@@ -283,75 +255,6 @@ return {
   },
 
   {
-    "ggandor/leap.nvim",
-    enabled = false,
-    opts = {
-      labels = {
-        "s",
-        "f",
-        "n",
-        "j",
-        "k",
-        "l",
-        "h",
-        "o",
-        "d",
-        "w",
-        "e",
-        -- "m", -- conflicts with marks plugin
-        "b",
-        "u",
-        "y",
-        "v",
-        "r",
-        "g",
-        "t",
-        "c",
-        "x",
-        "/",
-        "z",
-        "S",
-        "F",
-        "N",
-        "J",
-        "K",
-        "L",
-        "H",
-        "O",
-        "D",
-        "W",
-        "E",
-        "M",
-        "B",
-        "U",
-        "Y",
-        "V",
-        "R",
-        "G",
-        "T",
-        "C",
-        "X",
-        "?",
-        "Z",
-      },
-    },
-    config = function(_, opts)
-      local leap = require "leap"
-      for k, v in pairs(opts) do
-        leap.opts[k] = v
-      end
-      leap.add_default_mappings(true)
-      vim.keymap.del({ "x", "o" }, "x")
-      vim.keymap.del({ "x", "o" }, "X")
-    end,
-    keys = {
-      { "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
-      { "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
-      { "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
-    },
-  },
-
-  {
     -- powerful search & replace
     "windwp/nvim-spectre",
     opts = {},
@@ -367,22 +270,6 @@ return {
         end,
         desc = "Replace in files (Spectre)",
       },
-    },
-  },
-  {
-    "folke/trouble.nvim",
-    enabled = false,
-    cmd = "TroubleToggle",
-    opts = {
-      padding = false,
-    },
-    keys = {
-      { "<leader>tt", "<cmd>TroubleToggle<cr>", desc = "Trouble" },
-      -- { "<leader>Tw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "workspace" },
-      -- { "<leader>Td", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "document" },
-      -- { "<leader>Tq", "<cmd>TroubleToggle quickfix<cr>", desc = "quickfix" },
-      -- { "<leader>Tl", "<cmd>TroubleToggle loclist<cr>", desc = "loclist" },
-      -- { "<leader>Tr", "<cmd>TroubleToggle lsp_references<cr>", desc = "references" },
     },
   },
   {
@@ -411,43 +298,6 @@ return {
     keys = {
       { "<leader>'", "<cmd>Dirbuf<cr>", desc = "Dirbuf" },
     },
-  },
-
-  {
-    -- folds
-    "kevinhwang91/nvim-ufo",
-    enabled = false,
-    dependencies = "kevinhwang91/promise-async",
-    event = "BufReadPost",
-    opts = {
-      close_fold_kinds = { "imports" },
-      -- provider_selector = function(bufnr, filetype, buftype)
-      --   return { 'treesitter', 'indent' }
-      -- end,
-      preview = {
-        mappings = {
-          scrollU = "<C-u>",
-          scrollD = "<C-d>",
-        },
-      },
-    },
-    init = function()
-      -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
-      vim.keymap.set("n", "zR", function()
-        require("ufo").openAllFolds()
-      end)
-      vim.keymap.set("n", "zM", function()
-        require("ufo").closeAllFolds()
-      end)
-
-      vim.keymap.set("n", "zr", function()
-        require("ufo").openFoldsExceptKinds()
-      end)
-
-      vim.keymap.set("n", "zm", function()
-        require("ufo").closeFoldsWith()
-      end)
-    end,
   },
 
   {
@@ -633,41 +483,6 @@ return {
         '<cmd>lua require("ts-node-action").node_action()<cr>',
         desc = "Toggle node action under cursor",
       },
-    },
-  },
-
-  -- references
-  {
-    "RRethy/vim-illuminate",
-    enabled = false,
-    event = { "BufReadPost", "BufNewFile" },
-    config = function()
-      require("illuminate").configure {
-        delay = 200,
-        filetypes_denylist = require("user.util.constants").disabled_filetypes,
-      }
-
-      local function map(key, dir, buffer)
-        vim.keymap.set("n", key, function()
-          require("illuminate")["goto_" .. dir .. "_reference"](false)
-        end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
-      end
-
-      map("]]", "next")
-      map("[[", "prev")
-
-      -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
-      vim.api.nvim_create_autocmd("FileType", {
-        callback = function()
-          local buffer = vim.api.nvim_get_current_buf()
-          map("]]", "next", buffer)
-          map("[[", "prev", buffer)
-        end,
-      })
-    end,
-    keys = {
-      { "]]", desc = "Next Reference" },
-      { "[[", desc = "Prev Reference" },
     },
   },
 

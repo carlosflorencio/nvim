@@ -72,9 +72,4 @@ return {
       }
     end,
   },
-  {
-    -- statuslune lsp progress
-    "arkav/lualine-lsp-progress",
-    enabled = false,
-  },
 }
