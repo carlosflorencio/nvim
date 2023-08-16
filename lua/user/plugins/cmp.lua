@@ -61,13 +61,13 @@ return { -- auto completion
         mapping = cmp.mapping.preset.insert {
           -- copilot
           ["<C-l>"] = function()
-            require("copilot.suggestion").accept()
+            -- require("copilot.suggestion").accept()
           end,
           ["<M-j>"] = function()
-            require("copilot.suggestion").next()
+            -- require("copilot.suggestion").next()
           end,
           ["<M-k>"] = function()
-            require("copilot.suggestion").prev()
+            -- require("copilot.suggestion").prev()
           end,
 
           ["<C-k>"] = cmp_mapping(cmp_mapping.select_prev_item(), { "i", "c" }),
