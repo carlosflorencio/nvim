@@ -25,7 +25,7 @@ vim.keymap.set({ "n" }, "<F3>", function()
   require("spectre").open_visual { select_word = true, path = path }
 end)
 vim.keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
--- vim.keymap.set("n", "<esc>", ":noh <CR>", { desc = "Clear highlights" })
+vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear highlights" })
 
 -- Paste
 vim.keymap.set("v", "<C-p>", "y'>p")
@@ -50,6 +50,8 @@ vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
+
+vim.keymap.set("n", "<BS>", "ciw")
 
 -- Resize window using <ctrl> arrow keys
 vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
@@ -90,7 +92,7 @@ vim.keymap.set("n", "<leader>sc", "<cmd>close<cr>", { desc = "Close split" })
 vim.keymap.set("n", "<leader>st", "<c-w>T", { desc = "Move split into Tab" })
 
 -- quit buffers / windows
-vim.keymap.set("n", "<leader>qa", "<cmd>qa<cr>", { desc = "Quit all" })
+vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 vim.keymap.set("n", "<leader>cw", "<cmd>close<cr>", { desc = "Close Window" })
 
 vim.keymap.set("n", "<leader>ct", "<cmd>tabclose<cr>", { desc = "Close Tab" })

@@ -192,6 +192,14 @@ return {
       { "<leader>fS", "<cmd>Telescope luasnip theme=dropdown<cr>", desc = "Snippets" },
       { "<leader>fu", "<cmd>Telescope undo initial_mode=normal<cr>", desc = "Undo list" },
       {
+        "<leader>y",
+        function()
+          require("telescope").extensions.yank_history.yank_history { initial_mode = "normal" }
+        end,
+        desc = "Open Yank History",
+        mode = { "n", "x" },
+      },
+      {
         "<leader>ft",
         "<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>",
         desc = "Colorscheme with Preview",

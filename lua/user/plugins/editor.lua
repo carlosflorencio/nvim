@@ -270,6 +270,13 @@ return {
         end,
         desc = "Replace in files (Spectre)",
       },
+      {
+        "<leader>sr",
+        function()
+          require("spectre").open()
+        end,
+        desc = "Replace in files (Spectre)",
+      },
     },
   },
   {
@@ -455,15 +462,6 @@ return {
       end
     end,
   },
-
-  -- {
-  --   -- insert mode navigation on tab
-  --   "abecodes/tabout.nvim",
-  --   enabled = true,
-  --   event = "InsertEnter",
-  --   dependencies = "nvim-treesitter/nvim-treesitter",
-  --   opts = {},
-  -- },
 
   {
     "Wansmer/treesj",
