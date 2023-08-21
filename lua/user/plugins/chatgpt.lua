@@ -25,22 +25,29 @@ return {
       require("chatgpt").setup {
         chat = {
           keymaps = {
-            close = { "<C-c>" },
+            close = { "<C-q>" },
           },
         },
         edit_with_instructions = {
           diff = true,
           keymaps = {
-            close = { "<C-c>" },
+            close = { "<C-q>" },
           },
         },
         popup_layout = {
-          default = "right",
+          default = "center",
         },
         popup_input = {
           submit = "<Enter>",
           submit_n = "<Enter>",
         },
+        openai_params = {
+          model = "gpt-3.5-turbo",
+          -- max_tokens = 300,
+        },
+        -- openai_edit_params = {
+        --   model = "gpt-3.5-turbo",
+        -- },
         actions_paths = {
           vim.fn.stdpath "config" .. "/chatgpt/actions.json",
         },
@@ -49,7 +56,7 @@ return {
     end,
     keys = {
       { "<leader>aa", "<cmd>ChatGPT<cr>", desc = "ChatGPT Prompt" },
-      { "<leader>ae", "<cmd>ChatGPTEditWithInstructions<cr>", desc = "ChatGPT Edit with Instructions", mode = "v" },
+      { "<leader>aa", "<cmd>ChatGPTEditWithInstructions<cr>", desc = "ChatGPT Edit with Instructions", mode = "v" },
       {
         "<leader>ar",
         "<cmd>ChatGPTRun code_readability_analysis<cr>",
@@ -60,25 +67,14 @@ return {
     },
   },
 
-  -- {
-  --   "james1236/backseat.nvim",
-  --   config = function()
-  --     require("backseat").setup {
-  --       openai_model_id = "gpt-3.5-turbo", --gpt-4 (If you do not have access to a model, it says "The model does not exist")
-
-  --       -- split_threshold = 100,
-  --       -- additional_instruction = "Respond snarkily", -- (GPT-3 will probably deny this request, but GPT-4 complies)
-  --       -- highlight = {
-  --       --     icon = '', -- ''
-  --       --     group = 'Comment',
-  --       -- }
-  --     }
-  --   end,
-  --   cmd = {
-  --     "Backseat",
-  --     "BackseatAsk",
-  --     "BackseatClear",
-  --     "BackseatClearLine",
-  --   },
-  -- },
+  {
+    -- using text-davinci-003, more expensive but works better for completions
+    "aduros/ai.vim",
+    init = function()
+      vim.g.ai_no_mappings = 1
+    end,
+    keys = {
+      { "<c-a>", "<cmd>AI<cr>", desc = "ChatGPT AI Insert", mode = { "i" } },
+    },
+  },
 }

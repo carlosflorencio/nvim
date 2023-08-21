@@ -195,7 +195,7 @@ return {
             enabled = false,
           },
           char = {
-            enabled = true,
+            enabled = false,
             keys = { "f", "F", ";", "," },
             jump_labels = true,
             highlight = { backdrop = false },

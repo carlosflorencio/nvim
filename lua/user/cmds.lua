@@ -2,7 +2,6 @@ local M = {}
 
 M.projectPaths = {}
 M.projectPaths["tracker-api"] = "Geartrack/tracker%-api/"
-M.projectPaths["web"] = "Careerfairy/web/"
 
 M.buildProjectBefore = function(callback)
   local bufPath = vim.api.nvim_buf_get_name(0)
@@ -23,18 +22,26 @@ M.runCmd = function(listCmd, cwd, callback)
     stderr_buffered = true,
     cwd = cwd,
     on_stderr = function(_, data)
-      if data then print(data) end
+      if data then
+        print(data)
+      end
     end,
-    on_exit = function() callback() end,
+    on_exit = function()
+      callback()
+    end,
   })
 end
 
 M.bufferInPath = function(pathPattern, bufPath)
   local path = bufPath
 
-  if path == nil then path = vim.api.nvim_buf_get_name(0) end
+  if path == nil then
+    path = vim.api.nvim_buf_get_name(0)
+  end
 
-  if string.find(path, pathPattern) then return true end
+  if string.find(path, pathPattern) then
+    return true
+  end
 
   return false
 end

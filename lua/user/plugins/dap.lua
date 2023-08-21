@@ -31,11 +31,17 @@ return {
         keys = {
           { ",U", "<cmd>lua require('dapui').toggle()<CR>", desc = "Toggle DAP UI" },
           { ",C", "<cmd>lua require('dapui').close()<CR>", desc = "Close DAP UI" },
+          {
+            ",dd",
+            function()
+              require("dapui").eval()
+            end,
+            desc = "Debug Hover Evaluate Expression",
+          },
         },
       },
       "mxsdev/nvim-dap-vscode-js",
     },
-
     config = function()
       local dap = require "dap"
 
@@ -102,10 +108,16 @@ return {
       end
 
       -- auto open dap ui
-      dap.listeners.after.event_initialized["dapui_config"] = function() require("dapui").open() end
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        require("dapui").open()
+      end
       -- auto close dap ui
-      dap.listeners.before.event_terminated["dapui_config"] = function() require("dapui").close() end
-      dap.listeners.before.event_exited["dapui_config"] = function() require("dapui").close() end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        require("dapui").close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        require("dapui").close()
+      end
 
       --icons
       local user_icons = require("user.ui").icons
@@ -128,6 +140,42 @@ return {
         numhl = "DiagnosticSignWarn",
       })
     end,
+    keys = {
+      {
+        ",df",
+        function()
+          require("user.cmds").buildProjectBefore(function()
+            require("dap").continue()
+          end)
+        end,
+        desc = "Debug File",
+      },
+      {
+        ",dso",
+        "<cmd>lua require('dap').step_over()<cr>",
+        desc = "Debug step over",
+      },
+      {
+        ",dsO",
+        "<cmd>lua require('dap').step_out()<cr>",
+        desc = "Debug step out",
+      },
+      {
+        ",dsi",
+        "<cmd>lua require('dap').step_into()<cr>",
+        desc = "Debug step into",
+      },
+      {
+        ",dc",
+        "<cmd>lua require('dap').continue()<cr>",
+        desc = "Debug continue",
+      },
+      {
+        ",dt",
+        "<cmd>lua require('dap').terminate()<cr>",
+        desc = "Debug terminate",
+      },
+    },
   },
 
   {
@@ -179,12 +227,16 @@ return {
     keys = {
       {
         "]b",
-        function() require("goto-breakpoints").next() end,
+        function()
+          require("goto-breakpoints").next()
+        end,
         desc = "Next breakpoint",
       },
       {
         "[b",
-        function() require("goto-breakpoints").prev() end,
+        function()
+          require("goto-breakpoints").prev()
+        end,
         desc = "Previous breakpoint",
       },
     },

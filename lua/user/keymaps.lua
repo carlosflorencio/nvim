@@ -93,7 +93,9 @@ vim.keymap.set("n", "<leader>st", "<c-w>T", { desc = "Move split into Tab" })
 
 -- quit buffers / windows
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
-vim.keymap.set("n", "<leader>cw", "<cmd>close<cr>", { desc = "Close Window" })
+vim.keymap.set("n", "<leader>cw", function()
+  require("user.util.windows").close_window_and_tree_if_last()
+end, { desc = "Close Window" })
 
 vim.keymap.set("n", "<leader>ct", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 vim.keymap.set(

@@ -24,6 +24,21 @@ function M.close_window()
   end)
 end
 
+function M.close_window_and_tree_if_last()
+  local nvim_tree_open = M.is_tree_open_current_tab()
+
+  vim.cmd [[close]]
+
+  local layout = vim.api.nvim_call_function("winlayout", {})
+
+  -- close tree if last buffer
+  if layout[1] == "leaf" and nvim_tree_open then
+    vim.schedule(function()
+      require("nvim-tree.api").tree.close()
+    end)
+  end
+end
+
 -- Open a new vsplit and close nvim-tree if there are more than 2 splits
 function M.new_vsplit()
   vim.cmd [[vsplit]]
@@ -55,6 +70,12 @@ end
 -- Open nvim-tree in a tab if there is only one window in the current tab
 -- close if there are more than two 2 windows
 function M.close_tree_if_many_windows()
+  local current_debug_session = require("dap").session()
+
+  if current_debug_session ~= nil then
+    -- ignore window arrangment when debugging
+    return
+  end
   -- layout is more reliable than windows
   -- sometimes there were hidden windows that would skew the count
 

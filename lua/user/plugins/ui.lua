@@ -192,6 +192,7 @@ return {
   },
 
   {
+    -- smooth scrolling
     "karb94/neoscroll.nvim",
     enabled = true,
     event = "BufRead",

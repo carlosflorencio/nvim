@@ -35,7 +35,9 @@ return {
           end
         end,
       },
-      -- "nvim-treesitter/nvim-treesitter-context",
+      -- better incremental selection
+      "RRethy/nvim-treesitter-textsubjects",
+      "nvim-treesitter/nvim-treesitter-context",
     },
     ---@type TSConfig
     opts = {
@@ -108,7 +110,22 @@ return {
       incremental_selection = {
         enable = false,
       },
+      -- better incremental selection
+      textsubjects = {
+        enable = true,
+        prev_selection = "<bs>", -- (Optional) keymap to select the previous selection
+        keymaps = {
+          ["<cr>"] = "textsubjects-smart",
+          [";"] = "textsubjects-container-outer",
+          ["i;"] = "textsubjects-container-inner",
+        },
+      },
     },
+    keys = {
+      { "<cr>", desc = "Increment selection", mode = { "x", "n" } },
+      { "<bs>", desc = "Decrement selection", mode = "x" },
+    },
+
     ---@param opts TSConfig
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
@@ -121,6 +138,7 @@ return {
     -- node_incremental = "<CR>",
     -- node_decremental = "<BS>",
     "sustech-data/wildfire.nvim",
+    enabled = false, -- some errors at 17 aug 2023, try later
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()

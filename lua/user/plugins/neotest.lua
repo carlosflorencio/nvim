@@ -8,7 +8,11 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
       "mfussenegger/nvim-dap",
-      "haydenmeade/neotest-jest",
+      -- "haydenmeade/neotest-jest",
+      {
+        "carlosflorencio/neotest-jest",
+        branch = "feature/support-unit-files",
+      },
     },
     config = function()
       local neotest = require "neotest"
@@ -32,12 +36,31 @@ return {
         adapters = {
           require "neotest-jest" {
             jestCommand = "npx jest",
-            -- jestConfigFile = "jest.config.ts",
+            jestConfigFile = function(currentFile)
+              local currentFolder = vim.fn.expand "%:p:h"
+              local packageRoot = neotestLib.files.match_root_pattern "package.json"(currentFolder)
+
+              if string.find(packageRoot, "bff%-channel%-guide") then
+                -- different config files per types of test
+                local suffix = string.match(currentFile, "%.(%w+)%.ts$")
+                if suffix then
+                  return packageRoot .. "/tests/config/jest." .. suffix .. ".config.json"
+                end
+              end
+
+              return "jest.config.ts"
+            end,
             -- env = { CI = false },
             cwd = function(path)
               local root = neotestLib.files.match_root_pattern "package.json"(path)
 
               return root
+            end,
+            env = function()
+              return {
+                -- ["JEST_HTML_REPORTERS_OPEN_REPORT"] = "",
+                ["NODE_ENV"] = "test", -- prevent report from opening
+              }
             end,
             -- strategy_config = function(args)
             --   -- if cmds.bufferInPath(cmds.projectPaths["tracker-api"]) then
@@ -107,27 +130,18 @@ return {
         desc = "Debug nearest test under cursor",
       },
       { ",to", '<cmd>lua require("neotest").output.open()<cr>', "Test Output Dialog" },
-      {
-        ",dt",
-        function()
-          require("user.cmds").buildProjectBefore(function()
-            require("neotest").run.run {
-              vim.fn.expand "%",
-              strategy = "dap",
-            }
-          end)
-        end,
-        desc = "Debug Test File",
-      },
-      {
-        ",dd",
-        function()
-          require("user.cmds").buildProjectBefore(function()
-            require("dap").continue()
-          end)
-        end,
-        desc = "Debug File",
-      },
+      -- {
+      --   ",dt",
+      --   function()
+      --     require("user.cmds").buildProjectBefore(function()
+      --       require("neotest").run.run {
+      --         vim.fn.expand "%",
+      --         strategy = "dap",
+      --       }
+      --     end)
+      --   end,
+      --   desc = "Debug Test File",
+      -- },
     },
   },
 }
