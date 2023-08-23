@@ -115,7 +115,7 @@ vim.keymap.set("n", "<leader>tc", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 
 -- selections
 vim.keymap.set("v", "<leader>i", "<esc>`<i", { desc = "Insert at beginning selection" })
-vim.keymap.set("v", "<leader>a", "<esc>`>a", { desc = "Insert at end selection" })
+-- vim.keymap.set("v", "<leader>a", "<esc>`>a", { desc = "Insert at end selection" })
 
 vim.keymap.set("n", "<leader>b", "<cmd>enew<cr>", { desc = "New Buffer" })
 

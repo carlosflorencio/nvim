@@ -7,9 +7,9 @@ return {
     },
     cmd = "Chat",
     keys = {
-      { "<leader>at", "<cmd>Chat tests<cr>", desc = "ChatGPT Generate Tests", mode = "v" },
-      { "<leader>ad", "<cmd>ChatGPTRun doc<cr>", desc = "ChatGPT Generate Doc Comment", mode = "v" },
-      { "<leader>ao", "<cmd>ChatGPTRun opt<cr>", desc = "ChatGPT Optmize code", mode = "v" },
+      { "<leader>at", "<cmd>Chat tests<cr>", desc = "ChatGPT Generate Tests", mode = { "v", "x" } },
+      { "<leader>ad", "<cmd>ChatGPTRun doc<cr>", desc = "ChatGPT Generate Doc Comment", mode = { "v", "x" } },
+      { "<leader>ao", "<cmd>ChatGPTRun opt<cr>", desc = "ChatGPT Optmize code", mode = { "v", "x" } },
     },
   },
 

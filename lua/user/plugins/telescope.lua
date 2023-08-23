@@ -24,14 +24,10 @@ return {
           {
             "nvim-telescope/telescope-fzf-native.nvim",
             build = "make",
-            config = function()
-              require("telescope").load_extension "fzf"
-            end,
           },
         },
       },
       "nvim-lua/plenary.nvim",
-      -- "telescope-fzf-native.nvim",
       "nvim-telescope/telescope-live-grep-args.nvim",
       "nvim-telescope/telescope-dap.nvim",
       "benfowler/telescope-luasnip.nvim",
@@ -107,6 +103,7 @@ return {
           },
           smart_open = {
             ignore_patterns = { "*.git/*", "*/tmp/*", "*/dist/*" },
+            match_algorithm = "fzf",
           },
           fzf = {
             fuzzy = true, -- false will only do exact matching

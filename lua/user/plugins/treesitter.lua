@@ -122,8 +122,8 @@ return {
       },
     },
     keys = {
-      { "<cr>", desc = "Increment selection", mode = { "x", "n" } },
-      { "<bs>", desc = "Decrement selection", mode = "x" },
+      { "<cr>", desc = "Increment selection", mode = { "x", "v", "n" } },
+      { "<bs>", desc = "Decrement selection", mode = { "x", "v", "n" } },
     },
 
     ---@param opts TSConfig
