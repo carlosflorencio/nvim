@@ -152,6 +152,7 @@ M.icons = {
     Smiley = "",
     Package = "",
     CircuitBoard = "",
+    Codeium = " ",
   },
 }
 

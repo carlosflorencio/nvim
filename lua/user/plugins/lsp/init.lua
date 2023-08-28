@@ -320,7 +320,7 @@ return {
   {
     "pmizio/typescript-tools.nvim",
     enabled = true,
-    ft = { "typescript", "typescriptreact" },
+    ft = { "typescript", "typescriptreact", "javascript" },
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     config = function()
       local mason_registry = require "mason-registry"

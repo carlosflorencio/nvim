@@ -42,6 +42,7 @@ return { -- auto completion
         luasnip = "(Snippet)",
         buffer = "(Buffer)",
         copilot = "(Copilot)",
+        codeium = "(Codeium)",
         treesitter = "(TreeSitter)",
         nvim_lua = "(Nvim Lua)",
       }
@@ -60,15 +61,18 @@ return { -- auto completion
       cmp.setup {
         mapping = cmp.mapping.preset.insert {
           -- copilot
-          ["<C-l>"] = function()
-            -- require("copilot.suggestion").accept()
-          end,
-          ["<M-j>"] = function()
-            -- require("copilot.suggestion").next()
-          end,
-          ["<M-k>"] = function()
-            -- require("copilot.suggestion").prev()
-          end,
+          -- ["<C-l>"] = function()
+          --   -- require("copilot.suggestion").accept()
+          --   -- return vim.fn["codeium#Accept"]()
+          -- end,
+          -- ["<M-j>"] = function()
+          --   -- require("copilot.suggestion").next()
+          --   -- return vim.fn["codeium#CycleCompletions"](1)
+          -- end,
+          -- ["<M-k>"] = function()
+          --   -- require("copilot.suggestion").prev()
+          --   -- return vim.fn["codeium#CycleCompletions"](-1)
+          -- end,
 
           ["<C-k>"] = cmp_mapping(cmp_mapping.select_prev_item(), { "i", "c" }),
           ["<C-j>"] = cmp_mapping(cmp_mapping.select_next_item(), { "i", "c" }),
@@ -185,6 +189,11 @@ return { -- auto completion
 
             if entry.source.name == "copilot" then
               vim_item.kind = icons.git.Octoface
+              vim_item.kind_hl_group = "CmpItemKindCopilot"
+            end
+
+            if entry.source.name == "codeium" then
+              vim_item.kind = icons.misc.Codeium
               vim_item.kind_hl_group = "CmpItemKindCopilot"
             end
 
@@ -306,6 +315,28 @@ return { -- auto completion
   },
 
   { "rafamadriz/friendly-snippets" },
+
+  {
+    "Exafunction/codeium.vim",
+    event = "BufEnter",
+    init = function()
+      vim.g.codeium_disable_bindings = 1
+    end,
+    config = function()
+      vim.keymap.set("i", "<M-l>", function()
+        return vim.fn["codeium#Accept"]()
+      end, { expr = true })
+      vim.keymap.set("i", "<M-j>", function()
+        return vim.fn["codeium#CycleCompletions"](1)
+      end, { expr = true })
+      vim.keymap.set("i", "<M-k>", function()
+        return vim.fn["codeium#CycleCompletions"](-1)
+      end, { expr = true })
+      -- vim.keymap.set("i", "<C-e>", function()
+      --   return vim.fn["codeium#Clear"]()
+      -- end, { expr = true })
+    end,
+  },
 
   {
     "zbirenbaum/copilot.lua",

@@ -5,7 +5,8 @@ return {
     opts = function()
       local components = require "user.plugins.lualine.components"
       require "user.plugins.lualine.wakatime"
-      local disabled_filetypes = require("user.util.constants").disabled_filetypes
+      -- local disabled_filetypes = require("user.util.constants").disabled_filetypes
+      local wtf = require "wtf"
 
       return {
         options = {
@@ -61,6 +62,8 @@ return {
                 return package.loaded["codegpt"] ~= nil
               end,
             },
+            "codeium#GetStatusString",
+            { wtf.get_status },
             components.filetype,
             "searchcount",
             Lualine_get_wakatime,

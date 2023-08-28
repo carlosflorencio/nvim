@@ -77,4 +77,41 @@ return {
       { "<c-a>", "<cmd>AI<cr>", desc = "ChatGPT AI Insert", mode = { "i" } },
     },
   },
+
+  {
+    "piersolenski/wtf.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    init = function()
+      -- vim.g["wtf_hooks"] = {
+      --   request_started = function()
+      --     vim.cmd "hi StatusLine ctermbg=NONE ctermfg=yellow"
+      --   end,
+      --   request_finished = vim.schedule_wrap(function()
+      --     vim.cmd "hi StatusLine ctermbg=NONE ctermfg=NONE"
+      --   end),
+      -- }
+    end,
+    -- event = "VeryLazy",
+    opts = {},
+    keys = {
+      {
+        "<leader>ae",
+        mode = { "n" },
+        function()
+          require("wtf").ai()
+        end,
+        desc = "Debug diagnostic with AI",
+      },
+      {
+        mode = { "n" },
+        "<leader>aE",
+        function()
+          require("wtf").search()
+        end,
+        desc = "Search diagnostic with Google",
+      },
+    },
+  },
 }
