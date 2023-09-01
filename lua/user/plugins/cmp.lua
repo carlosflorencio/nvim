@@ -318,6 +318,7 @@ return { -- auto completion
 
   {
     "Exafunction/codeium.vim",
+    -- enabled = false,
     event = "BufEnter",
     init = function()
       vim.g.codeium_disable_bindings = 1

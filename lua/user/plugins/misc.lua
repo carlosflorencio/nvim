@@ -106,7 +106,8 @@ return {
       }
     end,
     keys = {
-      { "<leader>TT", "<cmd>ZenMode<cr>", desc = "Zen Mode" },
+      { "<leader>tz", "<cmd>ZenMode<cr>", desc = "Zen Mode" },
+      { "<leader>sm", "<cmd>ZenMode<cr>", desc = "Zen Mode" },
     },
   },
 
@@ -208,5 +209,10 @@ return {
         desc = "Harpoon file navigation",
       },
     },
+  },
+
+  {
+    -- <leader>h replace quickfix list in place
+    "gabrielpoca/replacer.nvim",
   },
 }

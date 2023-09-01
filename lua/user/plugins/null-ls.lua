@@ -15,13 +15,24 @@ return {
       --   end,
       -- }
       return {
+        debug = true,
         root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
 
         sources = {
           nls.builtins.formatting.fish_indent,
           nls.builtins.formatting.stylua,
           nls.builtins.formatting.shfmt,
-          nls.builtins.formatting.prettierd,
+          nls.builtins.formatting.prettier.with {
+            condition = function(utils)
+              return utils.root_has_file "package.json"
+            end,
+          },
+
+          -- nls.builtins.formatting.prettierd.with {
+          --   condition = function(utils)
+          --     return utils.root_has_file "package.json"
+          --   end,
+          -- },
 
           nls.builtins.diagnostics.fish,
           nls.builtins.diagnostics.actionlint,

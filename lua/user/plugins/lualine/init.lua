@@ -62,7 +62,7 @@ return {
                 return package.loaded["codegpt"] ~= nil
               end,
             },
-            "codeium#GetStatusString",
+            -- "codeium#GetStatusString", -- has an issue, makes entering buffers in insert mode
             { wtf.get_status },
             components.filetype,
             "searchcount",

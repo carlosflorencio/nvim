@@ -105,6 +105,13 @@ vim.keymap.set(
   { desc = "Close all buffers but the current one" }
 )
 
+vim.keymap.set("n", "<leader>caf", function()
+  vim.cmd ":%bd|e#|bd#"
+  vim.cmd "NvimTreeOpen"
+  vim.cmd "wincmd l"
+  vim.cmd "SessionSave"
+end, { desc = "Fix session save" })
+
 -- tabs
 vim.keymap.set("n", "<S-l>", "<cmd>tabn<cr>")
 vim.keymap.set("n", "<S-h>", "<cmd>tabp<cr>")

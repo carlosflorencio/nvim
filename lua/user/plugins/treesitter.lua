@@ -37,7 +37,12 @@ return {
       },
       -- better incremental selection
       "RRethy/nvim-treesitter-textsubjects",
-      "nvim-treesitter/nvim-treesitter-context",
+      {
+        "nvim-treesitter/nvim-treesitter-context",
+        opts = {
+          max_lines = 4,
+        },
+      },
     },
     ---@type TSConfig
     opts = {

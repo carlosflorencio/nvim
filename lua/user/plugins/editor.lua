@@ -495,11 +495,15 @@ return {
         cancel_event = "update",
       },
       highlight = {
-        on_put = false,
-        on_yank = false,
+        on_put = true,
+        on_yank = true,
+        timer = 100,
       },
       system_clipboard = {
         sync_with_ring = true,
+      },
+      preserve_cursor_position = {
+        enabled = true,
       },
     },
     keys = {
@@ -519,7 +523,7 @@ return {
       { "gP", "<Plug>(YankyGPutBefore)", mode = { "n", "x" } },
       { "]y", "<Plug>(YankyCycleBackward)", mode = "n" },
       { "[y", "<Plug>(YankyCycleForward)", mode = "n" },
-      { "<c-v>", "<esc><cmd>Telescope yank_history initial_mode=normal<cr>", mode = { "n", "i" } },
+      { "<c-v>", "<esc><cmd>Telescope yank_history initial_mode=normal<cr>", mode = { "n", "i", "v" } },
       { "y", "<Plug>(YankyYank)", mode = { "n", "x" } }, -- prevent going up when yanking
     },
   },
@@ -603,6 +607,18 @@ return {
     -- peek lines :number, <cr> to jump
     "nacro90/numb.nvim",
     event = "VeryLazy",
+    opts = {},
+  },
+
+  {
+    -- better vim.o.undofile, keeps undo history
+    -- when file is changed outside of vim
+    "kevinhwang91/nvim-fundo",
+    event = "BufReadPost",
+    dependencies = "kevinhwang91/promise-async",
+    build = function()
+      require("fundo").install()
+    end,
     opts = {},
   },
 }
