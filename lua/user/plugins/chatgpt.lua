@@ -79,6 +79,7 @@ return {
   },
 
   {
+    -- use chatgpt on lsp diagnostics
     "piersolenski/wtf.nvim",
     dependencies = {
       "MunifTanjim/nui.nvim",

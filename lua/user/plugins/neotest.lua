@@ -40,12 +40,20 @@ return {
               local currentFolder = vim.fn.expand "%:p:h"
               local packageRoot = neotestLib.files.match_root_pattern "package.json"(currentFolder)
 
+              -- print(vim.inspect(currentFolder))
+              -- print(vim.inspect(packageRoot))
+
               if string.find(packageRoot, "bff%-channel%-guide") then
                 -- different config files per types of test
                 local suffix = string.match(currentFile, "%.(%w+)%.ts$")
                 if suffix then
                   return packageRoot .. "/tests/config/jest." .. suffix .. ".config.json"
                 end
+              end
+
+              if string.find(packageRoot, "bff/galley") then
+                -- different config files per types of test
+                return "jest.config.js"
               end
 
               return "jest.config.ts"

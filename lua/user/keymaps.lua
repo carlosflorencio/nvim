@@ -14,6 +14,9 @@ vim.keymap.set("n", "<C-c>", ":bn|sp|bp|bd<CR>", { desc = "Close buffer" })
 vim.keymap.set("n", "] ", "o<ESC>k")
 vim.keymap.set("n", "[ ", "O<ESC>j")
 
+-- hightlight current word without moving to the next
+vim.keymap.set("n", "*", "*N")
+
 -- cr, bs
 -- vim.keymap.set("n", "<cr>", "ciw")
 
