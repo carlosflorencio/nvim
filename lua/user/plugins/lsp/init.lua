@@ -59,11 +59,11 @@ return {
     -- event = "VeryLazy",
     -- lazy = false,
     dependencies = {
-      {
-        "folke/neoconf.nvim",
-        cmd = "Neoconf",
-        config = true,
-      },
+      -- {
+      --   "folke/neoconf.nvim",
+      --   cmd = "Neoconf",
+      --   config = true,
+      -- },
       {
         "folke/neodev.nvim",
         opts = {
@@ -328,7 +328,7 @@ return {
       require("typescript-tools").setup {
         root_dir = require("lspconfig").util.root_pattern(".git", "package-lock.json", "yarn.lock"),
         settings = {
-          tsserver_path = tsserver_path .. "/node_modules/typescript/lib/tsserver.js",
+          -- tsserver_path = tsserver_path .. "/node_modules/typescript/lib/tsserver.js",
           tsserver_file_preferences = {
             importModuleSpecifierPreference = "relative",
             -- includeInlayParameterNameHints = "all",

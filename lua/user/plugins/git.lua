@@ -1,101 +1,13 @@
 return {
   {
-    "sindrets/diffview.nvim",
-    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
-    config = function()
-      local actions = require "diffview.actions"
-      local nvimTreeApi = require "nvim-tree.api"
-
-      require("diffview").setup {
-        view = {
-          merge_tool = {
-            layout = "diff3_mixed",
-          },
-        },
-        keymaps = {
-          view = {
-            {
-              "n",
-              "<leader>e",
-              actions.toggle_files,
-              {
-                desc = "Toggle the file panel.",
-              },
-            },
-            {
-              "n",
-              "<leader>l",
-              actions.cycle_layout,
-              {
-                desc = "Cycle through available layouts.",
-              },
-            },
-          },
-          file_panel = {
-            {
-              "n",
-              "<space>",
-              actions.toggle_stage_entry,
-              {
-                desc = "Stage / unstage the selected entry.",
-              },
-            },
-            {
-              "n",
-              "<C-w><C-f>",
-              actions.goto_file_split,
-              {
-                desc = "Open the file in a new split",
-              },
-            },
-            {
-              "n",
-              "<C-t>",
-              actions.goto_file_tab,
-              {
-                desc = "Open the file in a new tabpage",
-              },
-            },
-          },
-        },
-        hooks = {
-          view_opened = function()
-            -- nvimTreeApi.tree.close_in_this_tab()
-            nvimTreeApi.tree.close()
-            vim.cmd [[ WindowsDisableAutowidth ]]
-          end,
-          -- view_enter = function()
-          --   nvimTreeApi.tree.close_in_this_tab()
-          -- end,
-
-          view_closed = function()
-            nvimTreeApi.tree.toggle { focus = false }
-            -- nvimTreeApi.tree.open()
-
-            vim.cmd [[ WindowsEnableAutowidth ]]
-          end,
-        },
-      }
-    end,
-    keys = {
-      {
-        "<leader>gD",
-        function()
-          local lib = require "diffview.lib"
-
-          local view = lib.get_current_view()
-          if view then
-            -- Current tabpage is a Diffview; close it
-            vim.cmd ":DiffviewClose"
-            -- vim.cmd(":WindowsEnableAutowidth")
-          else
-            -- No open Diffview exists: open a new one
-            -- vim.cmd(":WindowsDisableAutowidth")
-            vim.cmd ":DiffviewOpen"
-          end
-        end,
-        desc = "DiffView",
-      },
+    -- reminder to commit more frequently
+    "redve-dev/neovim-git-reminder",
+    dependencies = { "rcarriga/nvim-notify" },
+    event = "BufRead",
+    opts = {
+      delay = 5,
+      -- required_changes = 30,
+      remind_on_save_only = true,
     },
   },
 

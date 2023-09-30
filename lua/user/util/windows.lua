@@ -70,12 +70,15 @@ end
 -- Open nvim-tree in a tab if there is only one window in the current tab
 -- close if there are more than two 2 windows
 function M.close_tree_if_many_windows()
-  local current_debug_session = require("dap").session()
+  if package.loaded["dap"] ~= nil then
+    local current_debug_session = require("dap").session()
 
-  if current_debug_session ~= nil then
-    -- ignore window arrangment when debugging
-    return
+    if current_debug_session ~= nil then
+      -- ignore window arrangment when debugging
+      return
+    end
   end
+
   -- layout is more reliable than windows
   -- sometimes there were hidden windows that would skew the count
 

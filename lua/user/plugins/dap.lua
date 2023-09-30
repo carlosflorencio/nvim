@@ -199,6 +199,7 @@ return {
 
   {
     "Weissle/persistent-breakpoints.nvim",
+    enabled = false,
     event = "BufReadPost",
     opts = {
       load_breakpoints_event = { "BufReadPost" },

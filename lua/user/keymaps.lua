@@ -7,6 +7,7 @@
 
 -- buffer operations
 vim.keymap.set("n", "<C-s>", ":w<cr>", { desc = "Save file" })
+-- vim.keymap.set("i", "<C-s>", "<esc>:w<cr>", { desc = "Save file" })
 -- close buffer without messing with the windows
 vim.keymap.set("n", "<C-c>", ":bn|sp|bp|bd<CR>", { desc = "Close buffer" })
 

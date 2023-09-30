@@ -201,13 +201,14 @@ return {
     },
   },
 
-  -- indent guides for Neovim
   {
+    -- indent guides for Neovim
     "lukas-reineke/indent-blankline.nvim",
     enabled = true,
+    version = "^2",
     event = { "BufReadPost", "BufNewFile" },
     opts = {
-      --char = "▏",
+      -- char = "▏",
       char = "",
       filetype_exclude = {
         "help",
@@ -216,6 +217,7 @@ return {
         "neo-tree",
         "Trouble",
         "lazy",
+        "gitcommit",
         "lir",
         "NvimTree",
         "neogitstatus",

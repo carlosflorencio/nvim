@@ -18,6 +18,13 @@ Always a work in progress.
   - update the bin at `~/.local/share/nvim/mason/packages/prettierd/node_modules/@fsouza/prettierd/bin`
   - `#!/usr/bin/env /Users/cfl12/scripts/node16`
   - `ln -s '~/Library/Application Support/fnm/node-versions/v16.20.1/installation/bin/node' node16`
+  
+
+## Global dependencies
+- Codi
+  - `npm install -g tsun`
+- SnipRun
+  - `npm install -g ts-node typescript`
 
 ## Print
 

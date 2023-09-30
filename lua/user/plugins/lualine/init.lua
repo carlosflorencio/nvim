@@ -6,7 +6,6 @@ return {
       local components = require "user.plugins.lualine.components"
       require "user.plugins.lualine.wakatime"
       -- local disabled_filetypes = require("user.util.constants").disabled_filetypes
-      local wtf = require "wtf"
 
       return {
         options = {
@@ -63,12 +62,29 @@ return {
               end,
             },
             -- "codeium#GetStatusString", -- has an issue, makes entering buffers in insert mode
-            { wtf.get_status },
+            {
+              function()
+                return require("wtf").get_status()
+              end,
+              cond = function()
+                return package.loaded["wtf"] ~= nil
+              end,
+            },
             components.filetype,
             "searchcount",
             Lualine_get_wakatime,
           },
-          lualine_y = { "overseer", components.diagnostics },
+          lualine_y = {
+            {
+              function()
+                return "overseer"
+              end,
+              cond = function()
+                return package.loaded["overseer"] ~= nil
+              end,
+            },
+            components.diagnostics,
+          },
           lualine_z = {},
         },
         extensions = {},

@@ -88,12 +88,12 @@ local function search()
     end
 
     return require("telescope.builtin").find_files(vim.tbl_deep_extend("force", default_args, {
-      prompt_title = "Scretch Files",
+      prompt_title = "Scratch Files",
       find_command = find_command,
     }))
   elseif config.backend == "fzf-lua" then
     return require("fzf-lua").files(vim.tbl_deep_extend("force", default_args, {
-      prompt = "Scretch Files> ",
+      prompt = "Scratch Files> ",
     }))
   end
 end

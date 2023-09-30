@@ -249,7 +249,8 @@ return { -- auto completion
 
         experimental = {
           ghost_text = {
-            hl_group = "LspCodeLens",
+            hl_group = "CmpGhostText",
+            -- hl_group = "LspCodeLens",
           },
         },
 

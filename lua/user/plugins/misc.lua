@@ -1,9 +1,4 @@
 return {
-  -- {
-  --   "kevinhwang91/nvim-bqf",
-  --   ft = "qf",
-  -- },
-
   {
     "wakatime/vim-wakatime",
     lazy = false,
@@ -12,7 +7,7 @@ return {
   {
     -- generate github links
     "ruifm/gitlinker.nvim",
-    event = "BufRead",
+    -- event = "BufRead",
     dependencies = "nvim-lua/plenary.nvim",
     config = function()
       require("gitlinker").setup {
@@ -20,25 +15,26 @@ return {
           add_current_line_on_normal_mode = true,
           action_callback = require("gitlinker.actions").open_in_browser,
           print_url = true,
-          mappings = "<leader>gy",
+          mappings = nil,
         },
       }
     end,
-  },
-
-  {
-    "pwntester/octo.nvim",
-    cmd = { "Octo" },
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", "nvim-tree/nvim-web-devicons" },
-    opts = {
-      use_local_fs = true, -- use local files on right side of reviews, enables LSP
-    },
     keys = {
-      { "<leader>op", "<cmd>Octo pr list<cr>", desc = "Octo PR list" },
-      { "<leader>or", "<cmd>Octo review resume<cr>", desc = "Octo Review Resume" },
-      { "<leader>os", "<cmd>Octo review submit<cr>", desc = "Octo Review Submit" },
-      { "<leader>oR", "<cmd>Octo review start<cr>", desc = "Octo Review Start" },
-      { "<leader>oD", "<cmd>Octo review discard<cr>", desc = "Octo Review Discard" },
+      {
+        "<leader>gy",
+        function()
+          require("gitlinker").get_buf_range_url "n"
+        end,
+        desc = "Create github link",
+      },
+      {
+        "<leader>gy",
+        function()
+          require("gitlinker").get_buf_range_url "v"
+        end,
+        mode = "v",
+        desc = "Create github link",
+      },
     },
   },
 
@@ -111,20 +107,8 @@ return {
     },
   },
 
-  {
-    -- reminder to commit more frequently
-    "redve-dev/neovim-git-reminder",
-    dependencies = { "rcarriga/nvim-notify" },
-    event = "BufRead",
-    opts = {
-      delay = 5,
-      -- required_changes = 30,
-      remind_on_save_only = true,
-    },
-  },
-
-  -- makes some plugins dot-repeatable like leap
-  { "tpope/vim-repeat", event = "VeryLazy" },
+  -- -- makes some plugins dot-repeatable like leap
+  -- { "tpope/vim-repeat", event = "VeryLazy" },
 
   {
     -- code screenshots
@@ -185,7 +169,7 @@ return {
 
   {
     "ThePrimeagen/harpoon",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
       menu = {
@@ -209,10 +193,5 @@ return {
         desc = "Harpoon file navigation",
       },
     },
-  },
-
-  {
-    -- <leader>h replace quickfix list in place
-    "gabrielpoca/replacer.nvim",
   },
 }

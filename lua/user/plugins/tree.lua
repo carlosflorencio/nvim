@@ -193,6 +193,10 @@ return {
         },
       },
     },
+    config = function(_, opts)
+      require("nvim-tree").setup(opts)
+      require("lsp-file-operations").setup()
+    end,
     cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeFocus", "NvimTreeFindFileToggle" },
     keys = {
       {
@@ -207,9 +211,8 @@ return {
 
   {
     -- when renaming files on nvim-tree, update imports through the LSP
+    -- should load after nvim-tree / neo-tree
     "antosha417/nvim-lsp-file-operations",
-    lazy = false,
-    dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-tree/nvim-tree.lua" } },
-    opts = {},
+    dependencies = { { "nvim-lua/plenary.nvim" } },
   },
 }
