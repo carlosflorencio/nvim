@@ -56,6 +56,10 @@ return {
                 return "jest.config.js"
               end
 
+              if string.find(packageRoot, "tracker%-api") then
+                return "jest.config.js"
+              end
+
               return "jest.config.ts"
             end,
             -- env = { CI = false },

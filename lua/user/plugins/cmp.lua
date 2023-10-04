@@ -255,8 +255,8 @@ return { -- auto completion
         },
 
         window = {
-          completion = cmp_window.bordered(border_opts),
-          documentation = cmp_window.bordered(border_opts),
+          -- completion = cmp_window.bordered(border_opts),
+          -- documentation = cmp_window.bordered(border_opts),
         },
       }
 

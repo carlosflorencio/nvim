@@ -8,8 +8,6 @@ return {
     cmd = "Chat",
     keys = {
       { "<leader>at", "<cmd>Chat tests<cr>", desc = "ChatGPT Generate Tests", mode = { "v", "x" } },
-      { "<leader>ad", "<cmd>ChatGPTRun doc<cr>", desc = "ChatGPT Generate Doc Comment", mode = { "v", "x" } },
-      { "<leader>ao", "<cmd>ChatGPTRun opt<cr>", desc = "ChatGPT Optmize code", mode = { "v", "x" } },
     },
   },
 
@@ -56,6 +54,9 @@ return {
     end,
     keys = {
       { "<leader>aa", "<cmd>ChatGPT<cr>", desc = "ChatGPT Prompt" },
+      { "<leader>ad", "<cmd>ChatGPTRun docstring<cr>", desc = "ChatGPT Generate Doc Comment", mode = { "v", "x" } },
+      { "<leader>ao", "<cmd>ChatGPTRun optimize_code<cr>", desc = "ChatGPT Optmize code", mode = { "v", "x" } },
+      -- { "<leader>at", "<cmd>ChatGPTRun tests<cr>", desc = "ChatGPT Generate Tests", mode = { "v", "x" } }, -- custom action
       { "<leader>aa", "<cmd>ChatGPTEditWithInstructions<cr>", desc = "ChatGPT Edit with Instructions", mode = "v" },
       {
         "<leader>ar",

@@ -6,7 +6,9 @@
       "strategy": "edit",
       "params": {
         "model": "gpt-3.5-turbo",
-        "stop": ["```"]
+        "stop": [
+          "```"
+        ]
       }
     }
   }

@@ -175,6 +175,11 @@ return {
         "<cmd>lua require('dap').terminate()<cr>",
         desc = "Debug terminate",
       },
+      {
+        ",bb",
+        "<cmd>lua require('dap').toggle_breakpoint()<cr>",
+        desc = "Debug add breakpoint",
+      },
     },
   },
 
