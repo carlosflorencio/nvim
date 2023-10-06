@@ -34,9 +34,16 @@ return {
   -- better vim.ui
   {
     "stevearc/dressing.nvim",
+    enabled = true,
     opts = {
       select = {
         get_config = function(opts)
+          if opts.kind == "custom_builtin" then
+            return {
+              backend = "builtin",
+            }
+          end
+
           -- https://github.com/stevearc/dressing.nvim/issues/22#issuecomment-1067211863
           -- for codeaction, we want null-ls to be last
           -- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/630

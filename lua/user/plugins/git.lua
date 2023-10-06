@@ -11,6 +11,85 @@ return {
     },
   },
 
+  {
+    "akinsho/git-conflict.nvim",
+    version = "*",
+    config = true,
+    opts = {
+      default_mappings = false,
+      disable_diagnostics = true,
+    },
+    lazy = false,
+    keys = {
+      {
+        "<leader>gC",
+        "<cmd>GitConflictListQf<cr>",
+        desc = "Open git conflict list",
+      },
+      {
+        "<leader>gc",
+        function()
+          vim.ui.select({
+            "Ours (Current)",
+            "Theirs (Incoming)",
+            "Both",
+            "None",
+          }, {
+            prompt = "Git Conflict",
+            format_item = function(item)
+              return "Choose " .. item
+            end,
+            kind = "custom_builtin",
+          }, function(_, idx)
+            if idx == nil then
+              return
+            end
+
+            local cmds = {
+              "GitConflictChooseOurs",
+              "GitConflictChooseTheirs",
+              "GitConflictChooseBoth",
+              "GitConflictChooseNone",
+            }
+
+            vim.cmd(cmds[idx])
+          end)
+        end,
+        desc = "Git conflict resolve",
+      },
+      -- {
+      --   "<leader>gco",
+      --   "<Plug>(git-conflict-ours)",
+      --   desc = "Git conflict: Choose Ours (Current)",
+      -- },
+      -- {
+      --   "<leader>gct",
+      --   "<Plug>(git-conflict-theirs)",
+      --   desc = "Git conflict: Choose Theirs (Incoming)",
+      -- },
+      -- {
+      --   "<leader>gcb",
+      --   "<Plug>(git-conflict-both)",
+      --   desc = "Git conflict: Choose Both",
+      -- },
+      -- {
+      --   "<leader>gcn",
+      --   "<Plug>(git-conflict-none)",
+      --   desc = "Git conflict: Choose None",
+      -- },
+      {
+        "]x",
+        "<Plug>(git-conflict-next-conflict)",
+        desc = "Git conflict: Go to next",
+      },
+      {
+        "[x",
+        "<Plug>(git-conflict-prev-conflict)",
+        desc = "Git conflict: Go to prev",
+      },
+    },
+  },
+
   -- git signs
   {
     "lewis6991/gitsigns.nvim",
