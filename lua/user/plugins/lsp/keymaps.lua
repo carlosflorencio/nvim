@@ -37,7 +37,7 @@ function M.get()
         desc = "Toggle Diagnostic current buffer",
       },
       {
-        "K",
+        "<leader>lk",
         function()
           -- local winid = require("ufo").peekFoldedLinesUnderCursor()
           -- if not winid then
