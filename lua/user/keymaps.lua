@@ -6,14 +6,23 @@
 -- vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- buffer operations
-vim.keymap.set("n", "<C-s>", ":w<cr>", { desc = "Save file" })
--- vim.keymap.set("i", "<C-s>", "<esc>:w<cr>", { desc = "Save file" })
+vim.keymap.set("n", "<C-s>", function()
+  require("user.cmds").saveBuffer()
+end, { desc = "Save file" })
 -- close buffer without messing with the windows
 vim.keymap.set("n", "<C-c>", ":bn|sp|bp|bd<CR>", { desc = "Close buffer" })
 
 -- new lines
 vim.keymap.set("n", "] ", "o<ESC>k")
 vim.keymap.set("n", "[ ", "O<ESC>j")
+
+-- run
+vim.keymap.set("n", "<leader>or", function()
+  require("user.cmds").runBuffer()
+end, { desc = "Run file" })
+vim.keymap.set("n", "<leader>oj", function()
+  require("user.cmds").setBufferAsJson()
+end, { desc = "Set JSON Buffer" })
 
 -- navigate between buffers
 vim.keymap.set("n", "J", "<cmd>bnext<cr>")

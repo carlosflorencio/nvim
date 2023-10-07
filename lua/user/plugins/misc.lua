@@ -169,6 +169,7 @@ return {
 
   {
     "ThePrimeagen/harpoon",
+    enabled = false,
     -- event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {

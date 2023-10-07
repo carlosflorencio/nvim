@@ -102,18 +102,6 @@ return {
     "akinsho/bufferline.nvim",
     enabled = true,
     event = "VeryLazy",
-    -- keys = {
-    --   {
-    --     "<S-l>",
-    --     "<cmd>BufferLineCycleNext<cr>",
-    --     desc = "Next Tab",
-    --   },
-    --   {
-    --     "<S-h>",
-    --     "<cmd>BufferLineCyclePrev<cr>",
-    --     desc = "Previous Tab",
-    --   },
-    -- },
     opts = {
       options = {
         truncate_names = false,
@@ -125,11 +113,14 @@ return {
         show_close_icon = false,
         separator_style = "thick",
         show_duplicate_prefix = false,
+        tab_size = 5,
         name_formatter = function(buf) -- buf contains a "name", "path" and "bufnr"
+          if buf.name == "[No Name]" then
+            return ""
+          end
+
           local path = vim.fn.fnamemodify(buf.path, ":.")
           return require("user.util").getShortenPath(path, 3)
-          -- return vim.fn.pathshorten(path, 5)
-          -- return path
         end,
         indicator = {
           style = "none",
@@ -137,35 +128,11 @@ return {
         diagnostics = "nvim_lsp",
         offsets = {
           {
-            filetype = "undotree",
-            text = "Undotree",
-            highlight = "PanelHeading",
-            padding = 1,
-          },
-          {
             filetype = "NvimTree",
-            -- text = "Explorer",
             text = "",
             -- same color as nvim-tree bg
             highlight = "NvimTreeNormal",
             padding = 0,
-          },
-          {
-            filetype = "DiffviewFiles",
-            text = "Diff View",
-            highlight = "PanelHeading",
-            padding = 1,
-          },
-          {
-            filetype = "flutterToolsOutline",
-            text = "Flutter Outline",
-            highlight = "PanelHeading",
-          },
-          {
-            filetype = "lazy",
-            text = "Lazy",
-            highlight = "PanelHeading",
-            padding = 1,
           },
         },
       },

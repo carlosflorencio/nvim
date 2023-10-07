@@ -126,17 +126,6 @@ return {
   },
 
   {
-    -- Automagically close the unedited buffers
-    "axkirillov/hbac.nvim",
-    lazy = false,
-    config = function()
-      require("hbac").setup {
-        threshold = 10,
-      }
-    end,
-  },
-
-  {
     -- generate docblocks
     "danymat/neogen",
     dependencies = "nvim-treesitter/nvim-treesitter",

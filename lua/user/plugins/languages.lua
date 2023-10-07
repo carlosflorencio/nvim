@@ -27,13 +27,6 @@ return {
   },
 
   {
-    -- jq / yq to json/yaml files, X query items under the cursor
-    "gennaro-tedesco/nvim-jqx",
-    -- ft = { "json", "yaml" },
-    cmd = { "JqxList", "JqxQuery" },
-  },
-
-  {
     -- convert "${}" to `${}`
     "axelvc/template-string.nvim",
     -- event = "BufRead",
