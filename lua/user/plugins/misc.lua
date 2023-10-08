@@ -42,6 +42,7 @@ return {
     "stevearc/oil.nvim",
     opts = {
       default_file_explorer = false,
+      skip_confirm_for_simple_edits = true,
       float = {
         -- Padding around the floating window
         -- padding = 3,

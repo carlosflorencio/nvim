@@ -524,15 +524,20 @@ return {
   },
 
   {
-    -- multi cursors
-    "mg979/vim-visual-multi",
-    init = function()
-      vim.g.VM_leader = ","
-    end,
+    -- multi cursor a like, cmd - d
+    "smoka7/multicursors.nvim",
+    dependencies = {
+      "smoka7/hydra.nvim",
+    },
+    opts = {},
+    cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
     keys = {
-      { "<C-n>", mode = { "n", "v" } },
-      "<C-Down>",
-      "<C-Up>",
+      {
+        mode = { "v", "n" },
+        "<C-n>",
+        "<cmd>MCstart<cr>",
+        desc = "Create a selection for selected text or word under the cursor",
+      },
     },
   },
 

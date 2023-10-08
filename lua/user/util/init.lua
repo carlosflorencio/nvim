@@ -13,6 +13,11 @@ function M.on_attach(on_attach)
   })
 end
 
+function M.get_clients(...)
+  local fn = vim.lsp.get_clients or vim.lsp.get_active_clients
+  return fn(...)
+end
+
 ---@param fn fun()
 function M.on_very_lazy(fn)
   vim.api.nvim_create_autocmd("User", {
