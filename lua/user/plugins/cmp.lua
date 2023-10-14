@@ -320,9 +320,18 @@ return { -- auto completion
   {
     "Exafunction/codeium.vim",
     -- enabled = false,
+    cmd = "Codeium",
     event = "BufEnter",
     init = function()
       vim.g.codeium_disable_bindings = 1
+      vim.g.codeium_filetypes = {
+        ["*"] = true,
+        TelescopePrompt = false,
+        gitcommit = false,
+        DressingInput = false,
+        TelescopeResults = false,
+        ["dap-repl"] = false,
+      }
     end,
     config = function()
       vim.keymap.set("i", "<M-l>", function()
@@ -334,6 +343,9 @@ return { -- auto completion
       vim.keymap.set("i", "<M-k>", function()
         return vim.fn["codeium#CycleCompletions"](-1)
       end, { expr = true })
+      vim.keymap.set("n", "<leader>ta", function()
+        vim.cmd.Codeium(vim.g.codeium_enabled == 0 and "Enable" or "Disable")
+      end, { desc = "Toggle Codeium" })
       -- vim.keymap.set("i", "<C-e>", function()
       --   return vim.fn["codeium#Clear"]()
       -- end, { expr = true })

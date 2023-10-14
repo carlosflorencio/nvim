@@ -518,7 +518,7 @@ return {
       { "gP", "<Plug>(YankyGPutBefore)", mode = { "n", "x" } },
       { "]y", "<Plug>(YankyCycleBackward)", mode = "n" },
       { "[y", "<Plug>(YankyCycleForward)", mode = "n" },
-      { "<c-v>", "<esc><cmd>Telescope yank_history initial_mode=normal<cr>", mode = { "n", "i", "v" } },
+      -- { "<c-v>", "<esc><cmd>Telescope yank_history initial_mode=normal<cr>", mode = { "n", "i", "v" } },
       { "y", "<Plug>(YankyYank)", mode = { "n", "x" } }, -- prevent going up when yanking
     },
   },

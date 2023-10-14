@@ -25,8 +25,8 @@ vim.keymap.set("n", "<leader>oj", function()
 end, { desc = "Set JSON Buffer" })
 
 -- navigate between buffers
-vim.keymap.set("n", "J", "<cmd>bnext<cr>")
-vim.keymap.set("n", "K", "<cmd>bprevious<cr>")
+-- vim.keymap.set("n", "J", "<cmd>bnext<cr>")
+-- vim.keymap.set("n", "K", "<cmd>bprevious<cr>")
 
 -- hightlight current word without moving to the next
 vim.keymap.set("n", "*", "*N")

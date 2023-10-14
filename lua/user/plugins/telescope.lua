@@ -48,6 +48,8 @@ return {
               ["v"] = actions.select_vertical,
               ["x"] = actions.select_horizontal,
               ["t"] = actions.select_tab,
+              ["L"] = actions.preview_scrolling_right,
+              ["H"] = actions.preview_scrolling_left,
               ["<C-g>"] = actions.to_fuzzy_refine,
             },
             i = {

@@ -10,6 +10,7 @@ return {
         "actionlint",
         "proselint",
         "js-debug-adapter",
+        "pyright",
         -- "cspell", -- install globally using npm
       },
     },
