@@ -344,6 +344,7 @@ return { -- auto completion
         return vim.fn["codeium#CycleCompletions"](-1)
       end, { expr = true })
       vim.keymap.set("n", "<leader>ta", function()
+        vim.notify("Codeium " .. (vim.g.codeium_enabled == 0 and "Enabled" or "Disabled"))
         vim.cmd.Codeium(vim.g.codeium_enabled == 0 and "Enable" or "Disable")
       end, { desc = "Toggle Codeium" })
       -- vim.keymap.set("i", "<C-e>", function()

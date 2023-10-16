@@ -10,7 +10,6 @@ return {
         "actionlint",
         "proselint",
         "js-debug-adapter",
-        "pyright",
         -- "cspell", -- install globally using npm
       },
     },
@@ -50,6 +49,7 @@ return {
         "quick_lint_js",
         "vimls",
         "yamlls",
+        "pyright",
       },
     },
   },
@@ -138,6 +138,8 @@ return {
       lspconfig["html"].setup {}
 
       lspconfig["starlark_rust"].setup {}
+
+      lspconfig["rust_analyzer"].setup {}
 
       lspconfig["pyright"].setup {}
 

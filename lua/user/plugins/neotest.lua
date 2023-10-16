@@ -8,11 +8,8 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
       "mfussenegger/nvim-dap",
-      -- "haydenmeade/neotest-jest",
-      {
-        "carlosflorencio/neotest-jest",
-        branch = "feature/support-unit-files",
-      },
+      "haydenmeade/neotest-jest",
+      "nvim-neotest/neotest-go",
     },
     config = function()
       local neotest = require "neotest"
@@ -23,7 +20,7 @@ return {
           enabled = true,
           severity = 1,
         },
-        log_level = vim.log.levels.DEBUG,
+        -- log_level = vim.log.levels.DEBUG,
         quickfix = {
           enabled = false,
           open = false,
@@ -33,7 +30,15 @@ return {
           -- disabled, otherwise it would scan all test files during runtime
           enabled = false,
         },
+        projects = {
+          ["~/Exercism/go"] = {
+            discovery = {
+              enabled = true,
+            },
+          },
+        },
         adapters = {
+          require "neotest-go",
           require "neotest-jest" {
             jestCommand = "npx jest",
             jestConfigFile = function(currentFile)
@@ -141,7 +146,10 @@ return {
         end,
         desc = "Debug nearest test under cursor",
       },
-      { ",to", '<cmd>lua require("neotest").output.open()<cr>', "Test Output Dialog" },
+      { ",to", '<cmd>lua require("neotest").output.open()<cr>', desc = "Test Output" },
+      { ",tp", '<cmd>lua require("neotest").output_panel.toggle()<cr>', desc = "Test Output Panel" },
+      { ",ts", '<cmd>lua require("neotest").summary.toggle()<cr>', desc = "Toggle Test Summary" },
+      { ",ta", '<cmd>lua require("neotest").run.run(vim.fn.getcwd())<cr>', desc = "Run tests in current directory" },
       -- {
       --   ",dt",
       --   function()
