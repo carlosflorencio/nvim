@@ -148,4 +148,15 @@ return {
       { "<leader>gg", ":LazyGit<CR>", desc = "LazyGit" },
     },
   },
+
+  {
+    "sindrets/diffview.nvim",
+    cmd = { "DiffviewFileHistory", "DiffviewOpen", "DiffviewClose", "DiffviewFileHistory" },
+    keys = {
+      { ",HH", "<cmd>DiffviewFileHistory<cr>", desc = "Git Repo History", mode = "n" },
+      { ",hh", "<cmd>DiffviewFileHistory --follow %<cr>", desc = "Git File History", mode = "n" },
+      { ",hh", "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>", desc = "Git History", mode = "v" },
+      { ",hc", "<cmd>DiffviewClose<cr>", desc = "Diffview Close" },
+    },
+  },
 }
