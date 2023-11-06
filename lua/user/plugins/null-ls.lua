@@ -36,6 +36,7 @@ return {
 
           nls.builtins.diagnostics.fish,
           nls.builtins.diagnostics.actionlint,
+          nls.builtins.diagnostics.golangci_lint,
           -- nls.builtins.diagnostics.cspell.with(cspell_opts),
           -- nls.builtins.diagnostics.proselint,
           nls.builtins.diagnostics.shellcheck.with {
