@@ -149,7 +149,7 @@ return {
         enable = true,
         debounce_delay = 15,
         update_root = true,
-        ignore_list = { "lazygit" },
+        ignore_list = { "lazygit", "chatgpt-input" },
       },
       filters = {
         dotfiles = false,

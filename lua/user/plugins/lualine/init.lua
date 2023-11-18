@@ -21,6 +21,7 @@ return {
           },
           ignore_focus = {
             "NvimTree",
+            "chatgpt-input",
             "oil",
             "lir",
             "dapui_watches",

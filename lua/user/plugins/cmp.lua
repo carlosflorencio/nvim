@@ -331,6 +331,7 @@ return { -- auto completion
         DressingInput = false,
         TelescopeResults = false,
         ["dap-repl"] = false,
+        ["chatgpt-input"] = false,
       }
     end,
     config = function()

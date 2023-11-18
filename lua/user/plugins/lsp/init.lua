@@ -9,6 +9,7 @@ return {
         "prettierd",
         "actionlint",
         "proselint",
+        "delve",
         "js-debug-adapter",
         -- "cspell", -- install globally using npm
       },

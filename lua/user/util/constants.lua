@@ -30,6 +30,7 @@ M.disabled_filetypes = {
   "dapui_console",
   "dapui_stacks",
   "dap-repl",
+  "chatgpt-input",
 }
 
 return M
