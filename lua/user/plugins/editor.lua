@@ -268,7 +268,11 @@ return {
       {
         "<leader>sr",
         function()
-          require("spectre").open()
+          local path = vim.fn.fnameescape(vim.fn.expand "%:p:.")
+          require("spectre").open_visual {
+            select_word = true,
+            path = path,
+          }
         end,
         desc = "Replace in files (Spectre)",
       },

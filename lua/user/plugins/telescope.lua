@@ -157,7 +157,7 @@ return {
       { "<leader>tt", "<cmd>Telescope diagnostics initial_mode=normal<cr>", desc = "LSP Diagnostics" },
       {
         "<leader>fg",
-        "<cmd>Telescope git_status initial_mode=normal theme=dropdown previewer=false sort_mru=true<cr>",
+        "<cmd>Telescope git_status initial_mode=normal  previewer=false sort_mru=true<cr>",
         desc = "Git changed files",
       },
       { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
