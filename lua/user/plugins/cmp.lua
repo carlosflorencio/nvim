@@ -100,7 +100,12 @@ return { -- auto completion
               end
             else
               if cmp.visible() then
-                cmp.select_next_item()
+                local entry = cmp.get_selected_entry()
+                if not entry then
+                  cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
+                else
+                  cmp.confirm()
+                end
               elseif luasnip.expand_or_locally_jumpable() then
                 luasnip.expand_or_jump()
               elseif cmp_utils.has_words_before() then
@@ -122,33 +127,33 @@ return { -- auto completion
           end, { "i", "s" }),
           ["<C-Space>"] = cmp_mapping.complete(),
           ["<C-e>"] = cmp_mapping.abort(),
-          ["<CR>"] = cmp_mapping(function(fallback)
-            if vim.bo.filetype == "markdown" then
-              if cmp.visible() then
-                cmp.confirm()
-              else
-                fallback()
-              end
-            else
-              if cmp.visible() then
-                local confirm_opts = vim.deepcopy(confirm_opts_default) -- avoid mutating the original opts below
-                local is_insert_mode = function()
-                  return vim.api.nvim_get_mode().mode:sub(1, 1) == "i"
-                end
-                if is_insert_mode() then -- prevent overwriting brackets
-                  confirm_opts.behavior = ConfirmBehavior.Insert
-                end
-                if cmp.confirm(confirm_opts) then
-                  return -- success, exit early
-                end
-                fallback()
-              elseif luasnip.expand_or_locally_jumpable() then
-                luasnip.expand_or_jump()
-              else
-                fallback()
-              end
-            end
-          end),
+          -- ["<CR>"] = cmp_mapping(function(fallback)
+          --   if vim.bo.filetype == "markdown" then
+          --     if cmp.visible() then
+          --       cmp.confirm()
+          --     else
+          --       fallback()
+          --     end
+          --   else
+          --     if cmp.visible() and cmp.get_active_entry() then
+          --       local confirm_opts = vim.deepcopy(confirm_opts_default) -- avoid mutating the original opts below
+          --       local is_insert_mode = function()
+          --         return vim.api.nvim_get_mode().mode:sub(1, 1) == "i"
+          --       end
+          --       if is_insert_mode() then -- prevent overwriting brackets
+          --         confirm_opts.behavior = ConfirmBehavior.Insert
+          --       end
+          --       if cmp.confirm(confirm_opts) then
+          --         return -- success, exit early
+          --       end
+          --       fallback()
+          --     elseif luasnip.expand_or_locally_jumpable() then
+          --       luasnip.expand_or_jump()
+          --     else
+          --       fallback()
+          --     end
+          --   end
+          -- end),
         },
 
         sources = cmp.config.sources({
