@@ -61,18 +61,18 @@ return { -- auto completion
       cmp.setup {
         mapping = cmp.mapping.preset.insert {
           -- copilot
-          -- ["<C-l>"] = function()
-          --   -- require("copilot.suggestion").accept()
-          --   -- return vim.fn["codeium#Accept"]()
-          -- end,
-          -- ["<M-j>"] = function()
-          --   -- require("copilot.suggestion").next()
-          --   -- return vim.fn["codeium#CycleCompletions"](1)
-          -- end,
-          -- ["<M-k>"] = function()
-          --   -- require("copilot.suggestion").prev()
-          --   -- return vim.fn["codeium#CycleCompletions"](-1)
-          -- end,
+          ["<C-l>"] = function()
+            require("copilot.suggestion").accept()
+            return vim.fn["codeium#Accept"]()
+          end,
+          ["<M-j>"] = function()
+            require("copilot.suggestion").next()
+            return vim.fn["codeium#CycleCompletions"](1)
+          end,
+          ["<M-k>"] = function()
+            require("copilot.suggestion").prev()
+            return vim.fn["codeium#CycleCompletions"](-1)
+          end,
 
           ["<C-k>"] = cmp_mapping(cmp_mapping.select_prev_item(), { "i", "c" }),
           ["<C-j>"] = cmp_mapping(cmp_mapping.select_next_item(), { "i", "c" }),
@@ -324,7 +324,7 @@ return { -- auto completion
 
   {
     "Exafunction/codeium.vim",
-    -- enabled = false,
+    enabled = false,
     cmd = "Codeium",
     event = "BufEnter",
     init = function()
@@ -361,7 +361,7 @@ return { -- auto completion
 
   {
     "zbirenbaum/copilot.lua",
-    enabled = false,
+    enabled = true,
     cmd = "Copilot",
     event = "InsertEnter",
     opts = {
