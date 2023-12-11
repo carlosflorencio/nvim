@@ -125,7 +125,7 @@ return { -- auto completion
               fallback()
             end
           end, { "i", "s" }),
-          ["<C-Space>"] = cmp_mapping.complete(),
+          ["<C-TAB>"] = cmp_mapping.complete(),
           ["<C-e>"] = cmp_mapping.abort(),
           -- ["<CR>"] = cmp_mapping(function(fallback)
           --   if vim.bo.filetype == "markdown" then
