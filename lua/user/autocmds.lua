@@ -4,52 +4,6 @@ local function augroup(name)
   })
 end
 
--- vim.api.nvim_create_autocmd("BufEnter", {
---   group = augroup "__env",
---   pattern = ".env",
---   callback = function(args)
---     vim.diagnostic.disable(args.buf)
---   end,
--- })
-
--- tmp fix for https://github.com/chentoast/marks.nvim/issues/13
-vim.api.nvim_create_autocmd({ "BufRead" }, { command = ":delm a-zA-Z0-9" })
-
--- vim.api.nvim_create_autocmd({ "VimEnter" }, {
---   callback = function()
--- only run after vim starts
--- on startup during session loading, TabEnter seems to be called
--- open tree when creating new tabs
--- vim.api.nvim_create_autocmd("TabEnter", {
---   group = augroup "tabnew",
---   callback = function()
---     require("user.util.windows").close_tree_if_many_windows()
---   end,
--- })
---   end,
--- })
-
--- vim.api.nvim_create_autocmd("BufWinEnter", {
---   group = augroup "WinEnterCloseTree",
---   callback = function()
---     print "WinEnter"
---     -- require("user.util.windows").close_tree_if_many_windows()
---     -- vim.notify "WinNew"
---   end,
--- })
-
--- [[ Highlight on yank ]]
--- local highlight_group = vim.api.nvim_create_augroup("YankHighlight", {
---   clear = true,
--- })
--- vim.api.nvim_create_autocmd("TextYankPost", {
---   callback = function()
---     vim.highlight.on_yank()
---   end,
---   group = highlight_group,
---   pattern = "*",
--- })
-
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup "close_with_q",
@@ -94,12 +48,7 @@ vim.cmd [[
   endfunction
 ]]
 
--- Rnsure that changes to buffers are saved when navigating away from the buffer,
--- e.g. by following a link to another file. jakewvincent/mkdnflow.nvim
-vim.api.nvim_create_autocmd("FileType", { pattern = "markdown", command = "set awa" })
-
 -- nvim tree windows management
-
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
   callback = function()
     -- open tree on startup
@@ -126,36 +75,6 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 vim.api.nvim_create_autocmd({ "QuitPre" }, {
   callback = function()
     vim.cmd "NvimTreeClose"
-  end,
-})
-
--- lualine recording refresh when entering recording mode
-vim.api.nvim_create_autocmd("RecordingEnter", {
-  callback = function()
-    require("lualine").refresh {
-      place = { "statusline" },
-    }
-  end,
-})
-
-vim.api.nvim_create_autocmd("RecordingLeave", {
-  callback = function()
-    -- This is going to seem really weird!
-    -- Instead of just calling refresh we need to wait a moment because of the nature of
-    -- `vim.fn.reg_recording`. If we tell lualine to refresh right now it actually will
-    -- still show a recording occuring because `vim.fn.reg_recording` hasn't emptied yet.
-    -- So what we need to do is wait a tiny amount of time (in this instance 50 ms) to
-    -- ensure `vim.fn.reg_recording` is purged before asking lualine to refresh.
-    local timer = vim.loop.new_timer()
-    timer:start(
-      50,
-      0,
-      vim.schedule_wrap(function()
-        require("lualine").refresh {
-          place = { "statusline" },
-        }
-      end)
-    )
   end,
 })
 
