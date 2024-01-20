@@ -117,11 +117,11 @@
   "typescript-tools.nvim": { "branch": "master", "commit": "89675239daee17ea9cdd369d56e9622dc841ef88" },
   "vim-firestore": { "branch": "master", "commit": "417d41ba56c54cb21fab1f4b01c8ba4deed6bbe0" },
   "vim-matchup": { "branch": "master", "commit": "269f9bea87e20a01438085eb13df539929a12727" },
-  "vim-wakatime": { "branch": "master", "commit": "87c6861ea81700ec4a6a27c81413cf07cb2c883c" },
+  "vim-wakatime": { "branch": "master", "commit": "8c8856327815a077cbebeba8c7456312a3d2c39c" },
   "vscode-js-debug": { "branch": "main", "commit": "f4f5802ca4773af80e202f0a2514c9a82f262c82" },
   "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" },
   "windows.nvim": { "branch": "main", "commit": "c7492552b23d0ab30325e90b56066ec51242adc8" },
-  "wtf.nvim": { "branch": "main", "commit": "03775272c9ba88cbaae1d1802078a3f751969350" },
-  "yanky.nvim": { "branch": "main", "commit": "5ba331de8a8d18e1ec345d26e865bc3a0db2e8be" },
+  "wtf.nvim": { "branch": "main", "commit": "07f79bdffaa9dd2785fe2543da6d850e76d2709c" },
+  "yanky.nvim": { "branch": "main", "commit": "6bb9ffd3cad4c9876bda54e19d0659de28a4f84f" },
   "zen-mode.nvim": { "branch": "main", "commit": "50e2e2a36cc97847d9ab3b1a3555ba2ef6839b50" }
 }
