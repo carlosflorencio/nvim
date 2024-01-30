@@ -78,6 +78,7 @@ vim.keymap.set("x", "<A-k>", ":m '<-2<CR>gv-gv")
 -- navigate tab completion with <c-j> and <c-k>
 vim.keymap.set("i", "<c-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true })
 vim.keymap.set("i", "<c-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true })
+vim.keymap.set("i", "<c-bs>", '<c-w>')
 
 -- better indenting
 vim.keymap.set("v", "<", "<gv")

@@ -115,7 +115,7 @@ return {
                 desc = "Open Recent Files",
             },
             { "<leader>fR", "<cmd>Telescope registers initial_mode=normal<cr>", desc = "Registers" },
-            { "<leader>fw", "<cmd>Telescope live_grep_args<cr>",                desc = "Grep Text" },
+            { "<leader>fw", "<cmd>Telescope live_grep<cr>",                desc = "Grep Text" },
             { "<leader>fk", "<cmd>Telescope keymaps<cr>",                       desc = "Keymaps" },
             { "<leader>fC", "<cmd>Telescope commands<cr>",                      desc = "Commands" },
             { "<leader>fu", "<cmd>Telescope undo initial_mode=normal<cr>",      desc = "Undo list" },
