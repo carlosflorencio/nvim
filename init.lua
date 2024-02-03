@@ -249,6 +249,10 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   end,
 })
 
+-- highlight yank
+vim.cmd[[au TextYankPost * silent! lua vim.highlight.on_yank()]]
+
+
 -- Options
 vim.opt.wrap = false -- prevent line wrap on long lines
 vim.opt.scrolloff = 10
