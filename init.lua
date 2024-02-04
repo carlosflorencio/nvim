@@ -251,6 +251,9 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 
 -- highlight yank
 vim.cmd[[au TextYankPost * silent! lua vim.highlight.on_yank()]]
+vim.cmd [[au InsertEnter * set nu nornu]] -- disable relative numbers in insert mode
+vim.cmd [[au InsertLeave * set nu rnu]]
+
 
 
 -- Options
