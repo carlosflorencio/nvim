@@ -68,11 +68,8 @@ return {
       -- },
       {
         "folke/neodev.nvim",
-        opts = {
-          experimental = {
-            pathStrict = true,
-          },
-        },
+        enabled = true,
+        opts = {},
       },
       "williamboman/mason-lspconfig.nvim",
       { "hrsh7th/cmp-nvim-lsp" },
@@ -117,6 +114,9 @@ return {
           Lua = {
             hint = {
               enable = false,
+            },
+            workspace = {
+              checkThirdParty = false,
             },
           },
         },

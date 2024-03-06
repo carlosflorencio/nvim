@@ -168,7 +168,7 @@ return {
   {
     -- smooth scrolling
     "karb94/neoscroll.nvim",
-    enabled = true,
+    enabled = false,
     event = "BufRead",
     opts = {
       mappings = { "<C-u>", "<C-d>" },

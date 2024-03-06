@@ -61,19 +61,18 @@ return { -- auto completion
       cmp.setup {
         mapping = cmp.mapping.preset.insert {
           -- copilot
-          ["<C-l>"] = function()
-            require("copilot.suggestion").accept()
-            return vim.fn["codeium#Accept"]()
-          end,
-          ["<M-j>"] = function()
-            require("copilot.suggestion").next()
-            return vim.fn["codeium#CycleCompletions"](1)
-          end,
-          ["<M-k>"] = function()
-            require("copilot.suggestion").prev()
-            return vim.fn["codeium#CycleCompletions"](-1)
-          end,
-
+          -- ["<C-l>"] = function()
+          --   require("copilot.suggestion").accept()
+          --   -- return vim.fn["codeium#Accept"]()
+          -- end,
+          -- ["<M-j>"] = function()
+          --   require("copilot.suggestion").next()
+          --   -- return vim.fn["codeium#CycleCompletions"](1)
+          -- end,
+          -- ["<M-k>"] = function()
+          --   require("copilot.suggestion").prev()
+          --   -- return vim.fn["codeium#CycleCompletions"](-1)
+          -- end,
           ["<C-k>"] = cmp_mapping(cmp_mapping.select_prev_item(), { "i", "c" }),
           ["<C-j>"] = cmp_mapping(cmp_mapping.select_next_item(), { "i", "c" }),
           ["<Down>"] = cmp_mapping(cmp_mapping.select_next_item { behavior = SelectBehavior.Select }, { "i" }),
@@ -108,11 +107,15 @@ return { -- auto completion
                 end
               elseif luasnip.expand_or_locally_jumpable() then
                 luasnip.expand_or_jump()
-              elseif cmp_utils.has_words_before() then
-                cmp.complete()
-              -- fallback()
+              -- elseif cmp_utils.has_words_before() then
+              --   cmp.complete()
+              -- -- fallback()
               else
-                fallback()
+                if require("copilot.suggestion").is_visible() then
+                  require("copilot.suggestion").accept()
+                else
+                  fallback()
+                end
               end
             end
           end, { "i", "s" }),
@@ -127,33 +130,33 @@ return { -- auto completion
           end, { "i", "s" }),
           ["<C-TAB>"] = cmp_mapping.complete(),
           ["<C-e>"] = cmp_mapping.abort(),
-          -- ["<CR>"] = cmp_mapping(function(fallback)
-          --   if vim.bo.filetype == "markdown" then
-          --     if cmp.visible() then
-          --       cmp.confirm()
-          --     else
-          --       fallback()
-          --     end
-          --   else
-          --     if cmp.visible() and cmp.get_active_entry() then
-          --       local confirm_opts = vim.deepcopy(confirm_opts_default) -- avoid mutating the original opts below
-          --       local is_insert_mode = function()
-          --         return vim.api.nvim_get_mode().mode:sub(1, 1) == "i"
-          --       end
-          --       if is_insert_mode() then -- prevent overwriting brackets
-          --         confirm_opts.behavior = ConfirmBehavior.Insert
-          --       end
-          --       if cmp.confirm(confirm_opts) then
-          --         return -- success, exit early
-          --       end
-          --       fallback()
-          --     elseif luasnip.expand_or_locally_jumpable() then
-          --       luasnip.expand_or_jump()
-          --     else
-          --       fallback()
-          --     end
-          --   end
-          -- end),
+          ["<CR>"] = cmp_mapping(function(fallback)
+            if vim.bo.filetype == "markdown" then
+              if cmp.visible() then
+                cmp.confirm()
+              else
+                fallback()
+              end
+            else
+              if cmp.visible() and cmp.get_active_entry() then
+                local confirm_opts = vim.deepcopy(confirm_opts_default) -- avoid mutating the original opts below
+                local is_insert_mode = function()
+                  return vim.api.nvim_get_mode().mode:sub(1, 1) == "i"
+                end
+                if is_insert_mode() then -- prevent overwriting brackets
+                  confirm_opts.behavior = ConfirmBehavior.Insert
+                end
+                if cmp.confirm(confirm_opts) then
+                  return -- success, exit early
+                end
+                fallback()
+              elseif luasnip.expand_or_locally_jumpable() then
+                luasnip.expand_or_jump()
+              else
+                fallback()
+              end
+            end
+          end),
         },
 
         sources = cmp.config.sources({
@@ -253,10 +256,10 @@ return { -- auto completion
         },
 
         experimental = {
-          ghost_text = {
-            hl_group = "CmpGhostText",
-            -- hl_group = "LspCodeLens",
-          },
+          -- ghost_text = {
+          --   hl_group = "CmpGhostText",
+          --   -- hl_group = "LspCodeLens",
+          -- },
         },
 
         window = {
@@ -279,13 +282,12 @@ return { -- auto completion
 
       -- hide the copilot inline suggestion when the menu is open
       -- cmp.event:on("menu_opened", function()
-      -- 	vim.b.copilot_suggestion_hidden = true
+      --   vim.b.copilot_suggestion_hidden = true
       -- end)
 
       -- cmp.event:on("menu_closed", function()
-      -- 	vim.b.copilot_suggestion_hidden = false
+      --   vim.b.copilot_suggestion_hidden = false
       -- end)
-      --
 
       -- insert `(` after select function or method item
       local cmp_autopairs = require "nvim-autopairs.completion.cmp"
@@ -361,8 +363,8 @@ return { -- auto completion
 
   {
     "zbirenbaum/copilot.lua",
-    enabled = true,
     cmd = "Copilot",
+    enabled = true,
     event = "InsertEnter",
     opts = {
       panel = {

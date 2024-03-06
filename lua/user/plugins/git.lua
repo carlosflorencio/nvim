@@ -2,6 +2,7 @@ return {
   {
     -- reminder to commit more frequently
     "redve-dev/neovim-git-reminder",
+    enabled = false,
     dependencies = { "rcarriga/nvim-notify" },
     event = "BufRead",
     opts = {
