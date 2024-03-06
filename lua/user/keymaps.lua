@@ -275,3 +275,9 @@ vim.keymap.set("n", "i", function()
     return "i"
   end
 end, { expr = true })
+
+-- arrow keys on command mode
+vim.cmd [[
+cnoremap <expr> <Down> wildmenumode() ? '<C-N>' : '<Down>'
+cnoremap <expr> <Up> wildmenumode() ? '<C-P>' : '<Up>'
+]]
