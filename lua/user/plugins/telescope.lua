@@ -40,7 +40,7 @@ return {
 
       telescope.setup {
         defaults = {
-          file_ignore_patterns = { "node_modules" },
+          file_ignore_patterns = { "node_modules", "yarn.lock", "package-lock.json" },
           path_display = { "truncate" },
           dynamic_preview_title = true,
           mappings = {

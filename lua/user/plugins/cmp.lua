@@ -105,14 +105,14 @@ return { -- auto completion
                 else
                   cmp.confirm()
                 end
-              elseif luasnip.expand_or_locally_jumpable() then
-                luasnip.expand_or_jump()
-              -- elseif cmp_utils.has_words_before() then
-              --   cmp.complete()
-              -- -- fallback()
+              elseif require("copilot.suggestion").is_visible() then
+                require("copilot.suggestion").accept()
               else
-                if require("copilot.suggestion").is_visible() then
-                  require("copilot.suggestion").accept()
+                if luasnip.expand_or_locally_jumpable() then
+                  luasnip.expand_or_jump()
+                -- elseif cmp_utils.has_words_before() then
+                --   cmp.complete()
+                -- -- fallback()
                 else
                   fallback()
                 end

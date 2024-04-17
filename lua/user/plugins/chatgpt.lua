@@ -1,5 +1,58 @@
 return {
   {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    lazy = false,
+    branch = "canary",
+    dependencies = {
+      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+    },
+    opts = {
+      debug = false, -- Enable debugging
+      window = {
+        layout = "float",
+        -- relative = "cursor",
+        -- width = 1,
+        -- height = 0.4,
+        -- row = 1,
+      },
+      -- See Configuration section for rest
+    },
+    keys = {
+      {
+        "<leader>aa",
+        function()
+          local input = vim.fn.input "Quick Chat: "
+          if input ~= "" then
+            require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+          end
+        end,
+        desc = "CopilotChat - Quick chat",
+      },
+      {
+        "<leader>cch",
+        function()
+          local actions = require "CopilotChat.actions"
+          require("CopilotChat.integrations.telescope").pick(actions.help_actions())
+        end,
+        desc = "CopilotChat - Help actions",
+        mode = { "n", "v" },
+      },
+      -- Show prompts actions with telescope
+      {
+        "<leader>ccp",
+        function()
+          local actions = require "CopilotChat.actions"
+          require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+        end,
+        desc = "CopilotChat - Prompt actions",
+        mode = { "n", "v" },
+      },
+    },
+    -- See Commands section for default commands if you want to lazy load on them
+  },
+
+  {
     "dpayne/CodeGPT.nvim",
     dependencies = {
       { "nvim-lua/plenary.nvim" },
@@ -40,12 +93,12 @@ return {
           submit_n = "<Enter>",
         },
         openai_params = {
-          model = "gpt-3.5-turbo",
+          model = "gpt-4-0125-preview",
           -- max_tokens = 300,
         },
-        -- openai_edit_params = {
-        --   model = "gpt-3.5-turbo",
-        -- },
+        openai_edit_params = {
+          model = "gpt-4-0125-preview",
+        },
         actions_paths = {
           vim.fn.stdpath "config" .. "/chatgpt/actions.json",
         },
@@ -53,7 +106,7 @@ return {
       }
     end,
     keys = {
-      { "<leader>aa", "<cmd>ChatGPT<cr>", desc = "ChatGPT Prompt" },
+      -- { "<leader>aa", "<cmd>ChatGPT<cr>", desc = "ChatGPT Prompt" },
       { "<leader>ad", "<cmd>ChatGPTRun docstring<cr>", desc = "ChatGPT Generate Doc Comment", mode = { "v", "x" } },
       { "<leader>ao", "<cmd>ChatGPTRun optimize_code<cr>", desc = "ChatGPT Optmize code", mode = { "v", "x" } },
       -- { "<leader>at", "<cmd>ChatGPTRun tests<cr>", desc = "ChatGPT Generate Tests", mode = { "v", "x" } }, -- custom action
