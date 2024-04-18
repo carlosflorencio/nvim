@@ -52,7 +52,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
-  { 'nmac427/guess-indent.nvim' }, -- Detect tabstop and shiftwidth automatically
+  { 'nmac427/guess-indent.nvim', opts = {} }, -- Detect tabstop and shiftwidth automatically
   { 'tpope/vim-repeat', event = 'VeryLazy' },
   { 'LunarVim/bigfile.nvim', opts = {} },
   { import = 'user.plugins' },

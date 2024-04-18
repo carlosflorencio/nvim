@@ -13,7 +13,23 @@ return {
         end
       end
 
+      local oil_get_selected_folder = function()
+        local o = require 'oil'
+        local e = o.get_entry_on_line(0, vim.fn.line '.')
+        if e == nil then
+          vim.api.nvim_err_writeln 'No oil file found'
+          return nil
+        end
+        if e.type ~= 'directory' then
+          return nil
+        end
+
+        local current_dir = o.get_current_dir()
+        return current_dir .. e.name
+      end
+
       require('oil').setup {
+        default_file_explorer = true,
         -- Skip the confirmation popup for simple operations (:help oil.skip_confirm_for_simple_edits)
         skip_confirm_for_simple_edits = true,
 
@@ -34,6 +50,11 @@ return {
           ['`'] = 'actions.cd',
           ['~'] = 'actions.tcd',
           ['I'] = 'actions.toggle_hidden',
+          ['fw'] = function()
+            local path = oil_get_selected_folder()
+            -- print(path)
+            require('telescope.builtin').live_grep { cwd = path }
+          end,
         },
       }
     end,

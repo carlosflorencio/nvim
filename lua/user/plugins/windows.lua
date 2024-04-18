@@ -15,7 +15,7 @@ return {
     },
     cmd = { 'WindowsMaximize', 'WindowsEqualize', 'WindowsToggleAutowidth' },
     keys = {
-      { '<leader>sM', '<cmd>WindowsMaximize<cr>', desc = 'Maximize Window' },
+      { '<leader>sm', '<cmd>WindowsMaximize<cr>', desc = 'Maximize Window' },
     },
     event = 'BufReadPost',
   },
