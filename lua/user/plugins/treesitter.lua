@@ -55,8 +55,25 @@ return {
         },
       },
     },
-  
     }
   },
+
+  {
+    'ckolkey/ts-node-action',
+    dependencies = { 'nvim-treesitter' },
+    config = function()
+      local ts_node_action = require 'ts-node-action'
+      ts_node_action.setup {
+        tsx = ts_node_action.node_actions.typescriptreact,
+      }
+    end,
+    keys = {
+      {
+        '<leader>ss',
+        '<cmd>lua require("ts-node-action").node_action()<cr>',
+        desc = 'Toggle node action under cursor',
+      },
+    },
+  }
 
 }

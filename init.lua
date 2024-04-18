@@ -15,7 +15,7 @@ vim.opt.cursorline = true -- Enable highlighting of the current line
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.splitbelow = true -- Put new windows below current
 vim.opt.splitright = true -- Put new windows right of current
-vim.opt.colorcolumn = '80' -- guideline at 80 characters
+-- vim.opt.colorcolumn = '80' -- guideline at 80 characters
 vim.opt.completeopt = 'menu,menuone,noselect' -- command line completion options
 vim.opt.signcolumn = 'yes' -- Always show the sign column, otherwise it would shift the text each time
 vim.opt.fillchars = { eob = '~' }
@@ -52,20 +52,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
-
-  -- Detect tabstop and shiftwidth automatically
-  'nmac427/guess-indent.nvim',
-
-  {
-    'kylechui/nvim-surround',
-    version = '*', -- Use for stability; omit to use `main` branch for the latest features
-    event = 'VeryLazy',
-    opts = {},
-  },
-
-  -- require 'user.lsp',
-
-  { import = 'user.plugins.lsp' },
+  { 'nmac427/guess-indent.nvim' }, -- Detect tabstop and shiftwidth automatically
+  { 'tpope/vim-repeat', event = 'VeryLazy' },
+  { 'LunarVim/bigfile.nvim', opts = {} },
   { import = 'user.plugins' },
 }
 
