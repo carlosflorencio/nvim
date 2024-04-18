@@ -103,6 +103,7 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'typescript-language-server', -- Used for typescript
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -117,6 +118,17 @@ return {
             require('lspconfig')[server_name].setup(server)
           end,
         },
+      }
+    end,
+  },
+
+  {
+    'pmizio/typescript-tools.nvim',
+    ft = { 'typescript', 'typescriptreact', 'javascript' },
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    config = function()
+      require('typescript-tools').setup {
+        root_dir = require('lspconfig').util.root_pattern('.git', 'package-lock.json', 'yarn.lock'),
       }
     end,
   },
@@ -162,7 +174,15 @@ return {
     cmd = { 'Glance' },
     config = function()
       local glance = require 'glance'
-      local lsputils = require 'user.plugins.lsp.utils'
+
+      local function filterTypescriptDefinitionFiles(value)
+        -- Depending on typescript version either uri or targetUri is returned
+        if value.uri then
+          return string.match(value.uri, '%.d.ts') == nil
+        elseif value.targetUri then
+          return string.match(value.targetUri, '%.d.ts') == nil
+        end
+      end
 
       ---@diagnostic disable-next-line: missing-fields
       glance.setup {
@@ -172,6 +192,7 @@ return {
             ['j'] = glance.actions.next_location,
             ['k'] = glance.actions.previous_location,
             ['x'] = glance.actions.jump_split,
+            ['l'] = glance.actions.jump,
             ['<c-t>'] = glance.actions.jump_tab,
             ['<c-v>'] = glance.actions.jump_vsplit,
             ['<c-x>'] = glance.actions.jump_split,
@@ -181,7 +202,7 @@ return {
         hooks = {
           before_open = function(results, open, _, method)
             if vim.tbl_islist(results) and #results > 1 and (method == 'definitions' or method == 'references') then
-              local filtered_result = vim.tbl_filter(lsputils.filterTypescriptDefinitionFiles, results)
+              local filtered_result = vim.tbl_filter(filterTypescriptDefinitionFiles, results)
 
               if #filtered_result > 0 then
                 open(filtered_result)
