@@ -13,7 +13,9 @@ return {
         },
       }
       require('onedark').load()
+      -- vim.api.nvim_set_hl(0, 'NvimTreeWinSeparator', { link = 'Ignore' })
+      vim.api.nvim_set_hl(0, 'NvimTreeNormal', { bg = 'NONE' })
+      vim.api.nvim_set_hl(0, 'NvimTreeEndOfBuffer', { bg = 'NONE' })
     end,
   },
-
 }

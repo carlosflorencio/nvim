@@ -1,3 +1,5 @@
+local icons = require('user.icons').icons
+
 local function start_telescope(node, telescope_mode)
   local abspath = node.link_to or node.absolute_path
   local is_folder = node.open ~= nil
@@ -115,12 +117,44 @@ return {
         highlight_git = true,
         root_folder_label = false,
         symlink_destination = false,
+        icons = {
+          glyphs = {
+            default = icons.ui.Text,
+            symlink = icons.ui.FileSymlink,
+            bookmark = icons.ui.BookMark,
+            folder = {
+              arrow_closed = icons.ui.TriangleShortArrowRight,
+              arrow_open = icons.ui.TriangleShortArrowDown,
+              default = icons.ui.Folder,
+              open = icons.ui.FolderOpen,
+              empty = icons.ui.EmptyFolder,
+              empty_open = icons.ui.EmptyFolderOpen,
+              symlink = icons.ui.FolderSymlink,
+              symlink_open = icons.ui.FolderOpen,
+            },
+            git = {
+              unstaged = icons.git.FileUnstaged,
+              staged = icons.git.FileStaged,
+              unmerged = icons.git.FileUnmerged,
+              renamed = icons.git.FileRenamed,
+              untracked = icons.git.FileUntracked,
+              deleted = icons.git.FileDeleted,
+              ignored = icons.git.FileIgnored,
+            },
+          },
+        },
       },
       update_focused_file = {
         enable = true,
       },
       diagnostics = {
         enable = true,
+        icons = {
+          hint = icons.diagnostics.BoldHint,
+          info = icons.diagnostics.BoldInformation,
+          warning = icons.diagnostics.BoldWarning,
+          error = icons.diagnostics.BoldError,
+        },
       },
     },
     config = function(_, opts)

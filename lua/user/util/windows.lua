@@ -39,6 +39,8 @@ function M.close_tree_if_many_windows()
         -- close the current tab since nvim-tree is the only buffer left
         if #vim.api.nvim_list_tabpages() > 1 then
           vim.cmd [[tabclose]]
+        else
+          vim.cmd [[q]]
         end
       end
     end)
