@@ -1,0 +1,14 @@
+{
+  "console.log": {
+    "scope": "typescript,typescriptreact,javascript",
+    "prefix": "cl",
+    "body": "console.log(${0})",
+    "description": "console.log()"
+  },
+  "function": {
+    "scope": "typescript,typescriptreact,javascript",
+    "prefix": "fn",
+    "body": "($2) => {\n\t$1$0\n}",
+    "description": "Anonymous function"
+  }
+}

@@ -21,13 +21,21 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('gt', '<CMD>Glance type_definitions<CR>', 'Type Definition')
     map('<leader>ls', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
     map('<leader>lS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
-    map('<leader>lr', vim.lsp.buf.rename, 'Rename')
     map('<leader>la', vim.lsp.buf.code_action, 'Code Action')
     map('K', vim.lsp.buf.hover, 'Hover Documentation')
 
     -- Signature Help
     map('gK', vim.lsp.buf.signature_help, 'Signature Help')
     vim.keymap.set('i', '<c-s>', vim.lsp.buf.signature_help, { buffer = event.buf, desc = 'LSP: Signature Help' })
+
+    -- map('<leader>lr', vim.lsp.buf.rename, 'Rename') -- we use inc-rename
+    vim.keymap.set('n', '<leader>lr', function()
+      return ':IncRename ' -- empty
+    end, { desc = 'LSP: Rename', buffer = event.buf, expr = true })
+
+    vim.keymap.set('n', '<leader>lR', function()
+      return ':IncRename ' .. vim.fn.expand '<cword>' -- use word under cursor
+    end, { desc = 'LSP: Rename', buffer = event.buf, expr = true })
 
     -- Jump Diagnostics
     map(']d', diagnostic_goto(true), 'Next Diagnostic')

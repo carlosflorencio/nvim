@@ -59,4 +59,5 @@ require('lazy').setup {
 }
 
 require 'user.autocmds'
+require 'user.cmds'
 require 'user.keymaps'
