@@ -47,3 +47,13 @@ vim.api.nvim_create_user_command('SaveBuffer', function()
 end, {
   desc = 'Re-enable autoformat-on-save',
 })
+
+vim.cmd [[
+  function! QuickFixToggle()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+      copen
+    else
+      cclose
+    endif
+  endfunction
+]]

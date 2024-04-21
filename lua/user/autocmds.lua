@@ -16,28 +16,25 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   end,
 })
 
--- highlight yank
-vim.cmd[[au TextYankPost * silent! lua vim.highlight.on_yank()]]
 vim.cmd [[au InsertEnter * set nu nornu]] -- disable relative numbers in insert mode
 vim.cmd [[au InsertLeave * set nu rnu]]
 
-
 -- nvim tree windows management
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
+vim.api.nvim_create_autocmd({ 'VimEnter' }, {
   callback = function()
     -- open tree on startup
     vim.schedule_wrap(function()
-      require("nvim-tree.api").tree.toggle {
+      require('nvim-tree.api').tree.toggle {
         focus = false,
       }
     end)()
 
     -- schedule auto tree close
-    vim.api.nvim_create_autocmd("WinEnter", {
-      group = augroup "buf_enter_tree",
+    vim.api.nvim_create_autocmd('WinEnter', {
+      group = augroup 'buf_enter_tree',
       callback = function()
         vim.schedule_wrap(function()
-          require("user.util.windows").close_tree_if_many_windows()
+          require('user.util.windows').close_tree_if_many_windows()
         end)()
       end,
       nested = true,

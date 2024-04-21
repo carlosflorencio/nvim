@@ -48,33 +48,25 @@ return {
             end,
           },
           ['<Tab>'] = cmp.mapping(function(fallback)
-            if vim.bo.filetype == 'markdown' then
-              -- prevent messing with mkdnflow tab
-              if cmp.visible() then
-                cmp.select_next_item()
-              else
-                fallback()
+            if not cmp.visible() and require('copilot.suggestion').is_visible() then
+              require('copilot.suggestion').accept()
+            elseif cmp.visible() then
+              -- auto expand luasnip
+              -- if luasnip.expandable() then
+              --   luasnip.expand()
+              --   return
+              -- end
+
+              cmp.confirm { select = true }
+            elseif luasnip.locally_jumpable(1) then
+              luasnip.jump(1)
+            elseif has_words_before() then
+              cmp.complete()
+              if #cmp.get_entries() == 1 then
+                cmp.confirm { select = true }
               end
             else
-              if cmp.visible() then
-                local entry = cmp.get_selected_entry()
-                if not entry then
-                  cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
-                else
-                  cmp.confirm()
-                end
-              elseif require('copilot.suggestion').is_visible() then
-                require('copilot.suggestion').accept()
-              else
-                if luasnip.expand_or_locally_jumpable() then
-                  luasnip.expand_or_jump()
-                -- elseif cmp_utils.has_words_before() then
-                --   cmp.complete()
-                -- -- fallback()
-                else
-                  fallback()
-                end
-              end
+              fallback()
             end
           end, { 'i', 's' }),
           ['<S-Tab>'] = cmp.mapping(function(fallback)
@@ -87,49 +79,44 @@ return {
             end
           end, { 'i', 's' }),
           ['<C-TAB>'] = cmp.mapping.complete(),
+          ['<C-ESC>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.abort(),
           ['<CR>'] = cmp.mapping(function(fallback)
-            if vim.bo.filetype == 'markdown' then
-              if cmp.visible() then
-                cmp.confirm()
+            if cmp.visible() then
+              if cmp.get_active_entry() then
+                require 'notify' 'entry selected'
+                cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
               else
+                require 'notify' 'no entry'
                 fallback()
               end
             else
-              local debug = {
-                visible = cmp.visible(),
-                active_entry = cmp.get_active_entry(),
-                luasnip = luasnip.expand_or_locally_jumpable(),
-                has_words_before = has_words_before(),
-              }
-              print(vim.inspect(debug))
-              if cmp.visible() and cmp.get_active_entry() then
-                local confirm_opts = {
-                  behavior = cmp.ConfirmBehavior.Replace,
-                  select = false,
-                }
-                if is_insert_mode() then -- prevent overwriting brackets
-                  confirm_opts.behavior = cmp.ConfirmBehavior.Insert
-                end
-                print(vim.inspect(confirm_opts))
-                print(vim.inspect(is_insert_mode()))
-                if cmp.confirm(confirm_opts) then
-                  return -- success, exit early
-                end
-                fallback()
-              elseif luasnip.expand_or_locally_jumpable() then
-                luasnip.expand_or_jump()
-              else
-                fallback()
-              end
+              fallback()
             end
           end),
         },
         sources = cmp.config.sources({
           { name = 'nvim_lsp_signature_help' },
-          { name = 'nvim_lsp' },
-          { name = 'buffer' },
+          {
+            name = 'nvim_lsp',
+            entry_filter = function(entry, ctx)
+              local kind = require('cmp.types.lsp').CompletionItemKind[entry:get_kind()]
+              if kind == 'Snippet' and ctx.prev_context.filetype == 'java' then
+                return false
+              end
+
+              -- tsserver Keywords (if, for) appear first than Snippets
+              -- remove them
+              local ignore_kinds = { 'Keyword', 'Text' }
+              if vim.tbl_contains(ignore_kinds, kind) then
+                return false
+              end
+
+              return true
+            end,
+          },
           { name = 'luasnip' },
+          { name = 'buffer' },
           { name = 'nvim_lua' }, -- vim api completion
         }, {
           -- group 2 only if nothing in above had results
@@ -144,16 +131,10 @@ return {
   {
     'L3MON4D3/LuaSnip',
     dependencies = {
-      {
-        'rafamadriz/friendly-snippets',
-        config = function()
-          -- require('luasnip.loaders.from_vscode').lazy_load()
-        end,
-      },
+      { 'rafamadriz/friendly-snippets' },
     },
     -- follow latest release.
     version = 'v2.*',
-    -- install jsregexp (optional!).
     build = 'make install_jsregexp',
     opts = {
       enable_autosnippets = true,
@@ -166,6 +147,7 @@ return {
       luasnip.filetype_extend('typescriptreact', { 'html' })
 
       -- require "user.plugins.cmp.snippets"
+      require('luasnip.loaders.from_vscode').lazy_load()
       require('luasnip.loaders.from_vscode').lazy_load { paths = { './snippets' } }
     end,
   },

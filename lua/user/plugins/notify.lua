@@ -8,11 +8,5 @@ return {
       fps = 60,
       render = 'minimal',
     },
-    config = function(_, opts)
-      local notify = require 'notify'
-      notify.setup(opts)
-
-      vim.notify = notify
-    end,
   },
 }

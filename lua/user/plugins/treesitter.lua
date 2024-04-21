@@ -3,6 +3,14 @@ return {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    dependencies = {
+      {
+        'nvim-treesitter/nvim-treesitter-context',
+        opts = {
+          max_lines = 4,
+        },
+      },
+    },
     opts = {
       ensure_installed = 'all',
       sync_install = false,

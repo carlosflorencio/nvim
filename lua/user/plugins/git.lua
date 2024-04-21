@@ -42,6 +42,9 @@ return {
     keys = {
       { '<leader>gg', '<cmd>LazyGit<cr>' },
     },
+    init = function()
+      vim.g.lazygit_floating_window_scaling_factor = 1
+    end,
   },
 
   {
@@ -82,5 +85,75 @@ return {
         end,
       }
     end,
+  },
+
+  {
+    'sindrets/diffview.nvim',
+    cmd = { 'DiffviewFileHistory', 'DiffviewOpen', 'DiffviewClose', 'DiffviewFileHistory' },
+    keys = {
+      { ',HH', '<cmd>DiffviewFileHistory<cr>', desc = 'Git Repo History', mode = 'n' },
+      { ',hh', '<cmd>DiffviewFileHistory --follow %<cr>', desc = 'Git File History', mode = 'n' },
+      { ',hh', "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>", desc = 'Git History', mode = 'v' },
+      { ',hc', '<cmd>DiffviewClose<cr>', desc = 'Diffview Close' },
+    },
+  },
+
+  {
+    'akinsho/git-conflict.nvim',
+    version = '*',
+    config = true,
+    opts = {
+      default_mappings = false,
+      disable_diagnostics = true,
+    },
+    lazy = false,
+    keys = {
+      {
+        '<leader>gC',
+        '<cmd>GitConflictListQf<cr>',
+        desc = 'Open git conflict list',
+      },
+      {
+        '<leader>gc',
+        function()
+          vim.ui.select({
+            'Ours (Current)',
+            'Theirs (Incoming)',
+            'Both',
+            'None',
+          }, {
+            prompt = 'Git Conflict',
+            format_item = function(item)
+              return 'Choose ' .. item
+            end,
+            kind = 'custom_builtin',
+          }, function(_, idx)
+            if idx == nil then
+              return
+            end
+
+            local cmds = {
+              'GitConflictChooseOurs',
+              'GitConflictChooseTheirs',
+              'GitConflictChooseBoth',
+              'GitConflictChooseNone',
+            }
+
+            vim.cmd(cmds[idx])
+          end)
+        end,
+        desc = 'Git conflict resolve',
+      },
+      {
+        ']x',
+        '<Plug>(git-conflict-next-conflict)',
+        desc = 'Git conflict: Go to next',
+      },
+      {
+        '[x',
+        '<Plug>(git-conflict-prev-conflict)',
+        desc = 'Git conflict: Go to prev',
+      },
+    },
   },
 }

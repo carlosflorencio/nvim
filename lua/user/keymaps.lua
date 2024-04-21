@@ -17,6 +17,31 @@ vim.keymap.set('n', '<F2>', ':%s/<C-r><C-w>//<Left>')
 vim.keymap.set('v', '<F2>', ':%s/\\%Vs/k/g')
 vim.keymap.set({ 'n', 'x' }, 'gw', '*N', { desc = 'Search word under cursor' })
 
+-- iterm2 & alacritty will send custom keycodes for these
+vim.keymap.set({ 'n', 'i', 'v' }, '<f13>s', function()
+  vim.notify 'F13s'
+end)
+
+vim.keymap.set({ 'n', 'i', 'v' }, '<f13>p', function()
+  vim.notify 'F13p'
+end)
+
+vim.keymap.set({ 'n', 'i', 'v' }, '<s-cr>', function()
+  vim.notify '<s-cr>'
+end)
+
+-- vim.keymap.set({ 'n', 'i', 'v' }, '<c-cr>', function()
+--   vim.notify '<c-cr>'
+-- end)
+
+-- moergo crtl+backspace
+vim.keymap.set({ 'i', 'n' }, '<M-c-bs>', '<nop>')
+
+-- jump between words in insert mode
+vim.keymap.set('i', '<M-Right>', '<S-Right>')
+vim.keymap.set('i', '<M-Left>', '<S-Left>')
+vim.keymap.set('i', '<c-e>', '<c-o>de') -- delete forward word
+
 -- esc
 vim.keymap.set({ 'i', 'n' }, '<esc>', '<cmd>noh<cr><esc>', { desc = 'Escape and Clear highlights' })
 
@@ -54,11 +79,6 @@ vim.keymap.set('n', '<A-k>', ':m .-2<CR>==')
 vim.keymap.set('x', '<A-j>', ":m '>+1<CR>gv-gv")
 vim.keymap.set('x', '<A-k>', ":m '<-2<CR>gv-gv")
 
--- navigate tab completion with <c-j> and <c-k>
-vim.keymap.set('i', '<c-j>', 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true })
-vim.keymap.set('i', '<c-k>', 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true })
-vim.keymap.set('i', '<c-bs>', '<c-w>')
-
 -- better indenting
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
@@ -90,34 +110,19 @@ vim.keymap.set('v', '<leader>i', '<esc>`<i', { desc = 'Insert at beginning selec
 vim.keymap.set('n', '<leader>b', '<cmd>enew<cr>', { desc = 'New Buffer' })
 
 -- text wrap
-vim.keymap.set('n', '<leader>tw', ':set wrap!<cr>', {
-  desc = 'Toggle line wrap for all splits',
-})
-
-vim.keymap.set('n', '<leader>tW', ':windo set wrap!<cr>', {
-  desc = 'Toggle line wrap for current buffer',
-})
+vim.keymap.set('n', '<leader>tw', ':set wrap!<cr>', { desc = 'Toggle line wrap for all splits' })
+vim.keymap.set('n', '<leader>tW', ':windo set wrap!<cr>', { desc = 'Toggle line wrap for current buffer' })
 
 -- Surrounds keymaps
-vim.keymap.set('n', '<leader>S"', 'ysiW"', {
-  desc = 'Surround word with double quotes',
-  remap = true,
-})
+vim.keymap.set('n', '<leader>S"', 'ysiW"', { desc = 'Surround word with double quotes', remap = true })
+vim.keymap.set('n', '<leader>s"', 'ysiw"', { desc = 'Surround word with double quotes', remap = true })
+vim.keymap.set('n', '<leader>s`', 'ysiw`', { desc = 'Surround word with double quotes', remap = true })
+vim.keymap.set('n', '<leader>S`', 'ysiW`', { desc = 'Surround word with double quotes', remap = true })
 
-vim.keymap.set('n', '<leader>s"', 'ysiw"', {
-  desc = 'Surround word with double quotes',
-  remap = true,
-})
-
-vim.keymap.set('n', '<leader>s`', 'ysiw`', {
-  desc = 'Surround word with double quotes',
-  remap = true,
-})
-
-vim.keymap.set('n', '<leader>S`', 'ysiW`', {
-  desc = 'Surround word with double quotes',
-  remap = true,
-})
+-- visual shorcuts
+vim.keymap.set('v', "'", "T'", { desc = 'Surround word with single quotes', remap = true })
+vim.keymap.set('v', '"', 'T"', { desc = 'Surround word with double quotes', remap = true })
+vim.keymap.set('v', '`', 'T`', { desc = 'Surround word with accent quotes', remap = true })
 
 -- don't yank the replaced text after pasting in visual mode
 -- use P
@@ -144,3 +149,16 @@ vim.keymap.set('n', 'i', function()
     return 'i'
   end
 end, { expr = true })
+
+-- makes * and # work on visual mode too.
+vim.cmd [[
+  function! g:VSetSearch(cmdtype)
+    let temp = @s
+    norm! gv"sy
+    let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
+    let @s = temp
+  endfunction
+
+  xnoremap * :<C-u>call g:VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
+  xnoremap # :<C-u>call g:VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
+]]

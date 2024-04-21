@@ -19,10 +19,29 @@ return {
         version = false, -- last release is way too old
       },
 
-      { 'smjonas/inc-rename.nvim', opts = {} },
+      {
+        'SmiteshP/nvim-navbuddy',
+        dependencies = {
+          'neovim/nvim-lspconfig',
+          'SmiteshP/nvim-navic',
+          'MunifTanjim/nui.nvim',
+        },
+        opts = {
+          lsp = {
+            auto_attach = true,
+            preference = { 'typescript-tools', 'lua_ls', 'tsserver', 'pyright' },
+          },
+          window = {
+            size = '75%',
+          },
+        },
+        keys = {
+          { '<leader>fs', '<cmd>Navbuddy<cr>', desc = 'Navbuddy navigate LSP symbols' },
+        },
+      },
     },
     config = function()
-      require 'user.plugins.lsp.keymaps'
+      require 'user.plugins.lsp.lsp-keymaps'
       local lspconfig = require 'lspconfig'
 
       -- LSP servers and clients are able to communicate to each other what features they support.
@@ -256,6 +275,15 @@ return {
             end
           end,
         },
+      }
+    end,
+  },
+
+  {
+    'kosayoda/nvim-lightbulb',
+    config = function()
+      require('nvim-lightbulb').setup {
+        autocmd = { enabled = true },
       }
     end,
   },

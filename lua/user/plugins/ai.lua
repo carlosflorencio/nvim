@@ -25,7 +25,7 @@ return {
         auto_trigger = true,
         debounce = 75,
         keymap = {
-          accept = '<M-l>',
+          accept = '<c-l>',
           accept_word = false,
           accept_line = false,
           next = '<M-]>',
@@ -58,21 +58,37 @@ return {
     },
     opts = {
       debug = false, -- Enable debugging
-      -- See Configuration section for rest
+      window = {
+        layout = 'float',
+      },
+      mappings = {
+        submit_prompt = {
+          normal = '<CR>',
+          insert = '<CR>',
+        },
+      },
     },
     keys = {
       {
         '<leader>aa',
         function()
-          local input = vim.fn.input 'Quick Chat: '
-          if input ~= '' then
-            require('CopilotChat').ask(input, { selection = require('CopilotChat.select').buffer })
-          end
+          vim.ui.input({ prompt = 'Ask Copilot' }, function(input)
+            if input ~= nil then
+              require('CopilotChat').ask(input)
+            end
+          end)
         end,
         desc = 'CopilotChat - Quick chat',
+        mode = { 'n', 'v' },
       },
       {
-        '<leader>cch',
+        '<leader>aA',
+        '<cmd>CopilotChatOpen<cr>',
+        desc = 'CopilotChat - Open',
+        mode = { 'n', 'v' },
+      },
+      {
+        '<leader>ah',
         function()
           local actions = require 'CopilotChat.actions'
           require('CopilotChat.integrations.telescope').pick(actions.help_actions())
@@ -82,13 +98,18 @@ return {
       },
       -- Show prompts actions with telescope
       {
-        '<leader>ccp',
+        '<leader>at',
         function()
           local actions = require 'CopilotChat.actions'
           require('CopilotChat.integrations.telescope').pick(actions.prompt_actions())
         end,
         desc = 'CopilotChat - Prompt actions',
         mode = { 'n', 'v' },
+      },
+      {
+        '<leader>am',
+        '<cmd>CopilotChatCommitStaged<cr>',
+        desc = 'CopilotChat - Generate commit message for staged changes',
       },
     },
     -- See Commands section for default commands if you want to lazy load on them

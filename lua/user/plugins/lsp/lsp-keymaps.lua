@@ -28,14 +28,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('gK', vim.lsp.buf.signature_help, 'Signature Help')
     vim.keymap.set('i', '<c-s>', vim.lsp.buf.signature_help, { buffer = event.buf, desc = 'LSP: Signature Help' })
 
-    -- map('<leader>lr', vim.lsp.buf.rename, 'Rename') -- we use inc-rename
-    vim.keymap.set('n', '<leader>lr', function()
-      return ':IncRename ' -- empty
-    end, { desc = 'LSP: Rename', buffer = event.buf, expr = true })
-
-    vim.keymap.set('n', '<leader>lR', function()
-      return ':IncRename ' .. vim.fn.expand '<cword>' -- use word under cursor
-    end, { desc = 'LSP: Rename', buffer = event.buf, expr = true })
+    map('<leader>lr', vim.lsp.buf.rename, 'Rename') -- we use inc-rename
 
     -- Jump Diagnostics
     map(']d', diagnostic_goto(true), 'Next Diagnostic')

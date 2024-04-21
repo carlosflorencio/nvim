@@ -21,4 +21,9 @@ return {
     event = 'User FileOpened',
   },
 
+  {
+    'folke/todo-comments.nvim',
+    event = 'BufRead',
+    opts = {},
+  },
 }

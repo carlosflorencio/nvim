@@ -104,6 +104,12 @@ return {
       'nvim-tree/nvim-web-devicons',
     },
     opts = {
+      sync_root_with_cwd = true,
+      respect_buf_cwd = true,
+      update_focused_file = {
+        enable = true,
+        update_root = true,
+      },
       on_attach = on_attach,
       hijack_directories = {
         enable = false, -- conflict with oil
@@ -143,9 +149,6 @@ return {
             },
           },
         },
-      },
-      update_focused_file = {
-        enable = true,
       },
       diagnostics = {
         enable = true,
