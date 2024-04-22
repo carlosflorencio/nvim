@@ -19,6 +19,10 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 vim.cmd [[au InsertEnter * set nu nornu]] -- disable relative numbers in insert mode
 vim.cmd [[au InsertLeave * set nu rnu]]
 
+-- tmp fix for https://github.com/chentoast/marks.nvim/issues/13
+-- nvim 0.10 fixes this
+vim.api.nvim_create_autocmd({ 'BufRead' }, { command = ':delm a-zA-Z0-9' })
+
 -- nvim tree windows management
 vim.api.nvim_create_autocmd({ 'VimEnter' }, {
   callback = function()

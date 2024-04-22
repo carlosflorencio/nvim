@@ -31,9 +31,12 @@ return {
       },
       'debugloop/telescope-undo.nvim',
       'nvim-telescope/telescope-live-grep-args.nvim',
-      { 'ahmedkhalf/project.nvim', config = function ()
-        require("project_nvim").setup()
-      end },
+      {
+        'ahmedkhalf/project.nvim',
+        config = function()
+          require('project_nvim').setup()
+        end,
+      },
     },
     config = function()
       local actions = require 'telescope.actions'
@@ -95,6 +98,9 @@ return {
           buffers = {
             initial_mode = 'normal',
             theme = 'dropdown',
+            layout_config = {
+              width = 0.6, -- Adjust as needed
+            },
             mappings = {
               i = {
                 ['<C-d>'] = actions.delete_buffer,
@@ -216,7 +222,7 @@ return {
       },
       {
         '<leader>ft',
-        "<cmd>Telescope projects<cr>",
+        '<cmd>Telescope projects<cr>',
         desc = 'Projects',
       },
     },

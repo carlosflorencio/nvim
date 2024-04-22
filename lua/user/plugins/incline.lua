@@ -20,10 +20,15 @@ return {
             filename = '[No Name]'
           end
 
-          local modified_icon = vim.bo[props.buf].modified and '! ' or ''
+          local modified_icon = vim.bo[props.buf].modified and '󰏫 ' or ''
+
+          -- if there are at least 2 tabs, hide
+          if #vim.api.nvim_list_tabpages() > 1 then
+            return {}
+          end
 
           return {
-            { modified_icon, guibg = 'none' },
+            { modified_icon, guibg = 'none', guifg = 'red' },
             { filename .. ' ', gui = vim.bo[props.buf].modified and 'bold,italic' or 'bold', group = get_diagnostic_label(props) },
           }
         end,

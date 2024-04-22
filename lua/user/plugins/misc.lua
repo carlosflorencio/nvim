@@ -21,4 +21,6 @@ return {
     },
     event = 'VeryLazy',
   },
+
+  { 'wakatime/vim-wakatime', lazy = false },
 }

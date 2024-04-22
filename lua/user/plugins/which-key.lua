@@ -12,6 +12,18 @@ return {
         registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
         spelling = true,
       },
+      triggers_nowait = {
+        -- -- marks
+        -- '`',
+        -- "'",
+        -- 'g`',
+        -- "g'",
+        -- registers
+        '"',
+        '<c-r>',
+        -- spelling
+        'z=',
+      },
     },
     config = function(_, opts)
       local wk = require 'which-key'

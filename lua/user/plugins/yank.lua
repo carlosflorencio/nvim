@@ -2,6 +2,9 @@ return {
   {
     -- yank ring
     'gbprod/yanky.nvim',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+    },
     opts = {
       ring = {
         history_length = 50,
@@ -24,6 +27,11 @@ return {
         enabled = true,
       },
     },
+    config = function(_, opts)
+      require('yanky').setup(opts)
+
+      require('telescope').load_extension 'yank_history'
+    end,
     keys = {
       {
         'p',
@@ -50,6 +58,11 @@ return {
         function()
           require('yanky.textobj').last_put()
         end,
+      },
+      {
+        '<leader>fy',
+        '<cmd>Telescope yank_history theme=dropdown initial_mode=normal<cr>',
+        desc = 'Find Yank History',
       },
     },
   },

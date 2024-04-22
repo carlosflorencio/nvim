@@ -123,6 +123,7 @@ return {
         highlight_git = true,
         root_folder_label = false,
         symlink_destination = false,
+        full_name = true,
         icons = {
           glyphs = {
             default = icons.ui.Text,
