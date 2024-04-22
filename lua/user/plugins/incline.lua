@@ -14,6 +14,19 @@ return {
       end
 
       require('incline').setup {
+        window = {
+          padding = {
+            left = 1,
+            right = 0,
+          },
+          margin = {
+            horizontal = 0,
+            vertical = 0,
+          },
+        },
+        hide = {
+          cursorline = true,
+        },
         render = function(props)
           local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ':t')
           if filename == '' then

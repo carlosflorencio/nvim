@@ -89,7 +89,7 @@ return {
     'b:gitsigns_head',
     icon = branch,
     color = { gui = 'bold' },
-    fmt = trunc(40),
+    fmt = trunc(25),
   },
   filename = {
     'filename',

@@ -82,23 +82,20 @@ return {
         mode = { 'n', 'v' },
       },
       {
+        '<leader>aD',
+        '<cmd>CopilotChatFixDiagnostic<cr>',
+        desc = 'CopilotChat - Fix Diagnostics',
+        mode = { 'n', 'v' },
+      },
+      {
         '<leader>aA',
         '<cmd>CopilotChatOpen<cr>',
         desc = 'CopilotChat - Open',
         mode = { 'n', 'v' },
       },
-      {
-        '<leader>ah',
-        function()
-          local actions = require 'CopilotChat.actions'
-          require('CopilotChat.integrations.telescope').pick(actions.help_actions())
-        end,
-        desc = 'CopilotChat - Help actions',
-        mode = { 'n', 'v' },
-      },
       -- Show prompts actions with telescope
       {
-        '<leader>at',
+        '<leader>ac',
         function()
           local actions = require 'CopilotChat.actions'
           require('CopilotChat.integrations.telescope').pick(actions.prompt_actions())
@@ -111,7 +108,29 @@ return {
         '<cmd>CopilotChatCommitStaged<cr>',
         desc = 'CopilotChat - Generate commit message for staged changes',
       },
+      {
+        '<leader>ad',
+        '<cmd>CopilotChatDocs<cr>',
+        desc = 'CopilotChat - Generate Docstring',
+        mode = { 'v' },
+      },
+      {
+        '<leader>at',
+        '<cmd>CopilotChatTests<cr>',
+        desc = 'CopilotChat - Generate Tests',
+        mode = { 'v', 'n' },
+      },
     },
-    -- See Commands section for default commands if you want to lazy load on them
+  },
+
+  {
+    -- using text-davinci-003, more expensive but works better for completions
+    'aduros/ai.vim',
+    init = function()
+      vim.g.ai_no_mappings = 1
+    end,
+    keys = {
+      { '<c-a>', '<cmd>AI<cr>', desc = 'ChatGPT AI Insert', mode = { 'i' } },
+    },
   },
 }

@@ -10,6 +10,14 @@ end
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('user-lsp-attach', { clear = true }),
   callback = function(event)
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+    if client.name == 'typescript-tools' then
+      vim.keymap.set('n', '<leader>oa', '<cmd>TSToolsAddMissingImports<CR>', { buffer = event.buf, desc = 'Add Missing Imports' })
+      vim.keymap.set('n', '<leader>oi', '<cmd>TSToolsOrganizeImports<CR>', { buffer = event.buf, desc = 'Organize Imports' })
+      vim.keymap.set('n', '<leader>ou', '<cmd>TSToolsRemoveUnusedImports<CR>', { buffer = event.buf, desc = 'Remove Unused Imports/Variables' })
+    end
+
     local map = function(keys, func, desc)
       vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
     end
@@ -22,13 +30,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('<leader>ls', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
     map('<leader>lS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
     map('<leader>la', vim.lsp.buf.code_action, 'Code Action')
+    map('<leader>ld', vim.diagnostic.open_float, 'Code Action')
     map('K', vim.lsp.buf.hover, 'Hover Documentation')
 
     -- Signature Help
     map('gK', vim.lsp.buf.signature_help, 'Signature Help')
     vim.keymap.set('i', '<c-s>', vim.lsp.buf.signature_help, { buffer = event.buf, desc = 'LSP: Signature Help' })
 
-    map('<leader>lr', vim.lsp.buf.rename, 'Rename') -- we use inc-rename
+    map('<leader>lr', vim.lsp.buf.rename, 'Rename')
 
     -- Jump Diagnostics
     map(']d', diagnostic_goto(true), 'Next Diagnostic')

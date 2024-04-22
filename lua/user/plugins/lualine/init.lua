@@ -36,6 +36,7 @@ return {
           lualine_c = {
             components.filetype,
             components.diagnostics,
+            require 'user.plugins.lualine.diagnostic-line',
             {
               function()
                 return require('package-info').get_status()

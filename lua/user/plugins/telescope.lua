@@ -203,6 +203,7 @@ return {
         desc = 'Find workspace symbols',
       },
       { '<leader>fh', '<cmd>Telescope help_tags<cr>', desc = 'Find Help' },
+      { '<leader>fd', '<cmd>Telescope diagnostics initial_mode=normal theme=dropdown<cr>', desc = 'Find diagnostics' },
       { '<leader>fM', '<cmd>Telescope man_pages<cr>', desc = 'Man Pages' },
       {
         '<leader>fr',
@@ -221,7 +222,12 @@ return {
         desc = 'Colorscheme with Preview',
       },
       {
-        '<leader>ft',
+        '<leader>fp',
+        '<cmd>Telescope projects<cr>',
+        desc = 'Projects',
+      },
+      {
+        '<F13>o',
         '<cmd>Telescope projects<cr>',
         desc = 'Projects',
       },

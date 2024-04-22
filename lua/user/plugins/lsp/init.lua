@@ -158,6 +158,31 @@ return {
           end,
         },
       }
+
+      -- diagnostics
+      for name, icon in pairs(require('user.icons').lsp_diagnostic_icons) do
+        name = 'DiagnosticSign' .. name
+        vim.fn.sign_define(name, {
+          text = icon,
+          texthl = name,
+          numhl = '',
+        })
+      end
+
+      local updated_diagnostics = {
+        underline = false,
+        update_in_insert = false,
+        -- virtual_text = {
+        --   spacing = 1,
+        --   prefix = "",
+        -- },
+        virtual_text = false,
+        severity_sort = true,
+        float = {
+          border = 'rounded',
+        },
+      }
+      vim.diagnostic.config(updated_diagnostics)
     end,
   },
 
