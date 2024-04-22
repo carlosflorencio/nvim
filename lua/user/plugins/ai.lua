@@ -120,6 +120,12 @@ return {
         desc = 'CopilotChat - Generate Tests',
         mode = { 'v', 'n' },
       },
+      {
+        '<leader>ao',
+        '<cmd>CopilotChatOptimize<cr>',
+        desc = 'CopilotChat - Optmize the selected code',
+        mode = { 'v' },
+      },
     },
   },
 

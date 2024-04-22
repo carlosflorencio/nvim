@@ -12,8 +12,25 @@ return {
       print_tag = 'here',
       keymaps = {
         normal = {
-          plain_below = '<leader>dd',
+          plain_below = '<leader>dl',
+          plain_above = 'g?P',
+          variable_below = '<leader>dd',
+          variable_above = 'g?V',
+          variable_below_alwaysprompt = nil,
+          variable_above_alwaysprompt = nil,
+          textobj_below = 'g?o',
+          textobj_above = 'g?O',
+          toggle_comment_debug_prints = nil,
+          delete_debug_prints = nil,
         },
+        visual = {
+          variable_below = '<leader>dd',
+          variable_above = 'g?V',
+        },
+      },
+      commands = {
+        toggle_comment_debug_prints = 'ToggleCommentDebugPrints',
+        delete_debug_prints = 'DeleteDebugPrints',
       },
     },
   },
