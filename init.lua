@@ -51,13 +51,19 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup {
+require('lazy').setup({
   { 'nmac427/guess-indent.nvim', opts = {} }, -- Detect tabstop and shiftwidth automatically
   { 'tpope/vim-repeat', event = 'VeryLazy' },
   -- alternative https://github.com/pteroctopus/faster.nvim
   { 'LunarVim/bigfile.nvim', opts = {} },
   { import = 'user.plugins' },
-}
+}, {
+  change_detection = {
+    -- automatically check for config file changes and reload the ui
+    enabled = false,
+    notify = false, -- get a notification when changes are found
+  },
+})
 
 require 'user.autocmds'
 require 'user.cmds'

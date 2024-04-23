@@ -10,5 +10,12 @@
     "prefix": "fn",
     "body": "($2) => {\n\t$1$0\n}",
     "description": "Anonymous function"
+  },
+  "DocBlock": {
+    "prefix": "/**",
+    "body": [
+      "/**\n* $1\n*/"
+    ],
+    "description": "DocBlock comment"
   }
 }

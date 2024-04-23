@@ -189,7 +189,10 @@ return {
   {
     'pmizio/typescript-tools.nvim',
     ft = { 'typescript', 'typescriptreact', 'javascript' },
-    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'neovim/nvim-lspconfig',
+    },
     config = function()
       require('typescript-tools').setup {
         root_dir = require('lspconfig').util.root_pattern('.git', 'package-lock.json', 'yarn.lock'),
@@ -283,7 +286,9 @@ return {
             ['l'] = glance.actions.jump,
             ['<c-t>'] = glance.actions.jump_tab,
             ['<c-v>'] = glance.actions.jump_vsplit,
-            ['<c-x>'] = glance.actions.jump_split,
+            ['<c-h>'] = glance.actions.jump_split,
+            ['<c-s>'] = glance.actions.jump_split,
+            ['h'] = glance.actions.jump_split,
           },
         },
         ---@diagnostic disable-next-line: missing-fields

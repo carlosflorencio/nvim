@@ -84,10 +84,8 @@ return {
           ['<CR>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
               if cmp.get_active_entry() then
-                require 'notify' 'entry selected'
                 cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
               else
-                require 'notify' 'no entry'
                 fallback()
               end
             else
@@ -146,7 +144,7 @@ return {
       luasnip.filetype_extend('javascriptreact', { 'html' })
       luasnip.filetype_extend('typescriptreact', { 'html' })
 
-      -- require "user.plugins.cmp.snippets"
+      require 'user.snippets'
       require('luasnip.loaders.from_vscode').lazy_load()
       require('luasnip.loaders.from_vscode').lazy_load { paths = { './snippets' } }
     end,

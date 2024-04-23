@@ -176,11 +176,11 @@ return {
         '<cmd>Telescope git_branches initial_mode=normal<cr>',
         desc = 'Checkout Branch',
       },
-      {
-        '<leader>j',
-        '<cmd>Telescope buffers show_all_buffers=true previewer=false ignore_current_buffer=true sort_mru=true<cr>',
-        desc = 'Open Buffers',
-      },
+      -- {
+      --   '<leader>j',
+      --   '<cmd>Telescope buffers show_all_buffers=true previewer=false ignore_current_buffer=true sort_mru=true<cr>',
+      --   desc = 'Open Buffers',
+      -- },
       { '<leader>tt', '<cmd>Telescope diagnostics initial_mode=normal<cr>', desc = 'LSP Diagnostics' },
       {
         '<leader>fg',

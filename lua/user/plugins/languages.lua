@@ -20,15 +20,4 @@ return {
       },
     },
   },
-
-  {
-    -- convert "${}" to `${}`
-    'axelvc/template-string.nvim',
-    -- event = "BufRead",
-    ft = {
-      'javascriptreact',
-      'typescriptreact',
-    },
-    opts = {},
-  },
 }

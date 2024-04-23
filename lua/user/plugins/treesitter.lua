@@ -41,6 +41,7 @@ return {
   {
     'ckolkey/ts-node-action',
     dependencies = { 'nvim-treesitter' },
+    enabled = true,
     config = function()
       local ts_node_action = require 'ts-node-action'
       ts_node_action.setup {
@@ -49,10 +50,40 @@ return {
     end,
     keys = {
       {
-        '<leader>ss',
+        '<leader>sS',
         '<cmd>lua require("ts-node-action").node_action()<cr>',
         desc = 'Toggle node action under cursor',
       },
     },
+  },
+
+  {
+    'Wansmer/treesj',
+    opts = { use_default_keymaps = false },
+    keys = {
+      { '<leader>ss', '<cmd>TSJToggle<cr>', desc = 'Join Toggle' },
+    },
+  },
+
+  {
+    -- auto close tags <div| => <div></div>
+    'windwp/nvim-ts-autotag',
+    opts = {},
+  },
+
+  {
+    -- convert "${}" to `${}`
+    'axelvc/template-string.nvim',
+    filetypes = {
+      'html',
+      'typescript',
+      'javascript',
+      'typescriptreact',
+      'javascriptreact',
+      'vue',
+      'svelte',
+      'python',
+    }, -- filetypes where the plugin is active
+    opts = {},
   },
 }
