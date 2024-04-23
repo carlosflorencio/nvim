@@ -44,7 +44,7 @@ return {
         cvs = false,
         ['.'] = false,
       },
-      -- copilot_node_command = 'node', -- Node.js version must be > 16.x
+      copilot_node_command = 'node', -- Node.js version must be > 16.x
       server_opts_overrides = {},
     },
   },
@@ -126,17 +126,6 @@ return {
         desc = 'CopilotChat - Optmize the selected code',
         mode = { 'v' },
       },
-    },
-  },
-
-  {
-    -- using text-davinci-003, more expensive but works better for completions
-    'aduros/ai.vim',
-    init = function()
-      vim.g.ai_no_mappings = 1
-    end,
-    keys = {
-      { '<c-a>', '<cmd>AI<cr>', desc = 'ChatGPT AI Insert', mode = { 'i' } },
     },
   },
 }

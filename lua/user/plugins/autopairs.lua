@@ -8,7 +8,7 @@ return {
     config = function()
       require('nvim-autopairs').setup {
         ignored_next_char = string.gsub([[ [%w%%%'%[%"%.] ]], '%s+', ''),
-        enable_check_bracket_line = false,
+        enable_check_bracket_line = true,
         check_ts = true,
         ts_config = {
           lua = { 'string', 'source' },
@@ -17,7 +17,7 @@ return {
         },
         disable_filetype = { 'TelescopePrompt', 'spectre_panel' },
         fast_wrap = {
-          map = '<M-e>',
+          map = '<C-;>',
           chars = { '{', '[', '(', '"', "'" },
           pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], '%s+', ''),
           offset = 0, -- Offset from pattern match

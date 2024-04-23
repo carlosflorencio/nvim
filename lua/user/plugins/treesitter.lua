@@ -86,4 +86,14 @@ return {
     }, -- filetypes where the plugin is active
     opts = {},
   },
+
+  {
+    -- incremental selection <cr>, <bs>
+    'sustech-data/wildfire.nvim',
+    event = 'VeryLazy',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require('wildfire').setup()
+    end,
+  },
 }

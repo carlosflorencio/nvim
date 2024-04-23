@@ -23,4 +23,27 @@ return {
   },
 
   { 'wakatime/vim-wakatime', lazy = false },
+
+  {
+    -- peek lines :number, <cr> to jump
+    'nacro90/numb.nvim',
+    event = 'VeryLazy',
+    opts = {},
+  },
+
+  {
+    -- show colorcolumn when line is too long on insert mode
+    'Bekaboo/deadcolumn.nvim',
+    event = 'BufReadPost',
+    init = function()
+      vim.opt.colorcolumn = '80'
+    end,
+  },
+
+  {
+    -- set cwd to git root folder
+    'notjedi/nvim-rooter.lua',
+    enabled = false,
+    opts = {},
+  },
 }
