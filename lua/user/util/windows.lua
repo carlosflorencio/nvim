@@ -53,13 +53,26 @@ function M.close_tree_if_many_windows()
   end
 end
 
-function M.close_all_floating_wins()
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
-    local config = vim.api.nvim_win_get_config(win)
-    if config.relative ~= '' then
-      vim.api.nvim_win_close(win, false)
+function M.delete_unlisted_buffers()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if not vim.api.nvim_buf_get_option(buf, 'buflisted') then
+      vim.api.nvim_buf_delete(buf, { force = true })
     end
   end
+end
+
+function M.delete_buffers_filetype(filetypes)
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    local filetype = vim.api.nvim_buf_get_option(buf, 'filetype')
+    if vim.tbl_contains(filetypes, filetype) then
+      vim.api.nvim_buf_delete(buf, { force = false })
+    end
+  end
+end
+
+function M.close_tmp_buffers()
+  M.delete_unlisted_buffers()
+  M.delete_buffers_filetype { 'oil', 'NvimTree', 'TelescopePrompt', 'copilot-chat' }
 end
 
 function M.close_all_nvim_tree_buffers()

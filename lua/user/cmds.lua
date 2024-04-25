@@ -48,9 +48,9 @@ vim.api.nvim_create_user_command('SaveBuffer', function()
   end
 
   -- Save the buffer to the determined file path
-  vim.cmd('write ' .. bufname)
+  vim.cmd('write! ' .. bufname)
 end, {
-  desc = 'Re-enable autoformat-on-save',
+  desc = 'Save Buffer, prompt for file path if not saved yet',
 })
 
 vim.cmd [[

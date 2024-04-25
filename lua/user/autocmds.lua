@@ -34,6 +34,7 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
     end)()
 
     -- schedule auto tree close
+    -- needs to be scheduled after openin tree at startup
     vim.api.nvim_create_autocmd('WinEnter', {
       group = augroup 'buf_enter_tree',
       callback = function()
@@ -41,6 +42,7 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
           require('user.util.windows').close_tree_if_many_windows()
         end)()
       end,
+      -- allow this autocmd to run when the cb triggers it again
       nested = true,
     })
   end,

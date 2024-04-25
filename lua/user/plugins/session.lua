@@ -11,8 +11,9 @@ return {
         load_on_setup = false,
       },
       pre_save_cmds = {
-        "lua require('user.util.windows').close_all_floating_wins()",
+        "lua require('user.util.windows').close_tmp_buffers()",
         "lua require('user.util.windows').close_all_nvim_tree_buffers()",
+        "lua require('incline').disable()",
       },
     },
     lazy = false,

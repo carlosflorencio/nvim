@@ -258,6 +258,10 @@ return {
             ['<c-d>'] = 'preview-page-down',
             ['<c-u>'] = 'preview-page-up',
           },
+          fzf = {
+            -- send all to quickfix list
+            ['ctrl-q'] = 'select-all+accept',
+          },
         },
         grep = {
           actions = {
