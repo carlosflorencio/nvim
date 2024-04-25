@@ -76,6 +76,7 @@ function M.close_tmp_buffers()
 end
 
 function M.close_all_nvim_tree_buffers()
+  require('nvim-tree.api').tree.close_in_all_tabs()
   local targetBuffers = {}
   local bufList = vim.api.nvim_list_bufs()
 

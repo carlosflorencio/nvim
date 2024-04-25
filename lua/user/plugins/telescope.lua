@@ -237,7 +237,7 @@ return {
   {
     'ibhagwan/fzf-lua',
     -- optional for icon support
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    -- dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       local actions = require 'fzf-lua.actions'
       require('fzf-lua').setup {
@@ -246,7 +246,7 @@ return {
           files = {
             ['default'] = actions.file_edit_or_qf,
             ['ctrl-t'] = actions.file_tabedit,
-            ['ctrl-q'] = actions.file_sel_to_qf,
+            ['alt-q'] = actions.file_sel_to_qf,
             ['ctrl-s'] = actions.file_split,
             ['ctrl-h'] = actions.file_split,
             ['ctrl-v'] = actions.file_vsplit,

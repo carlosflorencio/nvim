@@ -43,7 +43,8 @@ return {
   {
     -- set cwd to git root folder
     'notjedi/nvim-rooter.lua',
-    enabled = false,
+    priority = 500,
+    enabled = true,
     opts = {},
   },
 }

@@ -85,6 +85,17 @@ return {
     color = {},
     cond = nil,
   },
+  cwd = {
+    function()
+      local dir_name = vim.fn.fnamemodify(vim.loop.cwd(), ':t')
+      return dir_name
+    end,
+    -- fmt = function(path)
+    --   return require('user.utils').shorten_path(path)
+    -- end,
+    icon = icons.ui.Folder,
+    padding = { left = 1, right = 1 },
+  },
   branch = {
     'b:gitsigns_head',
     icon = branch,
