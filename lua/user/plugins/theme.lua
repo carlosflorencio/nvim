@@ -6,16 +6,18 @@ return {
     priority = 1000,
     config = function()
       require('onedark').setup {
-        style = 'darker',
+        style = 'warmer', -- warm, darker
         ending_tildes = true,
         code_style = {
           comments = 'none',
         },
+        cmp_itemkind_reverse = false,
       }
       require('onedark').load()
       -- vim.api.nvim_set_hl(0, 'NvimTreeWinSeparator', { link = 'Ignore' })
       vim.api.nvim_set_hl(0, 'NvimTreeNormal', { bg = 'NONE' })
       vim.api.nvim_set_hl(0, 'NvimTreeEndOfBuffer', { bg = 'NONE' })
+      vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'NONE' }) -- cmp boder
     end,
   },
 
