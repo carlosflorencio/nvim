@@ -28,6 +28,9 @@ return {
             build = 'make',
           },
         },
+        opts = {
+          result_limit = 50,
+        },
       },
       'debugloop/telescope-undo.nvim',
       'nvim-telescope/telescope-live-grep-args.nvim',
