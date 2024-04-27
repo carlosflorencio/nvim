@@ -74,7 +74,7 @@ return {
   {
     -- convert "${}" to `${}`
     'axelvc/template-string.nvim',
-    filetypes = {
+    ft = {
       'html',
       'typescript',
       'javascript',

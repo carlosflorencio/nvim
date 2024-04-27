@@ -52,6 +52,7 @@ return {
             Lualine_get_wakatime,
             components.location,
             require 'user.plugins.lualine.fancy-lsp-servers',
+            -- require 'user.plugins.lualine.yamlls',
             'searchcount',
           },
           -- lualine_y = {

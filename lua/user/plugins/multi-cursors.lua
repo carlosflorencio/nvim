@@ -1,42 +1,20 @@
 return {
   {
-    -- multi cursor a like, cmd - d
-    'smoka7/multicursors.nvim',
-    enabled = true,
-    dependencies = {
-      'smoka7/hydra.nvim',
-    },
-    opts = {},
-    cmd = { 'MCstart', 'MCvisual', 'MCclear', 'MCpattern', 'MCvisualPattern', 'MCunderCursor' },
-    keys = {
-      {
-        mode = { 'v', 'n' },
-        '<f13>l',
-        '<cmd>MCstart<cr>',
-        desc = 'Create a selection for selected text or word under the cursor',
-      },
-    },
-  },
-
-  {
-    'brenton-leighton/multiple-cursors.nvim',
-    version = '*', -- Use the latest tagged version
-    opts = {
-      pre_hook = function()
-        -- require('nvim-autopairs').disable()
-      end,
-
-      post_hook = function()
-        -- require('nvim-autopairs').enable()
-      end,
-    },
-    config = function(_, opts)
-      require('multiple-cursors').setup(opts)
+    -- ctrl-n to select next word
+    --  n to select next word
+    --  q to skip word
+    --  ] move to the next cursor
+    --  tab to toggle between visual and normal mode
+    -- ctrl-down/up to add cursor below/above (mod - d - down)
+    -- inside normal mode, s operator to select word
+    -- leader is \\ (+A to select all words)
+    -- https://github.com/mg979/vim-visual-multi/wiki/Mappings#buffer-mappings
+    'mg979/vim-visual-multi',
+    event = 'VeryLazy',
+    init = function()
+      vim.g.VM_silent_exit = 1
+      vim.g.VM_quit_after_leaving_insert_mode = 1
+      vim.g.VM_leader = { default = ',', visual = ',', buffer = ',' }
     end,
-    keys = {
-      { '<F13>j', '<Cmd>MultipleCursorsAddDown<CR>', mode = { 'n', 'i' } },
-      { '<F13>k', '<Cmd>MultipleCursorsAddUp<CR>', mode = { 'n', 'i' } },
-      -- { '<F13>l', '<Cmd>MultipleCursorsAddMatches<CR>', mode = { 'n', 'x' } },
-    },
   },
 }

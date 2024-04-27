@@ -88,6 +88,17 @@ return {
   },
 
   {
+    'FabijanZulj/blame.nvim',
+    lazy = true,
+    config = function()
+      require('blame').setup()
+    end,
+    keys = {
+      { '<leader>gB', '<cmd>BlameToggle virtual<cr>', desc = 'Blame Toggle' },
+    },
+  },
+
+  {
     'sindrets/diffview.nvim',
     cmd = { 'DiffviewFileHistory', 'DiffviewOpen', 'DiffviewClose', 'DiffviewFileHistory' },
     keys = {

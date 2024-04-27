@@ -35,22 +35,22 @@ return {
     keys = {
       {
         'p',
-        '<Plug>(YankyPutAfter)',
+        '<Plug>(YankyPutIndentAfter)',
         desc = 'Yanky put after',
         mode = { 'n', 'x' },
       },
       {
         'P',
-        '<Plug>(YankyPutBefore)',
+        '<Plug>(YankyPutIndentBefore)',
         desc = 'Yanky put before',
         mode = { 'n', 'x' },
       },
-      { 'gp', '<Plug>(YankyGPutAfter)', mode = { 'n', 'x' } },
-      { 'gP', '<Plug>(YankyGPutBefore)', mode = { 'n', 'x' } },
+      { 'gp', '<Plug>(YankyPutIndentAfterLinewise)', mode = { 'n', 'x' } },
+      { 'gP', '<Plug>(YankyPutIndentBeforeLinewise)', mode = { 'n', 'x' } },
       { ']y', '<Plug>(YankyNextEntry)', mode = 'n' },
       { '[y', '<Plug>(YankyPreviousEntry)', mode = 'n' },
       { '<c-p>', '<Plug>(YankyPreviousEntry)', mode = 'n' },
-      { '<c-n>', '<Plug>(YankyNextEntry)', mode = 'n' },
+      -- { '<c-n>', '<Plug>(YankyNextEntry)', mode = 'n' },
       -- { "<c-v>", "<esc><cmd>Telescope yank_history initial_mode=normal<cr>", mode = { "n", "i", "v" } },
       { 'y', '<Plug>(YankyYank)', mode = { 'n', 'x' } }, -- prevent going up when yanking
       {
