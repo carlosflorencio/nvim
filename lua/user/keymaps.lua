@@ -34,7 +34,7 @@ end)
 --   vim.notify '<c-cr>'
 -- end)
 
--- moergo crtl+backspace
+-- moergo crtl+backspace (use c-w instead)
 vim.keymap.set({ 'i', 'n' }, '<M-c-bs>', '<nop>')
 
 -- jump between words in insert mode

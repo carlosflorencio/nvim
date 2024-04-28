@@ -27,8 +27,8 @@ end, {
 vim.api.nvim_create_user_command('SaveBuffer', function()
   local bufname = vim.api.nvim_buf_get_name(0)
 
-  -- ignore if buffer is oil
   if string.match(bufname, 'oil://') then
+    vim.cmd 'write'
     return
   end
 

@@ -120,6 +120,16 @@ return {
           colorscheme = {
             enable_preview = true,
           },
+          help_tags = {
+            mappings = {
+              i = {
+                ['<cr>'] = actions.select_vertical,
+              },
+              n = {
+                ['<cr>'] = actions.select_vertical,
+              },
+            },
+          },
         },
         extensions = {
           live_grep_args = {

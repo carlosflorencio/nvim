@@ -4,6 +4,13 @@ local function augroup(name)
   })
 end
 
+vim.api.nvim_create_autocmd('BufEnter', {
+  callback = function()
+    vim.cmd [[setlocal formatoptions-=o]]
+  end,
+  desc = 'Disable New Line Comment',
+})
+
 -- go to last loc when opening a buffer
 vim.api.nvim_create_autocmd('BufReadPost', {
   group = augroup 'last_loc',

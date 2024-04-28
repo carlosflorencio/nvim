@@ -1,7 +1,7 @@
 return {
   {
     'lukas-reineke/indent-blankline.nvim',
-    enabled = true,
+    enabled = false,
     main = 'ibl',
     config = function()
       local char = '▏'
@@ -25,6 +25,34 @@ return {
 
         return virt_text
       end)
+    end,
+  },
+
+  {
+    'Mr-LLLLL/cool-chunk.nvim',
+    enabled = false,
+    event = { 'CursorHold', 'CursorHoldI' },
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
+    config = function()
+      require('cool-chunk').setup {}
+    end,
+  },
+
+  {
+    'shellRaining/hlchunk.nvim',
+    enabled = true,
+    event = { 'UIEnter' },
+    config = function()
+      require('hlchunk').setup {
+        indent = {
+          enable = false,
+        },
+        blank = {
+          enable = false,
+        },
+      }
     end,
   },
 }
