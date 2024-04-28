@@ -18,27 +18,6 @@ return {
         'b0o/SchemaStore.nvim',
         version = false, -- last release is way too old
       },
-
-      {
-        'SmiteshP/nvim-navbuddy',
-        dependencies = {
-          'neovim/nvim-lspconfig',
-          'SmiteshP/nvim-navic',
-          'MunifTanjim/nui.nvim',
-        },
-        opts = {
-          lsp = {
-            auto_attach = true,
-            preference = { 'typescript-tools', 'lua_ls', 'tsserver', 'pyright' },
-          },
-          window = {
-            size = '75%',
-          },
-        },
-        keys = {
-          { '<leader>fs', '<cmd>Navbuddy<cr>', desc = 'Navbuddy navigate LSP symbols' },
-        },
-      },
     },
     config = function()
       require 'user.plugins.lsp.lsp-keymaps'
@@ -284,8 +263,8 @@ return {
         ---@diagnostic disable-next-line: missing-fields
         mappings = {
           list = {
-            ['j'] = glance.actions.next_location,
-            ['k'] = glance.actions.previous_location,
+            ['j'] = glance.actions.next,
+            ['k'] = glance.actions.previous,
             ['x'] = glance.actions.jump_split,
             ['l'] = glance.actions.jump,
             ['<c-t>'] = glance.actions.jump_tab,
@@ -320,5 +299,27 @@ return {
         autocmd = { enabled = true },
       }
     end,
+  },
+
+  {
+    'SmiteshP/nvim-navbuddy',
+    lazy = true,
+    dependencies = {
+      'neovim/nvim-lspconfig',
+      'SmiteshP/nvim-navic',
+      'MunifTanjim/nui.nvim',
+    },
+    opts = {
+      lsp = {
+        auto_attach = true,
+        preference = { 'typescript-tools', 'lua_ls', 'tsserver', 'pyright' },
+      },
+      window = {
+        size = '75%',
+      },
+    },
+    keys = {
+      { '<leader>fs', '<cmd>Navbuddy<cr>', desc = 'Navbuddy navigate LSP symbols' },
+    },
   },
 }

@@ -45,10 +45,20 @@ return {
     enabled = true,
     event = { 'UIEnter' },
     config = function()
+      local ft = require 'hlchunk.utils.filetype'
+      local exclude_filetypes = vim.tbl_extend('force', ft.exclude_filetypes, { Glance = true })
+
+      ---@diagnostic disable-next-line: missing-fields
       require('hlchunk').setup {
+        ---@diagnostic disable-next-line: missing-fields
+        chunk = {
+          exclude_filetypes = exclude_filetypes,
+        },
+        ---@diagnostic disable-next-line: missing-fields
         indent = {
           enable = false,
         },
+        ---@diagnostic disable-next-line: missing-fields
         blank = {
           enable = false,
         },

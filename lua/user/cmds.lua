@@ -28,7 +28,9 @@ vim.api.nvim_create_user_command('SaveBuffer', function()
   local bufname = vim.api.nvim_buf_get_name(0)
 
   if string.match(bufname, 'oil://') then
-    vim.cmd 'write'
+    if vim.bo.modified then
+      vim.cmd 'write'
+    end
     return
   end
 
@@ -48,7 +50,9 @@ vim.api.nvim_create_user_command('SaveBuffer', function()
   end
 
   -- Save the buffer to the determined file path
-  vim.cmd('write! ' .. bufname)
+  if vim.bo.modified then
+    vim.cmd('write! ' .. bufname)
+  end
 end, {
   desc = 'Save Buffer, prompt for file path if not saved yet',
 })

@@ -36,9 +36,9 @@ return {
           local modified_icon = vim.bo[props.buf].modified and '󰏫 ' or ''
 
           -- if there are at least 2 tabs, hide
-          if #vim.api.nvim_list_tabpages() > 1 then
-            return {}
-          end
+          -- if #vim.api.nvim_list_tabpages() > 1 then
+          --   return {}
+          -- end
 
           return {
             { modified_icon, guibg = 'none', guifg = 'red' },
