@@ -10,6 +10,10 @@ return {
     },
   },
 
+  -- :%S/foo/bar
+  -- replace and keep case
+  { 'tpope/vim-abolish' },
+
   {
     -- expand <C-a>/<C-x> toggles increments
     'nat-418/boole.nvim',
