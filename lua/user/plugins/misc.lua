@@ -12,7 +12,18 @@ return {
 
   -- :%S/foo/bar
   -- replace and keep case
-  { 'tpope/vim-abolish' },
+  {
+    'tpope/vim-abolish',
+  },
+
+  -- ga motion to align columns (e.g vipga,)
+  -- delimiters: <Space>, =, :, ., |, &, #, and ,
+  {
+    'junegunn/vim-easy-align',
+    keys = {
+      { 'ga', '<Plug>(EasyAlign)', desc = 'EasyAlign', mode = { 'n', 'x' } },
+    },
+  },
 
   {
     -- expand <C-a>/<C-x> toggles increments
