@@ -2,6 +2,7 @@ return {
   {
     -- preview markdown, glow needs to be installed globally
     'npxbr/glow.nvim',
+    enabled = false,
     ft = { 'markdown' },
     opts = {
       width_ratio = 0.8, -- maximum width of the Glow window compared to the nvim window size (overrides `width`)
@@ -9,6 +10,33 @@ return {
     },
     keys = {
       { '<leader>pp', '<cmd>Glow<cr>', desc = 'Glow Markdown Preview' },
+    },
+  },
+
+  {
+    'mrjones2014/mdpreview.nvim',
+    lazy = true,
+    -- ft = 'markdown', -- you can lazy load on markdown files only
+    -- requires the `terminal` filetype to render ASCII color and format codes
+    dependencies = { 'norcalli/nvim-terminal.lua', config = true },
+    config = function()
+      require('mdpreview').setup {}
+    end,
+    keys = {
+      {
+        '<leader>pp',
+        function()
+          require('mdpreview').preview {
+            backend = 'buffer',
+            opts = {
+              win_opts = {
+                wrap = false,
+              },
+            },
+          }
+        end,
+        desc = 'Glow Markdown Preview',
+      },
     },
   },
 
