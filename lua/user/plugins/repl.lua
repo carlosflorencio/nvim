@@ -17,7 +17,7 @@ return {
     'michaelb/sniprun',
     lazy = true,
     build = 'sh ./install.sh',
-    cmd = { 'SnipRun' },
+    cmd = { 'SnipRun', 'SnipLive' },
     opts = {
       -- display = { "Terminal" },
     },

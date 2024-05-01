@@ -13,6 +13,7 @@ local condition = function(nodes, inverse)
 
     local node = vim.treesitter.get_node { pos = { row, col } }
     local node_type = node and node:type() or nil
+    -- print('here[1]: snippets.lua:15: node_type=' .. vim.inspect(node_type))
 
     if node_type == 'ERROR' then
       node_type = vim.treesitter
@@ -45,7 +46,7 @@ local ts_if = 'if (${1}) {\n\t$0\n}'
 local ts_switch = 'switch (${1}) {\n\tcase ${2}:\n\t\t$0\n\tbreak\n}'
 local ts_try = 'try {\n\t${1}\n} catch (${2}) {\n\t$0\n}'
 local ts_while = 'while (${1}) {\n\t$0\n}'
-local ts_cl = 'console.log("$0")'
+local ts_cl = 'console.log($0)'
 local lua_pp = 'print(vim.inspect(${1}))'
 
 ls.add_snippets('typescriptreact', {
@@ -58,15 +59,18 @@ ls.add_snippets('typescriptreact', {
   type = 'autosnippets',
 })
 
-ls.add_snippets('typescript', {
-  ls.parser.parse_snippet({ trig = 'if', condition = only { 'statement_block' } }, ts_if),
-  ls.parser.parse_snippet({ trig = 'switch', condition = only { 'statement_block' } }, ts_switch),
-  ls.parser.parse_snippet({ trig = 'try', condition = only { 'statement_block' } }, ts_try),
-  ls.parser.parse_snippet({ trig = 'while', condition = only { 'statement_block' } }, ts_while),
-  ls.parser.parse_snippet({ trig = 'cl', condition = only { 'statement_block' } }, ts_cl),
-}, {
-  type = 'autosnippets',
-})
+local jsts = { 'javascript', 'typescript' }
+for _, lang in ipairs(jsts) do
+  ls.add_snippets(lang, {
+    ls.parser.parse_snippet({ trig = 'if', condition = only { 'statement_block', 'program' } }, ts_if),
+    ls.parser.parse_snippet({ trig = 'switch', condition = only { 'statement_block', 'program' } }, ts_switch),
+    ls.parser.parse_snippet({ trig = 'try', condition = only { 'statement_block', 'program' } }, ts_try),
+    ls.parser.parse_snippet({ trig = 'while', condition = only { 'statement_block', 'program' } }, ts_while),
+    ls.parser.parse_snippet({ trig = 'cl', condition = only { 'statement_block', 'program' } }, ts_cl),
+  }, {
+    type = 'autosnippets',
+  })
+end
 
 ls.add_snippets('lua', {
   ls.parser.parse_snippet({ trig = 'pp' }, lua_pp),
