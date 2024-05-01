@@ -46,7 +46,10 @@ return {
     event = { 'UIEnter' },
     config = function()
       local ft = require 'hlchunk.utils.filetype'
-      local exclude_filetypes = vim.tbl_extend('force', ft.exclude_filetypes, { Glance = true })
+      local exclude_filetypes = vim.tbl_extend('force', ft.exclude_filetypes, {
+        Glance = true,
+        oil = true,
+      })
 
       ---@diagnostic disable-next-line: missing-fields
       require('hlchunk').setup {
