@@ -49,6 +49,7 @@ return {
       local exclude_filetypes = vim.tbl_extend('force', ft.exclude_filetypes, {
         Glance = true,
         oil = true,
+        terminal = true,
       })
 
       ---@diagnostic disable-next-line: missing-fields

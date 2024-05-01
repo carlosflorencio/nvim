@@ -15,3 +15,10 @@ Always a work in progress.
 - Setup custom escape codes for iterm2 & alacritty
   - https://stackoverflow.com/a/42461580
   - `cmd-s`, `cmd-p`, `s-cr`, `c-cr`, etc
+
+## Global dependencies
+- Codi
+  - `npm install -g tsun`
+- SnipRun
+  - `npm install -g ts-node typescript`
+

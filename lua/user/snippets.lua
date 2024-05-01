@@ -11,11 +11,8 @@ local condition = function(nodes, inverse)
     -- some cases.
     local row, col = pos[1] - 1, pos[2] - 1
 
-    local node_type = vim.treesitter
-      .get_node({
-        pos = { row, col },
-      })
-      :type()
+    local node = vim.treesitter.get_node { pos = { row, col } }
+    local node_type = node and node:type() or nil
 
     if node_type == 'ERROR' then
       node_type = vim.treesitter

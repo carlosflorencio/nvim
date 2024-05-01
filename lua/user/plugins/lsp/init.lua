@@ -194,7 +194,6 @@ return {
         function()
           require('conform').format { async = true, lsp_fallback = true }
         end,
-        mode = '',
         desc = 'Format buffer',
       },
     },
@@ -207,6 +206,7 @@ return {
           --   return
           -- end
 
+          vim.notify 'here'
           -- Disable with a global or buffer-local variable
           -- check cmds.lua
           if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
@@ -218,6 +218,7 @@ return {
           if bufname:match '/node_modules/' then
             return
           end
+
           return { timeout_ms = 1000, lsp_fallback = true }
         end,
         -- Define your formatters

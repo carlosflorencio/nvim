@@ -45,7 +45,7 @@ return {
           ['g?'] = 'actions.show_help',
           ['l'] = 'actions.select',
           ['<C-v>'] = select_close { vertical = true },
-          ['<C-h>'] = select_close { horizontal = true },
+          ['<C-x>'] = select_close { horizontal = true },
           ['<C-t>'] = select_close { tab = true },
           ['<C-p>'] = 'actions.preview',
           ['q'] = 'actions.close',

@@ -16,25 +16,25 @@ return {
   {
     'mrjones2014/mdpreview.nvim',
     lazy = true,
+    cmd = { 'Mdpreview' },
     -- ft = 'markdown', -- you can lazy load on markdown files only
     -- requires the `terminalk filetype to render ASCII color and format codes
     dependencies = { 'norcalli/nvim-terminal.lua', config = true },
     config = function()
-      require('mdpreview').setup {}
+      require('mdpreview').setup {
+        renderer = {
+          opts = {
+            win_opts = {
+              wrap = false,
+            },
+          },
+        },
+      }
     end,
     keys = {
       {
         '<leader>pp',
-        function()
-          require('mdpreview').preview {
-            backend = 'buffer',
-            opts = {
-              win_opts = {
-                wrap = false,
-              },
-            },
-          }
-        end,
+        '<cmd>Mdpreview<cr>',
         desc = 'Glow Markdown Preview',
       },
     },

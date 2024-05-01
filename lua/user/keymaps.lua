@@ -169,3 +169,12 @@ vim.cmd [[
   xnoremap * :<C-u>call g:VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
   xnoremap # :<C-u>call g:VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
 ]]
+
+-- Scratch's
+vim.keymap.set('n', '<leader>so', function()
+  require('user.scratch').search()
+end, { desc = 'Open Scratch file' })
+
+vim.keymap.set('n', '<leader>sn', function()
+  require('user.scratch').new()
+end, { desc = 'New Scratch file (Codi)' })

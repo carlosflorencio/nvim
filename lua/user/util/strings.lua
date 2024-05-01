@@ -29,6 +29,7 @@ function M.split(inputstr, sep)
   return t
 end
 
+-- Get the extension of a file
 function M.get_extension(fileName)
   local extension = fileName:match '^.+(%..+)$'
   if extension then
