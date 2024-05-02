@@ -6,12 +6,23 @@ return {
     priority = 1000,
     config = function()
       require('onedark').setup {
-        style = 'warmer', -- warm, darker
+        style = 'darker', -- warm, darker
         ending_tildes = true,
         code_style = {
           comments = 'none',
         },
         cmp_itemkind_reverse = false,
+
+        colors = {
+          -- darker bg color
+          -- https://github.com/navarasu/onedark.nvim/blob/master/lua/onedark/palette.lua#L32
+          bg0 = '#1f2021',
+          bg1 = '#2a2b2c',
+          bg3 = '#2a2b2c',
+        },
+        highlights = {
+          ['Visual'] = { bg = '#254b4f' },
+        },
       }
       require('onedark').load()
       -- vim.api.nvim_set_hl(0, 'NvimTreeWinSeparator', { link = 'Ignore' })

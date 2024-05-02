@@ -39,6 +39,11 @@ return {
           autosave_changes = true,
         },
 
+        -- git signs
+        win_options = {
+          signcolumn = 'yes:2',
+        },
+
         use_default_keymaps = false,
         delete_to_trash = true,
         keymaps = {
@@ -69,5 +74,13 @@ return {
       { '<leader>;', '<cmd>Oil<cr>', desc = 'Oil' },
       { '<c-;>', '<cmd>Oil<cr>', desc = 'Oil' },
     },
+  },
+
+  {
+    'refractalize/oil-git-status.nvim',
+    dependencies = {
+      'stevearc/oil.nvim',
+    },
+    config = true,
   },
 }
