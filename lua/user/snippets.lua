@@ -1,10 +1,14 @@
 local ls = require 'luasnip'
-local s = ls.s
-local fmt = require('luasnip.extras.fmt').fmt
-local i = ls.insert_node
+local buffers = require 'user.util.buffers'
 
-local condition = function(nodes, inverse)
+local condition = function(nodes, inverse, word)
   local tmp = function()
+    -- prevent snippets from being triggered in the middle of a word
+    -- e.g instance.cl does not trigger instance.console.log()
+    if buffers.has_words_before(word) then
+      return false
+    end
+
     local pos = vim.api.nvim_win_get_cursor(0)
     -- Use one column to the left of the cursor to avoid a "chunk" node
     -- type. Not sure what it is, but it seems to be at the end of lines in
@@ -34,12 +38,12 @@ local condition = function(nodes, inverse)
   return tmp
 end
 
-local only = function(nodes)
-  return condition(nodes, true)
+local only = function(nodes, word)
+  return condition(nodes, true, word)
 end
 
 local except = function(nodes)
-  return condition(nodes, false)
+  return condition(nodes, false, word)
 end
 
 local ts_if = 'if (${1}) {\n\t$0\n}'
@@ -50,11 +54,11 @@ local ts_cl = 'console.log($0)'
 local lua_pp = 'print(vim.inspect(${1}))'
 
 ls.add_snippets('typescriptreact', {
-  ls.parser.parse_snippet({ trig = 'if', condition = only { 'statement_block' } }, ts_if),
-  ls.parser.parse_snippet({ trig = 'class', condition = only { 'property_identifier' } }, 'className="${1}"'),
-  ls.parser.parse_snippet({ trig = 'switch', condition = only { 'statement_block' } }, ts_switch),
-  ls.parser.parse_snippet({ trig = 'try', condition = only { 'statement_block' } }, ts_try),
-  ls.parser.parse_snippet({ trig = 'while', condition = only { 'statement_block' } }, ts_while),
+  ls.parser.parse_snippet({ trig = 'if', condition = only({ 'statement_block' }, 'if') }, ts_if),
+  ls.parser.parse_snippet({ trig = 'class', condition = only({ 'property_identifier' }, 'class') }, 'className="${1}"'),
+  ls.parser.parse_snippet({ trig = 'switch', condition = only({ 'statement_block' }, 'switch') }, ts_switch),
+  ls.parser.parse_snippet({ trig = 'try', condition = only({ 'statement_block' }, 'try') }, ts_try),
+  ls.parser.parse_snippet({ trig = 'while', condition = only({ 'statement_block' }, 'while') }, ts_while),
 }, {
   type = 'autosnippets',
 })
@@ -62,11 +66,11 @@ ls.add_snippets('typescriptreact', {
 local jsts = { 'javascript', 'typescript' }
 for _, lang in ipairs(jsts) do
   ls.add_snippets(lang, {
-    ls.parser.parse_snippet({ trig = 'if', condition = only { 'statement_block', 'program' } }, ts_if),
-    ls.parser.parse_snippet({ trig = 'switch', condition = only { 'statement_block', 'program' } }, ts_switch),
-    ls.parser.parse_snippet({ trig = 'try', condition = only { 'statement_block', 'program' } }, ts_try),
-    ls.parser.parse_snippet({ trig = 'while', condition = only { 'statement_block', 'program' } }, ts_while),
-    ls.parser.parse_snippet({ trig = 'cl', condition = only { 'statement_block', 'program' } }, ts_cl),
+    ls.parser.parse_snippet({ trig = 'if', condition = only({ 'statement_block', 'program' }, 'if') }, ts_if),
+    ls.parser.parse_snippet({ trig = 'switch', condition = only({ 'statement_block', 'program' }, 'switch') }, ts_switch),
+    ls.parser.parse_snippet({ trig = 'try', condition = only({ 'statement_block', 'program' }, 'try') }, ts_try),
+    ls.parser.parse_snippet({ trig = 'while', condition = only({ 'statement_block', 'program' }, 'while') }, ts_while),
+    ls.parser.parse_snippet({ trig = 'cl', condition = only({ 'statement_block', 'program' }, 'cl') }, ts_cl),
   }, {
     type = 'autosnippets',
   })
