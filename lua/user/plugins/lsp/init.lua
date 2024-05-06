@@ -35,7 +35,9 @@ return {
         gopls = {},
         pyright = {},
         rust_analyzer = {},
-        bzl = {},
+        starpls = {},
+        -- starlark_rust = {},
+        -- bzl = {},
 
         denols = {
           root_dir = lspconfig.util.root_pattern('deno.json', 'deno.jsonc'),
@@ -109,8 +111,6 @@ return {
       --  To check the current status of installed tools and/or manually install
       --  other tools, you can run
       --    :Mason
-      --
-      --  You can press `g?` for help in this menu.
       require('mason').setup()
 
       -- You can add other tools here that you want Mason to install
@@ -121,6 +121,13 @@ return {
         'typescript-language-server',
         'prettierd',
       })
+
+      for i, v in ipairs(ensure_installed) do
+        if v == 'starlark_rust' then
+          ensure_installed[i] = 'starlark-rust'
+        end
+      end
+
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
@@ -142,6 +149,15 @@ return {
         },
       }
 
+      -- starlark_rust has better linting rules (e.g import not used)
+      -- starpls has jump to definition support
+      local manual = { 'starlark_rust', 'starpls' }
+      for _, server_name in ipairs(manual) do
+        local server = servers[server_name] or {}
+        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+        require('lspconfig')[server_name].setup(server)
+      end
+
       -- diagnostics
       for name, icon in pairs(require('user.icons').lsp_diagnostic_icons) do
         name = 'DiagnosticSign' .. name
@@ -159,10 +175,14 @@ return {
         --   spacing = 1,
         --   prefix = "",
         -- },
+        -- virtual_text = {
+        --   source = true,
+        -- },
         virtual_text = false,
         severity_sort = true,
         float = {
           border = 'rounded',
+          source = true,
         },
       }
       vim.diagnostic.config(updated_diagnostics)
@@ -206,7 +226,6 @@ return {
           --   return
           -- end
 
-          vim.notify 'here'
           -- Disable with a global or buffer-local variable
           -- check cmds.lua
           if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
@@ -225,6 +244,8 @@ return {
         formatters_by_ft = {
           lua = { 'stylua' },
           python = { 'isort', 'black' },
+          bzl = { 'buildifier' },
+          -- sub-list to run only the first available formatter
           javascript = { { 'prettierd', 'prettier' } },
           typescript = { { 'prettierd', 'prettier' } },
           markdown = { { 'prettierd', 'prettier' } },

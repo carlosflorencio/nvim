@@ -28,7 +28,7 @@ return {
         autosave = {
           enabled = true,
           interval = 120,
-          notify = true,
+          notify = false,
         },
       }
 
