@@ -49,7 +49,6 @@ return {
   {
     -- show colorcolumn when line is too long on insert mode
     'Bekaboo/deadcolumn.nvim',
-    event = 'BufReadPost',
     init = function()
       vim.opt.colorcolumn = '80'
     end,

@@ -54,6 +54,9 @@ return {
             filesize_limit = 0.5,
             timeout = 100,
           },
+          path_display = {
+            'filename_first',
+          },
           mappings = {
             n = {
               ['<C-Esc>'] = require('telescope.actions').to_fuzzy_refine,
@@ -257,6 +260,9 @@ return {
       local actions = require 'fzf-lua.actions'
       require('fzf-lua').setup {
         { 'fzf-native' },
+        defaults = {
+          formatter = 'path.filename_first',
+        },
         actions = {
           files = {
             ['default'] = actions.file_edit_or_qf,
