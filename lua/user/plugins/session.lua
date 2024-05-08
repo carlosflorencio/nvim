@@ -42,18 +42,34 @@ return {
         end
       end
 
+      vim.g.delete_current_session = false
+
       vim.api.nvim_create_autocmd('VimEnter', {
         callback = function()
           -- Only load the session if nvim was started with no args
           if vim.fn.argc(-1) == 0 then
-            resession.load(get_session_name(), { dir = 'dirsession', silence_errors = true })
+            resession.load(get_session_name(), { silence_errors = true })
           end
         end,
       })
       vim.api.nvim_create_autocmd('VimLeavePre', {
         callback = function()
-          resession.save(get_session_name(), { dir = 'dirsession', notify = false })
+          -- prevent autosave when deleting the session
+          if not vim.g.delete_current_session then
+            require('user.util.windows').close_all_nvim_tree_buffers()
+            require('user.util.windows').close_tmp_buffers()
+            require('incline').disable()
+
+            resession.save(get_session_name(), { notify = false })
+          end
         end,
+      })
+
+      vim.api.nvim_create_user_command('SessionDelete', function()
+        resession.delete(get_session_name())
+        vim.g.delete_current_session = true
+      end, {
+        desc = 'Delete Current Session',
       })
     end,
   },

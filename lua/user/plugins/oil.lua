@@ -39,6 +39,10 @@ return {
           autosave_changes = true,
         },
 
+        view_options = {
+          show_hidden = true,
+        },
+
         -- git signs
         win_options = {
           signcolumn = 'yes:2',

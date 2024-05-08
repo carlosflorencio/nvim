@@ -50,6 +50,7 @@ return {
         Glance = true,
         oil = true,
         terminal = true,
+        toml = true,
       })
 
       ---@diagnostic disable-next-line: missing-fields
