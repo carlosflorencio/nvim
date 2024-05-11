@@ -157,8 +157,11 @@ return {
 
       luasnip.filetype_extend('javascriptreact', { 'html' })
       luasnip.filetype_extend('typescriptreact', { 'html' })
+      -- i don't want this, snippets appear duplicated
+      -- luasnip.filetype_extend('javascript', { 'typescript' })
 
-      require 'user.snippets'
+      require 'user.snippets.typescript'
+      require 'user.snippets.lua'
       require('luasnip.loaders.from_vscode').lazy_load()
       require('luasnip.loaders.from_vscode').lazy_load { paths = { './snippets' } }
     end,

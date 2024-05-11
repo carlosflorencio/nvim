@@ -1,10 +1,4 @@
 {
-  "console.log": {
-    "scope": "typescript,typescriptreact,javascript",
-    "prefix": "cl",
-    "body": "console.log(${0})",
-    "description": "console.log()"
-  },
   "function": {
     "scope": "typescript,typescriptreact,javascript",
     "prefix": "fn",

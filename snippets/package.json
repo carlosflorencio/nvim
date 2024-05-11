@@ -8,11 +8,9 @@
       {
         "language": [
           "typescript",
-          "typescriptreact",
-          "javascript",
-          "javascriptreact"
+          "typescriptreact"
         ],
-        "path": "./common-ts-js.json"
+        "path": "./typescript.json"
       }
     ]
   }
