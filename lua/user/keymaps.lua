@@ -136,8 +136,8 @@ vim.keymap.set('v', '`', 'T`', { desc = 'Surround word with accent quotes', rema
 -- vim.keymap.set("x", "p", "P")
 
 -- jump to next special char
-vim.keymap.set('i', 'jj', "<c-o>:call search('}\\|)\\|]\\|>\\|\"', 'cW')<cr><Right>")
-vim.keymap.set('i', 'jk', '<ESC>')
+-- vim.keymap.set('i', 'jj', "<c-o>:call search('}\\|)\\|]\\|>\\|\"', 'cW')<cr><Right>")
+-- vim.keymap.set('i', 'jk', '<ESC>')
 
 -- Don't yank empty lines into the main register
 vim.keymap.set('n', 'dd', function()

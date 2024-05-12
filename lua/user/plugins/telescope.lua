@@ -1,7 +1,10 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
+    -- had to move out of this stable branch because it was missing the
+    -- actions: preview_scrolling_left, preview_scrolling_right
+    -- branch = '0.1.x',
+    -- branch = 'master',
     cmd = 'Telescope',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -47,22 +50,46 @@ return {
       local actions = require 'telescope.actions'
       local telescope = require 'telescope'
 
+      -- horizontal_fused layout strategy
+      local layout_strategies = require 'telescope.pickers.layout_strategies'
+      layout_strategies.horizontal_fused = function(picker, max_columns, max_lines, layout_config)
+        local layout = layout_strategies.horizontal(picker, max_columns, max_lines, layout_config)
+        -- layout.prompt.title = ''
+        -- layout.results.title = ''
+        -- layout.preview.title = ''
+        layout.results.height = layout.results.height + 1
+        layout.results.borderchars = { '─', '│', '─', '│', '╭', '┬', '┤', '├' }
+        if layout.preview then
+          layout.preview.borderchars = { '─', '│', '─', ' ', '─', '╮', '╯', '─' }
+        end
+        layout.prompt.borderchars = { '─', '│', '─', '│', '╭', '╮', '┴', '╰' }
+        return layout
+      end
+
       telescope.setup {
         defaults = {
           file_ignore_patterns = { 'node_modules', '.git', 'pnpm-lock.yaml' },
+          layout_strategy = 'horizontal_fused',
           preview = {
             filesize_limit = 0.5,
             timeout = 100,
           },
-          path_display = {
-            'filename_first',
-          },
+          path_display = { 'filename_first' },
           mappings = {
             n = {
-              ['<C-Esc>'] = require('telescope.actions').to_fuzzy_refine,
+              ['<c-f>'] = actions.to_fuzzy_refine,
+              ['q'] = actions.close,
+              -- preview
+              ['<c-p>'] = require('telescope.actions.layout').toggle_preview,
+              ['<c-h>'] = actions.preview_scrolling_left,
+              ['<c-l>'] = actions.preview_scrolling_right,
             },
             i = {
-              ['<C-Esc>'] = require('telescope.actions').to_fuzzy_refine,
+              ['<c-f>'] = actions.to_fuzzy_refine,
+              -- preview
+              ['<c-p>'] = require('telescope.actions.layout').toggle_preview,
+              ['<c-h>'] = actions.preview_scrolling_left,
+              ['<c-l>'] = actions.preview_scrolling_right,
 
               -- search B after searching for A
               ['<C-r>'] = {
@@ -212,7 +239,7 @@ return {
       },
       {
         '<leader>ff',
-        "<Cmd>lua require('telescope').extensions.smart_open.smart_open({cwd_only = true})<CR>",
+        "<Cmd>lua require('telescope').extensions.smart_open.smart_open({cwd_only = true, layout_strategy='horizontal_fused', layout_config = {preview_width=0.45, width=0.9, height=0.9}})<CR>",
         desc = 'Find Project File',
       },
       {
@@ -249,51 +276,6 @@ return {
         '<cmd>Telescope projects<cr>',
         desc = 'Projects',
       },
-    },
-  },
-
-  {
-    'ibhagwan/fzf-lua',
-    -- optional for icon support
-    -- dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-      local actions = require 'fzf-lua.actions'
-      require('fzf-lua').setup {
-        { 'fzf-native' },
-        defaults = {
-          formatter = 'path.filename_first',
-        },
-        actions = {
-          files = {
-            ['default'] = actions.file_edit_or_qf,
-            ['ctrl-t'] = actions.file_tabedit,
-            ['alt-q'] = actions.file_sel_to_qf,
-            ['ctrl-s'] = actions.file_split,
-            ['ctrl-h'] = actions.file_split,
-            ['ctrl-v'] = actions.file_vsplit,
-            ['ctrl-l'] = actions.file_sel_to_ll,
-          },
-        },
-        keymap = {
-          builtin = {
-            ['<c-d>'] = 'preview-page-down',
-            ['<c-u>'] = 'preview-page-up',
-          },
-          fzf = {
-            -- send all to quickfix list
-            ['ctrl-q'] = 'select-all+accept',
-          },
-        },
-        grep = {
-          actions = {
-            ['ctrl-g'] = false,
-            ['ctrl-f'] = { actions.grep_lgrep },
-          },
-        },
-      }
-    end,
-    keys = {
-      { '<leader>fw', '<cmd>FzfLua live_grep<cr>', desc = 'Grep Text' },
     },
   },
 }

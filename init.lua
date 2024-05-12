@@ -54,7 +54,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  { 'nmac427/guess-indent.nvim', opts = {} }, -- Detect tabstop and shiftwidth automatically
+  { 'nmac427/guess-indent.nvim', opts = {} }, -- :GuessIndent Detect tabstop and shiftwidth automatically
   { 'tpope/vim-repeat', event = 'VeryLazy' },
   -- alternative https://github.com/pteroctopus/faster.nvim
   { 'LunarVim/bigfile.nvim', opts = {} },
