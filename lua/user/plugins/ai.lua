@@ -82,11 +82,10 @@ return {
       {
         '<leader>aa',
         function()
-          vim.ui.input({ prompt = 'Ask Copilot' }, function(input)
-            if input ~= nil then
-              require('CopilotChat').ask(input)
-            end
-          end)
+          local input = vim.fn.input 'Ask Copilot: '
+          if input ~= nil then
+            require('CopilotChat').ask(input)
+          end
         end,
         desc = 'CopilotChat - Quick chat',
         mode = { 'n', 'v' },
@@ -108,7 +107,9 @@ return {
         '<leader>ac',
         function()
           local actions = require 'CopilotChat.actions'
-          require('CopilotChat.integrations.telescope').pick(actions.prompt_actions())
+          require('CopilotChat.integrations.telescope').pick(actions.prompt_actions(), {
+            initial_mode = 'normal',
+          })
         end,
         desc = 'CopilotChat - Prompt actions',
         mode = { 'n', 'v' },

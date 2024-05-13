@@ -37,18 +37,13 @@ return {
       },
       'debugloop/telescope-undo.nvim',
       'nvim-telescope/telescope-live-grep-args.nvim',
-      {
-        'ahmedkhalf/project.nvim',
-        config = function()
-          require('project_nvim').setup {
-            patterns = { '.git' },
-          }
-        end,
-      },
+      { 'nvim-telescope/telescope-ui-select.nvim' },
+      { 'nvim-telescope/telescope-project.nvim' },
     },
     config = function()
       local actions = require 'telescope.actions'
       local telescope = require 'telescope'
+      local project_actions = require 'telescope._extensions.project.actions'
 
       -- horizontal_fused layout strategy
       local layout_strategies = require 'telescope.pickers.layout_strategies'
@@ -68,7 +63,7 @@ return {
 
       telescope.setup {
         defaults = {
-          file_ignore_patterns = { 'node_modules', '.git', 'pnpm-lock.yaml' },
+          -- file_ignore_patterns = { 'node_modules', '.git', 'pnpm-lock.yaml' },
           layout_strategy = 'horizontal_fused',
           preview = {
             filesize_limit = 0.5,
@@ -164,6 +159,30 @@ return {
           },
         },
         extensions = {
+          project = {
+            base_dirs = {
+              -- { '~/Sky', max_depth = 1 },
+              -- { '~/Projects', max_depth = 1 },
+              -- { '~/.config', max_depth = 1 },
+              { '~/.cache/nvim/git-dev', max_depth = 2 },
+            },
+            hidden_files = true, -- default: false
+            order_by = 'recent',
+            -- search_by = { 'title', 'path' },
+            search_by = 'title',
+            on_project_selected = function(prompt_bufnr)
+              local project_path = project_actions.get_selected_path(prompt_bufnr)
+              require('telescope._extensions.project.utils').update_last_accessed_project_time(project_path)
+              actions.close(prompt_bufnr)
+              vim.schedule(function()
+                vim.cmd 'tabnew'
+                vim.cmd('Oil ' .. project_path)
+              end)
+            end,
+          },
+          ['ui-select'] = {
+            require('telescope.themes').get_dropdown { initial_mode = 'normal' },
+          },
           live_grep_args = {
             auto_quoting = true, -- enable/disable auto-quoting
             -- define mappings, e.g.
@@ -213,7 +232,8 @@ return {
       telescope.load_extension 'smart_open'
       telescope.load_extension 'undo'
       telescope.load_extension 'live_grep_args'
-      telescope.load_extension 'projects'
+      telescope.load_extension 'project'
+      telescope.load_extension 'ui-select'
     end,
     keys = {
       {
@@ -267,13 +287,8 @@ return {
         desc = 'Colorscheme with Preview',
       },
       {
-        '<leader>fp',
-        '<cmd>Telescope projects<cr>',
-        desc = 'Projects',
-      },
-      {
-        '<F13>o',
-        '<cmd>Telescope projects<cr>',
+        '<leader>oo',
+        '<cmd>Telescope project hidden=true display_type=full<cr>',
         desc = 'Projects',
       },
     },

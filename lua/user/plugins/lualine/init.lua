@@ -48,7 +48,7 @@ return {
             components.python_env,
           },
           lualine_x = {
-            -- components.cwd,
+            components.cwd,
             Lualine_get_wakatime,
             components.location,
             require 'user.plugins.lualine.fancy-lsp-servers',
