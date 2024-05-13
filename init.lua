@@ -54,7 +54,26 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  { 'nmac427/guess-indent.nvim', opts = {} }, -- :GuessIndent Detect tabstop and shiftwidth automatically
+  {
+    'nmac427/guess-indent.nvim',
+    config = function()
+      require('guess-indent').setup {
+        auto_cmd = true,
+      }
+
+      -- Automatically detect indent settings
+      -- had to change this because https://github.com/NMAC427/guess-indent.nvim/issues/3#issuecomment-1613353299
+      -- vim.cmd [[
+      --             augroup GuessIndent
+      --               autocmd!
+      --               autocmd FileType * lua require("guess-indent").set_from_buffer("auto_cmd")
+      --               " Run once when saving for new files
+      --               autocmd BufNewFile * autocmd BufWritePost <buffer=abuf> ++once silent lua require("guess-indent").set_from_buffer("auto_cmd")
+      --             augroup END
+      --           ]]
+    end,
+  }, -- :GuessIndent Detect tabstop and shiftwidth automatically
+  -- { 'tpope/vim-sleuth' }, -- Detect tabstop and shiftwidth automatically
   { 'tpope/vim-repeat', event = 'VeryLazy' },
   -- alternative https://github.com/pteroctopus/faster.nvim
   { 'LunarVim/bigfile.nvim', opts = {} },

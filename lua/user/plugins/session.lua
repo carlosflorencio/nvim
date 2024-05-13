@@ -30,6 +30,23 @@ return {
           interval = 120,
           notify = false,
         },
+
+        options = {
+          'binary',
+          'bufhidden',
+          'buflisted',
+          'cmdheight',
+          'diff',
+          'filetype',
+          'modifiable',
+          'previewwindow',
+          'readonly',
+          'scrollbind',
+          'winfixheight',
+          'winfixwidth',
+          'shiftwidth', -- added from here
+          'tabstop',
+        },
       }
 
       local function get_session_name()

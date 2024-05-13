@@ -62,8 +62,10 @@ return {
             end,
           },
           ['<Tab>'] = cmp.mapping(function(fallback)
-            if not cmp.visible() and require('copilot.suggestion').is_visible() then
-              require('copilot.suggestion').accept()
+            -- if not cmp.visible() and require('copilot.suggestion').is_visible() then
+            --   require('copilot.suggestion').accept()
+            if not cmp.visible() and require('user.util.ai').has_suggestions() then
+              require('user.util.ai').accept()
             elseif cmp.visible() then
               -- auto expand luasnip
               -- if luasnip.expandable() then

@@ -1,0 +1,69 @@
+local M = {}
+
+M.accept = function()
+  -- copilot.lua
+  if package.loaded['copilot'] then
+    require('copilot.suggestion').accept()
+    return
+  end
+
+  -- copilot.vim
+  if vim.g.loaded_copilot then
+    local copilot_keys = vim.fn['copilot#Accept'] ''
+    if copilot_keys ~= '' then
+      local text = vim.fn['copilot#TextQueuedForInsertion']()
+      vim.api.nvim_feedkeys(text, 'i', true)
+    end
+    return
+  end
+end
+
+M.suggest = function()
+  if vim.g.loaded_copilot then
+    local copilot_keys = vim.fn['copilot#Suggest']()
+    if copilot_keys ~= '' then
+      vim.api.nvim_feedkeys(copilot_keys, 'i', true)
+    end
+    return
+  end
+end
+
+M.has_suggestions = function()
+  -- copilot.lua
+  if package.loaded['copilot'] then
+    return require('copilot.suggestion').is_visible()
+  end
+
+  -- copilot.vim
+  if vim.g.loaded_copilot then
+    return vim.fn.exists '*copilot#GetDisplayedSuggestion' ~= 0 and vim.fn['copilot#GetDisplayedSuggestion']()['text'] ~= ''
+  end
+
+  return false
+end
+
+M.next_suggestion = function()
+  -- copilot.lua
+  if package.loaded['copilot'] then
+    require('copilot.suggestion').next()
+  end
+
+  -- copilot.vim
+  if vim.g.loaded_copilot then
+    vim.fn['copilot#Next']()
+  end
+end
+
+M.previous_suggestion = function()
+  -- copilot.lua
+  if package.loaded['copilot'] then
+    require('copilot.suggestion').prev()
+  end
+
+  -- copilot.vim
+  if vim.g.loaded_copilot then
+    vim.fn['copilot#Previous']()
+  end
+end
+
+return M

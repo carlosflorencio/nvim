@@ -1,8 +1,15 @@
 return {
   {
+    'github/copilot.vim',
+    enabled = true,
+    config = function()
+      vim.g.copilot_no_maps = true
+    end,
+  },
+  {
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
-    enabled = true,
+    enabled = false,
     event = 'InsertEnter',
     opts = {
       panel = {
@@ -25,11 +32,11 @@ return {
         auto_trigger = true,
         debounce = 75,
         keymap = {
-          accept = '<c-l>',
+          accept = false,
           accept_word = false,
           accept_line = false,
-          next = '<M-]>',
-          prev = '<M-[>',
+          next = false,
+          prev = false,
           dismiss = '<M-h>',
         },
       },

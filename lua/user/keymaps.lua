@@ -42,6 +42,23 @@ vim.keymap.set('i', '<M-Right>', '<S-Right>')
 vim.keymap.set('i', '<M-Left>', '<S-Left>')
 vim.keymap.set('i', '<c-e>', '<c-o>de') -- delete forward word
 
+-- AI
+vim.keymap.set('i', '<c-l>', function()
+  if require('user.util.ai').has_suggestions() then
+    require('user.util.ai').accept()
+  else
+    require('user.util.ai').suggest()
+  end
+end)
+
+vim.keymap.set('i', '<M-]>', function()
+  require('user.util.ai').next_suggestion()
+end)
+
+vim.keymap.set('i', '<M-[>', function()
+  require('user.util.ai').previous_suggestion()
+end)
+
 -- esc
 vim.keymap.set({ 'i', 'n' }, '<esc>', '<cmd>noh<cr><esc>', { desc = 'Escape and Clear highlights' })
 
