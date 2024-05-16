@@ -30,6 +30,14 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
+      -- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
+      -- Create Unresolved File code action, resolving completions for unindexed code blocks, ...
+      capabilities.workspace = {
+        didChangeWatchedFiles = {
+          dynamicRegistration = true,
+        },
+      }
+
       local servers = {
         html = {},
         gopls = {},
@@ -203,7 +211,21 @@ return {
     config = function()
       require('typescript-tools').setup {
         root_dir = require('lspconfig').util.root_pattern('.git', 'package-lock.json', 'yarn.lock'),
+        settings = {
+          -- tsserver_file_preferences = {
+          --   includeInlayParameterNameHints = 'all', -- 'none' | 'literals' | 'all'
+          --   includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+          --   includeInlayVariableTypeHints = true,
+          --   includeInlayFunctionParameterTypeHints = true,
+          --   includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+          --   includeInlayPropertyDeclarationTypeHints = true,
+          --   includeInlayFunctionLikeReturnTypeHints = true,
+          --   includeInlayEnumMemberValueHints = true,
+          -- },
+        },
       }
+
+      -- vim.lsp.inlay_hint.enable()
     end,
   },
 

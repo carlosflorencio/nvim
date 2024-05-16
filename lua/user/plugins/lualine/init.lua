@@ -7,7 +7,7 @@ return {
 
       return {
         options = {
-          theme = 'auto',
+          -- theme = 'auto',
           globalstatus = true,
           refresh = {
             statusline = 2000,
