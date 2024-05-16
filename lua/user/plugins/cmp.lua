@@ -55,7 +55,7 @@ return {
           ['<Tab>'] = cmp.mapping(function(fallback)
             if not cmp.visible() and require('user.util.ai').has_suggestions() then
               require('user.util.ai').accept()
-            elseif not buffers.has_words_before() and cmp.visible() then
+            elseif cmp.visible() then
               cmp.confirm { select = true }
             elseif buffers.has_words_before() then
               cmp.complete()

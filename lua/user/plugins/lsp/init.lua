@@ -105,6 +105,10 @@ return {
             },
           },
         },
+
+        -- personal notes lsp
+        -- auto completion links [[]]
+        ['markdown-oxide'] = {},
       }
 
       -- Ensure the servers and tools above are installed
