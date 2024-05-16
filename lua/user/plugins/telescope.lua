@@ -30,6 +30,7 @@ return {
             'nvim-telescope/telescope-fzf-native.nvim',
             build = 'make',
           },
+          { 'nvim-telescope/telescope-fzy-native.nvim' },
         },
         opts = {
           result_limit = 50,
@@ -199,7 +200,8 @@ return {
           },
           smart_open = {
             ignore_patterns = { '*.git/*', '*/tmp/*', '*/dist/*' },
-            match_algorithm = 'fzf',
+            -- match_algorithm = 'fzf',
+            match_algorithm = 'fzy',
           },
           undo = {
             side_by_side = true,

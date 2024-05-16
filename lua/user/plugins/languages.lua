@@ -20,4 +20,12 @@ return {
       },
     },
   },
+
+  {
+    'dmmulroy/tsc.nvim',
+    cmd = { 'TSC' },
+    opts = {
+      use_diagnostics = true,
+    },
+  },
 }

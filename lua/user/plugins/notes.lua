@@ -8,7 +8,7 @@ return {
         window_border = 'single',
         window_style = 'minimal',
         window_title = true,
-        notes_dir = '~/Library/Mobile Documents/com~apple~CloudDocs/Personal Notes/Projects',
+        notes_dir = vim.g.personal_notes .. '/Projects',
         files = {
           global = 'global.md',
           cwd = function()

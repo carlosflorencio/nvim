@@ -39,6 +39,9 @@ vim.opt.formatoptions = 'jrcql'
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+-- Global variables
+vim.g.personal_notes = '~/Library/Mobile Documents/com~apple~CloudDocs/Personal Notes'
+
 -- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
