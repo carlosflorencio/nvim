@@ -1,15 +1,17 @@
 return {
   {
     'github/copilot.vim',
-    enabled = true,
+    enabled = false,
     config = function()
       vim.g.copilot_no_maps = true
+      -- issue when expanding a comment inside a docblock
+      -- extra * at the beginning of the line are added
     end,
   },
   {
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
-    enabled = false,
+    enabled = true,
     event = 'InsertEnter',
     opts = {
       panel = {
@@ -83,7 +85,7 @@ return {
         '<leader>aa',
         function()
           local input = vim.fn.input 'Ask Copilot: '
-          if input ~= nil then
+          if input ~= nil and input ~= '' then
             require('CopilotChat').ask(input)
           end
         end,

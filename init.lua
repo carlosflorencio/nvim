@@ -15,7 +15,7 @@ vim.opt.cursorline = true -- Enable highlighting of the current line
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.splitbelow = true -- Put new windows below current
 vim.opt.splitright = true -- Put new windows right of current
-vim.opt.completeopt = 'menu,menuone,noselect' -- command line completion options
+vim.opt.completeopt = 'menu,menuone,noselect' -- completion options
 vim.opt.signcolumn = 'yes' -- Always show the sign column, otherwise it would shift the text each time
 vim.opt.fillchars = { eob = '~' }
 vim.opt.pumheight = 10 -- Maximum number of entries in a popup

@@ -18,6 +18,7 @@ return {
       local buffers = require 'user.util.buffers'
 
       cmp.setup {
+        ---@diagnostic disable-next-line: missing-fields
         formatting = {
           format = lspkind.cmp_format {
             mode = 'symbol_text', -- show only symbol annotations
@@ -45,37 +46,17 @@ return {
           end,
         },
         mapping = cmp.mapping.preset.insert {
-          ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
-          ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
+          -- ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
+          -- ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
           ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select }, { 'i' }),
           ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select }, { 'i' }),
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-y>'] = cmp.mapping {
-            i = cmp.mapping.confirm { behavior = cmp.SelectBehavior.Replace, select = false },
-            c = function(fallback)
-              if cmp.visible() then
-                cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
-              else
-                fallback()
-              end
-            end,
-          },
           ['<Tab>'] = cmp.mapping(function(fallback)
-            -- if not cmp.visible() and require('copilot.suggestion').is_visible() then
-            --   require('copilot.suggestion').accept()
             if not cmp.visible() and require('user.util.ai').has_suggestions() then
               require('user.util.ai').accept()
-            elseif cmp.visible() then
-              -- auto expand luasnip
-              -- if luasnip.expandable() then
-              --   luasnip.expand()
-              --   return
-              -- end
-
+            elseif not buffers.has_words_before() and cmp.visible() then
               cmp.confirm { select = true }
-            elseif luasnip.locally_jumpable(1) then
-              luasnip.jump(1)
             elseif buffers.has_words_before() then
               cmp.complete()
               if #cmp.get_entries() == 1 then
@@ -85,18 +66,7 @@ return {
               fallback()
             end
           end, { 'i', 's' }),
-          ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, { 'i', 's' }),
-          ['<C-TAB>'] = cmp.mapping.complete(),
           ['<C-ESC>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.abort(),
           ['<CR>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
               if cmp.get_active_entry() then
@@ -140,6 +110,18 @@ return {
           completeopt = 'menu,menuone,noinsert',
         },
       }
+
+      vim.keymap.set({ 'i', 's' }, '<c-k>', function()
+        if luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        end
+      end, { silent = true })
+
+      vim.keymap.set({ 'i', 's' }, '<c-j>', function()
+        if luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        end
+      end, { silent = true })
     end,
   },
   {

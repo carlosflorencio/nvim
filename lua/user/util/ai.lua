@@ -18,7 +18,18 @@ M.accept = function()
   end
 end
 
+-- require('copilot.api').register_status_notification_handler(function(data)
+--   print('Copilot Status: ' .. data.status)
+-- end)
+
 M.suggest = function()
+  -- copilot.lua
+  if package.loaded['copilot'] then
+    require('copilot.suggestion').next()
+    return
+  end
+
+  print(vim.inspect 'suggest')
   if vim.g.loaded_copilot then
     local copilot_keys = vim.fn['copilot#Suggest']()
     if copilot_keys ~= '' then

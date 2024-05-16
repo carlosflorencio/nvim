@@ -44,6 +44,7 @@ return {
             ['ctrl-l'] = 'toggle-preview-wrap',
             ['ctrl-d'] = 'preview-page-down',
             ['ctrl-u'] = 'preview-page-up',
+            -- ['esc'] = 'abort',
           },
         },
         grep = {

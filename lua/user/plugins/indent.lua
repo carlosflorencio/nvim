@@ -51,6 +51,7 @@ return {
         oil = true,
         terminal = true,
         toml = true,
+        yaml = true,
       })
 
       ---@diagnostic disable-next-line: missing-fields

@@ -161,9 +161,9 @@ return {
         extensions = {
           project = {
             base_dirs = {
-              -- { '~/Sky', max_depth = 1 },
-              -- { '~/Projects', max_depth = 1 },
-              -- { '~/.config', max_depth = 1 },
+              { '~/Sky', max_depth = 1 },
+              { '~/Projects', max_depth = 1 },
+              { '~/.config', max_depth = 1 },
               { '~/.cache/nvim/git-dev', max_depth = 2 },
             },
             hidden_files = true, -- default: false

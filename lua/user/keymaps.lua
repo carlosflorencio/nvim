@@ -45,8 +45,10 @@ vim.keymap.set('i', '<c-e>', '<c-o>de') -- delete forward word
 -- AI
 vim.keymap.set('i', '<c-l>', function()
   if require('user.util.ai').has_suggestions() then
+    -- vim.notify 'has suggestions'
     require('user.util.ai').accept()
   else
+    -- vim.notify 'no suggestions'
     require('user.util.ai').suggest()
   end
 end)
