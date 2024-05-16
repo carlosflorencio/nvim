@@ -15,6 +15,7 @@ return {
 
   {
     'mrjones2014/mdpreview.nvim',
+    enabled = true,
     lazy = true,
     cmd = { 'Mdpreview' },
     -- ft = 'markdown', -- you can lazy load on markdown files only
@@ -47,6 +48,7 @@ return {
     -- <c-t> increase indentation
     -- <c-d> decrease indentation
     'jakewvincent/mkdnflow.nvim',
+    enabled = true,
     ft = { 'markdown' },
     config = function()
       require('mkdnflow').setup {
@@ -64,6 +66,16 @@ return {
           auto_extend_rows = true,
         },
       }
+    end,
+  },
+
+  {
+    -- Render markdown in normal mode
+    'MeanderingProgrammer/markdown.nvim',
+    name = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require('render-markdown').setup {}
     end,
   },
 }
