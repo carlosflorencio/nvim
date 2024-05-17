@@ -23,32 +23,28 @@ function M.close_tree_if_many_windows()
 
   -- {"leaf", 1001}, {"row", { {}, {} }}
   local layout = vim.api.nvim_call_function('winlayout', {})
-  -- print(vim.inspect(layout) .. os.date("%Y-%m-%d %H:%M:%S"))
+  -- print(vim.inspect(layout) .. os.date '%Y-%m-%d %H:%M:%S')
 
   -- only 1 or 2 windows
 
   if layout[1] == 'leaf' or #layout[2] == windows_to_close_tree - 1 then
-    vim.schedule(function()
-      if not require('nvim-tree.api').tree.is_visible() then
-        pcall(function()
-          require('nvim-tree.api').tree.toggle {
-            focus = false,
-          }
-        end)
+    if not require('nvim-tree.api').tree.is_visible() then
+      pcall(function()
+        require('nvim-tree.api').tree.toggle {
+          focus = false,
+        }
+      end)
+    else
+      -- close the current tab since nvim-tree is the only buffer left
+      if #vim.api.nvim_list_tabpages() > 1 then
+        vim.cmd [[tabclose]]
       else
-        -- close the current tab since nvim-tree is the only buffer left
-        if #vim.api.nvim_list_tabpages() > 1 then
-          vim.cmd [[tabclose]]
-        else
-          vim.cmd [[q]]
-        end
+        vim.cmd [[q]]
       end
-    end)
+    end
   else
     if #layout[2] > windows_to_close_tree then
-      vim.schedule(function()
-        require('nvim-tree.api').tree.close()
-      end)
+      require('nvim-tree.api').tree.close()
     end
   end
 end

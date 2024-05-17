@@ -52,6 +52,7 @@ return {
         terminal = true,
         toml = true,
         yaml = true,
+        fzf = true,
       })
 
       ---@diagnostic disable-next-line: missing-fields

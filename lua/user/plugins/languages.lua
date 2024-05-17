@@ -25,7 +25,14 @@ return {
     'dmmulroy/tsc.nvim',
     cmd = { 'TSC' },
     opts = {
-      use_diagnostics = true,
+      use_diagnostics = false,
+    },
+    keys = {
+      {
+        ',tc',
+        '<cmd>TSC<cr>',
+        desc = 'TS Type Check Compile',
+      },
     },
   },
 }

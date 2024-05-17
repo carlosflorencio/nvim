@@ -177,6 +177,7 @@ return {
               actions.close(prompt_bufnr)
               vim.schedule(function()
                 vim.cmd 'tabnew'
+                vim.cmd('cd ' .. project_path)
                 vim.cmd('Oil ' .. project_path)
               end)
             end,
