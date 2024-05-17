@@ -21,6 +21,7 @@ return {
 
   {
     'stevearc/resession.nvim',
+    enabled = true,
     config = function()
       local resession = require 'resession'
 

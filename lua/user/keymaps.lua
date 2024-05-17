@@ -93,7 +93,8 @@ vim.cmd [[ command! Cnext try | cnext | catch | cfirst | catch | endtry ]]
 vim.cmd [[ command! Cprev try | cprev | catch | clast | catch | endtry ]]
 vim.keymap.set('n', ']q', ':Cnext<cr>')
 vim.keymap.set('n', '[q', ':Cprev<cr>')
-vim.keymap.set('n', '<c-q>', ':call QuickFixToggle()<CR>')
+vim.keymap.set('n', '<c-q>', ':QuickFixToggle<CR>', { silent = true })
+vim.keymap.set('n', '<c-s-q>', '<cmd>cex[]<cr>') -- clear quickfix list
 
 -- Move current line / block with Alt-j/k a la vscode.
 vim.keymap.set('n', '<A-j>', ':m .+1<CR>==')

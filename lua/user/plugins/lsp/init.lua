@@ -245,6 +245,8 @@ return {
     },
     config = function()
       require('conform').setup {
+        -- when the file has errors, don't notify
+        notify_on_error = false,
         format_on_save = function(bufnr)
           -- Disable autoformat on certain filetypes
           -- local ignore_filetypes = { 'sql', 'java' }

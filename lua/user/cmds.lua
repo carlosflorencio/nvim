@@ -57,12 +57,28 @@ end, {
   desc = 'Save Buffer, prompt for file path if not saved yet',
 })
 
-vim.cmd [[
-  function! QuickFixToggle()
-    if empty(filter(getwininfo(), 'v:val.quickfix'))
-      copen
+vim.api.nvim_create_user_command('QuickFixToggle', function()
+  local windows = vim.fn.getwininfo()
+  local is_quickfix_open = false
+
+  for _, win in pairs(windows) do
+    if win.quickfix == 1 then
+      is_quickfix_open = true
+      break
+    end
+  end
+
+  if is_quickfix_open then
+    vim.cmd 'cclose'
+  else
+    -- only open if there are items in the quickfix list
+    if not vim.tbl_isempty(vim.fn.getqflist()) then
+      vim.cmd 'copen'
+      vim.cmd 'wincmd p'
     else
-      cclose
-    endif
-  endfunction
-]]
+      print 'No items'
+    end
+  end
+end, {
+  desc = 'Toggle quickfix',
+})

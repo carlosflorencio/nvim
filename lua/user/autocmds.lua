@@ -26,9 +26,15 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 vim.cmd [[au InsertEnter * set nu nornu]] -- disable relative numbers in insert mode
 vim.cmd [[au InsertLeave * set nu rnu]]
 
--- tmp fix for https://github.com/chentoast/marks.nvim/issues/13
--- nvim 0.10 fixes this
+-- Delete old marks on startup
 vim.api.nvim_create_autocmd({ 'BufRead' }, { command = ':delm a-zA-Z0-9' })
+
+-- always open quickfix at the bottom
+vim.api.nvim_create_autocmd('FileType', {
+  group = augroup 'qf_always_bottom',
+  pattern = 'qf',
+  command = 'wincmd J',
+})
 
 -- nvim tree windows management
 vim.api.nvim_create_autocmd({ 'VimEnter' }, {
