@@ -1,8 +1,10 @@
 return {
   -- comments
-  { 'JoosepAlviste/nvim-ts-context-commentstring' },
+  -- { 'JoosepAlviste/nvim-ts-context-commentstring' },
   {
+    -- nvim 0.10 brings support for native comments
     'numToStr/Comment.nvim',
+    enabled = false,
     opts = {
       ignore = '^$',
       -- tsx/jsx support
