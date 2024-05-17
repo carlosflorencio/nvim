@@ -32,6 +32,13 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
 vim.opt.hlsearch = true -- highlight search (esc keymap to hide)
 
+-- folds
+-- za toggle fold, zo open fold, zc close fold
+-- zM close all folds, zR open all folds
+vim.opt.foldmethod = 'indent'
+vim.opt.foldenable = false
+vim.opt.foldlevel = 99
+
 -- Disable auto-commenting new lines
 vim.opt.formatoptions = 'jrcql'
 
