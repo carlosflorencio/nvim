@@ -21,7 +21,6 @@
   "fidget.nvim": { "branch": "main", "commit": "1ba38e4cbb24683973e00c2e36f53ae64da38ef5" },
   "flash.nvim": { "branch": "main", "commit": "11a2e667d19d8f48c93c6ed2e2e525ac6b1b79be" },
   "flote.nvim": { "branch": "main", "commit": "0baa72f59c249b28cd33f07db862bed3192c03f9" },
-  "format-ts-errors.nvim": { "branch": "main", "commit": "5dca66563baa9ccfff820b7ba97a2836d2421f7f" },
   "friendly-snippets": { "branch": "main", "commit": "dd2fd1281d4b22e7b4a5bfafa3e142d958e251f2" },
   "fzf-lua": { "branch": "main", "commit": "e412b1b0db62ccfccee41d994da87923eb2d8abd" },
   "git-conflict.nvim": { "branch": "main", "commit": "4c8e252b87d54d944c1e56bfb477f78b6fdaf661" },
