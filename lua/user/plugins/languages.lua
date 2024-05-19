@@ -23,7 +23,7 @@ return {
 
   {
     'dmmulroy/tsc.nvim',
-    cmd = { 'TSC' },
+    cmd = { 'TSC', 'TSCStop' },
     opts = {
       use_diagnostics = false,
       auto_close_qflist = true,

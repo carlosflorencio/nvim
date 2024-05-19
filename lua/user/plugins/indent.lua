@@ -53,6 +53,7 @@ return {
         toml = true,
         yaml = true,
         fzf = true,
+        lazygit = true,
       })
 
       ---@diagnostic disable-next-line: missing-fields

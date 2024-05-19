@@ -41,6 +41,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Jump Diagnostics
     map(']d', diagnostic_goto(true), 'Next Diagnostic')
+    map(']D', '<cmd>lua vim.diagnostic.open_float()<cr><cmd>lua vim.diagnostic.open_float()<cr>', 'Open Diagnostic')
     map('[d', diagnostic_goto(false), 'Prev Diagnostic')
     map(']e', diagnostic_goto(true, 'ERROR'), 'Next Error')
     map('[e', diagnostic_goto(false, 'ERROR'), 'Prev Error')
