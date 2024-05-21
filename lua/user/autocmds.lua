@@ -70,3 +70,19 @@ vim.on_key(function(char)
     end
   end
 end, vim.api.nvim_create_namespace 'auto_hlsearch')
+
+-- Prevent opening splits/windows and having the buffer scroleld to the right
+vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter' }, {
+  group = augroup 'buf_left_align',
+  pattern = '*',
+  callback = function()
+    -- Save the current cursor position
+    local cursor_pos = vim.api.nvim_win_get_cursor(0)
+
+    -- Move to start of line and adjust view
+    vim.cmd 'normal! 0zv'
+
+    -- Restore the original cursor position
+    vim.api.nvim_win_set_cursor(0, cursor_pos)
+  end,
+})

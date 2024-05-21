@@ -101,8 +101,25 @@ return {
   {
     'sindrets/diffview.nvim',
     cmd = { 'DiffviewFileHistory', 'DiffviewOpen', 'DiffviewClose', 'DiffviewFileHistory' },
+    opts = {
+      use_icons = false,
+      view = {
+        file_history = {
+          layout = 'diff2_horizontal',
+          winbar_info = false,
+        },
+      },
+      hooks = {
+        view_opened = function()
+          -- require('diffview.actions').toggle_files()
+        end,
+        diff_buf_win_enter = function()
+          vim.opt_local.foldenable = false
+        end,
+      },
+    },
     keys = {
-      { ',HH', '<cmd>DiffviewFileHistory<cr>', desc = 'Git Repo History', mode = 'n' },
+      { ',HH', '<cmd>DiffviewOpen origin/HEAD...HEAD --imply-local<cr>', desc = 'Git compare against master', mode = 'n' },
       { ',hh', '<cmd>DiffviewFileHistory --follow %<cr>', desc = 'Git File History', mode = 'n' },
       { ',hh', "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>", desc = 'Git History', mode = 'v' },
       { ',hc', '<cmd>DiffviewClose<cr>', desc = 'Diffview Close' },

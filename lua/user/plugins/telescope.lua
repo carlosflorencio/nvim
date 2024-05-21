@@ -201,8 +201,8 @@ return {
           },
           smart_open = {
             ignore_patterns = { '*.git/*', '*/tmp/*', '*/dist/*' },
-            -- match_algorithm = 'fzf',
-            match_algorithm = 'fzy',
+            match_algorithm = 'fzf',
+            -- match_algorithm = 'fzy', -- does not support spaces between words
           },
           undo = {
             side_by_side = true,

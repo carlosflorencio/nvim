@@ -82,3 +82,26 @@ vim.api.nvim_create_user_command('QuickFixToggle', function()
 end, {
   desc = 'Toggle quickfix',
 })
+
+-- Create a new scratch buffer
+-- https://naseraleisa.com/posts/diff#clipboard
+vim.api.nvim_create_user_command('Ns', function()
+  vim.cmd [[
+  execute 'vsplit | enew'
+  setlocal buftype=nofile
+	setlocal bufhidden=hide
+  setlocal noswapfile
+	]]
+end, { nargs = 0 })
+
+-- Compare clipboard to current buffer
+vim.api.nvim_create_user_command('DiffWithClipboard', function()
+  local ftype = vim.api.nvim_eval '&filetype' -- original filetype
+  vim.cmd [[
+  tabnew %
+  Ns
+  normal! P
+  windo diffthis
+	]]
+  vim.cmd('set filetype=' .. ftype)
+end, { nargs = 0 })

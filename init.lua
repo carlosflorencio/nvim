@@ -40,7 +40,7 @@ vim.opt.foldenable = false
 vim.opt.foldlevel = 99
 
 -- Disable auto-commenting new lines
-vim.opt.formatoptions = 'jrcql'
+-- vim.opt.formatoptions = 'jrcql'
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
