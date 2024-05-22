@@ -27,9 +27,9 @@ return {
     opts = {
       use_diagnostics = false,
       auto_close_qflist = true,
-      -- flags = {
-      --   watch = true,
-      -- },
+      flags = {
+        watch = true,
+      },
       -- enable_progress_notifications = false,
     },
     keys = {
@@ -37,6 +37,12 @@ return {
         ',tc',
         '<cmd>TSC<cr>',
         desc = 'TS Type Check Compile',
+      },
+
+      {
+        ',ts',
+        '<cmd>TSCStop<cr>',
+        desc = 'TS Type Check Stop',
       },
     },
   },

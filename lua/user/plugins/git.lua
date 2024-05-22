@@ -49,6 +49,7 @@ return {
 
   {
     'lewis6991/gitsigns.nvim',
+    enabed = true,
     event = { 'BufReadPre', 'BufNewFile' },
     opts = function()
       return {

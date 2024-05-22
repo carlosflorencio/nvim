@@ -41,9 +41,11 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
   callback = function()
     -- open tree on startup
     vim.schedule_wrap(function()
-      require('nvim-tree.api').tree.toggle {
-        focus = false,
-      }
+      if pcall(require, 'nvim-tree.api') then
+        require('nvim-tree.api').tree.toggle {
+          focus = false,
+        }
+      end
     end)()
 
     -- schedule auto tree close

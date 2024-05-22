@@ -44,7 +44,9 @@ function M.close_tree_if_many_windows()
     end
   else
     if #layout[2] > windows_to_close_tree then
-      require('nvim-tree.api').tree.close()
+      if pcall(require, 'nvim-tree.api') then
+        require('nvim-tree.api').tree.close()
+      end
     end
   end
 end
