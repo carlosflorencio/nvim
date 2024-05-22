@@ -12,6 +12,10 @@ function M.close_tree_if_many_windows()
     end
   end
 
+  if package.loaded['nvim-tree'] == nil then
+    return
+  end
+
   -- layout is more reliable than windows
   -- sometimes there were hidden windows that would skew the count
 
@@ -44,9 +48,7 @@ function M.close_tree_if_many_windows()
     end
   else
     if #layout[2] > windows_to_close_tree then
-      if pcall(require, 'nvim-tree.api') then
-        require('nvim-tree.api').tree.close()
-      end
+      require('nvim-tree.api').tree.close()
     end
   end
 end
