@@ -4,10 +4,10 @@ return {
     'axkirillov/hbac.nvim',
     -- when navigating in the quickfix list
     -- this plugin will close the buffers so navigating returns errors
-    enabled = false,
+    enabled = true,
     config = function()
       require('hbac').setup {
-        threshold = 10,
+        threshold = 20,
       }
     end,
   },

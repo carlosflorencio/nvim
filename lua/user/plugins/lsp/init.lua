@@ -245,6 +245,7 @@ return {
     },
     config = function()
       require('conform').setup {
+        -- log_level = vim.log.levels.TRACE,
         -- when the file has errors, don't notify
         notify_on_error = false,
         format_on_save = function(bufnr)
@@ -276,7 +277,7 @@ return {
           jsonc = { 'prettierd' },
           json = { 'prettierd' },
           -- sub-list to run only the first available formatter
-          javascript = { { 'prettierd', 'prettier' } },
+          javascript = { { 'prettier' } },
           typescript = { { 'prettierd', 'prettier' } },
           markdown = { { 'prettierd', 'prettier' } },
         },

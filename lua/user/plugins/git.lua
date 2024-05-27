@@ -48,8 +48,10 @@ return {
   },
 
   {
+    -- TODO: fix this is making nvim slow when opening the first time
+    -- plus lazygit is slow staging files
     'lewis6991/gitsigns.nvim',
-    enabed = true,
+    enabled = true,
     event = { 'BufReadPre', 'BufNewFile' },
     opts = function()
       return {
@@ -60,6 +62,8 @@ return {
           topdelete = { text = '󰐊' },
           changedelete = { text = '▏' },
         },
+        -- required to avoid slowdown in lazygit, etc
+        update_debounce = 500,
         on_attach = function(buffer)
           local gs = package.loaded.gitsigns
 
