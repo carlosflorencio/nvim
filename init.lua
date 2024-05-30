@@ -40,7 +40,7 @@ vim.opt.foldenable = false
 vim.opt.foldlevel = 99
 
 -- Auto formating options (o in a docblock adds * prefix)
-vim.opt.formatoptions = 'jrcqlo'
+-- vim.opt.formatoptions = 'jrcqlo'
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true

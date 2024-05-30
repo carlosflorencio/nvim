@@ -5,8 +5,7 @@ return {
     event = 'VeryLazy',
     cmd = { 'ToggleCommentDebugPrints', 'DeleteDebugPrints' },
     dependencies = {
-      'echasnovski/mini.nvim', -- Needed to enable :ToggleCommentDebugPrints for NeoVim <= 0.9
-      'nvim-treesitter/nvim-treesitter', -- Needed to enable treesitter for NeoVim 0.8
+      -- 'echasnovski/mini.nvim', -- Needed to enable :ToggleCommentDebugPrints for NeoVim <= 0.9
     },
     version = '*',
     opts = {

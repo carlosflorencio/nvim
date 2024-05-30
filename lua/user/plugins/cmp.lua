@@ -68,17 +68,17 @@ return {
             end
           end, { 'i', 's' }),
           ['<C-ESC>'] = cmp.mapping.complete(),
-          ['<CR>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              if cmp.get_active_entry() then
+          ['<CR>'] = cmp.mapping {
+            i = function(fallback)
+              if cmp.visible() and cmp.get_active_entry() then
                 cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
               else
                 fallback()
               end
-            else
-              fallback()
-            end
-          end),
+            end,
+            s = cmp.mapping.confirm { select = true },
+            c = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
+          },
         },
         sources = cmp.config.sources({
           { name = 'nvim_lsp_signature_help' },

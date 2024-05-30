@@ -2,6 +2,9 @@ return {
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
+    -- fix eslint issue 30/5
+    -- https://github.com/LazyVim/LazyVim/issues/3383
+    version = '*',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       'williamboman/mason.nvim',
@@ -275,7 +278,7 @@ return {
           python = { 'isort', 'black' },
           bzl = { 'buildifier' },
           jsonc = { 'prettierd' },
-          json = { 'prettierd' },
+          json = { { 'prettier', 'prettierd' } },
           -- sub-list to run only the first available formatter
           javascript = { { 'prettier' } },
           typescript = { { 'prettierd', 'prettier' } },

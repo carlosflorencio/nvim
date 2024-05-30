@@ -65,21 +65,29 @@ return {
       { 'zbirenbaum/copilot.lua' }, -- or github/copilot.vim
       { 'nvim-lua/plenary.nvim' }, -- for curl, log wrapper
     },
-    opts = {
-      debug = false, -- Enable debugging
-      show_help = false,
-      window = {
-        layout = 'float',
-        width = 0.8,
-        height = 0.8,
-      },
-      mappings = {
-        submit_prompt = {
-          normal = '<CR>',
-          insert = '<CR>',
+    config = function()
+      require('CopilotChat').setup {
+        debug = false, -- Enable debugging
+        show_help = false,
+        window = {
+          layout = 'float',
+          width = 0.8,
+          height = 0.8,
         },
-      },
-    },
+        mappings = {
+          submit_prompt = {
+            normal = '<CR>',
+            insert = '<CR>',
+          },
+          -- cmp integration will be used
+          complete = {
+            insert = '',
+          },
+        },
+      }
+
+      require('CopilotChat.integrations.cmp').setup()
+    end,
     keys = {
       {
         '<leader>aa',
