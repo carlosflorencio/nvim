@@ -1,5 +1,16 @@
 return {
   {
+    {
+      'supermaven-inc/supermaven-nvim',
+      enabled = true,
+      config = function()
+        require('supermaven-nvim').setup {
+          disable_keymaps = true,
+        }
+      end,
+    },
+  },
+  {
     'github/copilot.vim',
     enabled = false,
     config = function()
@@ -9,9 +20,10 @@ return {
     end,
   },
   {
+    -- copilot bin outdated
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
-    enabled = true,
+    enabled = false,
     event = 'InsertEnter',
     opts = {
       panel = {

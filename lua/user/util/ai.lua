@@ -1,6 +1,11 @@
 local M = {}
 
 M.accept = function()
+  if package.loaded['supermaven-nvim'] then
+    require('supermaven-nvim.completion_preview').on_accept_suggestion()
+    return
+  end
+
   -- copilot.lua
   if package.loaded['copilot'] then
     require('copilot.suggestion').accept()
@@ -40,6 +45,10 @@ M.suggest = function()
 end
 
 M.has_suggestions = function()
+  if package.loaded['supermaven-nvim'] then
+    return require('supermaven-nvim.completion_preview').has_suggestion()
+  end
+
   -- copilot.lua
   if package.loaded['copilot'] then
     return require('copilot.suggestion').is_visible()
