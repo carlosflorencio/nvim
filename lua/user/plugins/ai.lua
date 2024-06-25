@@ -2,7 +2,7 @@ return {
   {
     {
       'supermaven-inc/supermaven-nvim',
-      enabled = true,
+      enabled = false,
       config = function()
         require('supermaven-nvim').setup {
           disable_keymaps = true,
@@ -12,7 +12,7 @@ return {
   },
   {
     'github/copilot.vim',
-    enabled = false,
+    enabled = true,
     config = function()
       vim.g.copilot_no_maps = true
       -- issue when expanding a comment inside a docblock

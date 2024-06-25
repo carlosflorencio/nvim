@@ -14,11 +14,7 @@ M.accept = function()
 
   -- copilot.vim
   if vim.g.loaded_copilot then
-    local copilot_keys = vim.fn['copilot#Accept'] ''
-    if copilot_keys ~= '' then
-      local text = vim.fn['copilot#TextQueuedForInsertion']()
-      vim.api.nvim_feedkeys(text, 'i', true)
-    end
+    vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)), 'n', true)
     return
   end
 end
@@ -36,10 +32,11 @@ M.suggest = function()
 
   print(vim.inspect 'suggest')
   if vim.g.loaded_copilot then
-    local copilot_keys = vim.fn['copilot#Suggest']()
-    if copilot_keys ~= '' then
-      vim.api.nvim_feedkeys(copilot_keys, 'i', true)
-    end
+    vim.api.nvim_feedkeys(vim.fn['copilot#Suggest'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)), 'n', true)
+    -- local copilot_keys = vim.fn['copilot#Suggest']()
+    -- if copilot_keys ~= '' then
+    --   vim.api.nvim_feedkeys(copilot_keys, 'i', true)
+    -- end
     return
   end
 end
