@@ -1,7 +1,20 @@
 return {
   {
+    'scottmckendry/cyberdream.nvim',
+    lazy = false,
+    priority = 1000,
+    enabled = require('user.util.env').is_iterm2(),
+    config = function()
+      require('cyberdream').setup {
+        transparent = true,
+      }
+
+      vim.cmd [[colorscheme cyberdream]]
+    end,
+  },
+  {
     'navarasu/onedark.nvim',
-    enabled = true,
+    enabled = not require('user.util.env').is_iterm2(),
     lazy = false,
     priority = 1000,
     config = function()
