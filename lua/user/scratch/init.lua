@@ -18,7 +18,7 @@ local function new()
   fs.initDir(config.scratch_dir)
 
   local current_buffer = vim.api.nvim_get_current_buf()
-  local current_buffer_ft = vim.api.nvim_buf_get_option(current_buffer, 'filetype')
+  local current_buffer_ft = vim.api.nvim_get_option_value('filetype', { buf = current_buffer })
   local current_buffer_name = vim.api.nvim_buf_get_name(current_buffer)
   local current_buffer_extension = strings.get_extension(current_buffer_name)
 

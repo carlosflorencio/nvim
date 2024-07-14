@@ -7,7 +7,7 @@ function M:init(options)
 end
 
 function M:update_status()
-  local buf_clients = vim.lsp.get_active_clients()
+  local buf_clients = vim.lsp.get_clients()
   local null_ls_installed, null_ls = pcall(require, 'null-ls')
   local buf_client_names = {}
   for _, client in pairs(buf_clients) do
@@ -18,7 +18,11 @@ function M:update_status()
         end
       end
     else
-      table.insert(buf_client_names, client.name)
+      if client.name == 'GitHub Copilot' then
+        table.insert(buf_client_names, 'Copilot')
+      else
+        table.insert(buf_client_names, client.name)
+      end
     end
   end
 

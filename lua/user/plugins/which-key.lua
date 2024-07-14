@@ -7,10 +7,32 @@ return {
       vim.o.timeoutlen = 550
     end,
     opts = {
+      spec = {
+        { ']', group = 'next' },
+        { '[', group = 'prev' },
+        { '<leader>g', group = 'goto' },
+        { '<leader>c', group = 'close' },
+        { '<leader>a', group = 'ai' },
+        { '<leader>l', group = 'lsp' },
+        { '<leader>f', group = 'find' },
+        { '<leader>g', group = 'git' },
+        { '<leader>q', group = 'quit' },
+        { '<leader>s', group = 'split' },
+        { '<leader>t', group = 'toggle' },
+        { '<leader>d', group = 'debug' },
+        { ',b', group = 'breakpoints' },
+        { ',t', group = 'test' },
+        { ',o', group = 'other' },
+        { ',r', group = 'run' },
+        { ',c', group = 'curl' },
+      },
       plugins = {
         marks = true, -- shows a list of your marks on ' and `
         registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
         spelling = true,
+      },
+      icons = {
+        rules = false,
       },
       triggers_nowait = {
         -- -- marks
@@ -25,64 +47,5 @@ return {
         'z=',
       },
     },
-    config = function(_, opts)
-      local wk = require 'which-key'
-      wk.setup(opts)
-      local keymaps = {
-        mode = { 'n', 'v' },
-        ['g'] = {
-          name = '+goto',
-        },
-        [']'] = {
-          name = '+next',
-        },
-        ['['] = {
-          name = '+prev',
-        },
-        ['<leader>c'] = {
-          name = '+close',
-        },
-        ['<leader>a'] = {
-          name = '+AI',
-        },
-        ['<leader>l'] = {
-          name = '+lsp',
-        },
-        ['<leader>f'] = {
-          name = '+find',
-        },
-        ['<leader>g'] = {
-          name = '+git',
-        },
-        ['<leader>q'] = {
-          name = '+quit/session',
-        },
-        ['<leader>s'] = {
-          name = '+split',
-        },
-        ['<leader>t'] = {
-          name = '+toggle',
-        },
-        ['<leader>d'] = {
-          name = '+debug',
-        },
-        ['<leader>o'] = {
-          name = '+organize',
-        },
-        -- ['<leader>h'] = {
-        -- },
-        --   name = '+http',
-        [',b'] = {
-          name = '+breakpoints',
-        },
-        [',t'] = {
-          name = '+test',
-        },
-        [',o'] = {
-          name = '+other file',
-        },
-      }
-      wk.register(keymaps)
-    end,
   },
 }

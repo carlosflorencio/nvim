@@ -5,7 +5,9 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
-    config = true,
+    config = function()
+      require('curl').setup()
+    end,
     keys = {
       {
         ',c',
