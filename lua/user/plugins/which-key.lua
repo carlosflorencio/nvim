@@ -34,6 +34,7 @@ return {
       icons = {
         rules = false,
       },
+      modes = { x = false },
       triggers_nowait = {
         -- -- marks
         -- '`',

@@ -64,8 +64,8 @@ end)
 -- esc
 vim.keymap.set({ 'i', 'n' }, '<esc>', '<cmd>noh<cr><esc>', { desc = 'Escape and Clear highlights' })
 
--- Paste
-vim.keymap.set('v', '<C-p>', "y'>p")
+-- delete single character without copying into register
+vim.keymap.set('n', 'x', '"_x')
 
 -- cycle between buffers
 vim.keymap.set('n', '<leader><space>', '<c-^>', { desc = 'Cycle between buffers' })

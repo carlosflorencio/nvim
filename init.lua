@@ -1,6 +1,6 @@
 -- Set <space> as the leader key
 vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.maplocalleader = ','
 
 -- disable netrw, we use nvim-tree
 vim.g.loaded_netrw = 1
@@ -25,6 +25,7 @@ vim.o.clipboard = 'unnamedplus' -- system clipboard
 vim.o.undofile = true -- Save undo history
 vim.o.breakindent = true -- Indent wrapped lines
 vim.opt.showmode = false -- don't show mode since we use a statusline
+vim.opt.jumpoptions = 'stack,view' -- jump back c-o preserves y cursor position
 vim.opt.updatetime = 250 -- Decrease update time
 vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time (whick-key appears sooner)
 vim.opt.list = true -- differentiate white spaces

@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(event)
     local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-    if client.name == 'typescript-tools' then
+    if client ~= nil and client.name == 'typescript-tools' then
       vim.keymap.set('n', '<leader>oa', '<cmd>TSToolsAddMissingImports<CR>', { buffer = event.buf, desc = 'Add Missing Imports' })
       vim.keymap.set('n', '<leader>oi', '<cmd>TSToolsOrganizeImports<CR>', { buffer = event.buf, desc = 'Organize Imports' })
       vim.keymap.set('n', '<leader>ou', '<cmd>TSToolsRemoveUnusedImports<CR>', { buffer = event.buf, desc = 'Remove Unused Imports/Variables' })
@@ -51,7 +51,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('[w', diagnostic_goto(false, 'WARN'), 'Prev Warning')
 
     -- Highlight references under the cursor
-    local client = vim.lsp.get_client_by_id(event.data.client_id)
     if client and client.server_capabilities.documentHighlightProvider then
       vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
         buffer = event.buf,
@@ -67,7 +66,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Toggle Inlay Hints
     if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
       map('<leader>lh', function()
-        vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
+        ---@diagnostic disable-next-line: missing-parameter
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
       end, 'Toggle Inlay Hints')
     end
   end,
