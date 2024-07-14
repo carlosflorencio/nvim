@@ -14,9 +14,19 @@ return {
       -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
 
-      -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
-      -- used for completion, annotations and signatures of Neovim apis
-      { 'folke/neodev.nvim', opts = {} },
+      {
+        'folke/lazydev.nvim',
+        ft = 'lua', -- only load on lua files
+        opts = {
+          library = {
+            -- See the configuration section for more details
+            -- Load luvit types when the `vim.uv` word is found
+            { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+          },
+        },
+      },
+      { 'Bilal2453/luvit-meta', lazy = true }, -- optional `vim.uv` typings
+
       {
         'b0o/SchemaStore.nvim',
         version = false, -- last release is way too old
@@ -334,7 +344,7 @@ return {
         ---@diagnostic disable-next-line: missing-fields
         hooks = {
           before_open = function(results, open, _, method)
-            if vim.tbl_islist(results) and #results > 1 and (method == 'definitions' or method == 'references') then
+            if vim.islist(results) and #results > 1 and (method == 'definitions' or method == 'references') then
               local filtered_result = vim.tbl_filter(filterTypescriptDefinitionFiles, results)
 
               if #filtered_result > 0 then

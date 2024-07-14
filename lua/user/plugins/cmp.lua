@@ -107,7 +107,6 @@ return {
           },
           { name = 'luasnip' },
           { name = 'buffer' },
-          { name = 'nvim_lua' }, -- vim api completion
         }, {
           -- group 2 only if nothing in above had results
           { name = 'path' },

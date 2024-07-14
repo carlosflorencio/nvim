@@ -63,7 +63,7 @@ end
 
 function M.delete_buffers_filetype(filetypes)
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    local filetype = vim.api.nvim_buf_get_option_value('filetype', { buf = buf })
+    local filetype = vim.api.nvim_get_option_value('filetype', { buf = buf })
     if vim.tbl_contains(filetypes, filetype) then
       vim.api.nvim_buf_delete(buf, { force = false })
     end
