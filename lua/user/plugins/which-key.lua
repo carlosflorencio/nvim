@@ -35,18 +35,6 @@ return {
         rules = false,
       },
       modes = { x = false },
-      triggers_nowait = {
-        -- -- marks
-        -- '`',
-        -- "'",
-        -- 'g`',
-        -- "g'",
-        -- registers
-        '"',
-        '<c-r>',
-        -- spelling
-        'z=',
-      },
     },
   },
 }
