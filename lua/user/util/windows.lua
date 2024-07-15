@@ -72,7 +72,7 @@ end
 
 function M.close_tmp_buffers()
   M.delete_unlisted_buffers()
-  M.delete_buffers_filetype { 'oil', 'NvimTree', 'TelescopePrompt', 'copilot-chat' }
+  M.delete_buffers_filetype { 'oil', 'NvimTree', 'TelescopePrompt', 'copilot-chat', 'grug-far' }
 end
 
 function M.close_all_nvim_tree_buffers()

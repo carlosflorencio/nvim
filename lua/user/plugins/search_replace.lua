@@ -22,10 +22,12 @@ return {
       {
         '<leader>sr',
         function()
-          require('grug-far').grug_far { prefills = {
-            search = vim.fn.expand '<cword>',
-            filesFilter = vim.fn.expand '%',
-          } }
+          require('grug-far').grug_far {
+            prefills = {
+              search = vim.fn.expand '<cword>',
+              filesFilter = vim.fn.expand '%',
+            },
+          }
         end,
         desc = 'Replace in files (Spectre)',
       },

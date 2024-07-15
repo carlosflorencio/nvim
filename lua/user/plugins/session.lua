@@ -34,8 +34,8 @@ return {
 
         options = {
           'binary',
-          'bufhidden',
-          'buflisted',
+          -- 'bufhidden',
+          -- 'buflisted',
           'cmdheight',
           'diff',
           'filetype',
