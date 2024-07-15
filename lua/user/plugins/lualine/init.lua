@@ -1,11 +1,24 @@
 return {
   {
+    'linrongbin16/lsp-progress.nvim',
+    lazy = true,
+    config = function()
+      require('lsp-progress').setup {
+        -- 50ms initial update time is too fast
+        event_update_time_limit = 100,
+        -- after initial load, we don't want to update progress that often
+        -- because this will cause a lualine refresh
+        regular_internal_update_time = 5000,
+      }
+    end,
+  },
+  {
     'nvim-lualine/lualine.nvim',
-    opts = function()
+    config = function()
       local components = require 'user.plugins.lualine.components'
       require 'user.plugins.lualine.wakatime'
 
-      return {
+      require('lualine').setup {
         options = {
           -- theme = 'auto',
           globalstatus = true,
@@ -48,6 +61,13 @@ return {
             components.python_env,
           },
           lualine_x = {
+            function()
+              return require('lsp-progress').progress {
+                format = function(messages)
+                  return #messages > 0 and table.concat(messages, ' ') or ''
+                end,
+              }
+            end,
             components.cwd,
             Lualine_get_wakatime,
             components.location,
@@ -62,6 +82,16 @@ return {
         },
         extensions = {},
       }
+
+      -- listen lsp-progress event and refresh lualine
+      vim.api.nvim_create_augroup('lualine_augroup', { clear = true })
+      vim.api.nvim_create_autocmd('User', {
+        group = 'lualine_augroup',
+        pattern = 'LspProgressStatusUpdated',
+        callback = function()
+          require('lualine').refresh()
+        end,
+      })
     end,
   },
 }
