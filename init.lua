@@ -29,7 +29,8 @@ vim.opt.jumpoptions = 'stack,view' -- jump back c-o preserves y cursor position
 vim.opt.updatetime = 250 -- Decrease update time
 vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time (whick-key appears sooner)
 vim.opt.list = true -- differentiate white spaces
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
+-- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
 vim.opt.hlsearch = true -- highlight search (esc keymap to hide)
 

@@ -33,6 +33,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('<leader>lS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
     map('<leader>la', vim.lsp.buf.code_action, 'Code Action')
     map('<leader>ld', vim.diagnostic.open_float, 'Code Action')
+    map('<leader>li', '<cmd>LspInfo<cr>', 'LspInfo')
     map('K', vim.lsp.buf.hover, 'Hover Documentation')
 
     -- Signature Help
