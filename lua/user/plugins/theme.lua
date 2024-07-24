@@ -3,7 +3,8 @@ return {
     'scottmckendry/cyberdream.nvim',
     lazy = false,
     priority = 1000,
-    enabled = require('user.util.env').is_iterm2(),
+    -- enabled = require('user.util.env').is_iterm2(),
+    enabled = false,
     config = function()
       require('cyberdream').setup {
         transparent = true,
@@ -58,6 +59,7 @@ return {
   {
     'projekt0n/github-nvim-theme',
     enabled = false,
+    -- enabled = require('user.util.env').is_iterm2(),
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
@@ -82,7 +84,6 @@ return {
   {
     'uloco/bluloco.nvim',
     enabled = false,
-    lazy = false,
     priority = 1000,
     dependencies = { 'rktjmp/lush.nvim' },
     config = function()
@@ -93,7 +94,9 @@ return {
 
   {
     'tiagovla/tokyodark.nvim',
-    enabled = false,
+    -- enabled = false,
+    enabled = true,
+    -- enabled = require('user.util.env').is_iterm2(),
     priority = 1000,
     config = function()
       require('tokyodark').setup {

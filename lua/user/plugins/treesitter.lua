@@ -58,7 +58,7 @@ return {
       sync_install = false,
       auto_install = true,
       ignore_install = {},
-      modules = {},
+      -- modules = {},
       highlight = {
         enable = true,
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
