@@ -80,7 +80,7 @@ return {
     config = function()
       require('CopilotChat').setup {
         debug = false, -- Enable debugging
-        show_help = false,
+        show_help = true,
         window = {
           layout = 'float',
           width = 0.8,
@@ -94,6 +94,10 @@ return {
           -- cmp integration will be used
           complete = {
             insert = '',
+          },
+          reset = {
+            normal = '<C-l>',
+            insert = '<M-l>',
           },
         },
       }

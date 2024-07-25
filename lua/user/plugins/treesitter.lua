@@ -3,6 +3,17 @@ return {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    event = { 'VeryLazy' },
+    lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
+    init = function(plugin)
+      -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
+      -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
+      -- no longer trigger the **nvim-treesitter** module to be loaded in time.
+      -- Luckily, the only things that those plugins need are the custom queries, which we make available
+      -- during startup.
+      require('lazy.core.loader').add_to_rtp(plugin)
+      require 'nvim-treesitter.query_predicates'
+    end,
     dependencies = {
       {
         'nvim-treesitter/nvim-treesitter-context',
@@ -36,7 +47,6 @@ return {
         'dockerfile',
         'earthfile',
         'gitcommit',
-        'gitrebase',
         'git_rebase',
         'git_config',
         'gitattributes',
@@ -61,16 +71,20 @@ return {
       -- modules = {},
       highlight = {
         enable = true,
-        -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-        --  If you are experiencing weird indenting issues, add the language to
-        --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        -- additional_vim_regex_highlighting = { 'ruby', 'lua' },
+        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+        -- Using this option may slow down your editor, and you may see some duplicate highlights.
+        -- Instead of true it can also be a list of languages
+        additional_vim_regex_highlighting = false,
       },
       indent = {
         enable = true,
         -- disable = { 'ruby', 'lua' },
       },
     },
+    config = function(_, opts)
+      require('nvim-treesitter.configs').setup(opts)
+    end,
   },
 
   {
