@@ -98,6 +98,14 @@ require('lazy').setup({
   },
 })
 
+-- Custom filetypes
+vim.filetype.add {
+  extension = {
+    vcl = 'c',
+    tftpl = 'c',
+  },
+}
+
 require 'user.autocmds'
 require 'user.cmds'
 require 'user.keymaps'
