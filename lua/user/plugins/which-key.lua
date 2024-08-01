@@ -7,6 +7,7 @@ return {
       vim.o.timeoutlen = 550
     end,
     opts = {
+      -- notify = false,
       spec = {
         { ']', group = 'next' },
         { '[', group = 'prev' },
@@ -34,7 +35,7 @@ return {
       icons = {
         rules = false,
       },
-      modes = { x = false },
+      -- modes = { x = false },
     },
   },
 }

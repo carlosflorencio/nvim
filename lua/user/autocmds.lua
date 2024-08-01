@@ -39,14 +39,18 @@ vim.api.nvim_create_autocmd('FileType', {
 -- nvim tree windows management
 vim.api.nvim_create_autocmd({ 'VimEnter' }, {
   callback = function()
-    -- open tree on startup
-    vim.schedule_wrap(function()
-      if pcall(require, 'nvim-tree.api') then
-        require('nvim-tree.api').tree.toggle {
-          focus = false,
-        }
-      end
-    end)()
+    -- print(vim.inspect(vim.api.nvim_win_get_width(0)))
+
+    -- open tree on startup, when screen is wide enough
+    if vim.api.nvim_win_get_width(0) > 100 then
+      vim.schedule_wrap(function()
+        if pcall(require, 'nvim-tree.api') then
+          require('nvim-tree.api').tree.toggle {
+            focus = false,
+          }
+        end
+      end)()
+    end
 
     -- schedule auto tree close
     -- needs to be scheduled after openin tree at startup
