@@ -1,20 +1,30 @@
 return {
   {
-    'scottmckendry/cyberdream.nvim',
-    lazy = false,
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    enabled = true,
     priority = 1000,
-    enabled = require('user.util.env').is_iterm2(),
     config = function()
-      require('cyberdream').setup {
-        transparent = true,
-      }
-
-      vim.cmd [[colorscheme cyberdream]]
+      vim.cmd [[colorscheme catppuccin-mocha]]
     end,
   },
+  -- {
+  --   'scottmckendry/cyberdream.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   enabled = require('user.util.env').is_iterm2(),
+  --   config = function()
+  --     require('cyberdream').setup {
+  --       transparent = true,
+  --     }
+
+  --     vim.cmd [[colorscheme cyberdream]]
+  --   end,
+  -- },
   {
     'navarasu/onedark.nvim',
-    enabled = not require('user.util.env').is_iterm2(),
+    -- enabled = require('user.util.env').is_iterm2(),
+    enabled = false,
     lazy = false,
     priority = 1000,
     config = function()

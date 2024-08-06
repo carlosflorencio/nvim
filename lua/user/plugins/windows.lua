@@ -13,10 +13,9 @@ return {
         winwidth = 30,
       },
     },
-    cmd = { 'WindowsMaximize', 'WindowsEqualize', 'WindowsToggleAutowidth' },
     keys = {
       { '<leader>sm', '<cmd>WindowsMaximize<cr>', desc = 'Maximize Window' },
     },
-    event = 'BufReadPost',
+    event = 'VeryLazy',
   },
 }
