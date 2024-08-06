@@ -98,7 +98,7 @@ end
 return {
   {
     'nvim-tree/nvim-tree.lua',
-    enabled = true,
+    enabled = false,
     version = '*',
     lazy = false,
     dependencies = {
@@ -190,6 +190,11 @@ return {
         '<leader>e',
         function()
           require('nvim-tree.api').tree.toggle { focus = false }
+          if vim.g.auto_tree_cmd_id ~= nil then
+            vim.notify 'here'
+            vim.api.nvim_del_autocmd(vim.g.auto_tree_cmd_id)
+            vim.g.auto_tree_cmd_id = nil
+          end
         end,
         desc = 'Toggle NvimTree',
       },

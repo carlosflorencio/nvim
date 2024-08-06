@@ -81,6 +81,14 @@ return {
         enable = true,
         -- disable = { 'ruby', 'lua' },
       },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = '<cr>',
+          node_incremental = '<cr>',
+          node_decremental = '<s-cr>',
+        },
+      },
     },
     config = function(_, opts)
       require('nvim-treesitter.configs').setup(opts)
@@ -149,6 +157,7 @@ return {
   {
     -- incremental selection <cr>, <bs>
     'sustech-data/wildfire.nvim',
+    enabled = false,
     event = 'VeryLazy',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()

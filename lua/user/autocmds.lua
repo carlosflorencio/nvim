@@ -37,35 +37,37 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- nvim tree windows management
-vim.api.nvim_create_autocmd({ 'VimEnter' }, {
-  callback = function()
-    -- print(vim.inspect(vim.api.nvim_win_get_width(0)))
+-- vim.api.nvim_create_autocmd({ 'VimEnter' }, {
+--   callback = function()
+--     -- print(vim.inspect(vim.api.nvim_win_get_width(0)))
 
-    -- open tree on startup, when screen is wide enough
-    if vim.api.nvim_win_get_width(0) > 100 then
-      vim.schedule_wrap(function()
-        if pcall(require, 'nvim-tree.api') then
-          require('nvim-tree.api').tree.toggle {
-            focus = false,
-          }
-        end
-      end)()
-    end
+--     -- open tree on startup, when screen is wide enough
+--     if vim.o.columns > 100 then
+--       return
+--     end
 
-    -- schedule auto tree close
-    -- needs to be scheduled after openin tree at startup
-    vim.api.nvim_create_autocmd('WinEnter', {
-      group = augroup 'buf_enter_tree',
-      callback = function()
-        vim.schedule_wrap(function()
-          require('user.util.windows').close_tree_if_many_windows()
-        end)()
-      end,
-      -- allow this autocmd to run when the cb triggers it again
-      nested = true,
-    })
-  end,
-})
+--     vim.schedule_wrap(function()
+--       if pcall(require, 'nvim-tree.api') then
+--         require('nvim-tree.api').tree.toggle {
+--           focus = false,
+--         }
+--       end
+--     end)()
+
+--     -- schedule auto tree close
+--     -- needs to be scheduled after openin tree at startup
+--     vim.g.auto_tree_cmd_id = vim.api.nvim_create_autocmd('WinEnter', {
+--       group = augroup 'buf_enter_tree',
+--       callback = function()
+--         vim.schedule_wrap(function()
+--           require('user.util.windows').close_tree_if_many_windows()
+--         end)()
+--       end,
+--       -- allow this autocmd to run when the cb triggers it again
+--       nested = true,
+--     })
+--   end,
+-- })
 
 -- Enable search highlights on certain keys
 vim.on_key(function(char)

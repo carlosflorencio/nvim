@@ -16,6 +16,10 @@ function M.close_tree_if_many_windows()
     return
   end
 
+  if vim.o.columns <= 100 then
+    return
+  end
+
   -- layout is more reliable than windows
   -- sometimes there were hidden windows that would skew the count
 
@@ -76,6 +80,9 @@ function M.close_tmp_buffers()
 end
 
 function M.close_all_nvim_tree_buffers()
+  if package.loaded['nvim-tree'] == nil then
+    return
+  end
   require('nvim-tree.api').tree.close_in_all_tabs()
   local targetBuffers = {}
   local bufList = vim.api.nvim_list_bufs()

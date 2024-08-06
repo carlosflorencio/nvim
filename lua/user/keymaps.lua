@@ -18,17 +18,17 @@ vim.keymap.set('v', '<F2>', ':%s/\\%Vs/k/g')
 vim.keymap.set({ 'n', 'x' }, 'gw', '*N', { desc = 'Search word under cursor' })
 
 -- iterm2 & alacritty will send custom keycodes for these
-vim.keymap.set({ 'n', 'i', 'v' }, '<f13>s', function()
-  vim.notify 'F13s'
-end)
+-- vim.keymap.set({ 'n', 'i', 'v' }, '<f13>s', function()
+--   vim.notify 'F13s'
+-- end)
 
-vim.keymap.set({ 'n', 'i', 'v' }, '<f13>p', function()
-  vim.notify 'F13p'
-end)
+-- vim.keymap.set({ 'n', 'i', 'v' }, '<f13>p', function()
+--   vim.notify 'F13p'
+-- end)
 
-vim.keymap.set({ 'n', 'i', 'v' }, '<s-cr>', function()
-  vim.notify '<s-cr>'
-end)
+-- vim.keymap.set({ 'n', 'i', 'v' }, '<s-cr>', function()
+--   vim.notify '<s-cr>'
+-- end)
 
 -- vim.keymap.set({ 'n', 'i', 'v' }, '<c-cr>', function()
 --   vim.notify '<c-cr>'
@@ -71,10 +71,10 @@ vim.keymap.set('n', 'x', '"_x')
 vim.keymap.set('n', '<leader><space>', '<c-^>', { desc = 'Cycle between buffers' })
 
 -- better window movement
-vim.keymap.set('n', '<C-h>', '<C-w>h')
-vim.keymap.set('n', '<C-j>', '<C-w>j')
-vim.keymap.set('n', '<C-k>', '<C-w>k')
-vim.keymap.set('n', '<C-l>', '<C-w>l')
+-- vim.keymap.set('n', '<C-h>', '<C-w>h')
+-- vim.keymap.set('n', '<C-j>', '<C-w>j')
+-- vim.keymap.set('n', '<C-k>', '<C-w>k')
+-- vim.keymap.set('n', '<C-l>', '<C-w>l')
 
 vim.keymap.set('n', '<BS>', 'ciw')
 

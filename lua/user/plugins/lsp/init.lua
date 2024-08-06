@@ -288,11 +288,11 @@ return {
           python = { 'isort', 'black' },
           bzl = { 'buildifier' },
           jsonc = { 'prettierd' },
-          json = { { 'prettier', 'prettierd' } },
+          json = { 'prettier', 'prettierd', stop_after_first = true },
           -- sub-list to run only the first available formatter
-          javascript = { { 'prettier' } },
-          typescript = { { 'prettierd', 'prettier' } },
-          markdown = { { 'prettierd', 'prettier' } },
+          javascript = { 'prettier' },
+          typescript = { 'prettierd', 'prettier', stop_after_first = true },
+          markdown = { 'prettierd', 'prettier', stop_after_first = true },
         },
         -- Set up format-on-save
         -- format_on_save = { timeout_ms = 500, lsp_fallback = true },
