@@ -80,7 +80,7 @@ return {
     config = function()
       require('CopilotChat').setup {
         debug = false, -- Enable debugging
-        show_help = true,
+        show_help = false,
         window = {
           layout = 'float',
           width = 0.8,
@@ -108,6 +108,10 @@ return {
       {
         '<leader>aa',
         function()
+          if package.loaded['zen-mode'] then
+            require('zen-mode').close()
+          end
+
           local input = vim.fn.input 'Ask Copilot: '
           if input ~= nil and input ~= '' then
             require('CopilotChat').ask(input)
