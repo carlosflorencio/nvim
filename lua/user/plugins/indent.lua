@@ -43,7 +43,7 @@ return {
   {
     'shellRaining/hlchunk.nvim',
     enabled = true,
-    event = { 'UIEnter' },
+    event = { 'VeryLazy' },
     config = function()
       local ft = require 'hlchunk.utils.filetype'
       local exclude_filetypes = vim.tbl_extend('force', ft.exclude_filetypes, {
@@ -56,12 +56,22 @@ return {
         lazygit = true,
         bzl = true,
       })
+      print('here[1]: indent.lua:49: exclude_filetypes=' .. vim.inspect(exclude_filetypes))
 
       ---@diagnostic disable-next-line: missing-fields
       require('hlchunk').setup {
         ---@diagnostic disable-next-line: missing-fields
         chunk = {
+          enable = true,
           exclude_filetypes = exclude_filetypes,
+          style = {
+            { fg = '#666666' },
+            { fg = '#EC8080' },
+          },
+          chars = {
+            right_arrow = '─', -- disable arrow
+          },
+          delay = 0, -- disable animation
         },
         ---@diagnostic disable-next-line: missing-fields
         indent = {

@@ -18,9 +18,13 @@ return {
       local components = require 'user.plugins.lualine.components'
       require 'user.plugins.lualine.wakatime'
 
+      -- custom theme
+      local custom_vscode = require 'user.plugins.lualine.themes.vscode'
+
       require('lualine').setup {
         options = {
           -- theme = 'auto',
+          theme = custom_vscode,
           globalstatus = true,
           refresh = {
             statusline = 2000,

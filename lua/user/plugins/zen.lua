@@ -1,7 +1,26 @@
 return {
   {
+    'shortcuts/no-neck-pain.nvim',
+    enabled = true,
+    opts = {
+      buffers = {
+        wo = {
+          fillchars = 'eob: ',
+        },
+      },
+      fallbackOnBufferDelete = true,
+      autocmds = {
+        skipEnteringNoNeckPainBuffer = true,
+      },
+    },
+    keys = {
+      { '<leader>e', '<cmd>NoNeckPain<cr>', desc = 'Center Buffer' },
+    },
+  },
+  {
     'folke/zen-mode.nvim',
     cmd = 'ZenMode',
+    enabled = false,
     config = function()
       require('zen-mode').setup {
         width = 160,
