@@ -64,6 +64,11 @@ return {
 
       vim.api.nvim_create_autocmd('VimEnter', {
         callback = function()
+          if vim.g.started_with_stdin == 1 then
+            -- Do nothing when started with `nvim -`
+            return
+          end
+
           -- Only load the session if nvim was started with no args
           if vim.fn.argc(-1) == 0 then
             resession.load(get_session_name(), { silence_errors = true })

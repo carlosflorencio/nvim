@@ -36,6 +36,14 @@ vim.api.nvim_create_autocmd('FileType', {
   command = 'wincmd J',
 })
 
+-- prevent loading session on stdin args
+vim.api.nvim_create_autocmd('StdinReadPre', {
+  pattern = '*',
+  callback = function()
+    vim.g.started_with_stdin = 1
+  end,
+})
+
 -- nvim tree windows management
 -- vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 --   callback = function()
