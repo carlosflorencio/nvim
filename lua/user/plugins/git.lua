@@ -52,7 +52,8 @@ return {
     -- plus lazygit is slow staging files
     'lewis6991/gitsigns.nvim',
     enabled = true,
-    event = { 'BufReadPre', 'BufNewFile' },
+    -- event = { 'BufReadPre', 'BufNewFile' },
+    event = { 'VeryLazy' },
     opts = function()
       return {
         signs = {
