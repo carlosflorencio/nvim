@@ -1,69 +1,139 @@
 return {
   {
-    -- preview markdown, glow needs to be installed globally
-    'npxbr/glow.nvim',
-    enabled = false,
-    ft = { 'markdown' },
-    opts = {
-      width_ratio = 0.8, -- maximum width of the Glow window compared to the nvim window size (overrides `width`)
-      height_ratio = 0.8,
-    },
-    keys = {
-      { '<leader>pp', '<cmd>Glow<cr>', desc = 'Glow Markdown Preview' },
+    -- better vim docs
+    'OXY2DEV/helpview.nvim',
+    lazy = false, -- Recommended
+
+    -- In case you still want to lazy load
+    -- ft = "help",
+
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
     },
   },
 
   {
-    'mrjones2014/mdpreview.nvim',
+    'OXY2DEV/markview.nvim',
     enabled = true,
-    lazy = true,
-    cmd = { 'Mdpreview' },
-    -- ft = 'markdown', -- you can lazy load on markdown files only
-    -- requires the `terminalk filetype to render ASCII color and format codes
-    dependencies = { 'norcalli/nvim-terminal.lua', config = true },
+    event = 'VeryLazy',
+    lazy = false, -- Recommended
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
     config = function()
-      require('mdpreview').setup {
-        renderer = {
-          opts = {
-            win_opts = {
-              wrap = false,
+      local heading_presets = require('markview.presets').headings
+
+      -- remove gutter icons
+      heading_presets.decorated_labels.heading_1.sign = ''
+      heading_presets.decorated_labels.heading_2.sign = ''
+      heading_presets.decorated_labels.heading_3.sign = ''
+      heading_presets.decorated_labels.heading_4.sign = ''
+      heading_presets.decorated_labels.heading_5.sign = ''
+      heading_presets.decorated_labels.heading_6.sign = ''
+      -- print('here[1]: markdown.lua:80: heading_presets=' .. vim.inspect(heading_presets.decorated_labels))
+
+      local hl_presets = require('markview.presets').highlight_groups
+      require('markview').setup {
+        -- headings
+        highlight_groups = hl_presets.h_decorated,
+        headings = heading_presets.decorated_labels,
+
+        horizontal_rules = {
+          parts = {
+            {
+              type = 'repeating',
+              text = '─',
+
+              direction = 'left',
+              hl = {
+                'Gradient1',
+                'Gradient2',
+                'Gradient3',
+                'Gradient4',
+                'Gradient5',
+                'Gradient6',
+                'Gradient7',
+                'Gradient8',
+                'Gradient9',
+                'Gradient10',
+              },
+
+              repeat_amount = function()
+                local w = vim.api.nvim_win_get_width(0)
+                local l = vim.api.nvim_buf_line_count(0)
+
+                l = vim.fn.strchars(tostring(l)) + 4
+
+                return math.floor((w - (l + 3)) / 2)
+              end,
+            },
+            {
+              type = 'text',
+              text = '  ',
+            },
+            {
+              type = 'repeating',
+              text = '─',
+
+              direction = 'right',
+              hl = {
+                'Gradient1',
+                'Gradient2',
+                'Gradient3',
+                'Gradient4',
+                'Gradient5',
+                'Gradient6',
+                'Gradient7',
+                'Gradient8',
+                'Gradient9',
+                'Gradient10',
+              },
+
+              repeat_amount = function()
+                local w = vim.api.nvim_win_get_width(0)
+                local l = vim.api.nvim_buf_line_count(0)
+
+                l = vim.fn.strchars(tostring(l)) + 4
+
+                return math.ceil((w - (l + 3)) / 2)
+              end,
             },
           },
         },
-      }
-    end,
-    keys = {
-      {
-        '<leader>pp',
-        '<cmd>Mdpreview<cr>',
-        desc = 'Glow Markdown Preview',
-      },
-    },
-  },
 
-  {
-    -- <c-space> turn list item into todo
-    -- :MkdnTable 2 2, :MkdnTableFormat
-    --
-    -- <c-t> increase indentation
-    -- <c-d> decrease indentation
-    'jakewvincent/mkdnflow.nvim',
-    enabled = true,
-    ft = { 'markdown' },
-    config = function()
-      require('mkdnflow').setup {
-        mappings = {
-          -- MkdnNewListItem = { "i", "<CR>" },
-          MkdnEnter = { { 'i', 'n', 'v' }, '<CR>' },
-          MkdnFoldSection = { 'n', '<leader>z' },
-          MkdnUnfoldSection = { 'n', '<leader>Z' },
-          MkdnTableNewRowBelow = { 'n', '<leader>nr' },
-          MkdnTableNewRowAbove = { 'n', '<leader>nR' },
-          MkdnTableNewColAfter = { 'n', '<leader>nc' },
-          MkdnTableNewColBefore = { 'n', '<leader>nC' },
+        list_items = {
+          enable = true,
+
+          marker_minus = {
+            add_padding = false,
+          },
+          marker_plus = {
+            add_padding = false,
+          },
+          marker_star = {
+            add_padding = false,
+          },
+          marker_dot = {
+            add_padding = false,
+          },
         },
-        table = {
-          auto_extend_rows = true,
+
+        code_blocks = {
+          style = 'language',
+          icons = false,
+        },
+
+        -- insert mode rendering
+        modes = { 'n', 'i', 'no', 'c' },
+        hybrid_modes = { 'i' },
+
+        -- This is nice to have
+        callbacks = {
+          on_enable = function(_, win)
+            vim.wo[win].conceallevel = 2
+            vim.wo[win].conecalcursor = 'nc'
+            vim.wo[win].signcolumn = 'no'
+          end,
         },
       }
     end,
@@ -71,9 +141,9 @@ return {
 
   {
     -- Render markdown in normal mode
-    'MeanderingProgrammer/markdown.nvim',
+    'MeanderingProgrammer/render-markdown.nvim',
+    enabled = false,
     ft = { 'markdown' },
-    name = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
       require('render-markdown').setup {

@@ -56,7 +56,6 @@ return {
         lazygit = true,
         bzl = true,
       })
-      print('here[1]: indent.lua:49: exclude_filetypes=' .. vim.inspect(exclude_filetypes))
 
       ---@diagnostic disable-next-line: missing-fields
       require('hlchunk').setup {

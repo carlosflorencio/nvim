@@ -19,12 +19,12 @@ return {
       require 'user.plugins.lualine.wakatime'
 
       -- custom theme
-      local custom_vscode = require 'user.plugins.lualine.themes.vscode'
+      -- local custom_vscode = require 'user.plugins.lualine.themes.vscode'
 
       require('lualine').setup {
         options = {
           -- theme = 'auto',
-          theme = custom_vscode,
+          -- theme = custom_vscode,
           globalstatus = true,
           refresh = {
             statusline = 2000,
@@ -72,6 +72,7 @@ return {
                 end,
               }
             end,
+            require 'user.plugins.lualine.unsaved-buffers',
             components.cwd,
             Lualine_get_wakatime,
             components.location,

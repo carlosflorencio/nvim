@@ -14,6 +14,24 @@ end, {
   bang = true,
 })
 
+vim.api.nvim_create_user_command('SaveAllModifiedBuffers', function()
+  for _, buf_id in ipairs(vim.api.nvim_list_bufs()) do
+    local filename = vim.api.nvim_buf_get_name(buf_id)
+    if filename and filename ~= '' then
+      local is_modified = vim.api.nvim_get_option_value('modified', { buf = buf_id })
+      if is_modified then
+        vim.api.nvim_buf_call(buf_id, function()
+          vim.cmd 'write'
+        end)
+      end
+    end
+  end
+
+  vim.notify 'All modified buffers have been saved'
+end, {
+  desc = 'Save all modified buffers where the filename is not empty',
+})
+
 vim.api.nvim_create_user_command('FormatEnable', function()
   local bufnr = vim.api.nvim_get_current_buf()
   vim.b[bufnr].disable_autoformat = false
