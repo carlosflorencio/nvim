@@ -258,9 +258,9 @@ return {
     },
     config = function()
       require('conform').setup {
-        -- log_level = vim.log.levels.TRACE,
+        log_level = vim.log.levels.TRACE,
         -- when the file has errors, don't notify
-        notify_on_error = false,
+        notify_on_error = true,
         format_on_save = function(bufnr)
           -- Disable autoformat on certain filetypes
           -- local ignore_filetypes = { 'sql', 'java' }
@@ -282,24 +282,28 @@ return {
 
           return { timeout_ms = 1000, lsp_fallback = true }
         end,
-        -- Define your formatters
         formatters_by_ft = {
           lua = { 'stylua' },
           python = { 'isort', 'black' },
           bzl = { 'buildifier' },
-          jsonc = { 'prettierd' },
-          json = { 'prettier', 'prettierd', stop_after_first = true },
+          jsonc = { 'prettierd', 'prettier', stop_after_first = true },
+          json = { 'prettierd', 'prettier', stop_after_first = true },
           -- sub-list to run only the first available formatter
-          javascript = { 'prettier' },
+          javascript = { 'prettierd', 'prettier', stop_after_first = true },
           typescript = { 'prettierd', 'prettier', stop_after_first = true },
           markdown = { 'prettierd', 'prettier', stop_after_first = true },
         },
-        -- Set up format-on-save
-        -- format_on_save = { timeout_ms = 500, lsp_fallback = true },
-        -- Customize formatters
         formatters = {
           shfmt = {
             prepend_args = { '-i', '2' },
+          },
+          -- require prettier config files to exist in the cwd
+          -- before running it, useful to fallback to lsp when there isn't a config (json)
+          prettier = {
+            require_cwd = true,
+          },
+          prettierd = {
+            require_cwd = true,
           },
         },
       }
