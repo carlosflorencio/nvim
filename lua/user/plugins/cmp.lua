@@ -68,6 +68,7 @@ return {
             end
           end, { 'i', 's' }),
           ['<C-ESC>'] = cmp.mapping.complete(),
+          ['<C-space>'] = cmp.mapping.complete(),
           ['<CR>'] = cmp.mapping {
             i = function(fallback)
               if cmp.visible() and cmp.get_active_entry() then

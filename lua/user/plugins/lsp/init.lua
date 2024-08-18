@@ -286,12 +286,12 @@ return {
           lua = { 'stylua' },
           python = { 'isort', 'black' },
           bzl = { 'buildifier' },
-          jsonc = { 'prettierd', 'prettier', stop_after_first = true },
-          json = { 'prettierd', 'prettier', stop_after_first = true },
-          -- sub-list to run only the first available formatter
-          javascript = { 'prettierd', 'prettier', stop_after_first = true },
-          typescript = { 'prettierd', 'prettier', stop_after_first = true },
-          markdown = { 'prettierd', 'prettier', stop_after_first = true },
+          -- too many problems when using prettierd, runs but doesn't format
+          jsonc = { 'prettier' },
+          json = { 'prettier' },
+          javascript = { 'prettier' },
+          typescript = { 'prettier' },
+          markdown = { 'prettier' },
         },
         formatters = {
           shfmt = {
