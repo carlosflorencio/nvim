@@ -2,13 +2,11 @@ return {
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
-    -- fix eslint issue 30/5
-    -- https://github.com/LazyVim/LazyVim/issues/3383
-    version = '*',
+    branch = 'master',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
+      { 'williamboman/mason-lspconfig.nvim', branch = 'main' },
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
@@ -56,8 +54,10 @@ return {
         gopls = {},
         pyright = {},
         rust_analyzer = {},
+        -- starpls has jump to definition support
         starpls = {},
-        -- starlark_rust = {},
+        -- starlark_rust has better linting rules (e.g import not used)
+        starlark_rust = {},
         -- bzl = {},
 
         denols = {
@@ -147,12 +147,6 @@ return {
         'prettierd',
       })
 
-      for i, v in ipairs(ensure_installed) do
-        if v == 'starlark_rust' then
-          ensure_installed[i] = 'starlark-rust'
-        end
-      end
-
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
@@ -173,15 +167,6 @@ return {
           end,
         },
       }
-
-      -- starlark_rust has better linting rules (e.g import not used)
-      -- starpls has jump to definition support
-      local manual = { 'starlark_rust', 'starpls' }
-      for _, server_name in ipairs(manual) do
-        local server = servers[server_name] or {}
-        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-        require('lspconfig')[server_name].setup(server)
-      end
 
       -- diagnostics
       for name, icon in pairs(require('user.icons').lsp_diagnostic_icons) do

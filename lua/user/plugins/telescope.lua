@@ -1,10 +1,25 @@
+local hostname = vim.fn.hostname()
+
+local base_dirs = {
+  { '~/.config', max_depth = 1 },
+  { '~/Projects', max_depth = 1 },
+  { '~/.cache/nvim/git-dev', max_depth = 2 },
+}
+
+-- work
+if string.sub(hostname, 1, 2) == 'UK' then
+  vim.list_extend(base_dirs, {
+    { '~/Sky', max_depth = 1 },
+  })
+end
+
 return {
   {
     'nvim-telescope/telescope.nvim',
     -- had to move out of this stable branch because it was missing the
     -- actions: preview_scrolling_left, preview_scrolling_right
     -- branch = '0.1.x',
-    -- branch = 'master',
+    branch = 'master',
     cmd = 'Telescope',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -161,12 +176,7 @@ return {
         },
         extensions = {
           project = {
-            base_dirs = {
-              { '~/Sky', max_depth = 1 },
-              { '~/Projects', max_depth = 1 },
-              { '~/.config', max_depth = 1 },
-              { '~/.cache/nvim/git-dev', max_depth = 2 },
-            },
+            base_dirs = base_dirs,
             hidden_files = true, -- default: false
             order_by = 'recent',
             -- search_by = { 'title', 'path' },
