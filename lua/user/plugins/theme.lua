@@ -88,13 +88,17 @@ return {
     priority = 1000,
     enabled = true,
     config = function()
-      local c = require('vscode.colors').get_colors()
+      -- local c = require('vscode.colors').get_colors()
       -- print(vim.inspect(c.vscPopupBack))
+      local colors = require('user.util.colors').colors
 
       require('vscode').setup {
         color_overrides = {
-          vscRed = '#EC8080',
-          vscPopupBack = c.vscBack,
+          vscBack = colors.bg,
+          vscRed = colors.error,
+          vscPopupBack = colors.bg,
+          vscLeftDark = colors.bg,
+          vscSplitDark = colors.lineSeparators,
         },
         group_overrides = {},
       }
