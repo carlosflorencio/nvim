@@ -10,7 +10,7 @@ return {
     },
     opts = {
       autowidth = {
-        winwidth = 35,
+        -- winwidth = 30,
       },
     },
     keys = {

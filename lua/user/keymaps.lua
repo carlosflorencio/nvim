@@ -129,8 +129,8 @@ end, { desc = 'Close all buffers but the current one' })
 -- tabs
 vim.keymap.set('n', '<S-l>', '<cmd>tabn<cr>')
 vim.keymap.set('n', '<S-h>', '<cmd>tabp<cr>')
-vim.keymap.set('n', '<M-S-h>', '<cmd>tabm -1<cr>')
-vim.keymap.set('n', '<M-S-l>', '<cmd>tabm +1<cr>')
+-- vim.keymap.set('n', '<M-S-h>', '<cmd>tabm -1<cr>')
+-- vim.keymap.set('n', '<M-S-l>', '<cmd>tabm +1<cr>')
 vim.keymap.set('n', '<leader>tn', '<cmd>tabnew<cr>', { desc = 'New Tab' })
 vim.keymap.set('n', '<leader>tc', '<cmd>tabclose<cr>', { desc = 'Close Tab' })
 

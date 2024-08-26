@@ -1,7 +1,7 @@
 return {
   {
     'alexghergh/nvim-tmux-navigation',
-    enabled = true,
+    enabled = false,
     config = function()
       local nvim_tmux_nav = require 'nvim-tmux-navigation'
 
@@ -20,6 +20,7 @@ return {
   {
     'RyanMillerC/better-vim-tmux-resizer',
     lazy = true,
+    enabled = false,
     init = function()
       vim.g.tmux_resizer_no_mappings = 1
     end,
