@@ -137,7 +137,7 @@ vim.keymap.set('n', '<leader>tc', '<cmd>tabclose<cr>', { desc = 'Close Tab' })
 -- selections
 vim.keymap.set('v', '<leader>i', '<esc>`<i', { desc = 'Insert at beginning selection' })
 
-vim.keymap.set('n', '<leader>b', '<cmd>enew<cr>', { desc = 'New Buffer' })
+-- vim.keymap.set('n', '<leader>b', '<cmd>enew<cr>', { desc = 'New Buffer' })
 
 -- text wrap
 vim.keymap.set('n', '<leader>tw', ':set wrap!<cr>', { desc = 'Toggle line wrap for all splits' })

@@ -81,10 +81,16 @@ return {
       require('CopilotChat').setup {
         debug = false, -- Enable debugging
         show_help = false,
+        auto_follow_cursor = false, -- Don't follow the cursor after getting response
+        -- window = {
+        --   layout = 'float',
+        --   width = 0.8,
+        --   height = 0.8,
+        -- },
         window = {
-          layout = 'float',
-          width = 0.8,
-          height = 0.8,
+          layout = 'vertical',
+          width = 0.2,
+          -- height = 0.8,
         },
         mappings = {
           submit_prompt = {
@@ -103,6 +109,14 @@ return {
       }
 
       require('CopilotChat.integrations.cmp').setup()
+
+      vim.api.nvim_create_autocmd('BufEnter', {
+        pattern = 'copilot-chat',
+        callback = function()
+          vim.wo.number = false
+          vim.wo.relativenumber = false
+        end,
+      })
     end,
     keys = {
       {
@@ -121,15 +135,32 @@ return {
         mode = { 'n', 'v' },
       },
       {
-        '<leader>aD',
-        '<cmd>CopilotChatFixDiagnostic<cr>',
-        desc = 'CopilotChat - Fix Diagnostics',
+        '<leader>A',
+        function()
+          if package.loaded['zen-mode'] then
+            require('zen-mode').close()
+          end
+
+          local input = vim.fn.input 'Ask Copilot (buffer): '
+          if input ~= nil and input ~= '' then
+            require('CopilotChat').ask(input, { selection = require('CopilotChat.select').buffer })
+          end
+        end,
+        desc = 'CopilotChat - Quick chat',
         mode = { 'n', 'v' },
       },
       {
-        '<leader>aA',
-        '<cmd>CopilotChatOpen<cr>',
-        desc = 'CopilotChat - Open',
+        '<leader>b',
+        function()
+          require('CopilotChat').toggle {}
+        end,
+        desc = 'CopilotChat - Toggle',
+        mode = { 'n', 'v' },
+      },
+      {
+        '<leader>aD',
+        '<cmd>CopilotChatFixDiagnostic<cr>',
+        desc = 'CopilotChat - Fix Diagnostics',
         mode = { 'n', 'v' },
       },
       -- Show prompts actions with telescope

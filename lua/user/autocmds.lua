@@ -23,8 +23,33 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   end,
 })
 
-vim.cmd [[au InsertEnter * set nu nornu]] -- disable relative numbers in insert mode
-vim.cmd [[au InsertLeave * set nu rnu]]
+-- Disable relative numbers in insert mode
+local linenumbers_ignore_ft = { 'copilot-chat' }
+vim.api.nvim_create_autocmd('InsertEnter', {
+  pattern = '*',
+  callback = function()
+    local ft = require('user.util.buffers').get_file_type()
+    if vim.tbl_contains(linenumbers_ignore_ft, ft) then
+      return
+    end
+
+    vim.wo.number = true
+    vim.wo.relativenumber = false
+  end,
+})
+
+-- Enable relative numbers in normal mode
+vim.api.nvim_create_autocmd('InsertLeave', {
+  pattern = '*',
+  callback = function()
+    local ft = require('user.util.buffers').get_file_type()
+    if vim.tbl_contains(linenumbers_ignore_ft, ft) then
+      return
+    end
+    vim.wo.number = true
+    vim.wo.relativenumber = true
+  end,
+})
 
 -- Delete old marks on startup
 vim.api.nvim_create_autocmd({ 'BufRead' }, { command = ':delm a-zA-Z0-9' })

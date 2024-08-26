@@ -19,4 +19,9 @@ function M.is_insert_mode()
   return vim.api.nvim_get_mode().mode:sub(1, 1) == 'i'
 end
 
+function M.get_file_type(bufnr)
+  bufnr = bufnr or vim.api.nvim_get_current_buf()
+  return vim.api.nvim_get_option_value('filetype', { buf = bufnr })
+end
+
 return M
