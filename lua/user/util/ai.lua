@@ -83,4 +83,11 @@ M.previous_suggestion = function()
   end
 end
 
+M.panel = function()
+  -- copilot.vim
+  if vim.g.loaded_copilot then
+    vim.cmd 'Copilot panel'
+  end
+end
+
 return M

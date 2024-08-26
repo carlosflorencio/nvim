@@ -53,6 +53,10 @@ vim.keymap.set('i', '<c-l>', function()
   end
 end)
 
+vim.keymap.set('i', '<c-s-l>', function()
+  require('user.util.ai').panel()
+end)
+
 vim.keymap.set('i', '<M-]>', function()
   require('user.util.ai').next_suggestion()
 end)
