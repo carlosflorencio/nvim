@@ -90,6 +90,7 @@ require('lazy').setup({
   -- alternative https://github.com/pteroctopus/faster.nvim
   { 'LunarVim/bigfile.nvim', opts = {} },
   { import = 'user.plugins' },
+  { import = 'user.plugins.ai' },
 }, {
   change_detection = {
     -- automatically check for config file changes and reload the ui

@@ -1,16 +1,5 @@
 return {
   {
-    {
-      'supermaven-inc/supermaven-nvim',
-      enabled = false,
-      config = function()
-        require('supermaven-nvim').setup {
-          disable_keymaps = true,
-        }
-      end,
-    },
-  },
-  {
     'github/copilot.vim',
     enabled = true,
     config = function()
@@ -19,57 +8,6 @@ return {
       -- extra * at the beginning of the line are added
     end,
   },
-  {
-    -- copilot bin outdated
-    'zbirenbaum/copilot.lua',
-    cmd = 'Copilot',
-    enabled = false,
-    event = 'InsertEnter',
-    opts = {
-      panel = {
-        enabled = true,
-        auto_refresh = true,
-        keymap = {
-          jump_prev = '[[',
-          jump_next = ']]',
-          accept = '<cr>',
-          refresh = '<c-r>',
-          open = '<M-CR>',
-        },
-        layout = {
-          position = 'bottom', -- | top | left | right
-          ratio = 0.4,
-        },
-      },
-      suggestion = {
-        enabled = true,
-        auto_trigger = true,
-        debounce = 75,
-        keymap = {
-          accept = false,
-          accept_word = false,
-          accept_line = false,
-          next = false,
-          prev = false,
-          dismiss = '<M-h>',
-        },
-      },
-      filetypes = {
-        yaml = false,
-        markdown = false,
-        help = false,
-        gitcommit = false,
-        gitrebase = false,
-        hgcommit = false,
-        svn = false,
-        cvs = false,
-        ['.'] = false,
-      },
-      -- copilot_node_command = 'node', -- Node.js version must be > 16.x
-      server_opts_overrides = {},
-    },
-  },
-
   {
     'CopilotC-Nvim/CopilotChat.nvim',
     branch = 'canary',
@@ -198,6 +136,57 @@ return {
         desc = 'CopilotChat - Optmize the selected code',
         mode = { 'v' },
       },
+    },
+  },
+
+  {
+    -- copilot bin outdated
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    enabled = false,
+    event = 'InsertEnter',
+    opts = {
+      panel = {
+        enabled = true,
+        auto_refresh = true,
+        keymap = {
+          jump_prev = '[[',
+          jump_next = ']]',
+          accept = '<cr>',
+          refresh = '<c-r>',
+          open = '<M-CR>',
+        },
+        layout = {
+          position = 'bottom', -- | top | left | right
+          ratio = 0.4,
+        },
+      },
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        debounce = 75,
+        keymap = {
+          accept = false,
+          accept_word = false,
+          accept_line = false,
+          next = false,
+          prev = false,
+          dismiss = '<M-h>',
+        },
+      },
+      filetypes = {
+        yaml = false,
+        markdown = false,
+        help = false,
+        gitcommit = false,
+        gitrebase = false,
+        hgcommit = false,
+        svn = false,
+        cvs = false,
+        ['.'] = false,
+      },
+      -- copilot_node_command = 'node', -- Node.js version must be > 16.x
+      server_opts_overrides = {},
     },
   },
 }
