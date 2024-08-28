@@ -14,6 +14,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(event)
     local client = vim.lsp.get_client_by_id(event.data.client_id)
 
+    if require('user.util.ai').is_llm_chat_buffer() then
+      return
+    end
+
     if client ~= nil and client.name == 'typescript-tools' then
       vim.keymap.set('n', '<leader>oa', '<cmd>TSToolsAddMissingImports<CR>', { buffer = event.buf, desc = 'Add Missing Imports' })
       vim.keymap.set('n', '<leader>oi', '<cmd>TSToolsOrganizeImports<CR>', { buffer = event.buf, desc = 'Organize Imports' })

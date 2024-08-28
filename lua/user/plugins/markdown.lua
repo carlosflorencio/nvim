@@ -34,7 +34,7 @@ return {
 
       local hl_presets = require('markview.presets').highlight_groups
       require('markview').setup {
-        filetypes = { 'markdown', 'copilot-chat' },
+        filetypes = { 'markdown', 'copilot-chat', 'codecompanion' },
         -- headings
         highlight_groups = hl_presets.h_decorated,
         headings = heading_presets.decorated_labels,

@@ -1,5 +1,10 @@
 local M = {}
 
+M.is_llm_chat_buffer = function()
+  local ft = { 'copilot-chat', 'codecompanion' }
+  return vim.tbl_contains(ft, vim.bo.filetype)
+end
+
 M.accept = function()
   if package.loaded['supermaven-nvim'] then
     require('supermaven-nvim.completion_preview').on_accept_suggestion()
@@ -30,7 +35,7 @@ M.suggest = function()
     return
   end
 
-  print(vim.inspect 'suggest')
+  -- print(vim.inspect 'suggest')
   if vim.g.loaded_copilot then
     vim.api.nvim_feedkeys(vim.fn['copilot#Suggest'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)), 'n', true)
     -- local copilot_keys = vim.fn['copilot#Suggest']()

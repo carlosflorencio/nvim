@@ -24,12 +24,10 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 })
 
 -- Disable relative numbers in insert mode
-local linenumbers_ignore_ft = { 'copilot-chat' }
 vim.api.nvim_create_autocmd('InsertEnter', {
   pattern = '*',
   callback = function()
-    local ft = require('user.util.buffers').get_file_type()
-    if vim.tbl_contains(linenumbers_ignore_ft, ft) then
+    if require('user.util.ai').is_llm_chat_buffer() then
       return
     end
 
@@ -42,8 +40,7 @@ vim.api.nvim_create_autocmd('InsertEnter', {
 vim.api.nvim_create_autocmd('InsertLeave', {
   pattern = '*',
   callback = function()
-    local ft = require('user.util.buffers').get_file_type()
-    if vim.tbl_contains(linenumbers_ignore_ft, ft) then
+    if require('user.util.ai').is_llm_chat_buffer() then
       return
     end
     vim.wo.number = true

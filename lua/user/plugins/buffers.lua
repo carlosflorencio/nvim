@@ -2,6 +2,7 @@ return {
   {
     -- Automagically close the unedited buffers
     'axkirillov/hbac.nvim',
+    enable = false,
     -- when navigating in the quickfix list
     -- this plugin will close the buffers so navigating returns errors
     enabled = true,
