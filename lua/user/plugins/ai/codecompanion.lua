@@ -34,24 +34,15 @@ return {
             show_settings = false,
           },
         },
-        default_prompts = {
-          ['My New Prompt'] = {
-            strategy = 'chat',
-            description = 'Some cool custom prompt you can do',
-            prompts = {
-              {
-                role = 'system',
-                content = 'You are an experienced developer with Lua and Neovim',
-                Error,
-              },
-              {
-                role = 'user',
-                content = 'Can you explain why ...',
-              },
-            },
-          },
-        },
       }
+
+      vim.api.nvim_create_autocmd('BufEnter', {
+        pattern = [[\[CodeCompanion\]*]],
+        callback = function()
+          -- require('user.util.buffers').debug_buffer(args.buf)
+        end,
+        desc = 'Change codecompanion buffer settings',
+      })
     end,
     keys = {
       {

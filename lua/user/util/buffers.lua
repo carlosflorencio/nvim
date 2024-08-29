@@ -1,5 +1,19 @@
 local M = {}
 
+function M.debug_buffer(buf)
+  buf = buf or vim.api.nvim_get_current_buf()
+
+  local name = vim.fn.bufname(buf)
+  local filetype = vim.bo[buf].filetype
+
+  print('Name: ' .. name .. ' | Filetype: ' .. filetype .. ' | ' .. table.concat(
+    vim.tbl_map(function(option)
+      return option .. ': ' .. vim.bo[buf][option]
+    end, { 'buftype', 'bufhidden' }),
+    ' | '
+  ))
+end
+
 function M.has_words_before(word)
   unpack = unpack or table.unpack
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
