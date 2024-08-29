@@ -29,7 +29,7 @@ return {
             },
           }
         end,
-        desc = 'Replace in files (Spectre)',
+        desc = 'Replace in files (GrugFar)',
       },
     },
   },
@@ -43,7 +43,7 @@ return {
           require('rip-substitute').sub()
         end,
         mode = { 'n', 'x', 'v' },
-        desc = ' rip substitute',
+        desc = ' rip substitute (search & replace)',
       },
     },
   },
