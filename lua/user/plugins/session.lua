@@ -57,6 +57,7 @@ return {
             resession.load(get_session_name(), { silence_errors = true })
           end
         end,
+        nested = true,
       })
       vim.api.nvim_create_autocmd('VimLeavePre', {
         callback = function()

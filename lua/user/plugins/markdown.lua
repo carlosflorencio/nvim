@@ -1,16 +1,4 @@
 return {
-  {
-    -- better vim docs
-    'OXY2DEV/helpview.nvim',
-    lazy = false, -- Recommended
-
-    -- In case you still want to lazy load
-    -- ft = "help",
-
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-    },
-  },
 
   {
     'OXY2DEV/markview.nvim',
@@ -120,7 +108,7 @@ return {
         },
 
         code_blocks = {
-          style = 'language',
+          style = 'minimal',
           icons = false,
         },
 
@@ -132,7 +120,7 @@ return {
         callbacks = {
           on_enable = function(_, win)
             vim.wo[win].conceallevel = 2
-            vim.wo[win].conecalcursor = 'nc'
+            vim.wo[win].concealcursor = 'nc'
             vim.wo[win].signcolumn = 'no'
           end,
         },

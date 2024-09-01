@@ -36,13 +36,13 @@ return {
         },
       }
 
-      vim.api.nvim_create_autocmd('BufEnter', {
-        pattern = [[\[CodeCompanion\]*]],
-        callback = function()
-          -- require('user.util.buffers').debug_buffer(args.buf)
-        end,
-        desc = 'Change codecompanion buffer settings',
-      })
+      -- vim.api.nvim_create_autocmd('BufEnter', {
+      --   pattern = [[\[CodeCompanion\]*]],
+      --   callback = function()
+      --     -- require('user.util.buffers').debug_buffer(args.buf)
+      --   end,
+      --   desc = 'Change codecompanion buffer settings',
+      -- })
     end,
     keys = {
       {
