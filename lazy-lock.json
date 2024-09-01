@@ -70,7 +70,6 @@
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "3a3c6244553f13fdd92d312c82722b57ce6c4bec" },
   "nvim-ts-autotag": { "branch": "main", "commit": "e239a560f338be31337e7abc3ee42515daf23f5e" },
   "nvim-ts-context-commentstring": { "branch": "main", "commit": "375c2d86cee6674afd75b4f727ce3a80065552f7" },
-  "obscure.nvim": { "branch": "main", "commit": "0e61b96a2c8551e73f8520b1f086d63f50d71bbd" },
   "oil-git-status.nvim": { "branch": "main", "commit": "a7ea816bac0cc3b8b4c3605e2f2b87960be60a05" },
   "oil.nvim": { "branch": "master", "commit": "0dc98d36b5450575e3af97fdfc6dcb72ba1fc80e" },
   "other.nvim": { "branch": "main", "commit": "252cc279eb3d76685ef48aaeced1c3cf9793581f" },
