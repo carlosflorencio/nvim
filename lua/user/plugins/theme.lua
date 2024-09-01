@@ -1,5 +1,25 @@
 return {
   {
+    'killitar/obscure.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('obscure').setup {
+        -- styles = {
+        --   booleans = { italic = true, bold = true },
+        -- },
+        -- integrations = {
+        --   noice = false,
+        --   telescope = false,
+        -- },
+        -- highlight_overrides = {
+        --   Comment = { bg = '#ffffff' },
+        -- },
+      }
+      vim.cmd [[colorscheme obscure]]
+    end,
+  },
+  {
     'rebelot/kanagawa.nvim',
     priority = 1000,
     enabled = false,
@@ -86,7 +106,7 @@ return {
   {
     'Mofiqul/vscode.nvim',
     priority = 1000,
-    enabled = true,
+    enabled = false,
     config = function()
       -- local c = require('vscode.colors').get_colors()
       -- print(vim.inspect(c.vscPopupBack))
