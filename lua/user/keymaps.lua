@@ -121,12 +121,11 @@ vim.keymap.set('n', '<leader>st', '<c-w>T', { desc = 'Move split into Tab' })
 vim.keymap.set('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit all' })
 vim.keymap.set('n', '<leader>cw', '<cmd>close<cr>', { desc = 'Close Window' })
 vim.keymap.set('n', '<leader>ct', '<cmd>tabclose<cr>', { desc = 'Close Tab' })
--- vim.keymap.set('n', '<leader>cab', ':%bd|e#|bd#<cr>|\'"<cmd>NvimTreeOpen<cr><c-w><c-l>', { desc = 'Close all buffers but the current one' })
 vim.keymap.set('n', '<leader>cab', function()
   require('incline').disable()
   vim.cmd [[ %bd|e#|bd# ]]
-  vim.cmd [[ NvimTreeOpen ]]
-  vim.cmd [[ wincmd l ]]
+  -- vim.cmd [[ NvimTreeOpen ]]
+  -- vim.cmd [[ wincmd l ]]
   require('incline').enable()
 end, { desc = 'Close all buffers but the current one' })
 
