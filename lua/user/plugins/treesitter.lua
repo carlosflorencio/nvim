@@ -80,7 +80,10 @@ return {
       },
       indent = {
         enable = true,
-        -- disable = { 'ruby', 'lua' },
+        disable = {
+          -- better experience with native indentation
+          'markdown',
+        },
       },
       incremental_selection = {
         enable = true,
