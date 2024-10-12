@@ -72,6 +72,7 @@
   "nvim-ts-context-commentstring": { "branch": "main", "commit": "9c74db656c3d0b1c4392fc89a016b1910539e7c0" },
   "oil-git-status.nvim": { "branch": "main", "commit": "a7ea816bac0cc3b8b4c3605e2f2b87960be60a05" },
   "oil.nvim": { "branch": "master", "commit": "ccab9d5e09e2d0042fbbe5b6bd05e82426247067" },
+  "onedark.nvim": { "branch": "master", "commit": "fae34f7c635797f4bf62fb00e7d0516efa8abe37" },
   "other.nvim": { "branch": "main", "commit": "252cc279eb3d76685ef48aaeced1c3cf9793581f" },
   "package-info.nvim": { "branch": "master", "commit": "268f4669fc29546726009ad665d26901dbf62c3b" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },

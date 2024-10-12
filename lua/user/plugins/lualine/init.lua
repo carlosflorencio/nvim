@@ -20,14 +20,14 @@ return {
 
       -- custom theme
       local colors = require('user.util.colors').colors
-      local custom_vscode = require 'user.plugins.lualine.themes.vscode'
-      custom_vscode.normal.c.bg = colors.bgStatusLine
-      custom_vscode.insert.c.bg = colors.bgStatusLine
+      -- local custom_vscode = require 'user.plugins.lualine.themes.vscode'
+      -- custom_vscode.normal.c.bg = colors.bgStatusLine
+      -- custom_vscode.insert.c.bg = colors.bgStatusLine
 
       require('lualine').setup {
         options = {
           -- theme = 'auto',
-          theme = custom_vscode,
+          -- theme = custom_vscode,
           globalstatus = true,
           refresh = {
             statusline = 2000,

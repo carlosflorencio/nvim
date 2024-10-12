@@ -29,12 +29,13 @@ return {
     -- expand <C-a>/<C-x> toggles increments
     'nat-418/boole.nvim',
     opts = {
-      mappings = {
-        increment = '<C-a>',
-        decrement = '<C-x>',
-      },
+      mappings = {},
     },
     event = 'VeryLazy',
+    keys = {
+      { '<c-a>', '<cmd>Boole increment<CR>', desc = 'Increment', mode = 'n' },
+      { '<c-x>', '<cmd>Boole decrement<CR>', desc = 'Decrement', mode = 'n' },
+    },
   },
 
   { 'wakatime/vim-wakatime', lazy = false },

@@ -86,7 +86,7 @@ return {
   {
     'Mofiqul/vscode.nvim',
     priority = 1000,
-    enabled = true,
+    enabled = false,
     config = function()
       -- local c = require('vscode.colors').get_colors()
       -- print(vim.inspect(c.vscPopupBack))
@@ -110,7 +110,7 @@ return {
   {
     'navarasu/onedark.nvim',
     -- enabled = require('user.util.env').is_iterm2(),
-    enabled = false,
+    enabled = true,
     lazy = false,
     priority = 1000,
     config = function()

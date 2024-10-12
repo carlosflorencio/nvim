@@ -1,6 +1,8 @@
--- Copyright (c) 2020-2021 Mofiqul Islam
--- MIT license, see LICENSE for more details.
-local config = require 'vscode.config'
+local ok, config = pcall(require, 'vscode.config')
+if not ok then
+  return
+end
+
 local vscode = {}
 local colors = {}
 

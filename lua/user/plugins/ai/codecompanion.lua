@@ -23,6 +23,9 @@ return {
           },
         },
         display = {
+          diff = {
+            -- enabled = false,
+          },
           chat = {
             window = {
               opts = {
@@ -30,11 +33,24 @@ return {
                 relativenumber = false,
               },
             },
-            intro_message = 'Welcome ✨! Press ? for options',
+            intro_message = 'Welcome, press ? for options',
             show_settings = false,
           },
         },
       }
+
+      -- local group = vim.api.nvim_create_augroup('CodeCompanionHooks', {})
+
+      -- vim.api.nvim_create_autocmd({ 'User' }, {
+      --   pattern = 'CodeCompanionInline*',
+      --   group = group,
+      --   callback = function(request)
+      --     if request.match == 'CodeCompanionInlineFinished' then
+      --       -- Format the buffer after the inline request has completed
+      --       require('conform').format { bufnr = request.buf }
+      --     end
+      --   end,
+      -- })
 
       -- vim.api.nvim_create_autocmd('BufEnter', {
       --   pattern = [[\[CodeCompanion\]*]],
@@ -54,7 +70,7 @@ return {
 
           local input = vim.fn.input 'Ask LLM: '
           if input ~= nil and input ~= '' then
-            vim.cmd('CodeCompanion ' .. input)
+            vim.cmd('CodeCompanionChat ' .. input)
           end
         end,
         desc = 'LLM - Input Prompt',
@@ -63,10 +79,18 @@ return {
       {
         '<leader>b',
         function()
-          vim.cmd 'CodeCompanionToggle'
+          vim.cmd 'CodeCompanionChat Toggle'
         end,
         desc = 'LLM - Toggle Chat',
         mode = { 'n', 'v' },
+      },
+      {
+        '<c-a>',
+        function()
+          vim.cmd 'CodeCompanionActions'
+        end,
+        desc = 'LLM - Actions List',
+        mode = { 'v' },
       },
       {
         '<leader>A',
@@ -74,7 +98,7 @@ return {
           vim.cmd 'CodeCompanionActions'
         end,
         desc = 'LLM - Actions List',
-        mode = { 'n', 'v' },
+        mode = { 'n' },
       },
     },
   },
