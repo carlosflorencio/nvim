@@ -5,6 +5,13 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
+      {
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = {
+          file_types = { 'codecompanion' },
+        },
+        ft = { 'codecompanion' },
+      },
     },
     config = function()
       require('codecompanion').setup {
@@ -12,7 +19,7 @@ return {
           chat = {
             adapter = 'copilot',
             roles = {
-              llm = 'LLM',
+              llm = 'LLM', -- markdown header
             },
           },
           inline = {
@@ -24,7 +31,8 @@ return {
         },
         display = {
           diff = {
-            -- enabled = false,
+            -- provider = 'mini_diff',
+            enabled = false,
           },
           chat = {
             window = {
@@ -38,27 +46,6 @@ return {
           },
         },
       }
-
-      -- local group = vim.api.nvim_create_augroup('CodeCompanionHooks', {})
-
-      -- vim.api.nvim_create_autocmd({ 'User' }, {
-      --   pattern = 'CodeCompanionInline*',
-      --   group = group,
-      --   callback = function(request)
-      --     if request.match == 'CodeCompanionInlineFinished' then
-      --       -- Format the buffer after the inline request has completed
-      --       require('conform').format { bufnr = request.buf }
-      --     end
-      --   end,
-      -- })
-
-      -- vim.api.nvim_create_autocmd('BufEnter', {
-      --   pattern = [[\[CodeCompanion\]*]],
-      --   callback = function()
-      --     -- require('user.util.buffers').debug_buffer(args.buf)
-      --   end,
-      --   desc = 'Change codecompanion buffer settings',
-      -- })
     end,
     keys = {
       {

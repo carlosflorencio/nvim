@@ -11,7 +11,7 @@ return {
       local presets = require 'markview.presets'
 
       require('markview').setup {
-        -- filetypes = { 'markdown', 'copilot-chat', 'codecompanion' },
+        filetypes = { 'markdown', 'copilot-chat', 'codecompanion' },
 
         headings = presets.headings.glow,
         checkboxes = presets.checkboxes.nerd,

@@ -34,9 +34,6 @@ vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
 vim.opt.hlsearch = true -- highlight search (esc keymap to hide)
 
--- diff view inline instead of split
-vim.opt.diffopt:append 'vertical'
-
 -- sync buffers automatically
 vim.opt.autoread = true
 -- disable neovim generating a swapfile and showing the error

@@ -108,9 +108,22 @@ return {
     end,
   },
   {
+    'bluz71/vim-moonfly-colors',
+    enabled = true,
+    name = 'moonfly',
+    lazy = false,
+    priority = 1000,
+    init = function()
+      vim.g.moonflyWinSeparator = 2 -- line instead of block
+    end,
+    config = function()
+      vim.cmd [[colorscheme moonfly]]
+    end,
+  },
+  {
     'navarasu/onedark.nvim',
     -- enabled = require('user.util.env').is_iterm2(),
-    enabled = true,
+    enabled = false,
     lazy = false,
     priority = 1000,
     config = function()
