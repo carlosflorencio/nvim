@@ -13,7 +13,7 @@ return {
           mappings = nil,
         },
         callbacks = {
-          ['github.com-nbcu'] = function(url_data)
+          ['github.com'] = function(url_data)
             -- fix github.com-nbcu
             url_data.host = 'github.com'
 
