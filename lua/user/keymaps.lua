@@ -74,6 +74,12 @@ vim.keymap.set('n', 'x', '"_x')
 -- cycle between buffers
 vim.keymap.set('n', '<leader><space>', '<c-^>', { desc = 'Cycle between buffers' })
 
+vim.keymap.set('n', '<c-s-g>', function()
+  local path = vim.fn.expand '%:p'
+  vim.fn.setreg('+', path)
+  print('Copied to clipboard: ' .. vim.inspect(path))
+end)
+
 -- better window movement
 -- vim.keymap.set('n', '<C-h>', '<C-w>h')
 -- vim.keymap.set('n', '<C-j>', '<C-w>j')

@@ -12,6 +12,18 @@ return {
           print_url = true,
           mappings = nil,
         },
+        callbacks = {
+          ['github.com-nbcu'] = function(url_data)
+            -- fix github.com-nbcu
+            url_data.host = 'github.com'
+
+            if url_data.repo:find '/bff' then
+              url_data.rev = 'master'
+            end
+
+            return require('gitlinker.hosts').get_github_type_url(url_data)
+          end,
+        },
       }
     end,
     keys = {
@@ -109,6 +121,8 @@ return {
     cmd = { 'DiffviewFileHistory', 'DiffviewOpen', 'DiffviewClose', 'DiffviewFileHistory' },
     opts = {
       use_icons = false,
+      -- reduce deletions bright colors
+      enhanced_diff_hl = true,
       view = {
         file_history = {
           layout = 'diff2_horizontal',
@@ -125,7 +139,8 @@ return {
       },
     },
     keys = {
-      { ',HH', '<cmd>DiffviewOpen origin/HEAD...HEAD --imply-local<cr>', desc = 'Git compare against master', mode = 'n' },
+      -- imply-local allows to use LSP on the right side
+      { ',HH', '<cmd>DiffviewOpen origin/HEAD...HEAD --imply-local<cr>', desc = 'Git compare against master (review)', mode = 'n' },
       { ',hh', '<cmd>DiffviewFileHistory --follow %<cr>', desc = 'Git File History', mode = 'n' },
       { ',hh', "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>", desc = 'Git History', mode = 'v' },
       { ',hc', '<cmd>DiffviewClose<cr>', desc = 'Diffview Close' },
