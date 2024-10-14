@@ -34,6 +34,9 @@ vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
 vim.opt.hlsearch = true -- highlight search (esc keymap to hide)
 
+-- disable vim configuration options inside files
+vim.opt.modeline = false
+
 -- sync buffers automatically
 vim.opt.autoread = true
 -- disable neovim generating a swapfile and showing the error
