@@ -42,7 +42,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Signature Help
     map('gK', vim.lsp.buf.signature_help, 'Signature Help')
-    vim.keymap.set('i', '<c-s>', vim.lsp.buf.signature_help, { buffer = event.buf, desc = 'LSP: Signature Help' })
+
+    if vim.bo.filetype == 'markdown' then
+      vim.keymap.set('i', '<c-s>', '<cmd>write<cr>', { buffer = event.buf, desc = 'Save buffer' })
+    else
+      vim.keymap.set('i', '<c-s>', vim.lsp.buf.signature_help, { buffer = event.buf, desc = 'LSP: Signature Help' })
+    end
 
     map('<leader>lr', vim.lsp.buf.rename, 'Rename')
 

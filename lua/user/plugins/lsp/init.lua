@@ -145,6 +145,7 @@ return {
         'stylua', -- Used to format Lua code
         'typescript-language-server',
         'prettierd',
+        'mdformat',
       })
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -276,7 +277,7 @@ return {
           json = { 'prettier' },
           javascript = { 'prettier' },
           typescript = { 'prettier' },
-          markdown = { 'prettier' },
+          markdown = { 'prettier', 'mdformat', stop_after_first = true },
         },
         formatters = {
           shfmt = {

@@ -57,7 +57,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Global variables
-vim.g.personal_notes = '~/Library/Mobile Documents/com~apple~CloudDocs/Personal Notes'
+vim.g.personal_notes = '~/Projects/notes'
 
 -- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'

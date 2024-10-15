@@ -46,8 +46,13 @@ return {
               frequency = { day = 1 }, -- Optional. The frequency of the journal entry. Used for `:Journal next`, `:Journal -2` etc
             },
             week = {
-              format = '%Y/%m %B/week %W',
-              template = '# Week %W %B %Y\n',
+              format = '%Y/%m %B/Week %W',
+              -- template = '# Week %W %B %Y\n',
+              template = function(date)
+                local sunday = date:relative { day = 6 }
+                local end_date = os.date('%A %d/%m', os.time(sunday.date))
+                return '# Week %W - %A %d/%m -> ' .. end_date .. '\n\n## Work\n\n## Personal\n\n'
+              end,
               frequency = { day = 7 },
               date_modifier = 'monday', -- Optional. Date modifier applied before other modifier given to `:Journal`
             },
@@ -78,7 +83,7 @@ return {
       }
     end,
     keys = {
-      { '<leader>oj', '<cmd>Journal<cr>', desc = 'Journal Day' },
+      { '<leader>oj', '<cmd>Journal week<cr>', desc = 'Journal Week' },
     },
   },
 }
