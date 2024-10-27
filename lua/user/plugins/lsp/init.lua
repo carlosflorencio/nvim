@@ -154,7 +154,9 @@ return {
         handlers = {
           function(server_name)
             -- ignore servers that are being setup by another plugin
-            local ignore = { 'ts_ls' }
+            -- mdformat needs to be installed globally with github markdown flavour
+            -- https://github.com/executablebooks/mdformat?tab=readme-ov-file#installing
+            local ignore = { 'ts_ls', 'mdformat' }
             if vim.tbl_contains(ignore, server_name) then
               return
             end

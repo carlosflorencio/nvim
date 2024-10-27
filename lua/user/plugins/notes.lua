@@ -15,8 +15,18 @@ return {
             local bufPath = vim.api.nvim_buf_get_name(0)
             local cwd = require('lspconfig').util.root_pattern '.git'(bufPath)
 
-            vim.notify(cwd)
             return cwd
+          end,
+          file_name = function(cwd)
+            if cwd:find '/bff/' then
+              return 'Sky_bff.md'
+            end
+
+            local base_name = vim.fs.basename(cwd)
+            local parent_base_name = vim.fs.basename(vim.fs.dirname(cwd))
+            local name = parent_base_name .. '_' .. base_name .. '.md'
+
+            return name
           end,
         },
       }

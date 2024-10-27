@@ -1,7 +1,19 @@
 return {
   {
+    'MeanderingProgrammer/render-markdown.nvim',
+    lazy = true,
+    opts = {
+      file_types = { 'codecompanion', 'markdown' },
+      render_modes = true, -- insert mode rendering
+      heading = {
+        sign = false,
+      },
+    },
+    ft = { 'codecompanion', 'markdown' },
+  },
+  {
     'OXY2DEV/markview.nvim',
-    enabled = true,
+    enabled = false,
     event = 'VeryLazy',
     lazy = false, -- Recommended
     dependencies = {
