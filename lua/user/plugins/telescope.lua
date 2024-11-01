@@ -272,7 +272,20 @@ return {
       },
       {
         '<leader>ff',
-        "<Cmd>lua require('telescope').extensions.smart_open.smart_open({cwd_only = true, layout_strategy='horizontal_fused', layout_config = {preview_width=0.45, width=0.9, height=0.9}})<CR>",
+        function()
+          local cwd = vim.fn.getcwd()
+
+          if cwd:find 'git%-dev' then
+            require('telescope.builtin').find_files()
+          else
+            require('telescope').extensions.smart_open.smart_open {
+              cwd_only = true,
+              layout_strategy = 'horizontal_fused',
+              layout_config = { preview_width = 0.45, width = 0.9, height = 0.9 },
+            }
+          end
+        end,
+        -- "<Cmd>lua require('telescope').extensions.smart_open.smart_open({cwd_only = true, layout_strategy='horizontal_fused', layout_config = {preview_width=0.45, width=0.9, height=0.9}})<CR>",
         desc = 'Find Project File',
       },
       {

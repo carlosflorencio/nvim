@@ -21,7 +21,7 @@ return {
   {
     'junegunn/vim-easy-align',
     keys = {
-      { 'ga', '<Plug>(EasyAlign)', desc = 'EasyAlign', mode = { 'n', 'x' } },
+      { 'gA', '<Plug>(EasyAlign)', desc = 'EasyAlign', mode = { 'n', 'x' } },
     },
   },
 
@@ -60,6 +60,13 @@ return {
     'notjedi/nvim-rooter.lua',
     priority = 500,
     enabled = true,
+    opts = {},
+  },
+
+  {
+    -- abbreviations with common git mistakes
+    -- like spelling correction
+    'ck-zhang/mistake.nvim',
     opts = {},
   },
 }

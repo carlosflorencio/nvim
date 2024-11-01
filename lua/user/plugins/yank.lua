@@ -2,9 +2,6 @@ return {
   {
     -- yank ring
     'gbprod/yanky.nvim',
-    dependencies = {
-      'nvim-telescope/telescope.nvim',
-    },
     opts = {
       ring = {
         history_length = 50,
@@ -35,8 +32,8 @@ return {
     keys = {
       {
         'p',
-        '<Plug>(YankyPutIndentAfter)',
-        desc = 'Yanky put after',
+        '<Plug>(YankyPutBefore)', -- before does not change the last yank register
+        desc = 'Yanky put',
         mode = { 'n', 'x' },
       },
       {

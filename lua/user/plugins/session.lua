@@ -54,13 +54,19 @@ return {
 
           -- Only load the session if nvim was started with no args
           if vim.fn.argc(-1) == 0 then
-            resession.load(get_session_name(), { silence_errors = true })
+            local name = get_session_name()
+            resession.load(name, { silence_errors = true })
           end
         end,
         nested = true,
       })
       vim.api.nvim_create_autocmd('VimLeavePre', {
         callback = function()
+          -- tmp repo clones
+          if vim.fn.getcwd():find 'git%-dev' then
+            return
+          end
+
           -- prevent autosave when deleting the session
           if not vim.g.delete_current_session then
             require('user.util.windows').close_all_nvim_tree_buffers()
