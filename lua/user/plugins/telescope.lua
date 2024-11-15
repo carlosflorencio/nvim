@@ -213,6 +213,15 @@ return {
             ignore_patterns = { '*.git/*', '*/tmp/*', '*/dist/*' },
             match_algorithm = 'fzf',
             -- match_algorithm = 'fzy', -- does not support spaces between words
+            mappings = {
+              i = {
+                ['<C-w>'] = function()
+                  -- keep delete current word nvim
+                  --https://github.com/danielfalk/smart-open.nvim/issues/71
+                  vim.api.nvim_input '<c-s-w>'
+                end,
+              },
+            },
           },
           undo = {
             side_by_side = true,
