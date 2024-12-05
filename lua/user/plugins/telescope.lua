@@ -298,6 +298,14 @@ return {
         desc = 'Find Project File',
       },
       {
+        '<leader>fF',
+        function()
+          require('telescope.builtin').find_files()
+        end,
+        -- "<Cmd>lua require('telescope').extensions.smart_open.smart_open({cwd_only = true, layout_strategy='horizontal_fused', layout_config = {preview_width=0.45, width=0.9, height=0.9}})<CR>",
+        desc = 'Find Project File',
+      },
+      {
         '<leader>fi',
         '<Cmd>Telescope lsp_dynamic_workspace_symbols<cr>',
         desc = 'Find workspace symbols',

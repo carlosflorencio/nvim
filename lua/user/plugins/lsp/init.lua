@@ -277,6 +277,7 @@ return {
           -- too many problems when using prettierd, runs but doesn't format
           jsonc = { 'prettier' },
           json = { 'prettier' },
+          yaml = { 'prettier' },
           javascript = { 'prettier' },
           typescript = { 'prettier' },
           markdown = { 'prettier', 'mdformat', stop_after_first = true },
@@ -319,6 +320,12 @@ return {
 
       ---@diagnostic disable-next-line: missing-fields
       glance.setup {
+
+        -- always render above the current window
+        detached = function()
+          return true
+        end,
+
         ---@diagnostic disable-next-line: missing-fields
         mappings = {
           list = {
