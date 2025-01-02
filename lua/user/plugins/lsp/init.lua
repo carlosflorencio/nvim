@@ -280,7 +280,8 @@ return {
           yaml = { 'prettier' },
           javascript = { 'prettier' },
           typescript = { 'prettier' },
-          markdown = { 'prettier', 'mdformat', stop_after_first = true },
+          markdown = { 'prettier' },
+          -- markdown = { 'prettier', 'mdformat', stop_after_first = true },
         },
         formatters = {
           shfmt = {
