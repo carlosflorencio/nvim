@@ -13,8 +13,7 @@ return {
           mappings = nil,
         },
         callbacks = {
-          ['github.com'] = function(url_data)
-            -- fix github.com-nbcu
+          ['github-nbcu.com'] = function(url_data)
             url_data.host = 'github.com'
 
             if url_data.repo:find '/bff' then
