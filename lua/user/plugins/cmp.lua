@@ -54,7 +54,7 @@ return {
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
           ['<Tab>'] = cmp.mapping(function(fallback)
-            if not cmp.visible() and require('user.util.ai').has_suggestions() then
+            if require('user.util.ai').has_suggestions() then
               require('user.util.ai').accept()
             elseif cmp.visible() then
               cmp.confirm { select = true }
@@ -71,8 +71,20 @@ return {
           ['<C-space>'] = cmp.mapping.complete(),
           ['<CR>'] = cmp.mapping {
             i = function(fallback)
-              if cmp.visible() and cmp.get_active_entry() then
-                cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
+              if cmp.visible() then
+                -- only accept the active entry otherwise, lsp signature will be accepted
+                local entry = cmp.get_active_entry()
+                if entry then
+                  cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
+                else
+                  local first_entry = cmp.get_entries()[1]
+                  if first_entry and first_entry.source.name == 'luasnip' then
+                    cmp.select_next_item()
+                    cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true }
+                  else
+                    fallback()
+                  end
+                end
               else
                 fallback()
               end
