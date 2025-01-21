@@ -27,7 +27,7 @@ return {
     config = function(_, opts)
       require('yanky').setup(opts)
 
-      require('telescope').load_extension 'yank_history'
+      -- require('telescope').load_extension 'yank_history'
     end,
     keys = {
       {

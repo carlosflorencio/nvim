@@ -16,6 +16,7 @@ end
 return {
   {
     'nvim-telescope/telescope.nvim',
+    enabled = false,
     -- had to move out of this stable branch because it was missing the
     -- actions: preview_scrolling_left, preview_scrolling_right
     -- branch = '0.1.x',
@@ -279,24 +280,24 @@ return {
         '<cmd>Telescope find_files follow=true no_ignore=true hidden=true<cr>',
         desc = 'Find All Files',
       },
-      {
-        '<leader>ff',
-        function()
-          local cwd = vim.fn.getcwd()
+      -- {
+      --   '<leader>ff',
+      --   function()
+      --     local cwd = vim.fn.getcwd()
 
-          if cwd:find 'git%-dev' then
-            require('telescope.builtin').find_files()
-          else
-            require('telescope').extensions.smart_open.smart_open {
-              cwd_only = true,
-              layout_strategy = 'horizontal_fused',
-              layout_config = { preview_width = 0.45, width = 0.9, height = 0.9 },
-            }
-          end
-        end,
-        -- "<Cmd>lua require('telescope').extensions.smart_open.smart_open({cwd_only = true, layout_strategy='horizontal_fused', layout_config = {preview_width=0.45, width=0.9, height=0.9}})<CR>",
-        desc = 'Find Project File',
-      },
+      --     if cwd:find 'git%-dev' then
+      --       require('telescope.builtin').find_files()
+      --     else
+      --       require('telescope').extensions.smart_open.smart_open {
+      --         cwd_only = true,
+      --         layout_strategy = 'horizontal_fused',
+      --         layout_config = { preview_width = 0.45, width = 0.9, height = 0.9 },
+      --       }
+      --     end
+      --   end,
+      --   -- "<Cmd>lua require('telescope').extensions.smart_open.smart_open({cwd_only = true, layout_strategy='horizontal_fused', layout_config = {preview_width=0.45, width=0.9, height=0.9}})<CR>",
+      --   desc = 'Find Project File',
+      -- },
       {
         '<leader>fF',
         function()

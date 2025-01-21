@@ -2,6 +2,7 @@ return {
   {
     'olimorris/codecompanion.nvim',
     enabled = true,
+    lazy = false,
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
@@ -10,9 +11,52 @@ return {
       require('codecompanion').setup {
         -- tail -f ~/.local/state/nvim/codecompanion.log
         -- log_level = 'DEBUG', -- or "TRACE"
+        adapters = {
+          -- not working
+          -- copilot = function()
+          --   return require('codecompanion.adapters').extend('copilot', {
+          --     schema = {
+          --       model = {
+          --         -- claude-3.5-sonnet
+          --         -- gpt-4o-2024-08-06
+          --         -- o1-2024-12-17
+          --         -- o1-mini-2024-09-12
+          --         -- gpt4-o
+          --         default = 'claude-3.5-sonnet',
+          --       },
+          --     },
+          --   })
+          -- end,
+
+          openrouter = function()
+            return require('codecompanion.adapters').extend('openai_compatible', {
+              name = 'openrouter',
+              env = {
+                url = 'https://openrouter.ai/api',
+                api_key = vim.env.OPENROUTER_API_KEY,
+              },
+              headers = {
+                ['X-Title'] = 'Neovim - CodeCompanion',
+                ['HTTP-Referer'] = 'https://neovim.io',
+              },
+              schema = {
+                model = {
+                  -- google/gemini-flash-1.5
+                  -- openai/gpt-4o
+                  -- anthropic/claude-3.5-sonnet:beta (self-moderated, faster)
+                  default = 'anthropic/claude-3.5-sonnet:beta',
+                },
+                temperature = {
+                  default = 0.5,
+                },
+              },
+            })
+          end,
+        },
         strategies = {
           chat = {
-            adapter = 'copilot',
+            -- adapter = 'copilot',
+            adapter = 'openrouter',
             roles = {
               llm = 'LLM', -- markdown header
             },
@@ -27,7 +71,7 @@ return {
         display = {
           diff = {
             -- provider = 'mini_diff',
-            enabled = false,
+            -- enabled = false,
           },
           chat = {
             window = {
@@ -158,8 +202,8 @@ return {
                   return '```' .. context.filetype .. '\n' .. buf_utils.get_content(context.bufnr) .. '\n```\n\n'
                 end,
                 opts = {
-                  contains_code = true,
                   visible = false,
+                  contains_code = true,
                 },
               },
               {
@@ -173,7 +217,6 @@ return {
               %s
               ```
               ]],
-                    context.bufnr,
                     context.filetype,
                     code
                   )
@@ -226,7 +269,7 @@ return {
           vim.cmd 'CodeCompanionActions'
         end,
         desc = 'LLM - Actions List',
-        mode = { 'x', 'n' },
+        mode = { 'v', 'n' },
       },
     },
   },

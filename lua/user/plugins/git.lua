@@ -46,15 +46,18 @@ return {
 
   {
     'kdheepak/lazygit.nvim',
+    enabled = false,
     -- optional for floating window border decoration
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
     keys = {
       { '<leader>gg', '<cmd>LazyGit<cr>' },
+      { '<leader>gf', '<cmd>LazyGitFilterCurrentFile<cr>' },
     },
     init = function()
-      vim.g.lazygit_floating_window_scaling_factor = 1
+      -- full screen: 1
+      vim.g.lazygit_floating_window_scaling_factor = 0.9
     end,
   },
 

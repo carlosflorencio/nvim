@@ -117,6 +117,14 @@ return {
       vim.g.moonflyWinSeparator = 2 -- line instead of block
     end,
     config = function()
+      vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
+        group = vim.api.nvim_create_augroup('custom_moonfly_theme', { clear = true }),
+        pattern = '*',
+        callback = function()
+          vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'NONE' })
+        end,
+      })
+
       vim.cmd [[colorscheme moonfly]]
     end,
   },

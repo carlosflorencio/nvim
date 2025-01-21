@@ -67,8 +67,8 @@ return {
           ['I'] = 'actions.toggle_hidden',
           ['fw'] = function()
             local path = oil_get_selected_folder()
-            -- print(path)
-            require('telescope.builtin').live_grep { cwd = path }
+            -- require('telescope.builtin').live_grep { cwd = path }
+            Snacks.picker.grep { cwd = path }
           end,
         },
       }
