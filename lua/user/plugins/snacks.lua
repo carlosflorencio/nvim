@@ -128,7 +128,11 @@ return {
     {
       '<leader>fg',
       function()
-        Snacks.picker.git_status()
+        Snacks.picker.git_status {
+          on_show = function()
+            vim.cmd.stopinsert()
+          end,
+        }
       end,
       desc = 'Find Git Status',
     },
