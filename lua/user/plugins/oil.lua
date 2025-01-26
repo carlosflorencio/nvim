@@ -86,6 +86,9 @@ return {
     dependencies = {
       'stevearc/oil.nvim',
     },
-    config = true,
+    opts = {
+      -- ignore ../
+      show_ignored = false,
+    },
   },
 }

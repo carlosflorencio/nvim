@@ -2,7 +2,7 @@ return {
   {
     'olimorris/codecompanion.nvim',
     enabled = true,
-    lazy = false,
+    lazy = true,
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
