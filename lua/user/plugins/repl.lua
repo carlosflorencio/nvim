@@ -19,7 +19,9 @@ return {
     build = 'sh ./install.sh',
     cmd = { 'SnipRun', 'SnipLive' },
     opts = {
-      -- display = { "Terminal" },
+      display = { 'Classic' },
+      -- display = { 'LongTempFloatingWindow' },
+      -- display = { 'VirtualText' },
     },
   },
 }
