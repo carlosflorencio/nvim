@@ -3,7 +3,7 @@ local strings = require 'user.util.strings'
 
 local config = {
   -- ignore by git
-  scratch_dir = vim.fn.stdpath 'config' .. '/scratch/',
+  scratch_dir = vim.fn.stdpath 'data' .. '/scratch/',
   default_name = '',
   default_type = 'txt',
   split_cmd = 'tabe',
@@ -87,23 +87,38 @@ local function search()
       find_command = { 'find', '.', '-type', 'f', '-not', '-path', '"./git/*"' }
     end
 
-    require('telescope.builtin').find_files(vim.tbl_deep_extend('force', default_args, {
-      prompt_title = 'Scratch Files',
-      find_command = find_command,
-      attach_mappings = function(prompt_bufnr, map)
-        local action_state = require 'telescope.actions.state'
-        map('i', '<CR>', function()
-          local selection = action_state.get_selected_entry()
-          require('telescope.actions').close(prompt_bufnr)
-          local file = config.scratch_dir .. selection.value
+    -- require('telescope.builtin').find_files(vim.tbl_deep_extend('force', default_args, {
+    --   prompt_title = 'Scratch Files',
+    --   find_command = find_command,
+    --   attach_mappings = function(prompt_bufnr, map)
+    --     local action_state = require 'telescope.actions.state'
+    --     map('i', '<CR>', function()
+    --       local selection = action_state.get_selected_entry()
+    --       require('telescope.actions').close(prompt_bufnr)
+    --       local file = config.scratch_dir .. selection.value
 
-          vim.api.nvim_command('edit ' .. file)
-          vim.api.nvim_command 'Codi'
-        end)
+    --       vim.api.nvim_command('edit ' .. file)
+    --       vim.api.nvim_command 'Codi'
+    --     end)
 
-        return true
+    --     return true
+    --   end,
+    -- }))
+
+    Snacks.picker.files {
+      cwd = config.scratch_dir,
+      ignored = true,
+      confirm = function(picker, item)
+        picker:close()
+        if item then
+          -- dd(item)
+          vim.schedule(function()
+            vim.api.nvim_command('edit ' .. item._path)
+            vim.api.nvim_command 'Codi'
+          end)
+        end
       end,
-    }))
+    }
   elseif config.backend == 'fzf-lua' then
     return require('fzf-lua').files(vim.tbl_deep_extend('force', default_args, {
       prompt = 'Scratch Files> ',

@@ -112,6 +112,7 @@ vim.filetype.add {
   extension = {
     vcl = 'c',
     tftpl = 'c',
+    mathjs = 'mathjs',
   },
 }
 
