@@ -202,7 +202,9 @@ vim.cmd [[
   xnoremap # :<C-u>call g:VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
 ]]
 
+
 -- Scratch's
+require('user.scratch').setup()
 vim.keymap.set('n', '<leader>so', function()
   require('user.scratch').search()
 end, { desc = 'Open Scratch file' })

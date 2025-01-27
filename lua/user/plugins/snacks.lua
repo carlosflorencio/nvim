@@ -21,9 +21,6 @@ return {
       -- do not use nvim theme to lazygit
       configure = false,
     },
-    -- scratch = {
-    --   root = vim.fn.stdpath 'config' .. '/scratch',
-    -- },
     picker = {
       icons = {
         files = {
@@ -146,20 +143,6 @@ return {
       end,
       desc = 'Find text',
     },
-    -- {
-    --   '<leader>sn',
-    --   function()
-    --     Snacks.scratch()
-    --   end,
-    --   desc = 'Toggle Scratch Buffer',
-    -- },
-    -- {
-    --   '<leader>so',
-    --   function()
-    --     Snacks.scratch.select()
-    --   end,
-    --   desc = 'Select Scratch Buffer',
-    -- },
   },
   init = function()
     vim.api.nvim_create_autocmd('User', {

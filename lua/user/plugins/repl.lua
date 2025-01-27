@@ -2,7 +2,10 @@ return {
   {
     -- scratch files
     -- Codi! to stop
+    -- .mathjs: npm install -g mathjs
+    -- .ts: npm install -g tsun
     'metakirby5/codi.vim',
+    -- enabled = false,
     lazy = true,
     cmd = { 'Codi', 'CodiNew', 'CodiSelect', 'CodiExpand' },
     init = function()
@@ -14,12 +17,14 @@ return {
 
   {
     -- Select a code block and :SnipRun
+    -- .ts: npm install -g ts-node typescript
     'michaelb/sniprun',
     lazy = true,
     build = 'sh ./install.sh',
     cmd = { 'SnipRun', 'SnipLive' },
     opts = {
       display = { 'Classic' },
+      -- display = { 'TempFloatingWindow' },
       -- display = { 'LongTempFloatingWindow' },
       -- display = { 'VirtualText' },
     },
