@@ -233,7 +233,7 @@ return {
     end,
     keys = {
       {
-        '<leader>a',
+        '<leader>b',
         function()
           -- if package.loaded['zen-mode'] then
           --   require('zen-mode').close()
@@ -253,7 +253,7 @@ return {
           end
         end,
         desc = 'LLM - Input Prompt',
-        mode = { 'n', 'v' },
+        mode = { 'v' },
       },
       {
         '<leader>b',
@@ -261,7 +261,7 @@ return {
           vim.cmd 'CodeCompanionChat Toggle'
         end,
         desc = 'LLM - Toggle Chat',
-        mode = { 'n', 'v' },
+        mode = { 'n' },
       },
       {
         'ga',

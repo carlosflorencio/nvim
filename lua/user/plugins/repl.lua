@@ -29,4 +29,39 @@ return {
       -- display = { 'VirtualText' },
     },
   },
+
+  {
+    'akinsho/toggleterm.nvim',
+    version = '*',
+    event = 'VeryLazy',
+    config = function()
+      require('toggleterm').setup {}
+
+      local Terminal = require('toggleterm.terminal').Terminal
+      local aider = Terminal:new {
+        cmd = 'aider',
+        hidden = true,
+        direction = 'vertical',
+        on_open = function(term)
+          vim.cmd 'startinsert!'
+          vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', '<cmd>close<CR>', { noremap = true, silent = true })
+          vim.api.nvim_buf_set_keymap(term.bufnr, 'n', '<esc>', '<cmd>close<CR>', { noremap = true, silent = true })
+        end,
+      }
+
+      vim.keymap.set('n', '<leader>a', function()
+        aider:toggle()
+      end, { noremap = true, silent = true })
+
+      vim.keymap.set('v', '<leader>a', function()
+        local trim_spaces = true
+        require('toggleterm').send_lines_to_terminal('visual_lines', trim_spaces, { args = 1 })
+      end, { noremap = true, silent = true })
+
+      vim.keymap.set('n', '<leader>A', function()
+        local path = vim.fn.expand '%:p'
+        aider:send('/add ' .. path)
+      end, { noremap = true, silent = true })
+    end,
+  },
 }

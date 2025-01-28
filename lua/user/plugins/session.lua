@@ -47,8 +47,11 @@ return {
 
       vim.api.nvim_create_autocmd('VimEnter', {
         callback = function()
-          if vim.g.started_with_stdin == 1 then
-            -- Do nothing when started with `nvim -`
+          -- Do nothing when started with arguments
+          -- default argv is {"nvim", "--embed"}
+          if #vim.v.argv > 2 then
+            -- nvim -c "Oil"
+            -- nvim - (stdin
             return
           end
 

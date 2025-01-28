@@ -2,11 +2,19 @@ local set = vim.opt_local
 
 -- Set local settings for terminal buffers
 vim.api.nvim_create_autocmd('TermOpen', {
-  group = vim.api.nvim_create_augroup('custom-term-open', {}),
+  group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
   callback = function()
     set.number = false
     set.relativenumber = false
     set.scrolloff = 0
+
+    local opts = { buffer = 0 }
+    vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+    vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
+    vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
+    vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
+    vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
+    -- vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
   end,
 })
 
