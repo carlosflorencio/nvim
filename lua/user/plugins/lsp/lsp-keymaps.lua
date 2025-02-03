@@ -57,6 +57,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('[d', diagnostic_goto(false), 'Prev Diagnostic')
     map(']e', diagnostic_goto(true, 'ERROR'), 'Next Error')
     map('[e', diagnostic_goto(false, 'ERROR'), 'Prev Error')
+    map(']E', '<cmd>LspErrors<cr>', 'Copy LSP errors to clipboard')
     map(']w', diagnostic_goto(true, 'WARN'), 'Next Warning')
     map('[w', diagnostic_goto(false, 'WARN'), 'Prev Warning')
 

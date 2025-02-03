@@ -22,6 +22,44 @@ return {
       configure = false,
     },
     picker = {
+      layout = {
+        -- --- Use the default layout or vertical if the window is too narrow
+        -- preset = function()
+        --   return vim.o.columns >= 120 and 'ivy' or 'vertical'
+        -- end,
+      },
+      filter = {
+        cwd = true,
+      },
+      layouts = {
+        default = {
+          -- bigger width, reduced preview
+          layout = {
+            box = 'horizontal',
+            width = 0.9,
+            min_width = 120,
+            height = 0.9,
+            {
+              box = 'vertical',
+              border = 'rounded',
+              title = '{title} {live} {flags}',
+              { win = 'input', height = 1, border = 'bottom' },
+              { win = 'list', border = 'none' },
+            },
+            { win = 'preview', title = '{preview}', border = 'rounded', width = 0.4 },
+          },
+        },
+      },
+      sources = {
+        file = {
+          layout = {
+            width = 1,
+            -- min_width = 80,
+            height = 1,
+            -- min_height = 10,
+          },
+        },
+      },
       icons = {
         files = {
           enabled = false,
@@ -45,6 +83,7 @@ return {
       formatters = {
         file = {
           filename_first = true, -- display filename before the file path
+          truncate = 200,
         },
       },
     },

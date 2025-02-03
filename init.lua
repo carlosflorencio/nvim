@@ -19,7 +19,8 @@ vim.opt.completeopt = 'menu,menuone,noselect' -- completion options
 vim.opt.signcolumn = 'yes' -- Always show the sign column, otherwise it would shift the text each time
 vim.opt.fillchars = { eob = '~' }
 vim.opt.pumheight = 10 -- Maximum number of entries in a popup
-vim.opt.shell = '/bin/sh' -- fish is slow
+-- vim.opt.shell = '/bin/sh' -- fish is slow
+vim.opt.shell = '/opt/homebrew/bin/fish' -- fish is slow
 vim.o.mouse = 'a' -- Enable mouse mode
 vim.o.clipboard = 'unnamedplus' -- system clipboard
 vim.o.undofile = true -- Save undo history

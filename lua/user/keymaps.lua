@@ -3,7 +3,7 @@
 vim.keymap.set('n', '<C-s>', '<cmd>SaveBuffer<CR>', { desc = 'Save buffer' })
 
 -- close buffer without messing with the windows
-vim.keymap.set('n', '<C-c>', ':bn|sp|bp|bd<CR>', { desc = 'Close buffer' })
+-- vim.keymap.set('n', '<C-c>', ':bn|sp|bp|bd<CR>', { desc = 'Close buffer' })
 
 -- new lines
 vim.keymap.set('n', '] ', 'o<ESC>k')
@@ -201,7 +201,6 @@ vim.cmd [[
   xnoremap * :<C-u>call g:VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
   xnoremap # :<C-u>call g:VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
 ]]
-
 
 -- Scratch's
 require('user.scratch').setup()
