@@ -55,6 +55,18 @@ return {
         gopls = {},
         pyright = {},
         rust_analyzer = {},
+
+        groovyls = {},
+
+        -- gradle_ls = {
+        --   settings = {
+        --     completions = {
+        --       completeFunctionCalls = true,
+        --     },
+        --   },
+        -- },
+        kotlin_language_server = {},
+
         -- starpls has jump to definition support
         starpls = {},
         -- starlark_rust has better linting rules (e.g import not used)
