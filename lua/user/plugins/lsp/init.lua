@@ -101,6 +101,8 @@ return {
           },
         },
 
+        kcl = {},
+
         jsonls = {
           settings = {
             json = {
@@ -393,4 +395,6 @@ return {
       { '<leader>fs', '<cmd>Navbuddy<cr>', desc = 'Navbuddy navigate LSP symbols' },
     },
   },
+
+  { 'kcl-lang/kcl.nvim', lazy = false },
 }
