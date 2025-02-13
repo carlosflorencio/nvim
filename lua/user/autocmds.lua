@@ -83,3 +83,23 @@ vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter' }, {
     vim.api.nvim_win_set_cursor(0, cursor_pos)
   end,
 })
+
+-- vim.api.nvim_create_autocmd('User', {
+--   pattern = 'OilActionsPost',
+--   callback = function(args)
+--     dd 'here'
+--     -- If err is non-null, we encountered an error while processing the actions
+--     if args.data.err then
+--       vim.print('ERROR', args.data.err)
+--     else
+--       vim.print(args)
+--     end
+--   end,
+-- })
+
+-- vim.api.nvim_create_autocmd('User', {
+--   pattern = 'OilEnter',
+--   callback = function(args)
+--     dd 'enter oil'
+--   end,
+-- })
