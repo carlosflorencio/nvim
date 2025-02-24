@@ -97,10 +97,29 @@ return {
           map('n', '<leader>gb', function()
             gs.blame_line { full = true }
           end, 'Blame Line')
-          map('n', '<leader>gd', gs.diffthis, 'Diff This')
-          map('n', '<leader>gD', function()
-            gs.diffthis '~'
-          end, 'Diff This ~')
+          map('n', '<leader>gd', function()
+            local base_branch = require('user.util.git').get_base_branch()
+            gs.change_base(base_branch)
+
+            -- save cursor pos
+            local win = vim.api.nvim_get_current_win()
+            local buf = vim.api.nvim_get_current_buf()
+            local pos = vim.api.nvim_win_get_cursor(win)
+
+            vim.defer_fn(function()
+              gs.setqflist()
+
+              -- restore cursor
+              vim.schedule(function()
+                vim.api.nvim_set_current_win(win) -- Switch back to original window
+                vim.api.nvim_win_set_cursor(win, pos)
+                vim.api.nvim_set_current_buf(buf) -- ensure buffer is also correct
+              end)
+            end, 100)
+          end, 'Diff This')
+          -- map('n', '<leader>gD', function()
+          --   gs.diffthis '~'
+          -- end, 'Diff This ~')
           map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'GitSigns Select Hunk')
         end,
       }
