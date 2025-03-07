@@ -15,14 +15,6 @@ return {
       require('lazy.core.loader').add_to_rtp(plugin)
       require 'nvim-treesitter.query_predicates'
     end,
-    dependencies = {
-      {
-        'nvim-treesitter/nvim-treesitter-context',
-        opts = {
-          max_lines = 4,
-        },
-      },
-    },
     opts = {
       ensure_installed = {
         'vimdoc',
@@ -96,6 +88,17 @@ return {
     },
     config = function(_, opts)
       require('nvim-treesitter.configs').setup(opts)
+    end,
+  },
+
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    config = function()
+      require('treesitter-context').setup {
+        max_lines = 4,
+      }
+
+      vim.cmd [[hi TreesitterContextBottom gui=NONE guisp=NONE guibg=NONE]]
     end,
   },
 

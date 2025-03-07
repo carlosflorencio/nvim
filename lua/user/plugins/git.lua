@@ -107,6 +107,7 @@ return {
             local pos = vim.api.nvim_win_get_cursor(win)
 
             vim.defer_fn(function()
+              -- gs.setqflist 'all'
               gs.setqflist()
 
               -- restore cursor
@@ -115,7 +116,7 @@ return {
                 vim.api.nvim_win_set_cursor(win, pos)
                 vim.api.nvim_set_current_buf(buf) -- ensure buffer is also correct
               end)
-            end, 100)
+            end, 200)
           end, 'Diff This')
           -- map('n', '<leader>gD', function()
           --   gs.diffthis '~'

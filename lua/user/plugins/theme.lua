@@ -115,6 +115,7 @@ return {
     priority = 1000,
     init = function()
       vim.g.moonflyWinSeparator = 2 -- line instead of block
+      vim.g.moonflyTransparent = true
     end,
     config = function()
       vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
