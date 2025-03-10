@@ -12,7 +12,7 @@ return {
             ruler = true, -- disables the ruler text in the cmd line area
             showcmd = true, -- disables the command in the last line of the screen
           },
-          gitsigns = { enabled = true }, -- disables git signs
+          gitsigns = { enabled = false }, -- enables git signs
         },
         on_close = function()
           -- vim.o.cmdheight = 0
