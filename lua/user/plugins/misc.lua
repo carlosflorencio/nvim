@@ -62,11 +62,4 @@ return {
     enabled = true,
     opts = {},
   },
-
-  {
-    -- abbreviations with common git mistakes
-    -- like spelling correction
-    'ck-zhang/mistake.nvim',
-    opts = {},
-  },
 }

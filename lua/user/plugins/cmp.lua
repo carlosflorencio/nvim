@@ -55,8 +55,10 @@ return {
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
           ['<Tab>'] = cmp.mapping(function(fallback)
             if require('user.util.ai').has_suggestions() then
+              print 'has ai suggestions'
               require('user.util.ai').accept()
             elseif cmp.visible() then
+              print 'no ai suggestions'
               cmp.confirm { select = true }
             elseif buffers.has_words_before() then
               cmp.complete()
