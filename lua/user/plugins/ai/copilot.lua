@@ -7,6 +7,25 @@ return {
       -- issue when expanding a comment inside a docblock
       -- extra * at the beginning of the line are added
     end,
+    init = function()
+      local function get_mise_node_path()
+        local handle = io.popen 'mise where node@22'
+        if not handle then
+          return nil, "Failed to execute 'mise where node@22'"
+        end
+
+        local path = handle:read('*a'):match '^%s*(.-)%s*$' -- Read output and trim whitespace
+        handle:close()
+
+        if not path or path == '' then
+          return nil, 'No path found for node@22'
+        end
+
+        return path, nil
+      end
+
+      vim.g.copilot_node_command = get_mise_node_path()
+    end,
   },
   {
     'CopilotC-Nvim/CopilotChat.nvim',
