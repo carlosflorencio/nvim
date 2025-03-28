@@ -165,6 +165,13 @@ return {
       desc = 'Find help',
     },
     {
+      '<leader>fH',
+      function()
+        Snacks.picker.highlights()
+      end,
+      desc = 'Find highlights',
+    },
+    {
       '<leader>fg',
       function()
         Snacks.picker.git_status {

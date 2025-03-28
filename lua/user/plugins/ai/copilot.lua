@@ -24,7 +24,7 @@ return {
         return path, nil
       end
 
-      vim.g.copilot_node_command = get_mise_node_path()
+      vim.g.copilot_node_command = get_mise_node_path() .. '/bin/node'
     end,
   },
   {

@@ -123,6 +123,9 @@ return {
         pattern = '*',
         callback = function()
           vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'NONE' })
+          vim.api.nvim_set_hl(0, 'TabLine', { bg = 'NONE' })
+          vim.api.nvim_set_hl(0, 'TabLineFill', { bg = 'NONE' })
+          vim.api.nvim_set_hl(0, 'BufferLineFill', { bg = 'NONE' })
         end,
       })
 
