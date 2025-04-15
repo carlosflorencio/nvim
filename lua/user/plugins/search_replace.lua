@@ -12,7 +12,7 @@ return {
         pattern = { 'grug-far' },
         callback = function()
           vim.keymap.set('n', '<localleader>w', function()
-            local state = unpack(require('grug-far').toggle_flags { '--fixed-strings' })
+            local state = unpack(require('grug-far').get_instance(0):toggle_flags { '--fixed-strings' })
             vim.notify('grug-far: toggled --fixed-strings ' .. (state and 'ON' or 'OFF'))
           end, { buffer = true })
         end,
@@ -22,7 +22,7 @@ return {
       {
         '<leader>sr',
         function()
-          require('grug-far').grug_far {
+          require('grug-far').open {
             prefills = {
               search = vim.fn.expand '<cword>',
               filesFilter = vim.fn.expand '%',
