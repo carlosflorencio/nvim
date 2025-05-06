@@ -6,6 +6,30 @@ return {
       { 'theHamsta/nvim-dap-virtual-text', opts = {} },
       { 'leoluz/nvim-dap-go', opts = {} },
       {
+        'Weissle/persistent-breakpoints.nvim',
+        event = 'BufReadPost',
+        opts = {
+          load_breakpoints_event = { 'BufReadPost' },
+        },
+        keys = {
+          {
+            ',bb',
+            "<cmd>lua require('persistent-breakpoints.api').toggle_breakpoint()<CR>",
+            desc = 'Toggle breakpoint',
+          },
+          {
+            ',bc',
+            "<cmd>lua require('persistent-breakpoints.api').set_conditional_breakpoint()<CR>",
+            desc = 'Conditional breakpoint',
+          },
+          {
+            ',bd',
+            "<cmd>lua require('persistent-breakpoints.api').clear_all_breakpoints()<cr>",
+            desc = 'Delete all breakpoints',
+          },
+        },
+      },
+      {
         'ofirgall/goto-breakpoints.nvim',
         keys = {
           {
@@ -97,11 +121,11 @@ return {
         "<cmd>lua require('dap').terminate()<cr>",
         desc = 'Debug terminate',
       },
-      {
-        ',bb',
-        "<cmd>lua require('dap').toggle_breakpoint()<cr>",
-        desc = 'Debug add breakpoint',
-      },
+      -- {
+      --   ',bb',
+      --   "<cmd>lua require('dap').toggle_breakpoint()<cr>",
+      --   desc = 'Debug add breakpoint',
+      -- },
     },
   },
 }
