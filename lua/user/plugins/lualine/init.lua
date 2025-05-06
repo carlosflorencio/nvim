@@ -48,6 +48,8 @@ return {
             'dapui_console',
             'dapui_stacks',
             'dap-repl',
+            'dap-view',
+            'dap-view-term',
           },
         },
 
