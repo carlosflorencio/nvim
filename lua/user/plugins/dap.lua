@@ -4,7 +4,12 @@ return {
     lazy = true,
     dependencies = {
       { 'theHamsta/nvim-dap-virtual-text', opts = {} },
-      { 'leoluz/nvim-dap-go', opts = {} },
+      {
+        -- 'leoluz/nvim-dap-go',
+        'carlosflorencio/nvim-dap-go',
+        branch = 'feat/go-mod-subfolder-support',
+        opts = {},
+      },
       {
         'Weissle/persistent-breakpoints.nvim',
         event = 'BufReadPost',
@@ -73,6 +78,10 @@ return {
     },
     config = function()
       local dap, dv = require 'dap', require 'dap-view'
+
+      -- debug
+      -- tail -f ~/.cache/nvim/dap.log
+      dap.set_log_level 'DEBUG'
 
       -- auto open dap view
       dap.listeners.before.attach['dap-view-config'] = function()
