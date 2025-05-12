@@ -302,6 +302,8 @@ return {
           return { timeout_ms = 1000, lsp_fallback = true }
         end,
         formatters_by_ft = {
+          -- go install golang.org/x/tools/cmd/goimports@latest
+          -- go = { 'goimports', 'gofmt' },
           lua = { 'stylua' },
           python = { 'isort', 'black' },
           bzl = { 'buildifier' },
