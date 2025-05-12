@@ -57,16 +57,17 @@ return {
         rust_analyzer = {},
 
         -- grammar checker
-        harper_ls = {
-          settings = {
-            ['harper-ls'] = {
-              linters = {
-                SentenceCapitalization = false,
-                SpellCheck = false,
-              },
-            },
-          },
-        },
+        -- disabled too many false positives on golang, or settings not working
+        -- harper_ls = {
+        --   settings = {
+        --     ['harper-ls'] = {
+        --       linters = {
+        --         SentenceCapitalization = false,
+        --         SpellCheck = false,
+        --       },
+        --     },
+        --   },
+        -- },
 
         groovyls = {},
 
@@ -183,7 +184,7 @@ return {
             -- ignore servers that are being setup by another plugin
             -- mdformat needs to be installed globally with github markdown flavour
             -- https://github.com/executablebooks/mdformat?tab=readme-ov-file#installing
-            local ignore = { 'ts_ls', 'mdformat' }
+            local ignore = { 'ts_ls', 'mdformat', 'harper_ls' }
             if vim.tbl_contains(ignore, server_name) then
               return
             end
