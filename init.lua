@@ -120,3 +120,4 @@ vim.filetype.add {
 require 'user.autocmds'
 require 'user.cmds'
 require 'user.keymaps'
+require 'user.keymaps-lsp'

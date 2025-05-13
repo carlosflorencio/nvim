@@ -1,46 +1,59 @@
 return {
   {
-    -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
-    branch = 'master',
+    'mason-org/mason-lspconfig.nvim',
+    event = 'BufReadPost',
+    -- enabled = false,
     dependencies = {
-      -- Automatically install LSPs and related tools to stdpath for Neovim
-      'williamboman/mason.nvim',
-      { 'williamboman/mason-lspconfig.nvim', branch = 'main' },
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
-
-      -- Useful status updates for LSP.
-      -- { 'j-hui/fidget.nvim', opts = {} },
-
+      'neovim/nvim-lspconfig',
+      'mason-org/mason.nvim',
       {
-        'folke/lazydev.nvim',
-        ft = 'lua', -- only load on lua files
+        'WhoIsSethDaniel/mason-tool-installer.nvim',
+        event = 'VeryLazy',
+        lazy = false,
         opts = {
-          library = {
-            -- See the configuration section for more details
-            -- Load luvit types when the `vim.uv` word is found
-            { path = 'luvit-meta/library', words = { 'vim%.uv' } },
-            { path = 'snacks.nvim', words = { 'Snacks' } },
+          ensure_installed = {
+            -- formatters
+            'shfmt',
+            'prettierd',
+            'mdformat',
+            'stylua',
+            'isort',
           },
         },
       },
-      { 'Bilal2453/luvit-meta', lazy = true }, -- optional `vim.uv` typings
+    },
+    opts = {
+      ensure_installed = {
+        'lua_ls',
+        'html',
+        'gopls',
+        'pyright',
+        'rust_analyzer',
+        'denols',
+        'groovyls',
+        'kotlin_language_server',
+        'starpls',
+        'starlark_rust',
+        'kcl',
+        'yamlls',
+        'jsonls',
+        -- 'ts_ls',
 
-      {
-        'b0o/SchemaStore.nvim',
-        version = false, -- last release is way too old
+        -- personal notes lsp
+        -- auto completion links [[]]
+        'markdown_oxide',
+      },
+      automatic_installation = true,
+      automatic_enable = {
+        exclude = { 'ts_ls' },
       },
     },
-    config = function()
-      require 'user.plugins.lsp.lsp-keymaps'
-      local lspconfig = require 'lspconfig'
+    config = function(_, opts)
+      require('mason').setup()
+      require('mason-lspconfig').setup(opts)
 
-      -- LSP servers and clients are able to communicate to each other what features they support.
-      --  By default, Neovim doesn't support everything that is in the LSP specification.
-      --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-      --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+      -- LSP Capabilities
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       -- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
       -- Create Unresolved File code action, resolving completions for unindexed code blocks, ...
@@ -50,154 +63,9 @@ return {
         },
       }
 
-      local servers = {
-        html = {},
-        gopls = {},
-        pyright = {},
-        rust_analyzer = {},
-
-        -- grammar checker
-        -- disabled too many false positives on golang, or settings not working
-        -- harper_ls = {
-        --   settings = {
-        --     ['harper-ls'] = {
-        --       linters = {
-        --         SentenceCapitalization = false,
-        --         SpellCheck = false,
-        --       },
-        --     },
-        --   },
-        -- },
-
-        groovyls = {},
-
-        -- gradle_ls = {
-        --   settings = {
-        --     completions = {
-        --       completeFunctionCalls = true,
-        --     },
-        --   },
-        -- },
-        kotlin_language_server = {},
-
-        -- starpls has jump to definition support
-        starpls = {},
-        -- starlark_rust has better linting rules (e.g import not used)
-        starlark_rust = {},
-        -- bzl = {},
-
-        denols = {
-          root_dir = lspconfig.util.root_pattern('deno.json', 'deno.jsonc'),
-        },
-
-        eslint = {
-          settings = {
-            eslint = {
-              -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
-              workingDirectory = { mode = 'auto' },
-            },
-          },
-        },
-
-        lua_ls = {
-          -- cmd = {...},
-          -- filetypes = { ...},
-          -- capabilities = {},
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = 'Replace',
-              },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
-            },
-          },
-        },
-
-        kcl = {},
-
-        jsonls = {
-          settings = {
-            json = {
-              schemas = require('schemastore').json.schemas(),
-              format = {
-                enable = true,
-              },
-              validate = { enable = true },
-            },
-          },
-        },
-
-        yamlls = {
-          settings = {
-            yaml = {
-              schemaStore = {
-                -- You must disable built-in schemaStore support if you want to use
-                -- this plugin and its advanced options like `ignore`.
-                enable = false,
-                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-                url = '',
-              },
-              -- manually linking schemas because github workflow schema is
-              -- broken in schemastore
-              -- https://github.com/SchemaStore/schemastore/blob/master/src/api/json/catalog.json
-              schemas = {
-                ['https://json.schemastore.org/github-workflow.json'] = '/.github/workflows/*',
-                ['https://json.schemastore.org/pre-commit-config.json'] = '/.pre-commit-config.*',
-                ['https://json.schemastore.org/swagger-2.0.json'] = '**/swagger.yaml',
-                ['https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.27.4/configmap.json'] = '**/config-maps/**/*.yaml',
-                ['https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.27.4/job.json'] = 'job.yml',
-                ['https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.27.4/pod.json'] = 'pod.yml',
-                ['https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json'] = 'docker-compose*.yml',
-                ['https://json.schemastore.org/commitlintrc.json'] = '.commitlintrc.yml',
-              },
-            },
-          },
-        },
-
-        -- personal notes lsp
-        -- auto completion links [[]]
-        ['markdown-oxide'] = {},
-      }
-
-      -- Ensure the servers and tools above are installed
-      --  To check the current status of installed tools and/or manually install
-      --  other tools, you can run
-      --    :Mason
-      require('mason').setup()
-
-      -- You can add other tools here that you want Mason to install
-      -- for you, so that they are available from within Neovim.
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
-        'typescript-language-server',
-        'prettierd',
-        'mdformat',
+      vim.lsp.config('*', {
+        capabilities = vim.lsp.protocol.make_client_capabilities(),
       })
-
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
-      require('mason-lspconfig').setup {
-        handlers = {
-          function(server_name)
-            -- ignore servers that are being setup by another plugin
-            -- mdformat needs to be installed globally with github markdown flavour
-            -- https://github.com/executablebooks/mdformat?tab=readme-ov-file#installing
-            local ignore = { 'ts_ls', 'mdformat', 'harper_ls' }
-            if vim.tbl_contains(ignore, server_name) then
-              return
-            end
-
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
-          end,
-        },
-      }
 
       -- diagnostics
       local icons = require('user.icons').lsp_diagnostic_icons
@@ -231,6 +99,11 @@ return {
       }
       vim.diagnostic.config(updated_diagnostics)
     end,
+  },
+
+  {
+    'b0o/SchemaStore.nvim',
+    version = false, -- last release is way too old
   },
 
   {
@@ -415,4 +288,22 @@ return {
   },
 
   { 'kcl-lang/kcl.nvim', lazy = false },
+
+  {
+    -- Improve lua ls for nvim config development
+    'folke/lazydev.nvim',
+    ft = 'lua', -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+        { path = 'snacks.nvim', words = { 'Snacks' } },
+      },
+    },
+  },
 }
