@@ -60,6 +60,10 @@ vim.opt.smartcase = true
 -- Global variables
 vim.g.personal_notes = '~/Projects/notes'
 
+-- better diff options
+-- https://www.reddit.com/r/neovim/comments/1ihpvaf/the_linematch_diffopt_makes_builtin_diff_so_sweat/
+vim.o.diffopt = 'internal,filler,closeoff,linematch:60'
+
 -- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
