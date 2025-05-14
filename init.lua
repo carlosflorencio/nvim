@@ -121,3 +121,5 @@ require 'user.autocmds'
 require 'user.cmds'
 require 'user.keymaps'
 require 'user.keymaps-lsp'
+
+vim.cmd [[colorscheme moonfly]]

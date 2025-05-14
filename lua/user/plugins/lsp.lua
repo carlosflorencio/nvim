@@ -45,7 +45,7 @@ return {
       },
       automatic_installation = true,
       automatic_enable = {
-        exclude = { 'ts_ls' },
+        exclude = { 'ts_ls', 'harper_ls' },
       },
     },
     config = function(_, opts)

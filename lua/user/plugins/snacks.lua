@@ -189,6 +189,13 @@ return {
       end,
       desc = 'Find text',
     },
+    {
+      '<leader>ft',
+      function()
+        Snacks.picker.colorschemes()
+      end,
+      desc = 'Picker Colorschemes',
+    },
   },
   init = function()
     vim.api.nvim_create_autocmd('User', {
