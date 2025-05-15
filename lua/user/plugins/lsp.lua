@@ -6,21 +6,6 @@ return {
     dependencies = {
       'neovim/nvim-lspconfig',
       'mason-org/mason.nvim',
-      {
-        'WhoIsSethDaniel/mason-tool-installer.nvim',
-        event = 'VeryLazy',
-        lazy = false,
-        opts = {
-          ensure_installed = {
-            -- formatters
-            'shfmt',
-            'prettierd',
-            'mdformat',
-            'stylua',
-            'isort',
-          },
-        },
-      },
     },
     opts = {
       ensure_installed = {
@@ -99,6 +84,22 @@ return {
       }
       vim.diagnostic.config(updated_diagnostics)
     end,
+  },
+
+  {
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    -- lazy = false,
+    event = 'VeryLazy',
+    opts = {
+      ensure_installed = {
+        -- formatters
+        'shfmt',
+        'prettierd',
+        'mdformat',
+        'stylua',
+        'isort',
+      },
+    },
   },
 
   {
