@@ -1,5 +1,26 @@
 return {
   {
+    'echasnovski/mini.diff',
+    lazy = false,
+    config = function()
+      local diff = require 'mini.diff'
+      diff.setup {
+        -- Disabled by default
+        source = diff.gen_source.none(),
+      }
+
+      vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
+        group = vim.api.nvim_create_augroup('minidiff', { clear = true }),
+        pattern = '*',
+        callback = function()
+          -- improve diff color on dark themes
+          -- makes it green
+          vim.api.nvim_set_hl(0, 'MiniDiffOverChange', { link = 'DiffAdd' })
+        end,
+      })
+    end,
+  },
+  {
     'olimorris/codecompanion.nvim',
     enabled = true,
     lazy = true,
@@ -25,15 +46,10 @@ return {
           },
           schema = {
             model = {
-              -- google/gemini-flash-1.5
-              -- openai/gpt-4o
-              -- anthropic/claude-3.5-sonnet:beta (self-moderated, faster)
-              -- google/gemini-2.5-pro-preview-03-25
-              -- default = 'anthropic/claude-3.7-sonnet:beta',
               default = model,
             },
             temperature = {
-              default = 0.4,
+              default = 0.3,
             },
           },
         })
@@ -43,15 +59,14 @@ return {
         -- tail -f ~/.local/state/nvim/codecompanion.log
         -- log_level = 'DEBUG', -- or "TRACE"
         adapters = {
-          gemini = openrouter_adapter 'google/gemini-2.5-pro-preview-03-25',
-          flash = openrouter_adapter 'google/gemini-2.0-flash-001',
+          gemini = openrouter_adapter 'google/gemini-2.5-pro-preview',
+          flash = openrouter_adapter 'google/gemini-2.5-flash-preview-05-20',
           ['4.1'] = openrouter_adapter 'openai/gpt-4.1',
-          ['3.7'] = openrouter_adapter 'anthropic/claude-3.7-sonnet:beta',
-          ['3.7-thinking'] = openrouter_adapter 'anthropic/claude-3.7-sonnet:thinking',
+          ['4'] = openrouter_adapter 'anthropic/claude-sonnet-4',
         },
         strategies = {
           chat = {
-            adapter = 'gemini',
+            adapter = '4',
             roles = {
               llm = function(adapter)
                 return adapter.schema.model.default
@@ -59,16 +74,15 @@ return {
             },
           },
           inline = {
-            adapter = 'gemini',
+            adapter = 'copilot',
           },
           agent = {
-            adapter = 'gemini',
+            adapter = '4',
           },
         },
         display = {
           diff = {
-            -- provider = 'mini_diff',
-            -- enabled = false,
+            provider = 'mini_diff',
           },
           chat = {
             window = {
@@ -242,6 +256,7 @@ return {
             if input:match '^/%w+$' then
               vim.cmd('CodeCompanion ' .. input)
             else
+              -- inline assistant mode
               if input:sub(1, 2) == 'i ' then
                 vim.cmd('CodeCompanion ' .. input:sub(3))
               else
@@ -252,6 +267,17 @@ return {
         end,
         desc = 'LLM - Input Prompt',
         mode = { 'v' },
+      },
+      {
+        '<c-a>',
+        function()
+          local input = vim.fn.input 'Inline LLM: '
+          if input ~= nil and input ~= '' then
+            vim.cmd('CodeCompanion ' .. input)
+          end
+        end,
+        desc = 'LLM - Input Prompt',
+        mode = { 'i' },
       },
       {
         '<leader>b',

@@ -1,6 +1,9 @@
 return {
   {
-    'folke/zen-mode.nvim',
+    -- 'folke/zen-mode.nvim',
+    -- revert when https://github.com/folke/zen-mode.nvim/pull/180 is merged
+    'ouuan/zen-mode.nvim',
+    branch = 'border-none',
     cmd = 'ZenMode',
     enabled = true,
     config = function()

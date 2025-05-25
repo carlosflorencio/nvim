@@ -35,6 +35,8 @@ vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
 vim.opt.hlsearch = true -- highlight search (esc keymap to hide)
 
+vim.opt.winborder = 'single' -- Set window border style
+
 -- disable vim configuration options inside files
 vim.opt.modeline = false
 
@@ -62,7 +64,7 @@ vim.g.personal_notes = '~/Projects/notes'
 
 -- better diff options
 -- https://www.reddit.com/r/neovim/comments/1ihpvaf/the_linematch_diffopt_makes_builtin_diff_so_sweat/
-vim.o.diffopt = 'internal,filler,closeoff,linematch:60'
+vim.o.diffopt = 'algorithm:histogram,internal,filler,closeoff,linematch:60,followwrap'
 
 -- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'

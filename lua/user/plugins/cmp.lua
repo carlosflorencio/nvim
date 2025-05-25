@@ -1,6 +1,7 @@
 return {
   {
     'hrsh7th/nvim-cmp',
+    enabled = false,
     event = 'InsertEnter',
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
@@ -142,32 +143,6 @@ return {
           luasnip.jump(-1)
         end
       end, { silent = true })
-    end,
-  },
-  {
-    'L3MON4D3/LuaSnip',
-    dependencies = {
-      { 'rafamadriz/friendly-snippets' },
-    },
-    -- follow latest release.
-    version = 'v2.*',
-    build = 'make install_jsregexp',
-    opts = {
-      enable_autosnippets = true,
-    },
-    config = function(_, opts)
-      local luasnip = require 'luasnip'
-      luasnip.setup(opts)
-
-      luasnip.filetype_extend('javascriptreact', { 'html' })
-      luasnip.filetype_extend('typescriptreact', { 'html' })
-      -- i don't want this, snippets appear duplicated
-      -- luasnip.filetype_extend('javascript', { 'typescript' })
-
-      require 'user.snippets.typescript'
-      require 'user.snippets.lua'
-      require('luasnip.loaders.from_vscode').lazy_load()
-      require('luasnip.loaders.from_vscode').lazy_load { paths = { './snippets' } }
     end,
   },
 }

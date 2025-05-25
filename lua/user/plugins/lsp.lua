@@ -38,18 +38,26 @@ return {
       require('mason-lspconfig').setup(opts)
 
       -- LSP Capabilities
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
       -- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
       -- Create Unresolved File code action, resolving completions for unindexed code blocks, ...
-      capabilities.workspace = {
-        didChangeWatchedFiles = {
-          dynamicRegistration = true,
+      local capabilities = {
+        workspace = {
+          didChangeWatchedFiles = {
+            dynamicRegistration = true,
+          },
         },
       }
 
+      if package.loaded['nvim-cmp'] then
+        capabilities = require('nvim-cmp').default_capabilities(capabilities)
+      end
+
+      if package.loaded['blink.cmp'] then
+        capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+      end
+
       vim.lsp.config('*', {
-        capabilities = vim.lsp.protocol.make_client_capabilities(),
+        capabilities = capabilities,
       })
 
       -- diagnostics
