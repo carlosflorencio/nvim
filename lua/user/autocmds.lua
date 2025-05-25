@@ -1,9 +1,4 @@
-local function augroup(name)
-  return vim.api.nvim_create_augroup('user_' .. name, {
-    clear = true,
-  })
-end
-
+-- Disable new line comment
 vim.api.nvim_create_autocmd('BufEnter', {
   callback = function()
     vim.cmd [[setlocal formatoptions-=o]]
@@ -13,7 +8,8 @@ vim.api.nvim_create_autocmd('BufEnter', {
 
 -- go to last loc when opening a buffer
 vim.api.nvim_create_autocmd('BufReadPost', {
-  group = augroup 'last_loc',
+  group = vim.api.nvim_create_augroup('carlos/last_loc', { clear = true }),
+  desc = 'Go to the last location when opening a buffer',
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)
@@ -53,7 +49,7 @@ vim.api.nvim_create_autocmd({ 'BufRead' }, { command = ':delm a-zA-Z0-9' })
 
 -- always open quickfix at the bottom
 vim.api.nvim_create_autocmd('FileType', {
-  group = augroup 'qf_always_bottom',
+  group = vim.api.nvim_create_augroup('carlos/qf_always_bottom', { clear = true }),
   pattern = 'qf',
   command = 'wincmd J',
 })
@@ -70,7 +66,8 @@ end, vim.api.nvim_create_namespace 'auto_hlsearch')
 
 -- Prevent opening splits/windows and having the buffer scroleld to the right
 vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter' }, {
-  group = augroup 'buf_left_align',
+  group = vim.api.nvim_create_augroup('carlos/buf_left_align', { clear = true }),
+
   pattern = '*',
   callback = function()
     -- Save the current cursor position
@@ -81,6 +78,20 @@ vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter' }, {
 
     -- Restore the original cursor position
     vim.api.nvim_win_set_cursor(0, cursor_pos)
+  end,
+})
+
+-- Close certain filetypes with <q>
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('carlos/close_with_q', { clear = true }),
+  desc = 'Close with <q>',
+  pattern = {
+    'git',
+    'help',
+    'qf',
+  },
+  callback = function(args)
+    vim.keymap.set('n', 'q', '<cmd>quit<cr>', { buffer = args.buf })
   end,
 })
 

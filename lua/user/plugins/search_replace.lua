@@ -8,7 +8,7 @@ return {
       }
 
       vim.api.nvim_create_autocmd('FileType', {
-        group = vim.api.nvim_create_augroup('grugfar', { clear = true }),
+        group = vim.api.nvim_create_augroup('carlos/grugfar', { clear = true }),
         pattern = { 'grug-far' },
         callback = function()
           vim.keymap.set('n', '<localleader>w', function()

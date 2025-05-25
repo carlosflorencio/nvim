@@ -275,24 +275,26 @@ return {
   },
 
   {
-    'SmiteshP/nvim-navbuddy',
+    'bassamsdata/namu.nvim',
     lazy = true,
-    dependencies = {
-      'neovim/nvim-lspconfig',
-      'SmiteshP/nvim-navic',
-      'MunifTanjim/nui.nvim',
-    },
-    opts = {
-      lsp = {
-        auto_attach = true,
-        preference = { 'typescript-tools', 'lua_ls', 'ts_ls', 'pyright' },
-      },
-      window = {
-        size = '75%',
-      },
-    },
+    config = function()
+      require('namu').setup {
+        -- Enable the modules you want
+        namu_symbols = {
+          enable = true,
+          options = {
+            display = {
+              format = 'tree_guides',
+            },
+          },
+        },
+        -- Optional: Enable other modules if needed
+        ui_select = { enable = false }, -- vim.ui.select() wrapper
+      }
+    end,
     keys = {
-      { '<leader>fs', '<cmd>Navbuddy<cr>', desc = 'Navbuddy navigate LSP symbols' },
+      { '<leader>fs', '<cmd>Namu symbols<cr>', desc = 'Jump to LSP symbol' },
+      { '<leader>fS', '<cmd>Namu workspace<cr>', desc = 'Jump to LSP workspace symbols' },
     },
   },
 

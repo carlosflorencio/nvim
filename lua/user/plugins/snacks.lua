@@ -216,7 +216,7 @@ return {
     })
 
     vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
-      group = vim.api.nvim_create_augroup('custom_snacks_theme', { clear = true }),
+      group = vim.api.nvim_create_augroup('carlos/snacks_theme', { clear = true }),
       pattern = '*',
       callback = function()
         -- vim.api.nvim_set_hl(0, 'CursorColumn', { bg = 'NONE', link = 'NONE' })

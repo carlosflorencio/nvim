@@ -30,7 +30,7 @@ return {
           -- theme = custom_vscode,
           globalstatus = true,
           refresh = {
-            statusline = 2000,
+            statusline = 500,
           },
           component_separators = { left = '', right = '' },
           section_separators = { left = '', right = '' },
@@ -82,6 +82,7 @@ return {
             Lualine_get_wakatime,
             components.location,
             require 'user.plugins.lualine.fancy-lsp-servers',
+            require 'user.plugins.lualine.codecompanion',
             -- require 'user.plugins.lualine.yamlls',
             'searchcount',
           },

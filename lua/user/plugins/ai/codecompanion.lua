@@ -10,7 +10,7 @@ return {
       }
 
       vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
-        group = vim.api.nvim_create_augroup('minidiff', { clear = true }),
+        group = vim.api.nvim_create_augroup('carlos/minidiff', { clear = true }),
         pattern = '*',
         callback = function()
           -- improve diff color on dark themes

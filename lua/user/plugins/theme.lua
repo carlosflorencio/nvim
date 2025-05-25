@@ -9,7 +9,7 @@ return {
     end,
     config = function()
       vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
-        group = vim.api.nvim_create_augroup('custom_moonfly_theme', { clear = true }),
+        group = vim.api.nvim_create_augroup('carlos/moonfly_theme', { clear = true }),
         pattern = '*',
         callback = function()
           vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'NONE' })

@@ -1,3 +1,5 @@
+local methods = vim.lsp.protocol.Methods
+
 local function diagnostic_goto(next, severity)
   local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
   severity = severity and vim.diagnostic.severity[severity] or nil
@@ -10,7 +12,7 @@ end
 
 -- Attach LSP keymaps when a client attaches
 vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('user-lsp-attach', { clear = true }),
+  group = vim.api.nvim_create_augroup('carlos/user_lsp_attach', { clear = true }),
   callback = function(event)
     local client = vim.lsp.get_client_by_id(event.data.client_id)
 
@@ -62,20 +64,24 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('[w', diagnostic_goto(false, 'WARN'), 'Prev Warning')
 
     -- Highlight references under the cursor
-    if client and client.server_capabilities.documentHighlightProvider then
-      vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+    if client:supports_method(methods.textDocument_documentHighlight) then
+      local under_cursor_highlights_group = vim.api.nvim_create_augroup('carlos/cursor_highlights', { clear = false })
+      vim.api.nvim_create_autocmd({ 'CursorHold', 'InsertLeave' }, {
+        group = under_cursor_highlights_group,
+        desc = 'Highlight references under the cursor',
         buffer = event.buf,
         callback = vim.lsp.buf.document_highlight,
       })
-
-      vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+      vim.api.nvim_create_autocmd({ 'CursorMoved', 'InsertEnter', 'BufLeave' }, {
+        group = under_cursor_highlights_group,
+        desc = 'Clear highlight references',
         buffer = event.buf,
         callback = vim.lsp.buf.clear_references,
       })
     end
 
     -- Toggle Inlay Hints
-    if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+    if client:supports_method(methods.textDocument_inlayHint) and vim.lsp.inlay_hint then
       map('<leader>lh', function()
         ---@diagnostic disable-next-line: missing-parameter
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())

@@ -75,7 +75,7 @@ end
 
 local function setup()
   vim.api.nvim_create_autocmd('BufEnter', {
-    group = vim.api.nvim_create_augroup('custom_scratch_file', { clear = true }),
+    group = vim.api.nvim_create_augroup('carlos/scratch_file', { clear = true }),
     pattern = config.scratch_dir .. '*',
     callback = function(args)
       -- run SnipRun and restore cursor position

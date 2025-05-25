@@ -48,9 +48,10 @@ vim.opt.swapfile = false
 -- folds
 -- za toggle fold, zo open fold, zc close fold
 -- zM close all folds, zR open all folds
-vim.opt.foldmethod = 'indent'
-vim.opt.foldenable = false
+-- zx close all but current
 vim.opt.foldlevel = 99
+vim.opt.foldmethod = 'expr' -- Use Treesitter for folding
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- Auto formating options (o in a docblock adds * prefix)
 -- vim.opt.formatoptions = 'jrcqlo'
@@ -107,6 +108,7 @@ require('lazy').setup({
   { import = 'user.plugins' },
   { import = 'user.plugins.ai' },
 }, {
+  ui = { border = 'rounded' },
   change_detection = {
     -- automatically check for config file changes and reload the ui
     enabled = false,
@@ -114,18 +116,10 @@ require('lazy').setup({
   },
 })
 
--- Custom filetypes
-vim.filetype.add {
-  extension = {
-    vcl = 'c',
-    tftpl = 'c',
-    mathjs = 'mathjs',
-  },
-}
-
 require 'user.autocmds'
 require 'user.cmds'
 require 'user.keymaps'
 require 'user.keymaps-lsp'
+require 'user.filetypes'
 
 vim.cmd [[colorscheme moonfly]]
