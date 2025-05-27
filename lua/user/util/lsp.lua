@@ -1,7 +1,10 @@
 local M = {}
 
--- Function to get LSP errors and format them into a string
-M.get_lsp_errors = function(join)
+--- Gets LSP errors for the current buffer and formats them.
+---@param opts? { join?: boolean } Optional options table.
+---  - `join` (boolean, optional): If `false`, returns a table of error messages. Defaults to `true` (returns a single string with messages joined by newlines).
+---@return string | string[] A single string with all error messages joined by newlines (default), or a table of error message strings if `opts.join` is `false`.
+M.get_lsp_errors = function(opts)
   -- Get the current buffer number
   local bufnr = vim.api.nvim_get_current_buf()
 
@@ -36,11 +39,12 @@ M.get_lsp_errors = function(join)
     end
   end
 
-  if join == false then
-    -- If 'join' false, return the table of error messages
+  if opts and opts.join == false then
+    -- If 'opts.join' is explicitly false, return the table of error messages
     return error_messages
   end
 
+  -- By default, or if opts.join is not false, concatenate messages into a single string
   return table.concat(error_messages, '\n')
 end
 
