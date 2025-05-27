@@ -20,8 +20,8 @@ M.setup = function()
       local winid = vim.api.nvim_get_current_win()
       vim.api.nvim_win_set_width(winid, width)
 
-      vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', '<cmd>close<CR>', { noremap = true, silent = true })
-      vim.api.nvim_buf_set_keymap(term.bufnr, 'n', '<esc>', '<cmd>close<CR>', { noremap = true, silent = true })
+      vim.keymap.set('n', 'q', '<cmd>close<CR>', { buffer = term.bufnr, noremap = true, silent = true, desc = 'Aider: Close terminal' })
+      vim.keymap.set('n', '<esc>', '<cmd>close<CR>', { buffer = term.bufnr, noremap = true, silent = true, desc = 'Aider: Close terminal' })
     end,
   }
 
@@ -39,19 +39,19 @@ M.setup = function()
   -- toggle aider
   vim.keymap.set('n', '<leader>at', function()
     aider:toggle()
-  end, { noremap = true, silent = true })
+  end, { noremap = true, silent = true, desc = 'Aider: Toggle' })
 
   -- add file
   vim.keymap.set('n', '<leader>aa', function()
     local path = vim.fn.expand '%:p'
     aider:send('/add ' .. path)
-  end, { noremap = true, silent = true })
+  end, { noremap = true, silent = true, desc = 'Aider: Add current file' })
 
   -- drop file
   vim.keymap.set('n', '<leader>ad', function()
     local path = vim.fn.expand '%:p'
     aider:send('/drop ' .. path)
-  end, { noremap = true, silent = true })
+  end, { noremap = true, silent = true, desc = 'Aider: Drop current file' })
 
   vim.keymap.set('n', '<leader>ae', function()
     local errors = require('user.util.lsp').get_lsp_errors()
@@ -59,13 +59,13 @@ M.setup = function()
     vim.fn.setreg('*', 'Fix these LSP Errors:\n' .. errors)
 
     aider:send '/paste'
-  end, { noremap = true, silent = true })
+  end, { noremap = true, silent = true, desc = 'Aider: Paste LSP errors' })
 
   -- visual mode
   vim.keymap.set('v', '<leader>a', function()
     local trim_spaces = true
     require('toggleterm').send_lines_to_terminal('visual_lines', trim_spaces, { args = 1 })
-  end, { noremap = true, silent = true })
+  end, { noremap = true, silent = true, desc = 'Aider: Send visual selection' })
 end
 
 return M
