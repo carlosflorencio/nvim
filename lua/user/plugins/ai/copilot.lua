@@ -1,7 +1,7 @@
 return {
   {
     'github/copilot.vim',
-    enabled = true,
+    enabled = false,
     config = function()
       vim.g.copilot_no_maps = true
       -- issue when expanding a comment inside a docblock
@@ -28,142 +28,9 @@ return {
     end,
   },
   {
-    'CopilotC-Nvim/CopilotChat.nvim',
-    enabled = false,
-    branch = 'canary',
-    dependencies = {
-      { 'zbirenbaum/copilot.lua' }, -- or github/copilot.vim
-      { 'nvim-lua/plenary.nvim' }, -- for curl, log wrapper
-    },
-    config = function()
-      require('CopilotChat').setup {
-        debug = false, -- Enable debugging
-        show_help = false,
-        auto_follow_cursor = false, -- Don't follow the cursor after getting response
-        -- window = {
-        --   layout = 'float',
-        --   width = 0.8,
-        --   height = 0.8,
-        -- },
-        window = {
-          layout = 'vertical',
-          width = 0.2,
-          -- height = 0.8,
-        },
-        mappings = {
-          submit_prompt = {
-            normal = '<CR>',
-            insert = '<CR>',
-          },
-          -- cmp integration will be used
-          complete = {
-            insert = '',
-          },
-          reset = {
-            normal = '<C-l>',
-            insert = '<M-l>',
-          },
-        },
-      }
-
-      require('CopilotChat.integrations.cmp').setup()
-
-      vim.api.nvim_create_autocmd('BufEnter', {
-        pattern = 'copilot-chat',
-        callback = function()
-          vim.wo.number = false
-          vim.wo.relativenumber = false
-        end,
-      })
-    end,
-    keys = {
-      {
-        '<leader>aa',
-        function()
-          if package.loaded['zen-mode'] then
-            require('zen-mode').close()
-          end
-
-          local input = vim.fn.input 'Ask Copilot: '
-          if input ~= nil and input ~= '' then
-            require('CopilotChat').ask(input)
-          end
-        end,
-        desc = 'CopilotChat - Quick chat',
-        mode = { 'n', 'v' },
-      },
-      {
-        '<leader>A',
-        function()
-          if package.loaded['zen-mode'] then
-            require('zen-mode').close()
-          end
-
-          local input = vim.fn.input 'Ask Copilot (buffer): '
-          if input ~= nil and input ~= '' then
-            require('CopilotChat').ask(input, { selection = require('CopilotChat.select').buffer })
-          end
-        end,
-        desc = 'CopilotChat - Quick chat',
-        mode = { 'n', 'v' },
-      },
-      {
-        '<leader>b',
-        function()
-          require('CopilotChat').toggle {}
-        end,
-        desc = 'CopilotChat - Toggle',
-        mode = { 'n', 'v' },
-      },
-      {
-        '<leader>aD',
-        '<cmd>CopilotChatFixDiagnostic<cr>',
-        desc = 'CopilotChat - Fix Diagnostics',
-        mode = { 'n', 'v' },
-      },
-      -- Show prompts actions with telescope
-      {
-        '<leader>ac',
-        function()
-          local actions = require 'CopilotChat.actions'
-          require('CopilotChat.integrations.telescope').pick(actions.prompt_actions(), {
-            initial_mode = 'normal',
-          })
-        end,
-        desc = 'CopilotChat - Prompt actions',
-        mode = { 'n', 'v' },
-      },
-      {
-        '<leader>am',
-        '<cmd>CopilotChatCommitStaged<cr>',
-        desc = 'CopilotChat - Generate commit message for staged changes',
-      },
-      {
-        '<leader>ad',
-        '<cmd>CopilotChatDocs<cr>',
-        desc = 'CopilotChat - Generate Docstring',
-        mode = { 'v' },
-      },
-      {
-        '<leader>at',
-        '<cmd>CopilotChatTests<cr>',
-        desc = 'CopilotChat - Generate Tests',
-        mode = { 'v', 'n' },
-      },
-      {
-        '<leader>ao',
-        '<cmd>CopilotChatOptimize<cr>',
-        desc = 'CopilotChat - Optmize the selected code',
-        mode = { 'v' },
-      },
-    },
-  },
-
-  {
-    -- copilot bin outdated
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
-    enabled = false,
+    enabled = true,
     event = 'InsertEnter',
     opts = {
       panel = {
@@ -196,7 +63,7 @@ return {
       },
       filetypes = {
         yaml = false,
-        markdown = false,
+        markdown = true,
         help = false,
         gitcommit = false,
         gitrebase = false,

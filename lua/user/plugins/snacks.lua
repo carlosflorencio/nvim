@@ -4,12 +4,25 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-    -- bigfile = { enabled = true },
-    -- dashboard = { enabled = true },
-    -- indent = { enabled = true },
+    words = {
+      -- highlight lsp words ocurrences
+      enabled = true,
+    },
+    indent = {
+      enabled = true,
+      indent = {
+        only_scope = true,
+      },
+      chunk = {
+        enabled = true,
+        char = {
+          arrow = '─',
+        },
+      },
+      animate = {
+        enabled = false,
+      },
+    },
     -- input = { enabled = true },
     -- notifier = { enabled = true },
     -- quickfile = { enabled = true },
@@ -58,6 +71,9 @@ return {
             height = 1,
             -- min_height = 10,
           },
+        },
+        explorer = {
+          auto_close = true,
         },
       },
       icons = {
@@ -195,6 +211,27 @@ return {
         Snacks.picker.colorschemes()
       end,
       desc = 'Picker Colorschemes',
+    },
+    {
+      '<leader>gd',
+      function()
+        Snacks.git.blame_line()
+      end,
+      desc = 'Git blame line',
+    },
+    {
+      ']]',
+      function()
+        Snacks.words.jump(vim.v.count1)
+      end,
+      desc = 'Next LSP Reference',
+    },
+    {
+      '[[',
+      function()
+        Snacks.words.jump(-vim.v.count1)
+      end,
+      desc = 'Prev LSP Reference',
     },
   },
   init = function()

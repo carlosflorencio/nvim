@@ -236,6 +236,14 @@ return {
 
       ---@diagnostic disable-next-line: missing-fields
       glance.setup {
+        theme = {
+          enable = true, -- Generate colors based on current colorscheme
+          mode = 'auto', -- 'brighten'|'darken'|'auto', 'auto' will set mode based on the brightness of your colorscheme
+        },
+
+        border = {
+          enable = false,
+        },
 
         -- always render above the current window
         detached = function()

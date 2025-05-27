@@ -2,6 +2,7 @@ return {
   {
     'echasnovski/mini.diff',
     lazy = false,
+    enabled = false,
     config = function()
       local diff = require 'mini.diff'
       diff.setup {
@@ -82,7 +83,7 @@ return {
         },
         display = {
           diff = {
-            provider = 'mini_diff',
+            -- provider = 'mini_diff',
           },
           chat = {
             window = {

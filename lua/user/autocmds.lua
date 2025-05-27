@@ -1,9 +1,18 @@
 -- Disable new line comment
 vim.api.nvim_create_autocmd('BufEnter', {
+  group = vim.api.nvim_create_augroup('carlos/disable_line_comment', { clear = true }),
   callback = function()
     vim.cmd [[setlocal formatoptions-=o]]
   end,
   desc = 'Disable New Line Comment',
+})
+
+-- Auto reload buffer when file changes on disk
+-- vim.o.autoread = true (default)
+vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter' }, {
+  group = vim.api.nvim_create_augroup('carlos/autoreload', { clear = true }),
+  command = "if mode() != 'c' | checktime | endif",
+  pattern = '*',
 })
 
 -- go to last loc when opening a buffer
@@ -64,12 +73,16 @@ vim.on_key(function(char)
   end
 end, vim.api.nvim_create_namespace 'auto_hlsearch')
 
--- Prevent opening splits/windows and having the buffer scroleld to the right
+-- Prevent opening splits/windows and having the buffer scrolled to the right
 vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter' }, {
   group = vim.api.nvim_create_augroup('carlos/buf_left_align', { clear = true }),
-
   pattern = '*',
   callback = function()
+    -- Ignore terminal buffers
+    if vim.bo.buftype == 'terminal' then
+      return
+    end
+
     -- Save the current cursor position
     local cursor_pos = vim.api.nvim_win_get_cursor(0)
 

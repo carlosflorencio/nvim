@@ -13,7 +13,20 @@ return {
         ['<C-ESC>'] = { 'show', 'show_documentation', 'hide_documentation' },
         -- decision
         ['<CR>'] = { 'accept', 'fallback' },
-        ['<Tab>'] = { 'snippet_forward', 'fallback' },
+        -- ['<Tab>'] = { 'accept', 'snippet_forward', 'fallback' },
+        ['<Tab>'] = {
+          function(cmp)
+            if require('user.util.ai').has_suggestions() then
+              require('user.util.ai').accept()
+              return true -- doesn't run the next command
+            end
+
+            return -- runs the next command
+          end,
+          'accept',
+          'snippet_forward',
+          'fallback',
+        },
         ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
         ['<C-e>'] = { 'hide' },
         -- docs

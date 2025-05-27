@@ -12,6 +12,10 @@ return {
       autowidth = {
         -- winwidth = 30,
       },
+      ignore = { --			  |windows.ignore|
+        buftype = { 'quickfix', 'terminal' },
+        filetype = { 'NvimTree', 'neo-tree', 'undotree', 'gundo' },
+      },
     },
     keys = {
       { '<leader>sm', '<cmd>WindowsMaximize<cr>', desc = 'Maximize Window' },
