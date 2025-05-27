@@ -31,7 +31,7 @@ M.get_lsp_errors = function(opts)
       local error_line = vim.api.nvim_buf_get_lines(bufnr, diagnostic.lnum, diagnostic.lnum + 1, false)[1]
 
       local message = string.format(
-        'Line %d: %s (Code: %s)',
+        'Line %d: %s \nCode: %s',
         diagnostic.lnum + 1, -- Convert 0-based line number to 1-based
         diagnostic.message,
         error_line

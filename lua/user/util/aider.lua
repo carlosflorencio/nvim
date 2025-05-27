@@ -36,6 +36,21 @@ M.setup = function()
     desc = 'Aider local dir',
   })
 
+  vim.api.nvim_create_user_command('AiderWatch', function()
+    aider.cmd = 'pwd;aider --watch-files --model openrouter/anthropic/claude-sonnet-4'
+    aider:toggle()
+  end, {
+    desc = 'Aider watch files',
+  })
+
+  vim.keymap.set('n', '<leader>aw', function()
+    vim.cmd 'AiderWatch'
+  end, { noremap = true, silent = true, desc = 'Aider: Watch Files' })
+
+  vim.keymap.set('n', '<leader>aq', function()
+    aider:shutdown()
+  end, { noremap = true, silent = true, desc = 'Aider: Terminate' })
+
   -- toggle aider
   vim.keymap.set('n', '<leader>at', function()
     aider:toggle()
@@ -44,22 +59,38 @@ M.setup = function()
   -- add file
   vim.keymap.set('n', '<leader>aa', function()
     local path = vim.fn.expand '%:p'
-    aider:send('/add ' .. path)
+    aider:send('/add ' .. path, true)
   end, { noremap = true, silent = true, desc = 'Aider: Add current file' })
 
   -- drop file
   vim.keymap.set('n', '<leader>ad', function()
     local path = vim.fn.expand '%:p'
-    aider:send('/drop ' .. path)
+    aider:send('/drop ' .. path, true)
   end, { noremap = true, silent = true, desc = 'Aider: Drop current file' })
 
+  -- LSP Errors
   vim.keymap.set('n', '<leader>ae', function()
     local errors = require('user.util.lsp').get_lsp_errors()
 
     vim.fn.setreg('*', 'Fix these LSP Errors:\n' .. errors)
 
-    aider:send '/paste'
+    aider:send('/paste', true)
   end, { noremap = true, silent = true, desc = 'Aider: Paste LSP errors' })
+
+  vim.keymap.set('n', '<leader>aE', function()
+    local errors = require('user.util.lsp').get_lsp_errors()
+    vim.fn.setreg('*', 'Fix these LSP Errors:\n' .. errors)
+
+    local path = vim.fn.expand '%:p'
+    aider:send('/add ' .. path)
+
+    aider:send('/paste', true)
+  end, { noremap = true, silent = true, desc = 'Aider: Add file and fix lsp errors' })
+
+  -- Reset
+  vim.keymap.set('n', '<leader>ar', function()
+    aider:send('/reset', true)
+  end, { noremap = true, silent = true, desc = 'Aider: Reset' })
 
   -- visual mode
   vim.keymap.set('v', '<leader>a', function()
