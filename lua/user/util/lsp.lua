@@ -1,9 +1,10 @@
 local M = {}
 
 --- Gets LSP errors for the current buffer and formats them.
----@param opts? { join?: boolean } Optional options table.
+---@param opts? { join?: boolean, join_char?: string } Optional options table.
 ---  - `join` (boolean, optional): If `false`, returns a table of error messages. Defaults to `true` (returns a single string with messages joined by newlines).
----@return string | string[] A single string with all error messages joined by newlines (default), or a table of error message strings if `opts.join` is `false`.
+---  - `join_char` (string, optional): The character used to join error messages when `join` is not `false`. Defaults to `\n` (newline).
+---@return string | string[] A single string with all error messages joined by the specified `join_char` (defaulting to newlines), or a table of error message strings if `opts.join` is `false`.
 M.get_lsp_errors = function(opts)
   -- Get the current buffer number
   local bufnr = vim.api.nvim_get_current_buf()
@@ -45,7 +46,11 @@ M.get_lsp_errors = function(opts)
   end
 
   -- By default, or if opts.join is not false, concatenate messages into a single string
-  return table.concat(error_messages, '\n')
+  local join_separator = '\n' -- Default separator
+  if opts and opts.join_char ~= nil then -- Check if join_char is explicitly provided
+    join_separator = opts.join_char
+  end
+  return table.concat(error_messages, join_separator)
 end
 
 return M
