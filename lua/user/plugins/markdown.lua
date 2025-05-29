@@ -69,6 +69,8 @@ return {
 
   {
     'gaoDean/autolist.nvim',
+    -- mess up with go while dd (deleting line)
+    enabled = false,
     ft = {
       'markdown',
       'text',

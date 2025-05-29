@@ -37,7 +37,7 @@ M.setup = function()
   })
 
   vim.api.nvim_create_user_command('AiderWatch', function()
-    aider.cmd = 'pwd;aider --watch-files --model openrouter/anthropic/claude-sonnet-4'
+    aider.cmd = 'pwd;aider --watch-files --model sonnet'
     aider:toggle()
   end, {
     desc = 'Aider watch files',

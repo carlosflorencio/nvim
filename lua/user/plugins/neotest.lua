@@ -25,7 +25,7 @@ return {
         desc = 'Run nearest test under cursor',
       },
       {
-        ',tt',
+        ',tf',
         function()
           require('neotest').run.run(vim.fn.expand '%')
         end,
