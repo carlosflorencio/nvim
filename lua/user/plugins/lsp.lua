@@ -22,7 +22,7 @@ return {
         'kcl',
         'yamlls',
         'jsonls',
-        -- 'ts_ls',
+        'ts_ls', -- required by typescript-tools
 
         -- personal notes lsp
         -- auto completion links [[]]
@@ -301,7 +301,7 @@ return {
       }
     end,
     keys = {
-      { '<leader>fs', '<cmd>Namu symbols<cr>', desc = 'Jump to LSP symbol' },
+      { '<leader>fs', '<cmd>Namu symbols<cr>',   desc = 'Jump to LSP symbol' },
       { '<leader>fS', '<cmd>Namu workspace<cr>', desc = 'Jump to LSP workspace symbols' },
     },
   },
@@ -321,7 +321,7 @@ return {
         -- See the configuration section for more details
         -- Load luvit types when the `vim.uv` word is found
         { path = 'luvit-meta/library', words = { 'vim%.uv' } },
-        { path = 'snacks.nvim', words = { 'Snacks' } },
+        { path = 'snacks.nvim',        words = { 'Snacks' } },
       },
     },
   },
