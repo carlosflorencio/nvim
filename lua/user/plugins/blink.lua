@@ -1,6 +1,11 @@
 return {
   {
     'saghen/blink.cmp',
+    -- needed because of samiulsami/cmp-go-deep
+    dependencies = {
+      { "samiulsami/cmp-go-deep", dependencies = { "kkharji/sqlite.lua" } },
+      { "saghen/blink.compat" },
+    },
     -- use a release tag to download pre-built binaries
     version = '1.*',
     ---@module 'blink.cmp'
@@ -73,7 +78,19 @@ return {
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'go_deep' },
+        providers = {
+          go_deep = {
+            name = "go_deep",
+            module = "blink.compat.source",
+            min_keyword_length = 3,
+            max_items = 5,
+            ---@module "cmp_go_deep"
+            ---@type cmp_go_deep.Options
+            opts = {
+            },
+          },
+        },
       },
 
       -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
