@@ -18,7 +18,7 @@ local function update_wakatime()
   local stdout = uv.new_pipe()
   local stderr = uv.new_pipe()
 
-  local _, _ = uv.spawn('/opt/homebrew/bin/wakatime-cli', {
+  local handle, _ = uv.spawn('/opt/homebrew/bin/wakatime-cli', {
     args = { '--today' },
     stdio = { stdin, stdout, stderr },
   }, function() -- on exit
@@ -26,6 +26,14 @@ local function update_wakatime()
     stdout:close()
     stderr:close()
   end)
+
+  if not handle then
+    print('Failed to run wakatime-cli')
+    stdin:close()
+    stdout:close()
+    stderr:close()
+    return
+  end
 
   uv.read_start(stdout, function(err, data)
     assert(not err, err)
