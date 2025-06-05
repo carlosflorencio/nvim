@@ -57,6 +57,7 @@ return {
           lualine_b = { components.branch },
           lualine_c = {
             components.filetype,
+            "grapple",
             components.diagnostics,
             require 'user.plugins.lualine.diagnostic-line',
             {

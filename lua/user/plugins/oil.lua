@@ -70,13 +70,23 @@ return {
             -- require('telescope.builtin').live_grep { cwd = path }
             Snacks.picker.grep { cwd = path }
           end,
+          ['<leader>m'] = function()
+            local Oil = require("oil")
+            local filename = Oil.get_cursor_entry().name
+            local directory = Oil.get_current_dir()
+
+            local Grapple = require("grapple")
+            local Path = require("grapple.path")
+            Grapple.toggle({ path = Path.join(directory, filename) })
+            print(filename .. " Added to Grapple")
+          end,
         },
       }
     end,
     -- dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
       { '<leader>;', '<cmd>Oil<cr>', desc = 'Oil' },
-      { '<c-;>', '<cmd>Oil<cr>', desc = 'Oil' },
+      { '<c-;>',     '<cmd>Oil<cr>', desc = 'Oil' },
     },
   },
 

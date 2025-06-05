@@ -163,9 +163,9 @@ return {
     keys = {
       -- imply-local allows to use LSP on the right side
       { ',HH', '<cmd>DiffviewOpen origin/HEAD...HEAD --imply-local<cr>', desc = 'Git compare against master (review)', mode = 'n' },
-      { ',hh', '<cmd>DiffviewFileHistory --follow %<cr>', desc = 'Git File History', mode = 'n' },
-      { ',hh', "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>", desc = 'Git History', mode = 'v' },
-      { ',hc', '<cmd>DiffviewClose<cr>', desc = 'Diffview Close' },
+      { ',hh', '<cmd>DiffviewFileHistory --follow %<cr>',                desc = 'Git File History',                    mode = 'n' },
+      { ',hh', "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>",        desc = 'Git History',                         mode = 'v' },
+      { ',hc', '<cmd>DiffviewClose<cr>',                                 desc = 'Diffview Close' },
     },
   },
 
