@@ -7,6 +7,7 @@ vim.filetype.add {
     vcl = 'c',
     tftpl = 'c',
     mathjs = 'mathjs',
+    plist = 'xml',
   },
   pattern = {
     ['tsconfig*.json'] = 'jsonc',
