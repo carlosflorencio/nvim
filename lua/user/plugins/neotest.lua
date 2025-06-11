@@ -6,13 +6,17 @@ return {
       'nvim-lua/plenary.nvim',
       'antoinemadec/FixCursorHold.nvim',
       'nvim-treesitter/nvim-treesitter',
-      { 'fredrikaverpil/neotest-golang', version = '*' }, -- Installation
+      {
+        'fredrikaverpil/neotest-golang',
+        version = '*',
+        opts = {}
+      },
     },
     config = function()
       local neotest_golang_opts = {} -- Specify custom configuration
       require('neotest').setup {
         adapters = {
-          require 'neotest-golang'(neotest_golang_opts), -- Registration
+          require 'neotest-golang' (neotest_golang_opts), -- Registration
         },
       }
     end,
@@ -40,9 +44,9 @@ return {
         end,
         desc = 'Debug nearest test under cursor',
       },
-      { ',to', '<cmd>lua require("neotest").output.open()<cr>', desc = 'Test Output' },
-      { ',tp', '<cmd>lua require("neotest").output_panel.toggle()<cr>', desc = 'Test Output Panel' },
-      { ',ts', '<cmd>lua require("neotest").summary.toggle()<cr>', desc = 'Toggle Test Summary' },
+      { ',to', '<cmd>lua require("neotest").output.open()<cr>',            desc = 'Test Output' },
+      { ',tp', '<cmd>lua require("neotest").output_panel.toggle()<cr>',    desc = 'Test Output Panel' },
+      { ',ts', '<cmd>lua require("neotest").summary.toggle()<cr>',         desc = 'Toggle Test Summary' },
       { ',ta', '<cmd>lua require("neotest").run.run(vim.fn.getcwd())<cr>', desc = 'Run tests in current directory' },
     },
   },
