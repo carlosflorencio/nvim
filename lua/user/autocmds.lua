@@ -74,25 +74,25 @@ vim.on_key(function(char)
 end, vim.api.nvim_create_namespace 'auto_hlsearch')
 
 -- Prevent opening splits/windows and having the buffer scrolled to the right
-vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter' }, {
-  group = vim.api.nvim_create_augroup('carlos/buf_left_align', { clear = true }),
-  pattern = '*',
-  callback = function()
-    -- Ignore terminal buffers
-    if vim.bo.buftype == 'terminal' then
-      return
-    end
+-- vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter' }, {
+--   group = vim.api.nvim_create_augroup('carlos/buf_left_align', { clear = true }),
+--   pattern = '*',
+--   callback = function()
+--     -- Ignore terminal buffers
+--     if vim.bo.buftype == 'terminal' then
+--       return
+--     end
 
-    -- Save the current cursor position
-    local cursor_pos = vim.api.nvim_win_get_cursor(0)
+--     -- Save the current cursor position
+--     local cursor_pos = vim.api.nvim_win_get_cursor(0)
 
-    -- Move to start of line and adjust view
-    vim.cmd 'normal! 0zv'
+--     -- Move to start of line and adjust view
+--     vim.cmd 'normal! 0zv'
 
-    -- Restore the original cursor position
-    vim.api.nvim_win_set_cursor(0, cursor_pos)
-  end,
-})
+--     -- Restore the original cursor position
+--     vim.api.nvim_win_set_cursor(0, cursor_pos)
+--   end,
+-- })
 
 -- Close certain filetypes with <q>
 vim.api.nvim_create_autocmd('FileType', {

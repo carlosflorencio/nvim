@@ -56,8 +56,8 @@ return {
               box = 'vertical',
               border = 'rounded',
               title = '{title} {live} {flags}',
-              { win = 'input', height = 1, border = 'bottom' },
-              { win = 'list', border = 'none' },
+              { win = 'input', height = 1,     border = 'bottom' },
+              { win = 'list',  border = 'none' },
             },
             { win = 'preview', title = '{preview}', border = 'rounded', width = 0.4 },
           },
@@ -102,6 +102,7 @@ return {
           truncate = 200,
         },
       },
+      hidden = true,
     },
     styles = {
       lazygit = {
