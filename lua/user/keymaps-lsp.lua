@@ -21,9 +21,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     if client ~= nil and client.name == 'typescript-tools' then
-      vim.keymap.set('n', '<leader>oa', '<cmd>TSToolsAddMissingImports<CR>', { buffer = event.buf, desc = 'Add Missing Imports' })
-      vim.keymap.set('n', '<leader>oi', '<cmd>TSToolsOrganizeImports<CR>', { buffer = event.buf, desc = 'Organize Imports' })
-      vim.keymap.set('n', '<leader>ou', '<cmd>TSToolsRemoveUnusedImports<CR>', { buffer = event.buf, desc = 'Remove Unused Imports/Variables' })
+      vim.keymap.set('n', '<leader>oa', '<cmd>TSToolsAddMissingImports<CR>',
+        { buffer = event.buf, desc = 'Add Missing Imports' })
+      vim.keymap.set('n', '<leader>oi', '<cmd>TSToolsOrganizeImports<CR>',
+        { buffer = event.buf, desc = 'Organize Imports' })
+      vim.keymap.set('n', '<leader>ou', '<cmd>TSToolsRemoveUnusedImports<CR>',
+        { buffer = event.buf, desc = 'Remove Unused Imports/Variables' })
     end
 
     local map = function(keys, func, desc)
@@ -39,6 +42,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- map('<leader>lS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
     map('<leader>la', vim.lsp.buf.code_action, 'Code Action')
     map('<leader>ld', vim.diagnostic.open_float, 'Code Action')
+    map('<leader>le', vim.diagnostic.setqflist, 'All errors in quickfix list')
     map('<leader>li', '<cmd>LspInfo<cr>', 'LspInfo')
     map('K', vim.lsp.buf.hover, 'Hover Documentation')
 
