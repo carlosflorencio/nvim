@@ -143,11 +143,18 @@ return {
       desc = 'Find text',
     },
     {
-      '<leader>fe',
+      '<leader>fr',
       function()
         Snacks.picker.recent()
       end,
       desc = 'Find recent',
+    },
+    {
+      '<leader>fe',
+      function()
+        Snacks.picker.diagnostics()
+      end,
+      desc = 'Find diagnostics errors',
     },
     {
       '<leader>j',
