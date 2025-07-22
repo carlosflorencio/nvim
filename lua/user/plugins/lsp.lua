@@ -43,7 +43,7 @@ return {
       local capabilities = {
         workspace = {
           didChangeWatchedFiles = {
-            dynamicRegistration = true,
+            dynamicRegistration = false,
           },
         },
       }
