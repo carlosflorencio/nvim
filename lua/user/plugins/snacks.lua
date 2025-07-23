@@ -152,7 +152,12 @@ return {
     {
       '<leader>fe',
       function()
-        Snacks.picker.diagnostics()
+        Snacks.picker.diagnostics({
+          -- start in normal mode
+          on_show = function()
+            vim.cmd.stopinsert()
+          end,
+        })
       end,
       desc = 'Find diagnostics errors',
     },
@@ -160,6 +165,7 @@ return {
       '<leader>j',
       function()
         Snacks.picker.buffers {
+          -- start in normal mode
           on_show = function()
             vim.cmd.stopinsert()
           end,
