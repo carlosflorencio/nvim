@@ -1,5 +1,5 @@
 ---@type vim.lsp.Config
 return {
-  -- root_markers = { '.test' },
-  root_dir = require('lspconfig').util.root_pattern('go.mod'),
+  -- root_markers = { 'go.mod' },
+  -- root_dir = require('lspconfig').util.root_pattern('go.mod'),
 }
