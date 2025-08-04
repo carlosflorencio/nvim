@@ -60,6 +60,8 @@ return {
     'notjedi/nvim-rooter.lua',
     priority = 500,
     enabled = true,
-    opts = {},
+    opts = {
+      rooter_patterns = { 'go.work', 'go.mod', '.git', '.hg', '.svn' },
+    },
   },
 }
