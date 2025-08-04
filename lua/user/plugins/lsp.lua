@@ -35,8 +35,7 @@ return {
       },
     },
     config = function(_, opts)
-      require('mason').setup()
-      require('mason-lspconfig').setup(opts)
+      -- require('mason').setup()
 
       -- LSP Capabilities
       -- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
@@ -60,6 +59,15 @@ return {
       vim.lsp.config('*', {
         capabilities = capabilities,
       })
+
+      print(vim.o.runtimepath)
+
+      require('mason').setup()
+      require('mason-lspconfig').setup(opts)
+
+      -- vim.lsp.config('golangci_lint_ls', {
+      --   root_markers = { 'go.mod' },
+      -- })
 
       -- diagnostics
       local icons = require('user.icons').lsp_diagnostic_icons
