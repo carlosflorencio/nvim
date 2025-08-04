@@ -22,7 +22,7 @@ return {
         'kcl',
         'yamlls',
         'jsonls',
-        'golangci_lint_ls',
+        -- 'golangci_lint_ls',
         'ts_ls', -- required by typescript-tools
 
         -- personal notes lsp
