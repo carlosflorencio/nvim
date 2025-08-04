@@ -60,8 +60,6 @@ return {
         capabilities = capabilities,
       })
 
-      print(vim.o.runtimepath)
-
       require('mason').setup()
       require('mason-lspconfig').setup(opts)
 
