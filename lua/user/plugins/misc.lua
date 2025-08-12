@@ -61,7 +61,7 @@ return {
     priority = 500,
     enabled = true,
     opts = {
-      rooter_patterns = { 'go.work', 'go.mod', '.git', '.hg', '.svn' },
+      -- rooter_patterns = { 'go.work', 'go.mod', '.git', '.hg', '.svn' },
     },
   },
 }
