@@ -10,18 +10,23 @@ function M:update_status()
   local buf_clients = vim.lsp.get_clients()
   local null_ls_installed, null_ls = pcall(require, 'null-ls')
   local buf_client_names = {}
+  local seen = {}
+
   for _, client in pairs(buf_clients) do
     if client.name == 'null-ls' then
       if null_ls_installed then
         for _, source in ipairs(null_ls.get_source { filetype = vim.bo.filetype }) do
-          table.insert(buf_client_names, source.name)
+          if not seen[source.name] then
+            table.insert(buf_client_names, source.name)
+            seen[source.name] = true
+          end
         end
       end
     else
-      if client.name == 'GitHub Copilot' then
-        table.insert(buf_client_names, 'Copilot')
-      else
-        table.insert(buf_client_names, client.name)
+      local name = client.name == 'GitHub Copilot' and 'Copilot' or client.name
+      if not seen[name] then
+        table.insert(buf_client_names, name)
+        seen[name] = true
       end
     end
   end
