@@ -9,16 +9,16 @@ return {
     end,
     init = function()
       local function get_mise_node_path()
-        local handle = io.popen 'mise where node@22'
+        local handle = io.popen 'mise where node@latest'
         if not handle then
-          return nil, "Failed to execute 'mise where node@22'"
+          return nil, "Failed to execute 'mise where node@latest'"
         end
 
         local path = handle:read('*a'):match '^%s*(.-)%s*$' -- Read output and trim whitespace
         handle:close()
 
         if not path or path == '' then
-          return nil, 'No path found for node@22'
+          return nil, 'No path found for node@latest'
         end
 
         return path, nil
@@ -29,10 +29,30 @@ return {
   },
   {
     'zbirenbaum/copilot.lua',
+    init = function()
+      local function get_mise_node_path()
+        local handle = io.popen 'mise where node@latest'
+        if not handle then
+          return nil, "Failed to execute 'mise where node@latest'"
+        end
+
+        local path = handle:read('*a'):match '^%s*(.-)%s*$' -- Read output and trim whitespace
+        handle:close()
+
+        if not path or path == '' then
+          return nil, 'No path found for node@latest'
+        end
+
+        return path, nil
+      end
+
+      vim.g.copilot_node_command = get_mise_node_path() .. '/bin/node'
+    end,
     cmd = 'Copilot',
     enabled = true,
     event = 'InsertEnter',
     opts = {
+      copilot_node_command = vim.g.copilot_node_command, -- Set to the path of your Node.js executable
       panel = {
         enabled = true,
         auto_refresh = true,
