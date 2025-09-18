@@ -8,7 +8,7 @@ return {
     -- `opencode.nvim` passes options via a global variable instead of `setup()` for faster startup
     ---@type opencode.Opts
     vim.g.opencode_opts = {
-      -- Your configuration, if any — see `lua/opencode/config.lua`
+      model = 'github-copilot/gpt-4.1',
     }
 
     -- Required for `opts.auto_reload`
@@ -25,15 +25,26 @@ return {
       { desc = 'New opencode session' })
     vim.keymap.set('n', '<leader>ay', function() require('opencode').command('messages_copy') end,
       { desc = 'Copy last opencode response' })
-    vim.keymap.set('n', '<S-C-u>', function() require('opencode').command('messages_half_page_up') end,
+    vim.keymap.set('n', '<c-u>', function() require('opencode').command('messages_half_page_up') end,
       { desc = 'Messages half page up' })
-    vim.keymap.set('n', '<S-C-d>', function() require('opencode').command('messages_half_page_down') end,
+    vim.keymap.set('n', '<c-d>', function() require('opencode').command('messages_half_page_down') end,
       { desc = 'Messages half page down' })
     vim.keymap.set({ 'n', 'v' }, '<leader>as', function() require('opencode').select() end,
       { desc = 'Select opencode prompt' })
 
-    -- Example: keymap for custom prompt
-    -- vim.keymap.set('n', '<leader>oe', function() require('opencode').prompt('Explain @cursor and its context') end, { desc = 'Explain this code' })
+    vim.api.nvim_create_autocmd('FileType', {
+      group = vim.api.nvim_create_augroup('carlos/opencode', { clear = true }),
+      pattern = { 'opencode_terminal' },
+      callback = function()
+        print('Setting up opencode_terminal keymaps')
+        vim.keymap.set('n', '<c-u>', function() require('opencode').command('messages_half_page_up') end,
+          { desc = 'Messages half page up' })
+        vim.keymap.set('n', '<c-d>', function() require('opencode').command('messages_half_page_down') end,
+          { desc = 'Messages half page down' })
+      end,
+    })
+
+
 
     -- Add keymap group if using `which-key.nvim`
     require('which-key').add({
