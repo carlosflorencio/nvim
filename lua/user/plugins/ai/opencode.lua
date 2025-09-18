@@ -2,7 +2,7 @@ return {
   'NickvanDyke/opencode.nvim',
   dependencies = {
     -- Recommended for better prompt input, and required to use `opencode.nvim`'s embedded terminal — otherwise optional
-    { 'folke/snacks.nvim', opts = { input = { enabled = true } } },
+    -- { 'folke/snacks.nvim', opts = { input = { enabled = true } } },
   },
   config = function()
     -- `opencode.nvim` passes options via a global variable instead of `setup()` for faster startup
@@ -25,26 +25,20 @@ return {
       { desc = 'New opencode session' })
     vim.keymap.set('n', '<leader>ay', function() require('opencode').command('messages_copy') end,
       { desc = 'Copy last opencode response' })
-    vim.keymap.set('n', '<c-u>', function() require('opencode').command('messages_half_page_up') end,
-      { desc = 'Messages half page up' })
-    vim.keymap.set('n', '<c-d>', function() require('opencode').command('messages_half_page_down') end,
-      { desc = 'Messages half page down' })
     vim.keymap.set({ 'n', 'v' }, '<leader>as', function() require('opencode').select() end,
       { desc = 'Select opencode prompt' })
 
     vim.api.nvim_create_autocmd('FileType', {
       group = vim.api.nvim_create_augroup('carlos/opencode', { clear = true }),
       pattern = { 'opencode_terminal' },
-      callback = function()
-        print('Setting up opencode_terminal keymaps')
+      callback = function(args)
+        local bufnr = args.buf
         vim.keymap.set('n', '<c-u>', function() require('opencode').command('messages_half_page_up') end,
-          { desc = 'Messages half page up' })
+          { desc = 'Messages half page up', buffer = bufnr })
         vim.keymap.set('n', '<c-d>', function() require('opencode').command('messages_half_page_down') end,
-          { desc = 'Messages half page down' })
+          { desc = 'Messages half page down', buffer = bufnr })
       end,
     })
-
-
 
     -- Add keymap group if using `which-key.nvim`
     require('which-key').add({
