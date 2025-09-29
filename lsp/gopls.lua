@@ -10,7 +10,8 @@ return {
   },
   settings = {
     gopls = {
-      gofumpt = true
+      gofumpt = true,
+      buildFlags = { "-tags=mage,wireinject,integration" },
     }
   },
   root_markers = { 'go.work', 'go.mod', '.git' },
