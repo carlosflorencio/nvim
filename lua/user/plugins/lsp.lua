@@ -61,6 +61,10 @@ return {
         capabilities = capabilities,
       })
 
+      vim.lsp.config('kcl', {
+        root_markers = { 'kcl.mod' },
+      })
+
       -- diagnostics
       local icons = require('user.icons').lsp_diagnostic_icons
       local updated_diagnostics = {
