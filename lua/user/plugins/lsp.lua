@@ -35,6 +35,12 @@ return {
       },
     },
     config = function(_, opts)
+      -- vim.lsp.config('kcl', {
+      --   root_markers = { 'kcl.mod' },
+      --   root_dir = "/Users/cfl12/Sky/bff-tools",
+      --   cmd = { "/opt/homebrew/bin/kcl-language-server" },
+      -- })
+
       require('mason').setup()
       require('mason-lspconfig').setup(opts)
 
@@ -61,9 +67,6 @@ return {
         capabilities = capabilities,
       })
 
-      vim.lsp.config('kcl', {
-        root_markers = { 'kcl.mod' },
-      })
 
       -- diagnostics
       local icons = require('user.icons').lsp_diagnostic_icons

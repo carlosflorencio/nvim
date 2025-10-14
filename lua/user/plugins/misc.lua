@@ -59,7 +59,7 @@ return {
     -- set cwd to git root folder
     'notjedi/nvim-rooter.lua',
     priority = 500,
-    enabled = false,
+    enabled = true,
     opts = {
       -- rooter_patterns = { 'go.work', 'go.mod', '.git', '.hg', '.svn' },
     },
