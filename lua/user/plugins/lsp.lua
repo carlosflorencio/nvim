@@ -19,7 +19,7 @@ return {
         'kotlin_language_server',
         'starpls',
         'starlark_rust',
-        'kcl',
+        -- 'kcl',
         'yamlls',
         'jsonls',
         'golangci_lint_ls',
@@ -35,12 +35,6 @@ return {
       },
     },
     config = function(_, opts)
-      -- vim.lsp.config('kcl', {
-      --   root_markers = { 'kcl.mod' },
-      --   root_dir = "/Users/cfl12/Sky/bff-tools",
-      --   cmd = { "/opt/homebrew/bin/kcl-language-server" },
-      -- })
-
       require('mason').setup()
       require('mason-lspconfig').setup(opts)
 
@@ -66,6 +60,10 @@ return {
       vim.lsp.config('*', {
         capabilities = capabilities,
       })
+
+      -- needs to be installed globally instead of via Mason
+      -- https://github.com/kcl-lang/kcl.nvim/issues/18
+      vim.lsp.enable("kcl")
 
 
       -- diagnostics

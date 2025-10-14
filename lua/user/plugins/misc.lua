@@ -16,8 +16,9 @@ return {
     'tpope/vim-abolish',
   },
 
-  -- ga motion to align columns (e.g vipga,)
+  -- gA motion to align columns
   -- delimiters: <Space>, =, :, ., |, &, #, and ,
+  -- select block then gA<delimiter>
   {
     'junegunn/vim-easy-align',
     keys = {
