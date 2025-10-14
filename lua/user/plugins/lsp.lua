@@ -307,6 +307,7 @@ return {
     },
   },
 
+  -- syntax highlight for kcl language (.k files)
   { 'kcl-lang/kcl.nvim', lazy = false },
 
   {
