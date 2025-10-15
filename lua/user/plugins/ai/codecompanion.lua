@@ -69,9 +69,10 @@ return {
         },
         strategies = {
           chat = {
-            adapter = '4',
+            adapter = 'sonnet',
             roles = {
               llm = function(adapter)
+                -- set agent name based on adapter
                 return adapter.schema.model.default
               end,
             },
