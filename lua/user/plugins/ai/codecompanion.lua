@@ -60,10 +60,12 @@ return {
         -- tail -f ~/.local/state/nvim/codecompanion.log
         -- log_level = 'DEBUG', -- or "TRACE"
         adapters = {
-          gemini = openrouter_adapter 'google/gemini-2.5-pro-preview',
-          flash = openrouter_adapter 'google/gemini-2.5-flash-preview-05-20',
-          ['4.1'] = openrouter_adapter 'openai/gpt-4.1',
-          ['4'] = openrouter_adapter 'anthropic/claude-sonnet-4',
+          http = {
+            gemini = openrouter_adapter 'google/gemini-2.5-pro',
+            flash = openrouter_adapter 'google/gemini-2.5-flash',
+            ['4.1'] = openrouter_adapter 'openai/gpt-4.1',
+            ['sonnet'] = openrouter_adapter 'anthropic/claude-sonnet-4.5',
+          }
         },
         strategies = {
           chat = {
@@ -78,7 +80,7 @@ return {
             adapter = 'copilot',
           },
           agent = {
-            adapter = '4',
+            adapter = 'sonnet',
           },
         },
         display = {
@@ -130,7 +132,8 @@ return {
                   return context.is_visual
                 end,
                 content = function(context)
-                  local selection = require('codecompanion.helpers.actions').get_code(context.start_line, context.end_line)
+                  local selection = require('codecompanion.helpers.actions').get_code(context.start_line,
+                    context.end_line)
 
                   return string.format(
                     [[And this is some code that relates to my question:
@@ -189,7 +192,7 @@ return {
               is_slash_cmd = true,
               short_name = 'review',
               stop_context_insertion = true, -- selected text is already sent
-              user_prompt = false, -- user input is not required
+              user_prompt = false,           -- user input is not required
               auto_submit = true,
             },
             prompts = {
