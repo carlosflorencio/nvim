@@ -6,6 +6,7 @@ return {
     init = function()
       vim.g.moonflyWinSeparator = 2 -- line instead of block
       vim.g.moonflyTransparent = true
+      vim.g.moonflyNormalFloat = true
     end,
     config = function()
       vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
