@@ -205,3 +205,6 @@ end, { desc = 'Open Scratch file' })
 vim.keymap.set('n', '<leader>sn', function()
   require('user.scratch').new()
 end, { desc = 'New Scratch file (Codi)' })
+
+-- vcs / git
+vim.keymap.set('n', '<leader>gg', '<cmd>LazyGit<cr>', { desc = 'LazyGit wezterm tab' })

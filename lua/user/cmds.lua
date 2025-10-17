@@ -134,3 +134,18 @@ vim.api.nvim_create_user_command('LspErrors', function()
     print 'LSP errors added to the clipboard.'
   end
 end, {})
+
+-- LazyGit in a floating terminal inside neovim is usually slow
+-- opening in a new tab is faster
+vim.api.nvim_create_user_command('LazyGit', function()
+  local cwd = vim.fn.getcwd()
+
+  -- Get current focused pane ID
+  local pane_id = vim.fn.system('wezterm cli list-clients --format json | jq -r ".[0].focused_pane_id"'):gsub('%s+', '')
+
+  vim.fn.system(string.format(
+    'wezterm cli spawn --cwd "%s" -- bash -c "lazygit ; wezterm cli activate-pane --pane-id %s"',
+    cwd,
+    pane_id
+  ))
+end, {})
