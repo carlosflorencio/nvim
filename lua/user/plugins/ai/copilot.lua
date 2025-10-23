@@ -29,6 +29,7 @@ return {
   },
   {
     'zbirenbaum/copilot.lua',
+    enabled = ! vim.g.is_work, -- disable on work laptop
     init = function()
       local function get_mise_node_path()
         local handle = io.popen 'mise where node@latest'
