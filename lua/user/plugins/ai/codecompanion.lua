@@ -23,7 +23,7 @@ return {
   },
   {
     'olimorris/codecompanion.nvim',
-    enabled = ! vim.g.is_work,
+    enabled = not vim.g.is_work,
     lazy = true,
     dependencies = {
       'nvim-lua/plenary.nvim',

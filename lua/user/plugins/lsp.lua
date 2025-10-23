@@ -31,7 +31,7 @@ return {
       },
       automatic_installation = true,
       automatic_enable = {
-        exclude = { 'ts_ls', 'harper_ls' },
+        exclude = { 'ts_ls', 'harper_ls', 'copilot' },
       },
     },
     config = function(_, opts)

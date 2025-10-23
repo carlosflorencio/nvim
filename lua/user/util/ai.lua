@@ -17,6 +17,11 @@ M.accept = function()
     return
   end
 
+  if package.loaded['augment'] then
+    vim.cmd("call augment#Accept()")
+    return
+  end
+
   -- copilot.vim
   if vim.g.loaded_copilot then
     vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<Tab>', true, true, true)), 'n', true)
@@ -56,9 +61,14 @@ M.has_suggestions = function()
     return require('copilot.suggestion').is_visible()
   end
 
+  if package.loaded['augment'] then
+    return true
+  end
+
   -- copilot.vim
   if vim.g.loaded_copilot then
-    return vim.fn.exists '*copilot#GetDisplayedSuggestion' ~= 0 and vim.fn['copilot#GetDisplayedSuggestion']()['text'] ~= ''
+    return vim.fn.exists '*copilot#GetDisplayedSuggestion' ~= 0 and
+        vim.fn['copilot#GetDisplayedSuggestion']()['text'] ~= ''
   end
 
   return false
