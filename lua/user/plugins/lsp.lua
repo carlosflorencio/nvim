@@ -25,6 +25,8 @@ return {
         'golangci_lint_ls',
         'ts_ls', -- required by typescript-tools
 
+        'eslint',
+
         -- personal notes lsp
         -- auto completion links [[]]
         'markdown_oxide',
