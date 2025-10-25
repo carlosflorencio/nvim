@@ -207,4 +207,4 @@ vim.keymap.set('n', '<leader>sn', function()
 end, { desc = 'New Scratch file (Codi)' })
 
 -- vcs / git
-vim.keymap.set('n', '<leader>gg', '<cmd>LazyGit<cr>', { desc = 'LazyGit wezterm tab' })
+-- vim.keymap.set('n', '<leader>gg', '<cmd>LazyGit<cr>', { desc = 'LazyGit wezterm tab' })

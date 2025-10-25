@@ -114,13 +114,13 @@ return {
     },
   },
   keys = {
-    -- {
-    --   '<leader>gg',
-    --   function()
-    --     Snacks.lazygit.open()
-    --   end,
-    --   desc = 'Lazygit',
-    -- },
+    {
+      '<leader>gg',
+      function()
+        Snacks.lazygit.open()
+      end,
+      desc = 'Lazygit',
+    },
     {
       '<leader>gf',
       function()
