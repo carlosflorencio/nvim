@@ -4,6 +4,7 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
+    gh = {},
     words = {
       -- highlight lsp words ocurrences
       enabled = true,
@@ -64,6 +65,8 @@ return {
         },
       },
       sources = {
+        gh_issue = {},
+        gh_pr = {},
         file = {
           layout = {
             width = 1,
