@@ -10,7 +10,7 @@ return {
       vim.g.copilot_node_command = node_path .. '/bin/node'
     end,
     cmd = 'Copilot',
-    enabled = not vim.g.is_work,
+    enabled = false,
     event = 'InsertEnter',
     opts = {
       copilot_node_command = vim.g.copilot_node_command, -- Set to the path of your Node.js executable
