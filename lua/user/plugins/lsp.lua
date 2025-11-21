@@ -132,7 +132,7 @@ return {
     },
     config = function()
       require('typescript-tools').setup {
-        root_dir = require('lspconfig').util.root_pattern('.git', 'package-lock.json', 'yarn.lock'),
+        -- root_dir = require('lspconfig').util.root_pattern('.git', 'pnpm-lock.yaml', 'package-lock.json', 'yarn.lock'),
         settings = {
           -- tsserver_file_preferences = {
           --   includeInlayParameterNameHints = 'all', -- 'none' | 'literals' | 'all'
