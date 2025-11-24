@@ -77,6 +77,7 @@ return {
           topdelete = { text = '󰐊' },
           changedelete = { text = '▏' },
         },
+        attach_to_untracked = true,
         -- required to avoid slowdown in lazygit, etc
         update_debounce = 500,
         on_attach = function(buffer)
@@ -94,6 +95,9 @@ return {
           map('n', '<leader>gu', gs.undo_stage_hunk, 'Undo Stage Hunk')
           map('n', '<leader>gR', gs.reset_buffer, 'Reset Buffer')
           map('n', '<leader>gp', gs.preview_hunk, 'Preview Hunk')
+          map('n', '<leader>gq', function()
+            gs.setqflist('all')
+          end, 'Add changes to quick fix list')
           map('n', '<leader>gb', function()
             gs.blame_line { full = true }
           end, 'Blame Line')
