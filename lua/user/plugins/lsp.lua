@@ -23,7 +23,8 @@ return {
         'yamlls',
         'jsonls',
         'golangci_lint_ls',
-        'ts_ls', -- required by typescript-tools
+        -- 'ts_ls', -- required by typescript-tools
+        'vtsls',
 
         'eslint',
 
@@ -33,7 +34,12 @@ return {
       },
       automatic_installation = true,
       automatic_enable = {
-        exclude = { 'ts_ls', 'harper_ls', 'copilot' },
+        exclude = {
+          -- 'vtsls',
+          'ts_ls',
+          'harper_ls',
+          'copilot',
+        },
       },
     },
     config = function(_, opts)
@@ -65,8 +71,7 @@ return {
 
       -- needs to be installed globally instead of via Mason
       -- https://github.com/kcl-lang/kcl.nvim/issues/18
-      vim.lsp.enable("kcl")
-
+      vim.lsp.enable 'kcl'
 
       -- diagnostics
       local icons = require('user.icons').lsp_diagnostic_icons
@@ -125,6 +130,7 @@ return {
 
   {
     'pmizio/typescript-tools.nvim',
+    enabled = false,
     ft = { 'typescript', 'typescriptreact', 'javascript' },
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -309,7 +315,7 @@ return {
       }
     end,
     keys = {
-      { '<leader>fs', '<cmd>Namu symbols<cr>',   desc = 'Jump to LSP symbol' },
+      { '<leader>fs', '<cmd>Namu symbols<cr>', desc = 'Jump to LSP symbol' },
       { '<leader>fS', '<cmd>Namu workspace<cr>', desc = 'Jump to LSP workspace symbols' },
     },
   },
@@ -330,7 +336,7 @@ return {
         -- See the configuration section for more details
         -- Load luvit types when the `vim.uv` word is found
         { path = 'luvit-meta/library', words = { 'vim%.uv' } },
-        { path = 'snacks.nvim',        words = { 'Snacks' } },
+        { path = 'snacks.nvim', words = { 'Snacks' } },
       },
     },
   },
