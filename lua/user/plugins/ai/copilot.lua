@@ -2,15 +2,15 @@ return {
   {
     'zbirenbaum/copilot.lua',
     init = function()
-      local node_path, err = require("user.util.env").node_path()
+      local node_path, err = require('user.util.env').node_path()
       if err then
-        vim.notify("Error getting Node.js path from mise: " .. err, vim.log.levels.ERROR)
+        vim.notify('Error getting Node.js path from mise: ' .. err, vim.log.levels.ERROR)
         return
       end
       vim.g.copilot_node_command = node_path .. '/bin/node'
     end,
     cmd = 'Copilot',
-    enabled = false,
+    enabled = vim.fn.hostname() == 'Carloss-MacBook-Air.local',
     event = 'InsertEnter',
     opts = {
       copilot_node_command = vim.g.copilot_node_command, -- Set to the path of your Node.js executable
