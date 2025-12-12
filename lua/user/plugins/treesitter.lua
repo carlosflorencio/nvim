@@ -75,6 +75,7 @@ return {
         disable = {
           -- better experience with native indentation
           'markdown',
+          'yaml',
         },
       },
       incremental_selection = {
