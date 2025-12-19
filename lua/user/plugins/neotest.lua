@@ -13,7 +13,9 @@ return {
       },
     },
     config = function()
-      local neotest_golang_opts = {} -- Specify custom configuration
+      local neotest_golang_opts = {
+        warn_test_name_dupes = false
+      } -- Specify custom configuration
       require('neotest').setup {
         adapters = {
           require 'neotest-golang' (neotest_golang_opts), -- Registration
