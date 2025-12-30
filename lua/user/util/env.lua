@@ -10,7 +10,7 @@ end
 ---@return boolean
 function M.is_work()
   local hostname = vim.fn.hostname()
-  return hostname:match("^PT") ~= nil
+  return hostname:match '^PT' ~= nil
 end
 
 --- Check if the current machine is a personal machine

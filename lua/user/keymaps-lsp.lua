@@ -21,12 +21,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     if client ~= nil and client.name == 'typescript-tools' then
-      vim.keymap.set('n', '<leader>oa', '<cmd>TSToolsAddMissingImports<CR>',
-        { buffer = event.buf, desc = 'Add Missing Imports' })
-      vim.keymap.set('n', '<leader>oi', '<cmd>TSToolsOrganizeImports<CR>',
-        { buffer = event.buf, desc = 'Organize Imports' })
-      vim.keymap.set('n', '<leader>ou', '<cmd>TSToolsRemoveUnusedImports<CR>',
-        { buffer = event.buf, desc = 'Remove Unused Imports/Variables' })
+      vim.keymap.set('n', '<leader>oa', '<cmd>TSToolsAddMissingImports<CR>', { buffer = event.buf, desc = 'Add Missing Imports' })
+      vim.keymap.set('n', '<leader>oi', '<cmd>TSToolsOrganizeImports<CR>', { buffer = event.buf, desc = 'Organize Imports' })
+      vim.keymap.set('n', '<leader>ou', '<cmd>TSToolsRemoveUnusedImports<CR>', { buffer = event.buf, desc = 'Remove Unused Imports/Variables' })
     end
 
     local map = function(keys, func, desc)

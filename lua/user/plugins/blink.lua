@@ -3,8 +3,8 @@ return {
     'saghen/blink.cmp',
     -- needed because of samiulsami/cmp-go-deep
     dependencies = {
-      { "samiulsami/cmp-go-deep", dependencies = { "kkharji/sqlite.lua" } },
-      { "saghen/blink.compat" },
+      { 'samiulsami/cmp-go-deep', dependencies = { 'kkharji/sqlite.lua' } },
+      { 'saghen/blink.compat' },
     },
     -- use a release tag to download pre-built binaries
     version = '1.*',
@@ -81,14 +81,13 @@ return {
         default = { 'lsp', 'path', 'snippets', 'buffer', 'go_deep' },
         providers = {
           go_deep = {
-            name = "go_deep",
-            module = "blink.compat.source",
+            name = 'go_deep',
+            module = 'blink.compat.source',
             min_keyword_length = 3,
             max_items = 5,
             ---@module "cmp_go_deep"
             ---@type cmp_go_deep.Options
-            opts = {
-            },
+            opts = {},
           },
         },
       },

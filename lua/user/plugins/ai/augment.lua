@@ -6,19 +6,19 @@ return {
     end,
     event = 'VeryLazy',
     init = function()
-      local bff_root = vim.fn.expand('~/Sky/bff')
+      local bff_root = vim.fn.expand '~/Sky/bff'
       -- add git worktrees
       local dirs = vim.fn.globpath(bff_root, '*', false, true)
       -- add bff-tools if it exists
-      local bff_tools = vim.fn.expand('~/Sky/bff-tools')
+      local bff_tools = vim.fn.expand '~/Sky/bff-tools'
       if vim.fn.isdirectory(bff_tools) == 1 then
         table.insert(dirs, bff_tools)
       end
       vim.g.augment_workspace_folders = dirs
 
-      local node_path, err = require("user.util.env").node_path()
+      local node_path, err = require('user.util.env').node_path()
       if err then
-        vim.notify("Error getting Node.js path from mise: " .. err, vim.log.levels.ERROR)
+        vim.notify('Error getting Node.js path from mise: ' .. err, vim.log.levels.ERROR)
         return
       end
       vim.g.augment_node_command = node_path .. '/bin/node'
@@ -45,12 +45,11 @@ return {
       {
         '<leader>B',
         function()
-          vim.cmd('Augment chat-toggle')
+          vim.cmd 'Augment chat-toggle'
         end,
         desc = 'Augment - Toggle chat',
         mode = { 'v', 'n' },
       },
-    }
-
+    },
   },
 }

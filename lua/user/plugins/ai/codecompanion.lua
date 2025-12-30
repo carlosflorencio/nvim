@@ -67,7 +67,7 @@ return {
             flash = openrouter_adapter 'google/gemini-2.5-flash',
             ['4.1'] = openrouter_adapter 'openai/gpt-4.1',
             ['sonnet'] = openrouter_adapter 'anthropic/claude-sonnet-4.5',
-          }
+          },
         },
         strategies = {
           chat = {
@@ -135,8 +135,7 @@ return {
                   return context.is_visual
                 end,
                 content = function(context)
-                  local selection = require('codecompanion.helpers.actions').get_code(context.start_line,
-                    context.end_line)
+                  local selection = require('codecompanion.helpers.actions').get_code(context.start_line, context.end_line)
 
                   return string.format(
                     [[And this is some code that relates to my question:
@@ -195,7 +194,7 @@ return {
               is_slash_cmd = true,
               short_name = 'review',
               stop_context_insertion = true, -- selected text is already sent
-              user_prompt = false,           -- user input is not required
+              user_prompt = false, -- user input is not required
               auto_submit = true,
             },
             prompts = {

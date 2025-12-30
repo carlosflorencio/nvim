@@ -18,7 +18,7 @@ M.accept = function()
   end
 
   if package.loaded['augment'] then
-    vim.cmd("call augment#Accept()")
+    vim.cmd 'call augment#Accept()'
     return
   end
 
@@ -67,8 +67,7 @@ M.has_suggestions = function()
 
   -- copilot.vim
   if vim.g.loaded_copilot then
-    return vim.fn.exists '*copilot#GetDisplayedSuggestion' ~= 0 and
-        vim.fn['copilot#GetDisplayedSuggestion']()['text'] ~= ''
+    return vim.fn.exists '*copilot#GetDisplayedSuggestion' ~= 0 and vim.fn['copilot#GetDisplayedSuggestion']()['text'] ~= ''
   end
 
   return false

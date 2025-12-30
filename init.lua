@@ -7,33 +7,33 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- Options
-vim.opt.termguicolors = true                  -- set term gui colors (most terminals support this)
-vim.opt.wrap = false                          -- prevent line wrap on long lines
+vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
+vim.opt.wrap = false -- prevent line wrap on long lines
 vim.opt.scrolloff = 10
-vim.opt.relativenumber = true                 -- Relative line numbers
-vim.opt.cursorline = true                     -- Enable highlighting of the current line
-vim.opt.expandtab = true                      -- Use spaces instead of tabs
-vim.opt.splitbelow = true                     -- Put new windows below current
-vim.opt.splitright = true                     -- Put new windows right of current
+vim.opt.relativenumber = true -- Relative line numbers
+vim.opt.cursorline = true -- Enable highlighting of the current line
+vim.opt.expandtab = true -- Use spaces instead of tabs
+vim.opt.splitbelow = true -- Put new windows below current
+vim.opt.splitright = true -- Put new windows right of current
 vim.opt.completeopt = 'menu,menuone,noselect' -- completion options
-vim.opt.signcolumn = 'yes'                    -- Always show the sign column, otherwise it would shift the text each time
+vim.opt.signcolumn = 'yes' -- Always show the sign column, otherwise it would shift the text each time
 vim.opt.fillchars = { eob = '~' }
-vim.opt.pumheight = 10                        -- Maximum number of entries in a popup
+vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 -- vim.opt.shell = '/bin/sh' -- fish is slow
-vim.opt.shell = '/opt/homebrew/bin/fish'      -- fish is slow
-vim.o.mouse = 'a'                             -- Enable mouse mode
-vim.o.clipboard = 'unnamedplus'               -- system clipboard
-vim.o.undofile = true                         -- Save undo history
-vim.o.breakindent = true                      -- Indent wrapped lines
-vim.opt.showmode = false                      -- don't show mode since we use a statusline
-vim.opt.jumpoptions = 'stack,view'            -- jump back c-o preserves y cursor position
-vim.opt.updatetime = 250                      -- Decrease update time
-vim.opt.timeoutlen = 300                      -- Decrease mapped sequence wait time (whick-key appears sooner)
-vim.opt.list = true                           -- differentiate white spaces
+vim.opt.shell = '/opt/homebrew/bin/fish' -- fish is slow
+vim.o.mouse = 'a' -- Enable mouse mode
+vim.o.clipboard = 'unnamedplus' -- system clipboard
+vim.o.undofile = true -- Save undo history
+vim.o.breakindent = true -- Indent wrapped lines
+vim.opt.showmode = false -- don't show mode since we use a statusline
+vim.opt.jumpoptions = 'stack,view' -- jump back c-o preserves y cursor position
+vim.opt.updatetime = 250 -- Decrease update time
+vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time (whick-key appears sooner)
+vim.opt.list = true -- differentiate white spaces
 vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
 -- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
-vim.opt.hlsearch = true      -- highlight search (esc keymap to hide)
+vim.opt.hlsearch = true -- highlight search (esc keymap to hide)
 
 vim.opt.winborder = 'single' -- Set window border style
 
@@ -102,9 +102,9 @@ require('lazy').setup({
     end,
   }, -- :GuessIndent Detect tabstop and shiftwidth automatically
   -- { 'tpope/vim-sleuth' }, -- Detect tabstop and shiftwidth automatically
-  { 'tpope/vim-repeat',        event = 'VeryLazy' },
+  { 'tpope/vim-repeat', event = 'VeryLazy' },
   -- alternative https://github.com/pteroctopus/faster.nvim
-  { 'LunarVim/bigfile.nvim',   opts = {} },
+  { 'LunarVim/bigfile.nvim', opts = {} },
   { import = 'user.plugins' },
   { import = 'user.plugins.ai' },
 }, {

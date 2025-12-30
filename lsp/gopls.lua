@@ -6,16 +6,16 @@ return {
       didChangeWatchedFiles = {
         dynamicRegistration = false,
       },
-    }
+    },
   },
   settings = {
     gopls = {
       gofumpt = true,
-      buildFlags = { "-tags=mage,wireinject,integration" },
+      buildFlags = { '-tags=mage,wireinject,integration' },
       -- env = {
       --   GOEXPERIMENT = "jsonv2"
       -- }
-    }
+    },
   },
   root_markers = { 'go.work', 'go.mod', '.git' },
   filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },

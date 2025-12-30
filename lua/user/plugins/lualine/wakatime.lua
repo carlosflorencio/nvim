@@ -28,7 +28,7 @@ local function update_wakatime()
   end)
 
   if not handle then
-    print('Failed to run wakatime-cli')
+    print 'Failed to run wakatime-cli'
     stdin:close()
     stdout:close()
     stderr:close()

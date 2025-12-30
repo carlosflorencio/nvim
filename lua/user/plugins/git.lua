@@ -96,7 +96,7 @@ return {
           map('n', '<leader>gR', gs.reset_buffer, 'Reset Buffer')
           map('n', '<leader>gp', gs.preview_hunk, 'Preview Hunk')
           map('n', '<leader>gq', function()
-            gs.setqflist('all')
+            gs.setqflist 'all'
           end, 'Add changes to quick fix list')
           map('n', '<leader>gb', function()
             gs.blame_line { full = true }
@@ -167,9 +167,9 @@ return {
     keys = {
       -- imply-local allows to use LSP on the right side
       { ',HH', '<cmd>DiffviewOpen origin/HEAD...HEAD --imply-local<cr>', desc = 'Git compare against master (review)', mode = 'n' },
-      { ',hh', '<cmd>DiffviewFileHistory --follow %<cr>',                desc = 'Git File History',                    mode = 'n' },
-      { ',hh', "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>",        desc = 'Git History',                         mode = 'v' },
-      { ',hc', '<cmd>DiffviewClose<cr>',                                 desc = 'Diffview Close' },
+      { ',hh', '<cmd>DiffviewFileHistory --follow %<cr>', desc = 'Git File History', mode = 'n' },
+      { ',hh', "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>", desc = 'Git History', mode = 'v' },
+      { ',hc', '<cmd>DiffviewClose<cr>', desc = 'Diffview Close' },
     },
   },
 

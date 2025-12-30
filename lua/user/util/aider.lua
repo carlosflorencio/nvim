@@ -20,17 +20,15 @@ M.setup = function()
       local winid = vim.api.nvim_get_current_win()
       vim.api.nvim_win_set_width(winid, width)
 
-      vim.keymap.set('n', 'q', '<cmd>close<CR>',
-        { buffer = term.bufnr, noremap = true, silent = true, desc = 'Aider: Close terminal' })
-      vim.keymap.set('n', '<esc>', '<cmd>close<CR>',
-        { buffer = term.bufnr, noremap = true, silent = true, desc = 'Aider: Close terminal' })
+      vim.keymap.set('n', 'q', '<cmd>close<CR>', { buffer = term.bufnr, noremap = true, silent = true, desc = 'Aider: Close terminal' })
+      vim.keymap.set('n', '<esc>', '<cmd>close<CR>', { buffer = term.bufnr, noremap = true, silent = true, desc = 'Aider: Close terminal' })
     end,
   }
 
   -- run aider for the subtree
   vim.api.nvim_create_user_command('AiderLocalSubtreeOnly', function()
     local curr_buf_dir = vim.fn.expand '%:p:h'
-    local project_dir = vim.fs.root(curr_buf_dir, { "go.mod", "package.json", ".git" })
+    local project_dir = vim.fs.root(curr_buf_dir, { 'go.mod', 'package.json', '.git' })
     print('here[13]: aider.lua:33: project_dir=' .. vim.inspect(project_dir))
 
     aider.dir = project_dir
