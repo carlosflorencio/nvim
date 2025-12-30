@@ -57,8 +57,8 @@ return {
               box = 'vertical',
               border = 'rounded',
               title = '{title} {live} {flags}',
-              { win = 'input', height = 1,     border = 'bottom' },
-              { win = 'list',  border = 'none' },
+              { win = 'input', height = 1, border = 'bottom' },
+              { win = 'list', border = 'none' },
             },
             { win = 'preview', title = '{preview}', border = 'rounded', width = 0.4 },
           },
@@ -91,11 +91,16 @@ return {
               'edit_tab',
               mode = { 'n', 'i' },
             },
+            ['<C-d>'] = { 'preview_scroll_down', mode = { 'n', 'i' } },
+
+            ['<C-u>'] = { 'preview_scroll_up', mode = { 'n', 'i' } },
           },
         },
         list = {
           keys = {
             ['<c-t>'] = 'edit_tab',
+            ['<C-d>'] = 'preview_scroll_down',
+            ['<C-u>'] = 'preview_scroll_up',
           },
         },
       },
@@ -155,12 +160,12 @@ return {
     {
       '<leader>fe',
       function()
-        Snacks.picker.diagnostics({
+        Snacks.picker.diagnostics {
           -- start in normal mode
           on_show = function()
             vim.cmd.stopinsert()
           end,
-        })
+        }
       end,
       desc = 'Find diagnostics errors',
     },
