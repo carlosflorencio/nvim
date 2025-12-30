@@ -7,7 +7,11 @@ return {
       local bff_root = vim.fn.expand('~/Sky/bff')
       -- add git worktrees
       local dirs = vim.fn.globpath(bff_root, '*', false, true)
-      table.insert(dirs, '/Users/cfl12/Sky/bff-tools')
+      -- add bff-tools if it exists
+      local bff_tools = vim.fn.expand('~/Sky/bff-tools')
+      if vim.fn.isdirectory(bff_tools) == 1 then
+        table.insert(dirs, bff_tools)
+      end
       vim.g.augment_workspace_folders = dirs
 
       local node_path, err = require("user.util.env").node_path()

@@ -67,7 +67,8 @@ vim.g.personal_notes = '~/Projects/notes'
 -- https://www.reddit.com/r/neovim/comments/1ihpvaf/the_linematch_diffopt_makes_builtin_diff_so_sweat/
 vim.o.diffopt = 'algorithm:histogram,internal,filler,closeoff,linematch:60,followwrap'
 
-vim.g.is_work = vim.fn.hostname() == "PTFFYCQX9LCJ"
+-- Check if this is a work machine (hostname starts with "PT")
+vim.g.is_work = require('user.util.env').is_work()
 
 -- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'

@@ -1,1 +1,14 @@
 .DS_Store
+
+# Vim swap files
+*.swp
+*.swo
+*.swn
+
+# Environment files with secrets
+.env*
+!.env.example
+
+# Scratch directory (keep the directory, ignore contents)
+scratch/*
+!scratch/.gitignore

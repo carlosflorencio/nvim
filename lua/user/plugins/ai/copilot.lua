@@ -10,7 +10,8 @@ return {
       vim.g.copilot_node_command = node_path .. '/bin/node'
     end,
     cmd = 'Copilot',
-    enabled = vim.fn.hostname() == 'Carloss-MacBook-Air.local',
+    -- Enable Copilot on personal machines (non-work machines)
+    enabled = require('user.util.env').is_personal(),
     event = 'InsertEnter',
     opts = {
       copilot_node_command = vim.g.copilot_node_command, -- Set to the path of your Node.js executable
