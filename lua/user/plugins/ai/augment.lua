@@ -1,7 +1,9 @@
 return {
   {
     'augmentcode/augment.vim',
-    enabled = vim.g.is_work,
+    enabled = function()
+      return require('user.util.env').is_work()
+    end,
     event = 'VeryLazy',
     init = function()
       local bff_root = vim.fn.expand('~/Sky/bff')

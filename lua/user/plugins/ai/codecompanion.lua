@@ -23,7 +23,9 @@ return {
   },
   {
     'olimorris/codecompanion.nvim',
-    enabled = not vim.g.is_work,
+    enabled = function()
+      return require('user.util.env').is_personal()
+    end,
     lazy = true,
     dependencies = {
       'nvim-lua/plenary.nvim',
