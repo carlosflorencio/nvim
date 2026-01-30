@@ -255,6 +255,22 @@ return {
       end,
       desc = 'Prev LSP Reference',
     },
+    {
+      '<leader>fx',
+      function()
+        local file = vim.fn.expand '%:p' -- get full path of current file
+        Snacks.terminal.open({ 'fx', file }, {
+          cwd = vim.fn.getcwd(),
+          win = {
+            position = 'float',
+            border = 'rounded',
+            width = 0.9,
+            height = 0.9,
+          },
+        })
+      end,
+      desc = 'Open fx for current file',
+    },
   },
   init = function()
     vim.api.nvim_create_autocmd('User', {
