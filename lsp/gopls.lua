@@ -11,7 +11,7 @@ return {
   settings = {
     gopls = {
       gofumpt = true,
-      buildFlags = { '-tags=mage,wireinject,integration' },
+      buildFlags = { '-tags=mage,wireinject,integration,sprites_e2e' },
       -- env = {
       --   GOEXPERIMENT = "jsonv2"
       -- }
