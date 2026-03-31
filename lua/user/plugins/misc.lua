@@ -3,11 +3,16 @@ return {
     'kylechui/nvim-surround',
     version = '*', -- Use for stability; omit to use `main` branch for the latest features
     event = 'VeryLazy',
-    opts = {
-      keymaps = {
-        visual = 'T',
-      },
-    },
+    init = function()
+      vim.g.nvim_surround_no_visual_mappings = true
+    end,
+    opts = {},
+    config = function(_, opts)
+      require('nvim-surround').setup(opts)
+      vim.keymap.set('x', 'T', '<Plug>(nvim-surround-visual)', {
+        desc = 'Add a surrounding pair around a visual selection',
+      })
+    end,
   },
 
   -- :%S/foo/bar
