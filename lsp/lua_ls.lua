@@ -5,16 +5,21 @@ return {
   -- capabilities = {},
   settings = {
     Lua = {
+      runtime = {
+        version = 'LuaJIT',
+      },
       diagnostics = {
-        globals = { 'hs' },
+        globals = { 'vim', 'hs' },
       },
       completion = {
         callSnippet = 'Replace',
       },
       workspace = {
+        checkThirdParty = false,
         library = {
-          ['/Applications/Hammerspoon.app/Contents/Resources/extensions/hs/'] = true,
-          [vim.fn.expand '~/.hammerspoon/Spoons/EmmyLua.spoon/annotations'] = true,
+          vim.env.VIMRUNTIME,
+          '/Applications/Hammerspoon.app/Contents/Resources/extensions/hs/',
+          vim.fn.expand '~/.hammerspoon/Spoons/EmmyLua.spoon/annotations',
         },
       },
       -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
