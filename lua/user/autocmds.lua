@@ -63,15 +63,42 @@ vim.api.nvim_create_autocmd('FileType', {
   command = 'wincmd J',
 })
 
--- Enable search highlights on certain keys
-vim.on_key(function(char)
-  if vim.fn.mode() == 'n' then
-    local new_hlsearch = vim.tbl_contains({ '<CR>', 'n', 'N', '*', '#', '?', '/' }, vim.fn.keytrans(char))
-    if vim.opt.hlsearch:get() ~= new_hlsearch then
-      vim.opt.hlsearch = new_hlsearch
-    end
+-- Auto hlsearch: enable on search keys, clear on the next cursor move that
+-- isn't from a search jump. Event-driven replacement for the old
+-- vim.on_key handler (which ran on every keystroke).
+do
+  local hl_group = vim.api.nvim_create_augroup('carlos/auto_hlsearch', { clear = true })
+  local searching = false
+
+  local function arm()
+    searching = true
+    vim.opt.hlsearch = true
   end
-end, vim.api.nvim_create_namespace 'auto_hlsearch')
+
+  vim.api.nvim_create_autocmd('CmdlineLeave', {
+    group = hl_group,
+    pattern = { '/', '?' },
+    callback = arm,
+  })
+
+  for _, key in ipairs { 'n', 'N', '*', '#' } do
+    vim.keymap.set('n', key, function()
+      arm()
+      return key
+    end, { expr = true, desc = 'Search nav (auto hlsearch)' })
+  end
+
+  vim.api.nvim_create_autocmd('CursorMoved', {
+    group = hl_group,
+    callback = function()
+      if searching then
+        searching = false
+      elseif vim.opt.hlsearch:get() then
+        vim.opt.hlsearch = false
+      end
+    end,
+  })
+end
 
 -- Prevent opening splits/windows and having the buffer scrolled to the right
 -- vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter' }, {

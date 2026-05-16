@@ -45,23 +45,6 @@ return {
   },
 
   {
-    'kdheepak/lazygit.nvim',
-    enabled = false,
-    -- optional for floating window border decoration
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-    },
-    keys = {
-      { '<leader>gg', '<cmd>LazyGit<cr>' },
-      { '<leader>gf', '<cmd>LazyGitFilterCurrentFile<cr>' },
-    },
-    init = function()
-      -- full screen: 1
-      vim.g.lazygit_floating_window_scaling_factor = 0.9
-    end,
-  },
-
-  {
     -- TODO: fix this is making nvim slow when opening the first time
     -- plus lazygit is slow staging files
     'lewis6991/gitsigns.nvim',

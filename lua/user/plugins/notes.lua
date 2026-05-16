@@ -13,9 +13,7 @@ return {
           global = 'global.md',
           cwd = function()
             local bufPath = vim.api.nvim_buf_get_name(0)
-            local cwd = require('lspconfig').util.root_pattern '.git'(bufPath)
-
-            return cwd
+            return vim.fs.root(bufPath, '.git')
           end,
           file_name = function(cwd)
             if cwd:find '/bff/' then
