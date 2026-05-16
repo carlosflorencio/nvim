@@ -18,7 +18,7 @@ local function update_wakatime()
   local stdout = uv.new_pipe()
   local stderr = uv.new_pipe()
 
-  local handle, _ = uv.spawn('/opt/homebrew/bin/wakatime-cli', {
+  local handle, _ = uv.spawn(vim.fn.expand('~/.wakatime/wakatime-cli'), {
     args = { '--today' },
     stdio = { stdin, stdout, stderr },
   }, function() -- on exit
