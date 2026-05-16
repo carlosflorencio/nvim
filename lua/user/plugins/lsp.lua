@@ -39,6 +39,7 @@ return {
           'ts_ls',
           'harper_ls',
           'copilot',
+          'stylua', -- formatter only (via conform); LSP mode needs stylua >=2.3
         },
       },
     },
