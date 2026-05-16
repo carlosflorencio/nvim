@@ -60,14 +60,4 @@ return {
       vim.opt.colorcolumn = '80'
     end,
   },
-
-  {
-    -- set cwd to git root folder
-    'notjedi/nvim-rooter.lua',
-    priority = 500,
-    enabled = true,
-    opts = {
-      -- rooter_patterns = { 'go.work', 'go.mod', '.git', '.hg', '.svn' },
-    },
-  },
 }
