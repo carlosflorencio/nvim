@@ -35,10 +35,9 @@ return {
           component_separators = { left = '', right = '' },
           section_separators = { left = '', right = '' },
           disabled_filetypes = {
-            statusline = { 'dashboard', 'lazy', 'alpha', 'NvimTree', 'TelescopePrompt' },
+            statusline = { 'dashboard', 'lazy', 'alpha', 'TelescopePrompt' },
           },
           ignore_focus = {
-            'NvimTree',
             'chatgpt-input',
             'oil',
             'lir',

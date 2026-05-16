@@ -72,7 +72,6 @@ return {
 
           -- prevent autosave when deleting the session
           if not vim.g.delete_current_session then
-            require('user.util.windows').close_all_nvim_tree_buffers()
             require('user.util.windows').close_tmp_buffers()
             require('incline').disable()
             -- discard quickfix list

@@ -14,7 +14,7 @@ return {
       },
       ignore = { --			  |windows.ignore|
         buftype = { 'quickfix', 'terminal' },
-        filetype = { 'NvimTree', 'neo-tree', 'undotree', 'gundo' },
+        filetype = { 'neo-tree', 'undotree', 'gundo' },
       },
     },
     keys = {

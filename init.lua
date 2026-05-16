@@ -2,7 +2,7 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 
--- disable netrw, we use nvim-tree
+-- disable netrw, we use oil
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 

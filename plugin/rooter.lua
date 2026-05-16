@@ -7,9 +7,7 @@ local PATTERNS = { '.git', '.hg', '.svn' }
 local EXCLUDE_FT = {
   help = true,
   nofile = true,
-  NvimTree = true,
   dashboard = true,
-  TelescopePrompt = true,
   snacks_picker_input = true,
 }
 

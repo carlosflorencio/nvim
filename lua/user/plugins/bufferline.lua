@@ -24,16 +24,6 @@ return {
             style = 'none',
           },
           diagnostics = 'nvim_lsp',
-          -- offsets = {
-          --   {
-          --     filetype = 'NvimTree',
-          --     text = '',
-          --     -- same color as nvim-tree bg
-          --     highlight = 'NvimTreeNormal',
-          --     padding = 0,
-          --     separator = true,
-          --   },
-          -- },
         },
         -- vscode theme hightlights
         -- highlights = {

@@ -124,8 +124,6 @@ vim.keymap.set('n', '<leader>ct', '<cmd>tabclose<cr>', { desc = 'Close Tab' })
 vim.keymap.set('n', '<leader>cab', function()
   require('incline').disable()
   vim.cmd [[ %bd|e#|bd# ]]
-  -- vim.cmd [[ NvimTreeOpen ]]
-  -- vim.cmd [[ wincmd l ]]
   require('incline').enable()
 end, { desc = 'Close all buffers but the current one' })
 
