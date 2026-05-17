@@ -3,6 +3,7 @@ local uv = require 'luv'
 local strings = require 'user.util.strings'
 
 local current_time = ''
+local wakatime_cli = vim.fn.expand('~/.wakatime/wakatime-cli')
 local function set_interval(interval, callback)
   local timer = uv.new_timer()
   local function ontimeout()
@@ -18,7 +19,7 @@ local function update_wakatime()
   local stdout = uv.new_pipe()
   local stderr = uv.new_pipe()
 
-  local handle, _ = uv.spawn(vim.fn.expand('~/.wakatime/wakatime-cli'), {
+  local handle, _ = uv.spawn(wakatime_cli, {
     args = { '--today' },
     stdio = { stdin, stdout, stderr },
   }, function() -- on exit
