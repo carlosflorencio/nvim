@@ -56,11 +56,16 @@ vim.api.nvim_create_user_command('SaveBuffer', function()
     -- If the buffer doesn't have a name, ask the user for a file path
     local new_file_path = vim.fn.input {
       prompt = 'Enter file path to save: ',
-      default = vim.fn.getcwd(),
-      completion = 'dir',
+      default = vim.fn.getcwd() .. '/',
+      completion = 'file',
     }
     if new_file_path ~= '' then
-      bufname = new_file_path
+      bufname = vim.fn.fnamemodify(new_file_path, ':p')
+
+      local parent_dir = vim.fs.dirname(bufname)
+      if parent_dir and vim.fn.isdirectory(parent_dir) == 0 then
+        vim.fn.mkdir(parent_dir, 'p')
+      end
     else
       print 'Save aborted'
       return
@@ -69,7 +74,7 @@ vim.api.nvim_create_user_command('SaveBuffer', function()
 
   -- Save the buffer to the determined file path
   if vim.bo.modified then
-    vim.cmd('write! ' .. bufname)
+    vim.cmd('write! ' .. vim.fn.fnameescape(bufname))
   end
 end, {
   desc = 'Save Buffer, prompt for file path if not saved yet',
@@ -134,4 +139,3 @@ vim.api.nvim_create_user_command('LspErrors', function()
     print 'LSP errors added to the clipboard.'
   end
 end, {})
-
